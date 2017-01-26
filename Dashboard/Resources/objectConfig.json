@@ -1,0 +1,41 @@
+{
+    "UITableView": {
+        "analytics": "boolean",
+        "allowsSelection": "boolean",
+        "isHidden": "boolean"
+    },
+    "UILabel": {
+        "analytics": "boolean",
+        "backgroundColor": "color",
+        "textColor": "color"
+    },
+    "UITextField": {
+        "analytics": "boolean",
+         "fontSize": "number",
+        "textColor": "color",
+        "text": "text",
+        "isHidden": "boolean",
+        "textAlignment": "textAlign",
+        "placeholder": "text",
+        "font": "text",
+        "isEnabled": "boolean"
+    },
+    "UIImage": {
+        "analytics": "boolean",
+        "contentMode": "imageAlign",
+        "isHidden": "boolean",
+        "image": "text",
+        "isUserInteractionEnabled": "boolean"
+    }, 
+    "UIButton": {
+        "analytics": "boolean",
+        "fontName": "text",
+        "fontSize": "number",
+        "isUserInteractionEnabled": "boolean",
+        "backgroudColor": "color",
+        "isHidden": "boolean",
+        "title": "text",
+        "cornerRadius": "number",
+        "isEnabled": "boolean"
+    }
+}
