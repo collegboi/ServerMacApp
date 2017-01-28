@@ -23,6 +23,7 @@ class IssueViewDelegate: NSObject {
         static let TypeCell = "TypeCell"
         static let AssigneeCell = "AssigneeCell"
         static let PriorityCell = "PriorityCell"
+        static let VersionCell = "VersionCell"
     }
     
     
@@ -41,11 +42,16 @@ class IssueViewDelegate: NSObject {
 
 extension IssueViewDelegate: NSTableViewDelegate {
     
-    func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+    func tableViewSelectionDidChange(_ notification: Notification) {
         
-         issueSelectionBlock?(self.allIssues[row])
+        guard let tableView = notification.object as? NSTableView else {
+            return
+        }
+        let selectedRow = tableView.selectedRow
         
-        return true
+        if selectedRow >= 0 {
+            issueSelectionBlock?(self.allIssues[selectedRow])
+        }
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -80,6 +86,10 @@ extension IssueViewDelegate: NSTableViewDelegate {
                 
                 cellIdentifier = CellIdentifiers.PriorityCell
                 text = issue.prioity
+            }
+            else if tableColumn?.identifier == "IssueVersion" {
+                cellIdentifier = CellIdentifiers.VersionCell
+                text = issue.version
             }
         
         

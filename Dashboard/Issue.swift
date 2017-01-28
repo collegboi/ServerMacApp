@@ -50,41 +50,36 @@ enum IssueStatus: String {
 
 struct MBOjectID {
     var objectID : String = ""
-    
-    init(_ object: AnyObject ) {
-        guard let newObjectID = object["$oid"] as? String else {
-            return
-        }
-        self.objectID = newObjectID
-    }
 }
 
 struct Issue: JSONSerializable {
     
-    var issueID: MBOjectID = MBOjectID.init("" as AnyObject)
+    var issueID: MBOjectID = MBOjectID.init(objectID: "")
     let name: String!
     let status: String!
     let type: String!
     let assingee: String!
     let prioity: String!
+    let version: String!
     
-    
-    init(name: String, status: String, type: String, assignee: String, priority: String) {
+    init(name: String, status: String, type: String, assignee: String, priority: String, version: String) {
         self.name = name
         self.status = status
         self.type = type
         self.assingee = assignee
         self.prioity = priority
+        self.version = version
     }
     
     
     init( dict: [String:Any] ) {
         self.name = dict["name"] as! String
+        self.version = "1.2.2"//dict["version"] as! String
         self.status = dict["status"] as! String
         self.assingee = dict["assingee"] as! String
         self.type = dict["type"] as! String
         self.prioity = dict["prioity"] as! String
-        self.issueID = MBOjectID.init(dict["_id"] as AnyObject)
+        self.issueID = MBOjectID.init(objectID: dict["_id"] as! String)
     }
 
 }

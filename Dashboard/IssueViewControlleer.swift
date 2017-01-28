@@ -24,7 +24,7 @@ class IssueViewControlleer: NSViewController {
         
         issueViewDataSource = IssueViewDataSource(tableView: issuesTableView)
         issueViewDelegate = IssueViewDelegate(tableView: issuesTableView) { issue in
-            
+            self.editIssue(issue: issue)
         }
         
         self.getAllIssues()
@@ -33,6 +33,22 @@ class IssueViewControlleer: NSViewController {
     
     @IBAction func newIssueButton(_ sender: Any) {
         
+    }
+    
+    func editIssue(issue: Issue) {
+            
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        let editIssueWindowController = storyboard.instantiateController(withIdentifier: "EditIssue") as! NSWindowController
+            
+        if let editIssueWindow = editIssueWindowController.window {
+                
+            let editIssueViewController = editIssueWindow.contentViewController as! EditIssueViewController
+            editIssueViewController.issue = issue
+            editIssueViewController.delegate = self
+                
+            let application = NSApplication.shared()
+            application.runModal(for: editIssueWindow)
+        }
     }
     
     func getAllIssues() {
@@ -108,6 +124,16 @@ class IssueViewControlleer: NSViewController {
             }
         }
     }
+    
+}
 
+extension IssueViewControlleer: ReturnDelegate {
+    
+    func sendBackData( data: Any ) {
+        
+        //self.config?.colors[0] = (data as! RCColor)
+        //self.reloadAllData()
+        
+    }
     
 }
