@@ -15,12 +15,16 @@ class SprintBoardViewController: NSViewController {
     @IBOutlet weak var completeTableView: NSTableView!
     @IBOutlet weak var onHoldTableView: NSTableView!
     
-    
+    var allIssues = [Issue]()
+    var todoListDataArr = [Issue]()
+    var inProgressDataArr = [Issue]()
+    var completeDataArr = [Issue]()
+    var onHoldDataArr = [Issue]()
 
-    var todoListDataArray:[String] = ["Authentication","Login Issue","String Error","Crash on iPhone 7"]
-    var inProgressDataArray:[String] = []
-    var completeDataArray:[String] = []
-    var onHoldDataArray:[String] = []
+//    var todoListDataArray:[String] = []
+//    var inProgressDataArray:[String] = []
+//    var completeDataArray:[String] = []
+//    var onHoldDataArray:[String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,14 +48,91 @@ class SprintBoardViewController: NSViewController {
         self.onHoldTableView.delegate = self
         self.onHoldTableView.dataSource = self
         
+        self.getAllIssues()
+        
+    }
+    
+    func getAllIssues() {
+        
+        let apiEndpoint = "http://0.0.0.0:8181/"
+        
+        print("sendRawTimetable")
+        let networkURL = apiEndpoint + "tracker/Issue"
+        let dic = [String:AnyObject]()
+        HTTPSConnection.httpGetRequest(params: dic, url: networkURL) { (succeeded: Bool, data: NSData) -> () in
+            // Move to the UI thread
+            
+            DispatchQueue.main.async {
+                if (succeeded) {
+                    print("Succeeded")
+                    self.allIssues = IssueJSON.parseJSONConfig(data: data as Data)
+            
+                    self.sortIssuesByType()
+                    
+                } else {
+                    print("Error")
+                }
+            }
+        }
+    }
+    
+    func sortIssuesByType() {
+        
+        for issue in self.allIssues {
+            
+            switch issue.status {
+            case "TODO":
+                self.todoListDataArr.append(issue)
+            case "On Hold":
+                self.onHoldDataArr.append(issue)
+            case "Complete":
+                self.completeDataArr.append(issue)
+            case "In Progress":
+                self.inProgressDataArr.append(issue)
+            default:
+                print("wrong type")
+            }
+        }
+        
         self.todoListTableView.reloadData()
         self.inProgressTableView.reloadData()
         self.completeTableView.reloadData()
         self.onHoldTableView.reloadData()
-        
-        
-        // Do view setup here.
     }
+    
+    func sendIssue(_ issue: Issue) {
+        // Correct url and username/password
+        
+        if let json = issue.toJSON() {
+            let data = HTTPSConnection.convertStringToDictionary(text: json)
+            
+            var newData = [String:AnyObject]()
+            newData = data!
+            
+            if issue.issueID.objectID != "" {
+                newData["_id"] = issue.issueID.objectID as AnyObject?
+            }
+            
+            
+            let apiEndpoint = "http://0.0.0.0:8181/"
+            let networkURL = apiEndpoint + "tracker/Issue/"
+            
+            let dic = newData
+            HTTPSConnection.httpRequest(params: dic, url: networkURL, httpMethod: "POST") { (succeeded: Bool, data: NSData) -> () in
+                // Move to the UI thread
+                
+                DispatchQueue.main.async {
+                    if (succeeded) {
+                        print("scucess")
+                    } else {
+                        print("error")
+                    }
+                }
+            }
+        }
+    }
+
+
     
 }
 
@@ -61,16 +142,16 @@ extension SprintBoardViewController: NSTableViewDelegate,NSTableViewDataSource {
         
         var numberOfRows:Int = 0;
         if (aTableView == todoListTableView) {
-            numberOfRows = todoListDataArray.count
+            numberOfRows = todoListDataArr.count
         }
         else if (aTableView == inProgressTableView) {
-            numberOfRows = inProgressDataArray.count
+            numberOfRows = inProgressDataArr.count
         }
         else if (aTableView == completeTableView) {
-            numberOfRows = completeDataArray.count
+            numberOfRows = completeDataArr.count
         }
         else if ( aTableView == onHoldTableView) {
-            numberOfRows = onHoldDataArray.count
+            numberOfRows = onHoldDataArr.count
         }
         return numberOfRows
     }
@@ -79,16 +160,16 @@ extension SprintBoardViewController: NSTableViewDelegate,NSTableViewDataSource {
     {
         var newString:String = ""
         if (tableView == todoListTableView) {
-            newString = todoListDataArray[row]
+            newString = todoListDataArr[row].name
         }
         else if (tableView == inProgressTableView) {
-            newString = inProgressDataArray[row]
+            newString = inProgressDataArr[row].name
         }
         else if (tableView == completeTableView) {
-            newString = completeDataArray[row]
+            newString = completeDataArr[row].name
         }
         else if(tableView == onHoldTableView) {
-            newString = onHoldDataArray[row]
+            newString = onHoldDataArr[row].name
         }
         return newString;
     }
@@ -136,15 +217,21 @@ extension SprintBoardViewController: NSTableViewDelegate,NSTableViewDataSource {
             if ( (info.draggingSource() as! NSTableView) == tableView ) {
                 print("draggin on same tableview")
                 
-                let newStr = self.removeFromTable(tableView: info.draggingSource() as! NSTableView, row: rowIndexes.first!)
+                guard let newStr = self.removeFromTable(tableView: info.draggingSource() as! NSTableView, row: rowIndexes.first!) else {
+                    return false
+                }
                 self.updateSameTable(tableView: tableView, row: rowIndexes.first!, value: newStr)
                 
             }
             else {
             
-                let newStr = self.removeFromTable(tableView: info.draggingSource() as! NSTableView, row: rowIndexes.first!)
+                guard let newStr = self.removeFromTable(tableView: info.draggingSource() as! NSTableView, row: rowIndexes.first!) else {
+                    return false
+                }
             
-                self.addToTable(tableView: tableView, value: newStr)
+                let issue = self.addToTable(tableView: tableView, value: newStr)
+                
+                self.sendIssue(issue)
             }
             
             self.reloadAllTable()
@@ -154,88 +241,41 @@ extension SprintBoardViewController: NSTableViewDelegate,NSTableViewDataSource {
             return false
         }
         
-        
-        /*if ((info.draggingSource() as! NSTableView == inProgressTableView) && (tableView == inProgressTableView)) {
-            let value:String = inProgressDataArray[rowIndexes.first!]
-            inProgressDataArray.remove(at: rowIndexes.first!)
-            if (row > inProgressDataArray.count)
-            {
-                inProgressDataArray.insert(value, at: row-1)
-            }
-            else
-            {
-                inProgressDataArray.insert(value, at: row)
-            }
-            inProgressTableView.reloadData()
-            return true
-        }
-        else if ((info.draggingSource() as! NSTableView == todoListTableView) && (tableView == inProgressTableView)) {
-            
-            let value:String = todoListDataArray[rowIndexes.first!]
-            todoListDataArray.remove(at: rowIndexes.first!)
-            inProgressDataArray.append(value)
-            todoListTableView.reloadData()
-            inProgressTableView.reloadData()
-            return true
-        }
-        else if ((info.draggingSource() as! NSTableView == todoListTableView) && (tableView == inProgressTableView))
-        {
-            let value:String = todoListDataArray[rowIndexes.first!]
-            todoListDataArray.remove(at: rowIndexes.first!)
-            inProgressDataArray.append(value)
-            todoListTableView.reloadData()
-            inProgressTableView.reloadData()
-            return true
-        }
-        else if ((info.draggingSource() as! NSTableView == todoListTableView) && (tableView == inProgressTableView))
-        {
-            let value:String = todoListDataArray[rowIndexes.first!]
-            todoListDataArray.remove(at: rowIndexes.first!)
-            inProgressDataArray.append(value)
-            todoListTableView.reloadData()
-            inProgressTableView.reloadData()
-            return true
-        }
-        else
-        {
-            return false
-        }*/
-        
     }
     
-    func updateSameTable(tableView: NSTableView, row: Int, value: String) {
+    func updateSameTable(tableView: NSTableView, row: Int, value: Issue) {
         
         switch tableView {
         case todoListTableView:
-            if (row > todoListDataArray.count) {
-                todoListDataArray.insert(value, at: row-1)
+            if (row > todoListDataArr.count) {
+                todoListDataArr.insert(value, at: row-1)
             }
             else {
-                todoListDataArray.insert(value, at: row)
+                todoListDataArr.insert(value, at: row)
             }
             break
         case inProgressTableView:
-            if (row > inProgressDataArray.count) {
-                inProgressDataArray.insert(value, at: row-1)
+            if (row > inProgressDataArr.count) {
+                inProgressDataArr.insert(value, at: row-1)
             }
             else {
-                inProgressDataArray.insert(value, at: row)
+                inProgressDataArr.insert(value, at: row)
             }
             break
         case completeTableView:
-            if (row > completeDataArray.count) {
-                completeDataArray.insert(value, at: row-1)
+            if (row > completeDataArr.count) {
+                completeDataArr.insert(value, at: row-1)
             }
             else {
-                completeDataArray.insert(value, at: row)
+                completeDataArr.insert(value, at: row)
             }
             break
         case onHoldTableView:
-            if (row > onHoldDataArray.count) {
-                onHoldDataArray.insert(value, at: row-1)
+            if (row > onHoldDataArr.count) {
+                onHoldDataArr.insert(value, at: row-1)
             }
             else {
-                onHoldDataArray.insert(value, at: row)
+                onHoldDataArr.insert(value, at: row)
             }
             break
         default:
@@ -245,48 +285,55 @@ extension SprintBoardViewController: NSTableViewDelegate,NSTableViewDataSource {
     }
     
     
-    func addToTable( tableView: NSTableView, value: String ) {
+    func addToTable( tableView: NSTableView, value: Issue ) -> Issue {
+        
+        var issue = value
         
         switch tableView {
         case todoListTableView:
-            self.todoListDataArray.append(value)
+            issue.status = "TODO"
+            self.todoListDataArr.append(value)
             break
         case inProgressTableView:
-            self.inProgressDataArray.append(value)
+            issue.status = "In Progress"
+            self.inProgressDataArr.append(value)
             break
         case completeTableView:
-            self.completeDataArray.append(value)
+            issue.status = "Complete"
+            self.completeDataArr.append(value)
             break
         case onHoldTableView:
-            self.onHoldDataArray.append(value)
+            issue.status = "On Hold"
+            self.onHoldDataArr.append(value)
             break
         default:
             print("Error with NSTableView")
         }
+        return issue
         
     }
 
     
-    func removeFromTable( tableView: NSTableView, row: Int) -> String {
+    func removeFromTable( tableView: NSTableView, row: Int) -> Issue? {
         
-        var returnStr = ""
+        var returnStr: Issue?
         
         switch tableView {
         case todoListTableView:
-            returnStr = self.todoListDataArray[row]
-            self.todoListDataArray.remove(at: row)
+            returnStr = self.todoListDataArr[row]
+            self.todoListDataArr.remove(at: row)
             break
         case inProgressTableView:
-            returnStr = self.inProgressDataArray[row]
-            self.inProgressDataArray.remove(at: row)
+            returnStr = self.inProgressDataArr[row]
+            self.inProgressDataArr.remove(at: row)
             break
         case completeTableView:
-            returnStr = self.completeDataArray[row]
-            self.completeDataArray.remove(at: row)
+            returnStr = self.completeDataArr[row]
+            self.completeDataArr.remove(at: row)
             break
         case onHoldTableView:
-            returnStr = self.onHoldDataArray[row]
-            self.onHoldDataArray.remove(at: row)
+            returnStr = self.onHoldDataArr[row]
+            self.onHoldDataArr.remove(at: row)
             break
         default:
             print("Error with NSTableView")

@@ -14,3 +14,10 @@ extension NSView {
         layer?.backgroundColor = color.cgColor
     }
 }
+
+extension NSTextView {
+    func appendAndScroll(string: String) {
+        self.textStorage?.append(NSAttributedString(string: string))
+        self.scrollToEndOfDocument(nil)
+    }
+}

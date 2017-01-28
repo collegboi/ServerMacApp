@@ -76,6 +76,17 @@ public class HTTPSConnection {
 
     }
     
+    class func convertStringToDictionary(text: String) -> [String:AnyObject]? {
+        if let data = text.data(using: String.Encoding.utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject]
+            } catch let error as NSError {
+                print(error)
+            }
+        }
+        return nil
+    }
+    
     class func parseJSONConfig(data : NSData) -> Config? {
         
         var returnData : Config?

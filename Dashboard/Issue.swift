@@ -55,12 +55,12 @@ struct MBOjectID {
 struct Issue: JSONSerializable {
     
     var issueID: MBOjectID = MBOjectID.init(objectID: "")
-    let name: String!
-    let status: String!
-    let type: String!
-    let assingee: String!
-    let prioity: String!
-    let version: String!
+    var name: String!
+    var status: String!
+    var type: String!
+    var assingee: String!
+    var prioity: String!
+    var version: String!
     
     init(name: String, status: String, type: String, assignee: String, priority: String, version: String) {
         self.name = name
