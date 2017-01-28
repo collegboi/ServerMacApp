@@ -22,8 +22,11 @@ public class HTTPSConnection {
             //err = error
             request.httpBody = nil
         }
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        if httpMethod == "POST" {
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+        }
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error -> Void in
             //PrintLn.strLine(functionName: "httpRequest", message: "Response: \(response)")
@@ -38,6 +41,39 @@ public class HTTPSConnection {
         })
         
         task.resume()
+    }
+    
+    class func httpGetRequest(params : Dictionary<String, AnyObject>, url : String, postCompleted : @escaping (_ succeeded: Bool, _ data: NSData) -> ()) {
+       
+        guard let endpoint = URL(string: url) else {
+            print("Error creating endpoint")
+            return
+        }
+        var request = URLRequest(url: endpoint)
+        request.httpMethod = "GET"
+        //if let token = _currentUser?.currentToken {
+        //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+       // }
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if ((error) != nil) {
+                print(error!.localizedDescription)
+                postCompleted(false, NSData())
+            }
+            
+            //do {
+                guard let data = data else {
+                    return
+                }
+            
+                postCompleted(true, data as NSData)
+                
+            //} catch let err as NSError {
+              //  print(err.debugDescription)
+            //}
+        }.resume()
+
     }
     
     class func parseJSONConfig(data : NSData) -> Config? {

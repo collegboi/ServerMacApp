@@ -39,7 +39,7 @@ class SideBarDataSource: NSObject {
     
     func reload() {
         
-        let emptyArr = [Any]()
+        //let emptyArr = [Any]()
         
         
         let services = [
@@ -67,12 +67,17 @@ class SideBarDataSource: NSObject {
             Section.Item(item: "French"),
             Section.Item(item: "Russian")]
         
+        let tracker = [
+            Section.Item(item: "Sprint Board"),
+            Section.Item(item: "Issues"),
+            Section.Item(item: "Charts")]
+        
         sections = [
             Section(name: "Server", volumes: server),
             Section(name: "Accounts", volumes: accounts),
             Section(name: "Services", volumes: services ),
             Section(name: "Languages", volumes: langs),
-            Section(name: "Tracker", volumes: emptyArr as! [Section.Item])
+            Section(name: "Tracker", volumes: tracker)
         ]
         
         outlineView.reloadData()
