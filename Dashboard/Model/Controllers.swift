@@ -52,6 +52,9 @@ struct RCColor: JSONSerializable {
     var alpha : CGFloat!
     var name : String!
     
+    init() {
+        
+    }
     
     init(blue: CGFloat, green: CGFloat, red: CGFloat, alpha: CGFloat, name: String) {
         self.blue = blue
@@ -75,6 +78,10 @@ struct RCObject: JSONSerializable {
     var objectType : RCObjectType!
     var objectName : String!
     var objectProperties : [String: Any]!
+    
+    init() {
+        
+    }
     
     init( objectName: String, objectType: RCObjectType) {
         self.objectName = objectName
@@ -110,6 +117,10 @@ struct RCController: JSONSerializable {
     var objectsList: [RCObject]!
     var name : String!
     
+    init() {
+        
+    }
+    
     init(name: String) {
         self.name = name
         self.objectsList = [RCObject]()
@@ -135,6 +146,10 @@ struct Config : JSONSerializable {
     var controllers : [RCController]!
     var mainSettings: [String:String]!
     var languagesList : [String]!
+    
+    init() {
+        
+    }
     
     init( dict : [String:Any] ) {
         
@@ -168,6 +183,10 @@ struct Config : JSONSerializable {
 struct Translations: JSONSerializable {
     
     var translationList: [String:AnyObject]!
+    
+    init() {
+        
+    }
     
     init(dict: [String:Any] ) {
         

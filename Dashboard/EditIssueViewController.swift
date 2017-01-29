@@ -34,11 +34,6 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        //self.saveButton.attributedTitle = NSAttributedString(string: "Save", attributes: [ NSForegroundColorAttributeName : NSColor.white ])
-        //self.saveButton.alignment = .center
-
-        
         containerView = NSView()
         containerView.frame = NSRect(x: 0, y: 0, width: self.commentsScrollView.frame.width, height: 0)
         containerView.setBackgroundColor(NSColor.lightGray)
@@ -63,6 +58,43 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
         self.versionMenu.removeAllItems()
         self.versionMenu.addItem(withTitle: "1.2.2")
         self.versionMenu.addItem(withTitle: "1.3")
+        
+        //self.testSever()
+        self.testGetServer()
+        
+    }
+    
+    func testGetServer() {
+        
+        var result = [TestObject]()
+        result.getAllInBackground(ofType:TestObject.self) { (succeeded: Bool, data: [TestObject]) -> () in
+            
+            DispatchQueue.main.async {
+                if (succeeded) {
+                    result = data
+                    print("scucess")
+                } else {
+                    print("error")
+                }
+            }
+        }
+    }
+    
+    func testSever() {
+        
+        let testObject = TestObject(name: "timothy", status: "timothy", type: "timothy", assignee: "timothy", priority: "timothy", version: "timothy")
+        
+        testObject.sendInBackground(""){ (succeeded: Bool, data: NSData) -> () in
+            // Move to the UI thread
+            
+            DispatchQueue.main.async {
+                if (succeeded) {
+                    print("scucess")
+                } else {
+                    print("error")
+                }
+            }
+        }
         
     }
     

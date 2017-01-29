@@ -48,6 +48,7 @@
 		B2D4F2281E3CF35C00106A97 /* EditIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2261E3CF35C00106A97 /* EditIssueViewController.swift */; };
 		B2D4F22F1E3D229C00106A97 /* IssueComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F22E1E3D229C00106A97 /* IssueComments.swift */; };
 		B2D4F2311E3D284B00106A97 /* IssueActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2301E3D284B00106A97 /* IssueActivity.swift */; };
+		B2D4F2581E3E276B00106A97 /* TestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4F2571E3E276B00106A97 /* TestObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +140,7 @@
 		B2D4F22E1E3D229C00106A97 /* IssueComments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueComments.swift; sourceTree = "<group>"; };
 		B2D4F2301E3D284B00106A97 /* IssueActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueActivity.swift; sourceTree = "<group>"; };
 		B2D4F2321E3D417400106A97 /* Dashboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dashboard.entitlements; sourceTree = "<group>"; };
+		B2D4F2571E3E276B00106A97 /* TestObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +216,7 @@
 				B27D84251E327A73007ADB39 /* Controllers.swift */,
 				B27D84271E327BC3007ADB39 /* JSONRepresentable.swift */,
 				B27D84651E35478B007ADB39 /* VolumeInfo.swift */,
+				B2D4F2571E3E276B00106A97 /* TestObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				B27D841E1E326D6B007ADB39 /* SideBarDataSource.swift in Sources */,
 				B27D84801E355813007ADB39 /* UserView.swift in Sources */,
 				B27D84681E3547D0007ADB39 /* GraphView.swift in Sources */,
+				B2D4F2581E3E276B00106A97 /* TestObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

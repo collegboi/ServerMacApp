@@ -62,6 +62,11 @@ struct Issue: JSONSerializable {
     var prioity: String!
     var version: String!
     
+    
+    init() {
+        
+    }
+    
     init(name: String, status: String, type: String, assignee: String, priority: String, version: String) {
         self.name = name
         self.status = status
@@ -80,6 +85,10 @@ struct Issue: JSONSerializable {
         self.type = dict["type"] as! String
         self.prioity = dict["prioity"] as! String
         self.issueID = MBOjectID.init(objectID: dict["_id"] as! String)
+    }
+    
+    func sendObjectInBackgroud() {
+        
     }
 
 }

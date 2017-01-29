@@ -16,6 +16,11 @@ struct IssueActivity: JSONSerializable {
     var user: String!
     var timeStamp: String!
     
+    
+    init() {
+        
+    }
+    
     init(issueID: String, issueComments: String, user: String, timeStamp: String) {
         self.issueID = issueID
         self.issueComments = issueComments
@@ -46,7 +51,6 @@ struct IssueActivity: JSONSerializable {
             self.commentID = MBOjectID.init(objectID: commentID)
         }
     }
-    
 }
 
 class IssueActivityJSON {
