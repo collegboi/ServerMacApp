@@ -45,9 +45,11 @@ extension ColorViewDelegate: NSTableViewDelegate {
             return
         }
         let selectedRow = tableView.selectedRow
-        guard let item =  self.colorSettings[selectedRow] as? RCColor , selectedRow >= 0 else {
+        
+        if selectedRow < 0 {
             return
         }
+        let item =  self.colorSettings[selectedRow] 
         let color = NSColor(red: item.red/255.0, green: item.green/255.0, blue: item.blue/255.0, alpha: item.alpha)
         objectSelectionBlock?(item.name, color)
     }

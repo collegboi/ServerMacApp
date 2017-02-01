@@ -40,11 +40,11 @@ extension JSONSerializable {
                 var anyObject = [AnyObject]()
                 for ( _, objectVal ) in value.enumerated() {
                     var dict = [String:AnyObject]()
-                    //print(objectVal)
+                    
                     if let jsonVal = objectVal as? JSONRepresentable {
                         
                         let jsonTest = jsonVal as! JSONSerializable
-                        //print(jsonTest)
+                    
                         if let jsonData = jsonTest.toJSON() {
                             
                             for (index, value) in convertStringToDictionary(text: jsonData) ?? [String: AnyObject]() {
@@ -65,7 +65,7 @@ extension JSONSerializable {
                 } else {
                     if let jsonVal = value as? JSONRepresentable {
                         var dict = [String:AnyObject]()
-                        //print(objectVal)
+                    
                         let jsonTest = jsonVal as! JSONSerializable
                         if let jsonData = jsonTest.toJSON() {
                             
@@ -84,7 +84,6 @@ extension JSONSerializable {
                 break
             }
         }
-        //print(representation)
         return representation as AnyObject
     }
 }
@@ -189,6 +188,63 @@ extension JSONSerializable {
 
     */
     
+    func getInBackground<T:JSONSerializable>(_ objectID: String, ofType type:T.Type , getCompleted : @escaping (_ succeeded: Bool, _ data: T) -> ()) {
+        
+        let className = ("\(type(of: self))")
+        
+        if objectID == "" {
+            getCompleted(false, T())
+        }
+        
+        var url: String = ""
+        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        
+        let apiEndpoint = "/storage/"
+        let networkURL = url + apiEndpoint + className + "/"+objectID
+        
+        guard let endpoint = URL(string: networkURL) else {
+            print("Error creating endpoint")
+            getCompleted(false, T())
+            return
+        }
+        var request = URLRequest(url: endpoint)
+        request.httpMethod = "GET"
+        
+        //if let token = _currentUser?.currentToken {
+        //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        // }
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if ((error) != nil) {
+                getCompleted(false, T())
+            }
+            
+            guard let data = data else {
+                getCompleted(false, T())
+                return
+            }
+            
+            do {
+                
+                let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:Any]
+                
+                let allObjects = dataObjects["data"] as? NSArray
+                guard let object = allObjects?.firstObject else {
+                    getCompleted(false, T())
+                    return
+                }
+                
+                getCompleted(true, T(dict: object as! [String:Any]))
+                
+            } catch let error as NSError {
+                print(error)
+            }
+            
+        }.resume()
+    }
+
+    
     func sendInBackground(_ objectID: String, postCompleted : @escaping (_ succeeded: Bool, _ data: NSData) -> ()) {
         
         let className = ("\(type(of: self))")
@@ -203,8 +259,11 @@ extension JSONSerializable {
                 newData["_id"] = objectID as AnyObject?
             }
             
-            let apiEndpoint = "http://0.0.0.0:8181/storage/"
-            let networkURL = apiEndpoint + className
+            var url: String = ""
+            url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+            
+            let apiEndpoint = "/storage/"
+            let networkURL = url + apiEndpoint + className
             
             let dic = newData
             
@@ -252,8 +311,10 @@ extension Array where Element: JSONSerializable {
         
         let className = ("\(type(of: T()))")
         
-        let apiEndpoint = "http://0.0.0.0:8181/storage/"
-        let networkURL = apiEndpoint + className
+        var url: String = ""
+        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        let apiEndpoint = "/storage/"
+        let networkURL = url + apiEndpoint + className
         
         guard let endpoint = URL(string: networkURL) else {
             print("Error creating endpoint")

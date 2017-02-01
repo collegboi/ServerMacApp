@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B2088F371E42137F00458F58 /* RemoteConfig.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F361E42137F00458F58 /* RemoteConfig.storyboard */; };
+		B2088F3A1E4213AC00458F58 /* Status.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F381E4213AC00458F58 /* Status.storyboard */; };
+		B2088F3C1E4213C900458F58 /* SprintBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F3B1E4213C900458F58 /* SprintBoard.storyboard */; };
+		B2088F3F1E4213EE00458F58 /* Issues.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F3D1E4213EE00458F58 /* Issues.storyboard */; };
+		B2088F411E421A9600458F58 /* Crashes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F401E421A9600458F58 /* Crashes.storyboard */; };
+		B2088F431E421AFE00458F58 /* CrashesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2088F421E421AFE00458F58 /* CrashesViewController.swift */; };
+		B2088F461E421BBC00458F58 /* CrashStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2088F451E421BBC00458F58 /* CrashStatsView.swift */; };
+		B2088F491E421DA300458F58 /* CrashViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2088F481E421DA300458F58 /* CrashViewDelegate.swift */; };
+		B2088F4B1E421DB400458F58 /* CrashViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2088F4A1E421DB400458F58 /* CrashViewDataSource.swift */; };
+		B2088F4D1E421ED100458F58 /* Exception.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2088F4C1E421ED100458F58 /* Exception.swift */; };
+		B2088F4F1E42270900458F58 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2088F4E1E42270900458F58 /* String+Ext.swift */; };
+		B2088F511E422FCD00458F58 /* ViewCrash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F501E422FCD00458F58 /* ViewCrash.storyboard */; };
+		B2088F531E42323C00458F58 /* ViewCrashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2088F521E42323C00458F58 /* ViewCrashViewController.swift */; };
+		B2088F561E423C3500458F58 /* EditTickets.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F541E423C3500458F58 /* EditTickets.storyboard */; };
 		B27D840C1E326BE5007ADB39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D840B1E326BE5007ADB39 /* AppDelegate.swift */; };
 		B27D840E1E326BE5007ADB39 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D840D1E326BE5007ADB39 /* ViewController.swift */; };
 		B27D84101E326BE5007ADB39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B27D840F1E326BE5007ADB39 /* Assets.xcassets */; };
@@ -97,6 +111,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B2088F361E42137F00458F58 /* RemoteConfig.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RemoteConfig.storyboard; sourceTree = "<group>"; };
+		B2088F391E4213AC00458F58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Status.storyboard; sourceTree = "<group>"; };
+		B2088F3B1E4213C900458F58 /* SprintBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SprintBoard.storyboard; sourceTree = "<group>"; };
+		B2088F3E1E4213EE00458F58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Issues.storyboard; sourceTree = "<group>"; };
+		B2088F401E421A9600458F58 /* Crashes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Crashes.storyboard; sourceTree = "<group>"; };
+		B2088F421E421AFE00458F58 /* CrashesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashesViewController.swift; sourceTree = "<group>"; };
+		B2088F451E421BBC00458F58 /* CrashStatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashStatsView.swift; sourceTree = "<group>"; };
+		B2088F481E421DA300458F58 /* CrashViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashViewDelegate.swift; sourceTree = "<group>"; };
+		B2088F4A1E421DB400458F58 /* CrashViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashViewDataSource.swift; sourceTree = "<group>"; };
+		B2088F4C1E421ED100458F58 /* Exception.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exception.swift; sourceTree = "<group>"; };
+		B2088F4E1E42270900458F58 /* String+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		B2088F501E422FCD00458F58 /* ViewCrash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ViewCrash.storyboard; sourceTree = "<group>"; };
+		B2088F521E42323C00458F58 /* ViewCrashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewCrashViewController.swift; sourceTree = "<group>"; };
+		B2088F551E423C3500458F58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EditTickets.storyboard; sourceTree = "<group>"; };
 		B27D84081E326BE5007ADB39 /* Dashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27D840B1E326BE5007ADB39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B27D840D1E326BE5007ADB39 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +183,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B2088F311E42122C00458F58 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				B2088F361E42137F00458F58 /* RemoteConfig.storyboard */,
+				B2088F3D1E4213EE00458F58 /* Issues.storyboard */,
+				B2088F541E423C3500458F58 /* EditTickets.storyboard */,
+				B2088F401E421A9600458F58 /* Crashes.storyboard */,
+				B2088F501E422FCD00458F58 /* ViewCrash.storyboard */,
+				B2088F3B1E4213C900458F58 /* SprintBoard.storyboard */,
+				B2088F381E4213AC00458F58 /* Status.storyboard */,
+			);
+			name = StoryBoards;
+			sourceTree = "<group>";
+		};
+		B2088F441E421B0500458F58 /* Crashes/Bugs */ = {
+			isa = PBXGroup;
+			children = (
+				B2088F471E421D8400458F58 /* TableView */,
+				B2088F421E421AFE00458F58 /* CrashesViewController.swift */,
+				B2088F451E421BBC00458F58 /* CrashStatsView.swift */,
+				B2088F4C1E421ED100458F58 /* Exception.swift */,
+				B2088F521E42323C00458F58 /* ViewCrashViewController.swift */,
+			);
+			name = Crashes/Bugs;
+			sourceTree = "<group>";
+		};
+		B2088F471E421D8400458F58 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				B2088F481E421DA300458F58 /* CrashViewDelegate.swift */,
+				B2088F4A1E421DB400458F58 /* CrashViewDataSource.swift */,
+			);
+			name = TableView;
+			sourceTree = "<group>";
+		};
 		B27D83FF1E326BE4007ADB39 = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +237,8 @@
 		B27D840A1E326BE5007ADB39 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				B2088F441E421B0500458F58 /* Crashes/Bugs */,
+				B2088F311E42122C00458F58 /* StoryBoards */,
 				B2D4F2321E3D417400106A97 /* Dashboard.entitlements */,
 				B2D4F2101E3C218300106A97 /* Issues View */,
 				B27D84331E32B42B007ADB39 /* Controllers */,
@@ -230,6 +295,7 @@
 				B27D84691E354800007ADB39 /* NSColor+Ext.swift */,
 				B27D846B1E354827007ADB39 /* NSFont+Ext.swift */,
 				B27D845E1E3522A9007ADB39 /* NSView+Ext.swift */,
+				B2088F4E1E42270900458F58 /* String+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -448,9 +514,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2088F511E422FCD00458F58 /* ViewCrash.storyboard in Resources */,
+				B2088F371E42137F00458F58 /* RemoteConfig.storyboard in Resources */,
+				B2088F3F1E4213EE00458F58 /* Issues.storyboard in Resources */,
+				B2088F411E421A9600458F58 /* Crashes.storyboard in Resources */,
 				B27D84101E326BE5007ADB39 /* Assets.xcassets in Resources */,
+				B2088F3A1E4213AC00458F58 /* Status.storyboard in Resources */,
+				B2088F561E423C3500458F58 /* EditTickets.storyboard in Resources */,
 				B27D84131E326BE5007ADB39 /* Main.storyboard in Resources */,
 				B2D4F2011E3C079900106A97 /* CustomCellView.xib in Resources */,
+				B2088F3C1E4213C900458F58 /* SprintBoard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +534,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2088F461E421BBC00458F58 /* CrashStatsView.swift in Sources */,
+				B2088F491E421DA300458F58 /* CrashViewDelegate.swift in Sources */,
+				B2088F431E421AFE00458F58 /* CrashesViewController.swift in Sources */,
 				B27D84661E35478B007ADB39 /* VolumeInfo.swift in Sources */,
 				B2D4F2051E3C092A00106A97 /* CustomCellView.swift in Sources */,
 				B27D84571E34DC56007ADB39 /* ColorViewDelegate.swift in Sources */,
@@ -480,10 +556,12 @@
 				B27D84211E327894007ADB39 /* MainViewDataSource.swift in Sources */,
 				B27D84381E32C0E7007ADB39 /* DetailViewDelegate.swift in Sources */,
 				B2D4F2161E3C24E000106A97 /* IssueViewDelegate.swift in Sources */,
+				B2088F4B1E421DB400458F58 /* CrashViewDataSource.swift in Sources */,
 				B27D84551E34DC45007ADB39 /* ColorViewDataSource.swift in Sources */,
 				B27D84591E34E9E6007ADB39 /* Image+Ext.swift in Sources */,
 				B27D84261E327A73007ADB39 /* Controllers.swift in Sources */,
 				B27D846C1E354827007ADB39 /* NSFont+Ext.swift in Sources */,
+				B2088F4D1E421ED100458F58 /* Exception.swift in Sources */,
 				B2D4F2281E3CF35C00106A97 /* EditIssueViewController.swift in Sources */,
 				B2D4F22F1E3D229C00106A97 /* IssueComments.swift in Sources */,
 				B27D845B1E3515C6007ADB39 /* ColorPickerViewController.swift in Sources */,
@@ -492,8 +570,10 @@
 				B2D4F2141E3C24B300106A97 /* IssueViewDataSource.swift in Sources */,
 				B27D84511E33DFB0007ADB39 /* SettingsViewDelegate.swift in Sources */,
 				B27D845D1E3517B3007ADB39 /* Float+Ext.swift in Sources */,
+				B2088F4F1E42270900458F58 /* String+Ext.swift in Sources */,
 				B27D842A1E327C1F007ADB39 /* HTTPConnection.swift in Sources */,
 				B27D84361E32C0D7007ADB39 /* DetailViewDataSource.swift in Sources */,
+				B2088F531E42323C00458F58 /* ViewCrashViewController.swift in Sources */,
 				B27D841E1E326D6B007ADB39 /* SideBarDataSource.swift in Sources */,
 				B27D84801E355813007ADB39 /* UserView.swift in Sources */,
 				B27D84681E3547D0007ADB39 /* GraphView.swift in Sources */,
@@ -512,6 +592,30 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B2088F381E4213AC00458F58 /* Status.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B2088F391E4213AC00458F58 /* Base */,
+			);
+			name = Status.storyboard;
+			sourceTree = "<group>";
+		};
+		B2088F3D1E4213EE00458F58 /* Issues.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B2088F3E1E4213EE00458F58 /* Base */,
+			);
+			name = Issues.storyboard;
+			sourceTree = "<group>";
+		};
+		B2088F541E423C3500458F58 /* EditTickets.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B2088F551E423C3500458F58 /* Base */,
+			);
+			name = EditTickets.storyboard;
+			sourceTree = "<group>";
+		};
 		B27D84111E326BE5007ADB39 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

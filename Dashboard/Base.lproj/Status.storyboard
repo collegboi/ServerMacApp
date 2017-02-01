@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E144f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Server View Controller-->
+        <scene sceneID="dp9-Og-N47">
+            <objects>
+                <viewController storyboardIdentifier="Status" id="rBj-eD-U2v" customClass="ServerViewController" customModule="Dashboard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="bdm-qD-ATJ">
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="695"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEd-E8-HBv">
+                                <rect key="frame" x="147" y="604" width="145" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="64N-zW-JW0"/>
+                                    <constraint firstAttribute="width" constant="141" id="vI5-vP-Oqd"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Server Status" id="iva-ON-e50">
+                                    <font key="font" size="20" name="AvenirNext-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="cPH-jZ-poK">
+                                <rect key="frame" x="20" y="547" width="1072" height="5"/>
+                            </box>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="aWI-LI-fPY" customClass="GraphView" customModule="Dashboard" customModuleProvider="target">
+                                <rect key="frame" x="20" y="306" width="1072" height="222"/>
+                            </customView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kc6-L0-9uA">
+                                <rect key="frame" x="20" y="573" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="9hI-Ff-OaV"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="aGz-Pm-Ohf"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSActionTemplate" id="qlV-Cu-bFM"/>
+                            </imageView>
+                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="et7-Zd-rKd">
+                                <rect key="frame" x="20" y="273" width="1072" height="5"/>
+                            </box>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="xwX-SY-6MX" customClass="UserView" customModule="Dashboard" customModuleProvider="target">
+                                <rect key="frame" x="20" y="29" width="1072" height="228"/>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="xwX-SY-6MX" firstAttribute="leading" secondItem="bdm-qD-ATJ" secondAttribute="leading" constant="20" id="4Cq-qG-JtB"/>
+                            <constraint firstAttribute="trailing" secondItem="et7-Zd-rKd" secondAttribute="trailing" constant="20" id="90U-mY-TLW"/>
+                            <constraint firstItem="sEd-E8-HBv" firstAttribute="leading" secondItem="kc6-L0-9uA" secondAttribute="trailing" constant="29" id="AN4-5a-fOH"/>
+                            <constraint firstItem="cPH-jZ-poK" firstAttribute="top" secondItem="bdm-qD-ATJ" secondAttribute="top" constant="145" id="DJ9-81-5wG"/>
+                            <constraint firstItem="kc6-L0-9uA" firstAttribute="leading" secondItem="bdm-qD-ATJ" secondAttribute="leading" constant="20" id="HIi-st-kP6"/>
+                            <constraint firstItem="et7-Zd-rKd" firstAttribute="leading" secondItem="bdm-qD-ATJ" secondAttribute="leading" constant="20" id="LH7-CP-eKn"/>
+                            <constraint firstItem="kc6-L0-9uA" firstAttribute="top" secondItem="bdm-qD-ATJ" secondAttribute="top" constant="22" id="LeF-22-xPc"/>
+                            <constraint firstItem="aWI-LI-fPY" firstAttribute="top" secondItem="cPH-jZ-poK" secondAttribute="bottom" constant="21" id="NqW-18-amd"/>
+                            <constraint firstItem="cPH-jZ-poK" firstAttribute="leading" secondItem="aWI-LI-fPY" secondAttribute="leading" id="YoT-Nb-Rka"/>
+                            <constraint firstAttribute="trailing" secondItem="xwX-SY-6MX" secondAttribute="trailing" constant="20" id="dKD-M9-uzd"/>
+                            <constraint firstItem="xwX-SY-6MX" firstAttribute="top" secondItem="bdm-qD-ATJ" secondAttribute="top" constant="438" id="fxT-Ak-Pfd"/>
+                            <constraint firstItem="cPH-jZ-poK" firstAttribute="trailing" secondItem="aWI-LI-fPY" secondAttribute="trailing" id="mF3-XG-Ag9"/>
+                            <constraint firstItem="et7-Zd-rKd" firstAttribute="top" secondItem="aWI-LI-fPY" secondAttribute="bottom" constant="30" id="nKJ-I8-7Sc"/>
+                            <constraint firstItem="xwX-SY-6MX" firstAttribute="top" secondItem="et7-Zd-rKd" secondAttribute="bottom" constant="18" id="oer-Jv-OVR"/>
+                            <constraint firstItem="cPH-jZ-poK" firstAttribute="leading" secondItem="bdm-qD-ATJ" secondAttribute="leading" constant="20" id="rpW-wd-udm"/>
+                            <constraint firstItem="sEd-E8-HBv" firstAttribute="top" secondItem="bdm-qD-ATJ" secondAttribute="top" constant="45" id="vb4-te-T98"/>
+                            <constraint firstAttribute="trailing" secondItem="cPH-jZ-poK" secondAttribute="trailing" constant="20" symbolic="YES" id="yQp-pd-2Aa"/>
+                            <constraint firstAttribute="bottom" secondItem="xwX-SY-6MX" secondAttribute="bottom" constant="29" id="zEq-Ym-pqA"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="graphView" destination="aWI-LI-fPY" id="swV-f1-4qR"/>
+                        <outlet property="userView" destination="xwX-SY-6MX" id="nMd-PA-dt0"/>
+                    </connections>
+                </viewController>
+                <customObject id="uQi-op-Keb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1435" y="1725.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="NSActionTemplate" width="14" height="14"/>
+    </resources>
+</document>

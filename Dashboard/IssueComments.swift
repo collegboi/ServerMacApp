@@ -114,9 +114,7 @@ class IssueComments: NSView {
         if let json = issueActivity.toJSON() {
             let data = HTTPSConnection.convertStringToDictionary(text: json)
             
-            let apiEndpoint = "http://0.0.0.0:8181/"
-            
-            let networkURL = apiEndpoint + "tracker/IssueActivity"
+            let networkURL = "/tracker/IssueActivity"
             let dic = data
             HTTPSConnection.httpRequest(params: dic!, url: networkURL, httpMethod: "POST") { (succeeded: Bool, data: NSData) -> () in
                 // Move to the UI thread

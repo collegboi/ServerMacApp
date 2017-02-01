@@ -23,6 +23,9 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
     @IBOutlet weak var commentsScrollView: NSScrollView!
     @IBOutlet weak var saveButton: NSButton!
     
+    @IBOutlet weak var viewExceptionButton: NSButton!
+    
+    
     var containerView: NSView!
     
     var issueActivities = [IssueActivity]()
@@ -30,6 +33,7 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
     var delegate: ReturnDelegate?
     
     var issue: Issue?
+    var exceptionID: MBOjectID?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,8 +63,10 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
         self.versionMenu.addItem(withTitle: "1.2.2")
         self.versionMenu.addItem(withTitle: "1.3")
         
+        self.viewExceptionButton.isEnabled = false
+        
         //self.testSever()
-        self.testGetServer()
+        //self.testGetServer()
         
     }
     
@@ -95,8 +101,26 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
                 }
             }
         }
+    }
+    
+    @IBAction func viewExceptionButton(_ sender: Any) {
+        
+        let storyboard = NSStoryboard(name: "ViewCrash", bundle: nil)
+        let viewExceptionWindowController = storyboard.instantiateController(withIdentifier: "ViewException") as! NSWindowController
+        
+        if let viewExceptionWindow = viewExceptionWindowController.window {
+            
+            let viewCrashViewController = viewExceptionWindow.contentViewController as! ViewCrashViewController
+            viewCrashViewController.exception = nil
+            viewCrashViewController.exceptionID = self.issue!.exceptionID
+            //viewCrashViewController.delegate = self
+            
+            let application = NSApplication.shared()
+            application.runModal(for: viewExceptionWindow)
+        }
         
     }
+    
     
     func windowShouldClose(_ sender: Any) -> Bool {
         let application = NSApplication.shared()
@@ -135,32 +159,15 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
     }
     
     func sendIssue() {
-        // Correct url and username/password
         
-        if let json = issue?.toJSON() {
-            let data = HTTPSConnection.convertStringToDictionary(text: json)
+        self.issue!.sendInBackground(self.issue!.issueID.objectID){ (succeeded: Bool, data: NSData) -> () in
+            // Move to the UI thread
             
-            var newData = [String:AnyObject]()
-            newData = data!
-            
-            if issue?.issueID.objectID != "" {
-                newData["_id"] = issue?.issueID.objectID as AnyObject?
-            }
-            
-            
-            let apiEndpoint = "http://0.0.0.0:8181/"
-            let networkURL = apiEndpoint + "tracker/Issue/"
-            
-            let dic = newData
-            HTTPSConnection.httpRequest(params: dic, url: networkURL, httpMethod: "POST") { (succeeded: Bool, data: NSData) -> () in
-                // Move to the UI thread
-                
-                DispatchQueue.main.async {
-                    if (succeeded) {
-                        print("scucess")
-                    } else {
-                        print("error")
-                    }
+            DispatchQueue.main.async {
+                if (succeeded) {
+                    print("scucess")
+                } else {
+                    print("error")
                 }
             }
         }
@@ -189,44 +196,18 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
             let vIndex = self.versionMenu.item(withTitle: issue!.version)
             self.versionMenu.select(vIndex)
             
+            if self.issue?.exceptionID != ""  {
+                self.viewExceptionButton.isEnabled = true
+            }
+            
         } else {
-            issue = Issue(name: "", status: "", type: "", assignee: "", priority: "", version: "")
+            issue = Issue()
+            issue?.exceptionID = exceptionID?.objectID
         }
         
         if self.issue?.issueID.objectID != "" {
             self.getAllIssuesActivity()
         }
-        
-//        let comment1 = IssueComments(frame: NSRect(x: 10, y: 0, width: self.commentsScrollView.frame.width - 20, height: 200))
-//        comment1.drawView(last: false, issueID: (issue?.issueID.objectID)!)
-//        let comment2 = IssueComments(frame: NSRect(x: 10, y: 200, width: self.commentsScrollView.frame.width - 20, height: 200))
-//        comment2.drawView(last: false, issueID: (issue?.issueID.objectID)!)
-//        let comment3 = IssueComments(frame: NSRect(x: 10, y: 300, width: self.commentsScrollView.frame.width - 20, height: 200))
-//        comment3.drawView(last: false, issueID: (issue?.issueID.objectID)!)
-//        let comment4 = IssueComments(frame: NSRect(x: 10, y: 400, width: self.commentsScrollView.frame.width - 20, height: 200))
-//        comment4.drawView(last: true, issueID: (issue?.issueID.objectID)!)
-//        
-//        self.allCommentsView.append(comment1)
-//        self.allCommentsView.append(comment2)
-//        self.allCommentsView.append(comment3)
-//        self.allCommentsView.append(comment4)//new empty read
-//        
-//        var scrollViewContextSize: CGFloat = 0
-//        var yPosition: CGFloat  = 0
-//        let commentHeight: CGFloat = 210
-//        
-//        for view in allCommentsView {
-//            
-//            view.frame.origin.y = yPosition
-//            
-//            containerView.addSubview(view)
-//            
-//            yPosition += commentHeight
-//            scrollViewContextSize += commentHeight
-//            
-//            self.containerView.frame = NSRect(x: 0, y: 0, width: self.commentsScrollView.frame.width, height: scrollViewContextSize)
-//            
-//        }
 
     }
     
@@ -266,10 +247,8 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
     
     func getAllIssuesActivity() {
         
-        let apiEndpoint = "http://0.0.0.0:8181/"
-        
         print("sendRawTimetable")
-        let networkURL = apiEndpoint + "tracker/IssueActivity/"+self.issue!.issueID.objectID
+        let networkURL = "/tracker/IssueActivity/"+self.issue!.issueID.objectID
         let dic = [String:AnyObject]()
         HTTPSConnection.httpGetRequest(params: dic, url: networkURL) { (succeeded: Bool, data: NSData) -> () in
             // Move to the UI thread

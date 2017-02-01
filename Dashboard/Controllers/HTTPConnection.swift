@@ -10,9 +10,24 @@ import Foundation
 
 public class HTTPSConnection {
     
+    class func readPlistURL() -> String {
+        var defaultURL = "http://0.0.0.0:8181"
+        if let path = Bundle.main.path(forResource: "Info", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+            
+            guard let url = dict["URL"] as? String else {
+                return defaultURL
+            }
+            
+            defaultURL = url
+        }
+        return defaultURL
+    }
+    
     class func httpRequest(params : Dictionary<String, AnyObject>, url : String, httpMethod: String, postCompleted : @escaping (_ succeeded: Bool, _ data: NSData) -> ()) {
         
-        let request = NSMutableURLRequest(url: NSURL(string: url)! as URL)
+        let urlPath = url
+        
+        let request = NSMutableURLRequest(url: NSURL(string: urlPath)! as URL)
         let session = URLSession.shared
         request.httpMethod = httpMethod
         
@@ -44,8 +59,10 @@ public class HTTPSConnection {
     }
     
     class func httpGetRequest(params : Dictionary<String, AnyObject>, url : String, postCompleted : @escaping (_ succeeded: Bool, _ data: NSData) -> ()) {
+        
+        let urlPath = readPlistURL()+url
        
-        guard let endpoint = URL(string: url) else {
+        guard let endpoint = URL(string: urlPath) else {
             print("Error creating endpoint")
             return
         }

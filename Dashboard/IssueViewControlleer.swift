@@ -33,13 +33,13 @@ class IssueViewControlleer: NSViewController {
     
     @IBAction func newIssueButton(_ sender: Any) {
         
-        let newIssue = Issue(name: "", status: "", type: "", assignee: "", priority: "", version: "")
+        let newIssue = Issue(name: "", status: "", type: "", assignee: "", timeSpent: "",  priority: "", version: "")
         self.editIssue(issue: newIssue)
     }
     
     func editIssue(issue: Issue) {
             
-        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        let storyboard = NSStoryboard(name: "EditTickets", bundle: nil)
         let editIssueWindowController = storyboard.instantiateController(withIdentifier: "EditIssue") as! NSWindowController
             
         if let editIssueWindow = editIssueWindowController.window {
@@ -55,10 +55,8 @@ class IssueViewControlleer: NSViewController {
     
     func getAllIssues() {
         
-        let apiEndpoint = "http://0.0.0.0:8181/"
-        
         print("sendRawTimetable")
-        let networkURL = apiEndpoint + "tracker/Issue"
+        let networkURL = "/tracker/Issue"
         let dic = [String:AnyObject]()
         HTTPSConnection.httpGetRequest(params: dic, url: networkURL) { (succeeded: Bool, data: NSData) -> () in
             // Move to the UI thread
@@ -84,11 +82,9 @@ class IssueViewControlleer: NSViewController {
         
         if let json = issue.toJSON() {
             let data = HTTPSConnection.convertStringToDictionary(text: json)
-            
-            let apiEndpoint = "http://0.0.0.0:8181/"
-            
+
             print("sendRawTimetable")
-            let networkURL = apiEndpoint + "tracker/Issue"
+            let networkURL =  "/tracker/Issue"
             let dic = data
             HTTPSConnection.httpRequest(params: dic!, url: networkURL, httpMethod: "POST") { (succeeded: Bool, data: NSData) -> () in
                 // Move to the UI thread

@@ -54,10 +54,8 @@ class SprintBoardViewController: NSViewController {
     
     func getAllIssues() {
         
-        let apiEndpoint = "http://0.0.0.0:8181/"
-        
         print("sendRawTimetable")
-        let networkURL = apiEndpoint + "tracker/Issue"
+        let networkURL = "/tracker/Issue"
         let dic = [String:AnyObject]()
         HTTPSConnection.httpGetRequest(params: dic, url: networkURL) { (succeeded: Bool, data: NSData) -> () in
             // Move to the UI thread
@@ -113,9 +111,7 @@ class SprintBoardViewController: NSViewController {
                 newData["_id"] = issue.issueID.objectID as AnyObject?
             }
             
-            
-            let apiEndpoint = "http://0.0.0.0:8181/"
-            let networkURL = apiEndpoint + "tracker/Issue/"
+            let networkURL = "/tracker/Issue/"
             
             let dic = newData
             HTTPSConnection.httpRequest(params: dic, url: networkURL, httpMethod: "POST") { (succeeded: Bool, data: NSData) -> () in

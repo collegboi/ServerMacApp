@@ -62,7 +62,13 @@ class ViewController: NSViewController {
     
     func changeDetailViewBody(_ viewIndentifer: String) {
         
-        guard let controller = storyboard?.instantiateController(withIdentifier: viewIndentifer ) as? NSViewController else {
+        let trimmedViewIndentifier = viewIndentifer.replacingOccurrences(of: " ", with: "")
+        //let trimmedStoryBoardName = trimmedViewIndentifier.replacingOccurrences(of: "/", with: ":")
+
+        
+        let viewStoryboard = NSStoryboard(name: trimmedViewIndentifier, bundle: nil)
+        
+        guard let controller = viewStoryboard.instantiateController(withIdentifier: viewIndentifer ) as? NSViewController else {
             return
         }
         

@@ -59,36 +59,45 @@ struct Issue: JSONSerializable {
     var status: String!
     var type: String!
     var assingee: String!
+    var timeSpent: String!
     var prioity: String!
     var version: String!
+    var exceptionID: String!
     
     
     init() {
-        
+        self.name = ""
+        self.status = ""
+        self.type = ""
+        self.assingee = ""
+        self.timeSpent = ""
+        self.prioity = ""
+        self.version = ""
+        self.exceptionID = ""
     }
     
-    init(name: String, status: String, type: String, assignee: String, priority: String, version: String) {
+    init(name: String, status: String, type: String, assignee: String, timeSpent: String, priority: String, version: String, exeception: String = "") {
         self.name = name
         self.status = status
         self.type = type
         self.assingee = assignee
+        self.timeSpent = timeSpent
         self.prioity = priority
         self.version = version
+        self.exceptionID = exeception
     }
     
     
     init( dict: [String:Any] ) {
         self.name = dict["name"] as! String
-        self.version = "1.2.2"//dict["version"] as! String
-        self.status = dict["status"] as! String
-        self.assingee = dict["assingee"] as! String
-        self.type = dict["type"] as! String
-        self.prioity = dict["prioity"] as! String
-        self.issueID = MBOjectID.init(objectID: dict["_id"] as! String)
-    }
-    
-    func sendObjectInBackgroud() {
-        
+        self.version = dict.tryConvert(forKey: "version",defaultVal: "1.2.2")
+        self.status = dict.tryConvert(forKey: "status")
+        self.assingee = dict.tryConvert(forKey: "assingee")
+        self.timeSpent = dict.tryConvert(forKey: "timeSpent")
+        self.type = dict.tryConvert(forKey: "type")
+        self.prioity = dict.tryConvert(forKey: "prioity")
+        self.issueID = MBOjectID.init(objectID: dict.tryConvert(forKey: "_id") )
+        self.exceptionID = dict.tryConvert(forKey: "exceptionID")
     }
 
 }
