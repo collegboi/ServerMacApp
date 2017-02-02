@@ -22,6 +22,10 @@ struct TestObject: JSONSerializable {
         
     }
     
+    init(dict: [String]) {}
+    
+    init(dict: String) {}
+    
     init(name: String, status: String, type: String, assignee: String, priority: String, version: String) {
         self.name = name
         self.status = status

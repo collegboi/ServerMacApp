@@ -21,6 +21,8 @@ struct Tags: JSONSerializable {
         self.osVersion = ""
         self.deviceModel = ""
     }
+    init(dict: String){}
+    init(dict: [String]){}
     
     init(buildName: String, buildVersion: String, osVersion: String, deviceModel: String ) {
         self.buildName = buildName
@@ -51,9 +53,10 @@ struct Exceptions: JSONSerializable {
     var stackReturnAddress: [Double]!
     var tags: Tags!
     
-    init() {
-        
-    }
+    init() {}
+    init(dict: String){}
+    
+    init(dict: [String]){}
     
     init(exceptionName: String, level:String, reason: String, timestamp: String, platform: String, userInfo: String, stackSymbols: [String], stackReturnAddress: [Double] ) {
         self.exceptionName = exceptionName
@@ -78,6 +81,6 @@ struct Exceptions: JSONSerializable {
         self.stackSymbols = dict.tryConvert(forKey: "stackSymbols")
         self.stackReturnAddress = dict.tryConvert(forKey: "stackReturnAddress")
         self.exceptionID = MBOjectID.init(objectID: dict.tryConvert(forKey: "_id"))
-        self.tags = Tags(dict: dict.tryConvert(forKey: "tags"))
+        self.tags = Tags(dict: dict.tryConvertObj(forKey: "tags"))
     }
 }

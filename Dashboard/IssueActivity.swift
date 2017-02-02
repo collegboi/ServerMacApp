@@ -17,9 +17,9 @@ struct IssueActivity: JSONSerializable {
     var timeStamp: String!
     
     
-    init() {
-        
-    }
+    init() {}
+    init(dict: String) {}
+    init(dict: [String]) {}
     
     init(issueID: String, issueComments: String, user: String, timeStamp: String) {
         self.issueID = issueID

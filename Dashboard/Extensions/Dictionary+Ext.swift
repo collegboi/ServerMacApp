@@ -21,6 +21,18 @@ extension Dictionary {
         return ("", "")
     }
     
+    func getKeyAtIndex( index: Int ) -> String {
+        for( indexVal, value) in enumerated() {
+            
+            if indexVal == index {
+                return "\(value.0)"
+            }
+        }
+        
+        return ""
+    }
+    
+    
     func getKeyValueAtIndex( index: Int ) -> KeyValuePair {
         for( indexVal, value) in enumerated() {
             
@@ -120,7 +132,7 @@ extension Dictionary {
         return test
     }
     
-    func tryConvert(forKey key:Key, defaultVal : [String:AnyObject] = [String:AnyObject]() ) -> [String:AnyObject] {
+    func tryConvertObj(forKey key:Key, defaultVal : [String:AnyObject] = [String:AnyObject]() ) -> [String:AnyObject] {
         
         guard let test = self[key] as? [String:AnyObject] else {
             return defaultVal

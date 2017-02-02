@@ -126,6 +126,9 @@
                                                                                                 </prototypeCellViews>
                                                                                             </tableColumn>
                                                                                         </tableColumns>
+                                                                                        <connections>
+                                                                                            <outlet property="menu" destination="Vk5-xV-mYe" id="aPi-XA-s9b"/>
+                                                                                        </connections>
                                                                                     </tableView>
                                                                                 </subviews>
                                                                             </clipView>
@@ -613,6 +616,16 @@
                     </connections>
                 </viewController>
                 <customObject id="nSH-2Y-cwi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <menu title="Popup" id="Vk5-xV-mYe">
+                    <items>
+                        <menuItem title="popup menu for the view" id="j56-H4-VnJ">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                    </items>
+                    <connections>
+                        <outlet property="delegate" destination="BWa-tc-x1s" id="HYX-or-OBJ"/>
+                    </connections>
+                </menu>
             </objects>
             <point key="canvasLocation" x="1226" y="833"/>
         </scene>

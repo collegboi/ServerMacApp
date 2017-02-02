@@ -15,6 +15,8 @@ protocol JSONRepresentable {
 protocol JSONSerializable: JSONRepresentable {
     init()
     init(dict:[String:Any])
+    init(dict: [String])
+    init(dict: String)
 }
 
 //: ### Implementing the functionality through protocol extensions
@@ -244,6 +246,97 @@ extension JSONSerializable {
         }.resume()
     }
 
+    /**
+     - parameters:
+     - type: struct name
+     - getCompleted: return value of success state
+     - data: return array of objects
+     
+     */
+    
+    func getGenericAllInBackground(tableName: String, getCompleted : @escaping (_ succeeded: Bool, _ data: GenericTable? ) -> ()) {
+        
+        //let className = ("\(type(of: T()))")
+        
+        var url: String = ""
+        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        let apiEndpoint = "/storage/"
+        let networkURL = url + apiEndpoint + tableName
+        
+        guard let endpoint = URL(string: networkURL) else {
+            print("Error creating endpoint")
+            return
+        }
+        var request = URLRequest(url: endpoint)
+        request.httpMethod = "GET"
+        //if let token = _currentUser?.currentToken {
+        //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        // }
+        
+        var genericTable : GenericTable?
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if ((error) != nil) {
+                getCompleted(false, genericTable)
+            }
+            
+            guard let data = data else {
+                return
+            }
+            
+            do {
+                
+                let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:Any]
+                
+                var columns = [String]()
+                var records = [AnyObject]()
+                
+                let allObjects = dataObjects["data"] as? NSArray
+                
+//                guard let firstObject = allObjects?.first else {
+//                    getCompleted(false, genericTable)
+//                    return
+//                }
+//                
+//                if let newObject = firstObject as? [String:Any] {
+//                    
+//                    for (key, _) in newObject {
+//                        columns.append(key)
+//                    }
+//                }
+                
+                var firstTime: Bool = true
+                
+                for object in allObjects! {
+
+                    if let newObject = object as? [String:Any] {
+                        
+                        if firstTime {
+                            for (key, _) in newObject {
+                                columns.append(key)
+                            }
+                            firstTime = false
+                        }
+                        
+                        records.append(newObject as AnyObject)
+                        
+                    }
+                }
+                
+                genericTable = GenericTable(dict: records, columns: columns)
+                
+            
+                
+            } catch let error as NSError {
+                print(error)
+            }
+            
+            getCompleted(true, genericTable)
+            
+            }.resume()
+        
+    }
     
     func sendInBackground(_ objectID: String, postCompleted : @escaping (_ succeeded: Bool, _ data: NSData) -> ()) {
         
@@ -346,7 +439,15 @@ extension Array where Element: JSONSerializable {
                 
                 for object in allObjects! {
                     
-                    allT.append(T(dict: object as! [String:Any]))
+                    if let newObject = object as? [String:Any] {
+                         allT.append(T(dict: newObject ))
+                    }
+                    else if let newStringArr = object as? [String] {
+                         allT.append(T(dict: newStringArr))
+                    }
+                    else if let newString = object as? String {
+                         allT.append(T(dict: newString))
+                    }
                 }
                 
             } catch let error as NSError {

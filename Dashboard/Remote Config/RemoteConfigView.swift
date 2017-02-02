@@ -45,6 +45,7 @@ class RemoteConigViewController: NSViewController {
     @IBOutlet var settingsTableView: NSTableView!
     @IBOutlet var colorTableView: NSTableView!
     
+    var pathRow: Int = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,8 +69,8 @@ class RemoteConigViewController: NSViewController {
         detailDelegate = DetailViewDelegate(outlineView: detailOutlineView)
         
         settingsViewDataSource = SettingsViewDataSource(tableView: settingsTableView)
-        settingsViewDelegate = SettingsViewDelegate(tableView: settingsTableView ) { key, value in
-        
+        settingsViewDelegate = SettingsViewDelegate(tableView: settingsTableView ) { key, value, row in
+            self.pathRow = row
         }
         
         colorViewDataSource = ColorViewDataSource(tableView: colorTableView)
@@ -86,6 +87,11 @@ class RemoteConigViewController: NSViewController {
         self.getRemoteConfigFiles()
     }
     
+    func reloadSettingsTableView() {
+        self.settingsViewDataSource.reload(count: self.config!.mainSettings.count)
+        self.settingsViewDelegate.reload(mainSettings: self.config!.mainSettings)
+    }
+    
     
     override var representedObject: Any? {
         didSet {
@@ -95,7 +101,7 @@ class RemoteConigViewController: NSViewController {
     
     func showColorPicker( name:String, color: NSColor ) {
         
-        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        let storyboard = NSStoryboard(name: "RemoteConfig", bundle: nil)
         let wordCountWindowController = storyboard.instantiateController(withIdentifier: "Color Picker") as! NSWindowController
         
         if let wordCountWindow = wordCountWindowController.window{
@@ -107,7 +113,6 @@ class RemoteConigViewController: NSViewController {
             colorPickerViewController.red = Float(color.redComponent)
             colorPickerViewController.green = Float(color.greenComponent)
             colorPickerViewController.delegate = self
-            
             
             let application = NSApplication.shared()
             application.runModal(for: wordCountWindow)
@@ -129,7 +134,6 @@ class RemoteConigViewController: NSViewController {
         
         colorViewDelegate.reload(colorSettings: self.config!.colors)
         colorViewDataSource.reload(count: self.config!.colors.count)
-        
     }
     
     func getRemoteConfigFiles() {
@@ -145,12 +149,6 @@ class RemoteConigViewController: NSViewController {
                 if (succeeded) {
                     print("Succeeded")
                     self.config = HTTPSConnection.parseJSONConfig(data: data)
-                    
-                    
-                    //                    if let json = self.config!.toJSONObjects() {
-                    //                        print(json)
-                    //                        self.sendRemoteConfigFiles(json: json)
-                    //                    }
                 
                     self.reloadAllData()
                     
@@ -171,5 +169,109 @@ extension RemoteConigViewController: ReturnDelegate {
         
     }
     
+}
+
+extension RemoteConigViewController: NSMenuDelegate {
+    
+    func menuWillOpen(_ menu: NSMenu) {
+        
+    }
+    
+    func removeMainSetting() {
+        if self.pathRow >= 0 {
+            let key = self.config?.mainSettings.getKeyAtIndex(index: self.pathRow)
+            self.config!.mainSettings.removeValue(forKey: key!)
+            self.reloadSettingsTableView()
+            self.pathRow = -1
+        }
+    }
+    func addMainSetting() {
+        self.config?.mainSettings[" "] = " "
+        self.reloadSettingsTableView()
+    }
+    
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        
+        switch menu.title {
+            
+        case "Popup":
+            
+            // Check if the menu is already correctly initialized
+            
+            if menu.items.count == 1 { // When 1, there is the item that was defined in the XIB
+                
+                
+                // Get rid of the item that is defined in the XIB
+                
+                menu.removeAllItems()
+                
+                
+                // Add the default "remove" item
+                
+                menu.addItem(withTitle: "Remove", action: #selector(self.removeMainSetting), keyEquivalent: "")
+                menu.addItem(withTitle: "Add", action: #selector(self.addMainSetting), keyEquivalent: "")
+                
+//                // Add a submenu to add items
+//                
+//                let addMenu = NSMenu(title: "Add")
+//                addMenu.delegate = self
+//                let addMenuItem = NSMenuItem(title: "Add Item ...", action: nil, keyEquivalent: "")
+//                
+//                menu.addItem(addMenuItem)
+//                menu.setSubmenu(addMenu, for: addMenuItem)
+//                
+//                
+//                // Add a submenu to convert items
+//                
+//                let convertMenu = NSMenu(title: "Convert")
+//                convertMenu.delegate = self
+//                let convertMenuItem = NSMenuItem(title: "Convert Item ...", action: nil, keyEquivalent: "")
+//                
+//                menu.addItem(convertMenuItem)
+//                menu.setSubmenu(convertMenu, for: convertMenuItem)
+//                
+            }
+            
+            
+        case "Add":
+            
+            // Build this menu if there are no items yet
+            
+            if menu.items.count == 0 {
+                
+                menu.addItem(withTitle: "Null", action: Selector(("addNull:")), keyEquivalent: "")
+                menu.addItem(withTitle: "Bool", action: Selector(("addBool:")), keyEquivalent: "")
+                menu.addItem(withTitle: "Number", action: Selector(("addNumber:")), keyEquivalent: "")
+            }
+            
+            
+        case "Convert": break
+            
+            // This is done dynamically, so get rid of the existing items
+            
+//            menu.removeAllItems()
+//            
+//            
+//            // Now it depends on what exactly is in this line.
+//            
+//            if let object = document.determineObject() {
+//                
+//                switch object {
+//                    
+//                case .NULL:
+//                    menu.addItem(withTitle: "To Bool", action: Selector("convertToBool:"), keyEquivalent: "")
+//                    menu.addItem(withTitle: "To Number", action: "convertToNumber:", keyEquivalent: "")
+//                    
+//                case .BOOL:
+//                    menu.addItemWithTitle("To Null", action: "convertToNull:", keyEquivalent: "")
+//                    menu.addItemWithTitle("To Number", action: Selector("convertToNumber:"), keyEquivalent: "")
+//                    
+//                }
+//            }
+//            
+            
+        default: break
+        }
+    }
 }
 

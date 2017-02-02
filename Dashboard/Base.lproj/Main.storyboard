@@ -823,7 +823,7 @@
         <!--Color Picker-->
         <scene sceneID="1RR-5F-nvg">
             <objects>
-                <controllerPlaceholder storyboardIdentifier="Color Picker" storyboardName="RemoteoConfig" referencedIdentifier="Color Picker" id="1gr-rc-X27" sceneMemberID="viewController"/>
+                <controllerPlaceholder storyboardIdentifier="Color Picker" storyboardName="RemoteConfig" referencedIdentifier="Color Picker" id="1gr-rc-X27" sceneMemberID="viewController"/>
                 <customObject id="Dgp-0N-pSp" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="704" y="555"/>
@@ -831,7 +831,7 @@
         <!--Remote Config-->
         <scene sceneID="vVB-eP-2Ho">
             <objects>
-                <controllerPlaceholder storyboardIdentifier="Remote Config" storyboardName="RemoteoConfig" referencedIdentifier="Remote Config" id="13L-Q0-4ev" sceneMemberID="viewController"/>
+                <controllerPlaceholder storyboardIdentifier="Remote Config" storyboardName="RemoteConfig" referencedIdentifier="Remote Config" id="13L-Q0-4ev" sceneMemberID="viewController"/>
                 <customObject id="zfS-R6-7PM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="712" y="502"/>
@@ -867,6 +867,14 @@
                 <customObject id="YuM-ch-dwZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="695" y="713"/>
+        </scene>
+        <!--Storage-->
+        <scene sceneID="3Lz-2p-Uzu">
+            <objects>
+                <controllerPlaceholder storyboardIdentifier="Storage" storyboardName="Storage" referencedIdentifier="Storage" id="vRg-lM-5rG" sceneMemberID="viewController"/>
+                <customObject id="cma-dw-fw5" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="691" y="815"/>
         </scene>
     </scenes>
     <resources>

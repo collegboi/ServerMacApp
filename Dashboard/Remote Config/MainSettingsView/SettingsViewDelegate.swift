@@ -8,7 +8,7 @@
 
 import Cocoa
 
-typealias SelectionSettingObject = (_ key: String, _ value: String) -> Void
+typealias SelectionSettingObject = (_ key: String, _ value: String, _ row: Int) -> Void
 
 class SettingsViewDelegate: NSObject {
     
@@ -38,18 +38,19 @@ class SettingsViewDelegate: NSObject {
 
 extension SettingsViewDelegate: NSTableViewDelegate {
     
-    
-    /*func outlineViewSelectionDidChange(_ notification: Notification) {
+    func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard let outlineView = notification.object as? NSOutlineView else {
+        guard let tableView = notification.object as? NSTableView else {
             return
         }
-        let selectedRow = outlineView.selectedRow
-        guard let item = outlineView.item(atRow: selectedRow) as? RCObject , selectedRow >= 0 else {
+        let selectedRow = tableView.selectedRow
+        if selectedRow < 0 {
             return
         }
-        objectSelectionBlock?(item)
-    }*/
+        let keyValuePair = self.mainSettings.getKeyValueAtIndex(index: selectedRow)
+        
+        objectSelectionBlock?(keyValuePair.key, keyValuePair.value, selectedRow)
+    }
     
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {

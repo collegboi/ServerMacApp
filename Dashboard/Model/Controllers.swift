@@ -44,6 +44,7 @@ enum ListType {
     case MainSettingType
 }
 
+
 struct RCColor: JSONSerializable {
     
     var blue : CGFloat!
@@ -52,9 +53,10 @@ struct RCColor: JSONSerializable {
     var alpha : CGFloat!
     var name : String!
     
-    init() {
-        
-    }
+    init() {}
+    init(dict: String){}
+    
+    init(dict: [String]){}
     
     init(blue: CGFloat, green: CGFloat, red: CGFloat, alpha: CGFloat, name: String) {
         self.blue = blue
@@ -73,15 +75,38 @@ struct RCColor: JSONSerializable {
     }
 }
 
+struct RCProperty: JSONSerializable {
+    
+    var key: String!
+    var value: String!
+    var type: ListType!
+    
+    init() {
+        
+    }
+    
+    init(dict: String){}
+    
+    init(key: String, value: String, type: ListType) {
+        
+    }
+    
+    init(dict: [String : Any]) {
+        
+    }
+    
+    init(dict: [String]){}
+    
+}
+
 struct RCObject: JSONSerializable {
     
     var objectType : RCObjectType!
     var objectName : String!
     var objectProperties : [String: Any]!
     
-    init() {
-        
-    }
+    init() {}
+    init(dict: String){}
     
     init( objectName: String, objectType: RCObjectType) {
         self.objectName = objectName
@@ -89,6 +114,8 @@ struct RCObject: JSONSerializable {
         self.objectProperties = [String:Any]()
         self.objectProperties["type"] = objectType.rawValue
     }
+    
+    init(dict: [String]){}
     
     init( dict: [String:Any] ) {
         self.objectName = dict["objectName"] as! String
@@ -117,14 +144,15 @@ struct RCController: JSONSerializable {
     var objectsList: [RCObject]!
     var name : String!
     
-    init() {
-        
-    }
+    init() {}
+    init(dict: String){}
     
     init(name: String) {
         self.name = name
         self.objectsList = [RCObject]()
     }
+    
+    init(dict: [String]){}
     
     init( dict : [String:Any] ) {
         
@@ -147,9 +175,10 @@ struct Config : JSONSerializable {
     var mainSettings: [String:String]!
     var languagesList : [String]!
     
-    init() {
-        
-    }
+    init() {}
+    init(dict: String){}
+    
+    init(dict: [String]){}
     
     init( dict : [String:Any] ) {
         
@@ -184,9 +213,10 @@ struct Translations: JSONSerializable {
     
     var translationList: [String:AnyObject]!
     
-    init() {
-        
-    }
+    init() {}
+    init(dict: String){}
+    
+    init(dict: [String]){}
     
     init(dict: [String:Any] ) {
         

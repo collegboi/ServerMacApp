@@ -64,6 +64,7 @@ struct Issue: JSONSerializable {
     var version: String!
     var exceptionID: String!
     
+    init(dict: String){}
     
     init() {
         self.name = ""
@@ -87,6 +88,7 @@ struct Issue: JSONSerializable {
         self.exceptionID = exeception
     }
     
+    init(dict: [String]){}
     
     init( dict: [String:Any] ) {
         self.name = dict["name"] as! String
