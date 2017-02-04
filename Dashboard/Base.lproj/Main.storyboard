@@ -49,6 +49,9 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
+                                        <menuItem title="Log Out" keyEquivalent="l" id="hXM-Ei-T8K">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                        </menuItem>
                                         <menuItem title="Quit Dashboard" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
@@ -662,6 +665,103 @@
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
         <!--Window Controller-->
+        <scene sceneID="bWK-zY-f2M">
+            <objects>
+                <windowController storyboardIdentifier="LoginWindow" id="aUM-zk-txF" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="iV0-bc-KXn">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="294" y="323" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
+                    </window>
+                    <connections>
+                        <segue destination="lR4-Xq-Mkb" kind="relationship" relationship="window.shadowedContentViewController" id="yDI-pB-IHc"/>
+                    </connections>
+                </windowController>
+                <customObject id="9bx-x1-8Es" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-959" y="473"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="dBZ-4o-iMd">
+            <objects>
+                <viewController id="lR4-Xq-Mkb" customClass="LoginViewController" customModule="Dashboard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="BDs-4v-B8W">
+                        <rect key="frame" x="0.0" y="0.0" width="604" height="364"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <secureTextField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zra-za-l9A">
+                                <rect key="frame" x="214" y="132" width="176" height="22"/>
+                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" placeholderString="password" drawsBackground="YES" usesSingleLineMode="YES" id="GS7-ly-J7x">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <allowedInputSourceLocales>
+                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                    </allowedInputSourceLocales>
+                                </secureTextFieldCell>
+                            </secureTextField>
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="raE-aI-QeS">
+                                <rect key="frame" x="214" y="164" width="176" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="176" id="khp-BU-euv"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" placeholderString="username" drawsBackground="YES" id="qIu-xi-0kz">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uoq-dx-aKg">
+                                <rect key="frame" x="166" y="196" width="270" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="176" id="MGu-oY-Ad7"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" placeholderString="IP Address" drawsBackground="YES" id="T2Z-oq-Glf">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tcq-xY-elf">
+                                <rect key="frame" x="252" y="237" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="23k-UJ-TB7"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="wG0-Y4-95f"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSActionTemplate" id="RGz-2u-lqd"/>
+                            </imageView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Thi-U7-x17">
+                                <rect key="frame" x="233" y="96" width="137" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="125" id="k74-mZ-jSs"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Login" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="shI-0C-uJC">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Zra-za-l9A" firstAttribute="top" secondItem="raE-aI-QeS" secondAttribute="bottom" constant="10" symbolic="YES" id="4wH-7z-kGp"/>
+                            <constraint firstItem="Zra-za-l9A" firstAttribute="centerX" secondItem="Thi-U7-x17" secondAttribute="centerX" id="9xu-hZ-1lP"/>
+                            <constraint firstItem="raE-aI-QeS" firstAttribute="leading" secondItem="Zra-za-l9A" secondAttribute="leading" id="EGY-Pf-jVI"/>
+                            <constraint firstItem="uoq-dx-aKg" firstAttribute="top" secondItem="Tcq-xY-elf" secondAttribute="bottom" constant="19" id="EK1-8t-PHz"/>
+                            <constraint firstItem="raE-aI-QeS" firstAttribute="top" secondItem="uoq-dx-aKg" secondAttribute="bottom" constant="10" symbolic="YES" id="LTa-cF-gRk"/>
+                            <constraint firstItem="Tcq-xY-elf" firstAttribute="centerX" secondItem="raE-aI-QeS" secondAttribute="centerX" id="TeK-Hj-C0z"/>
+                            <constraint firstItem="uoq-dx-aKg" firstAttribute="centerX" secondItem="Thi-U7-x17" secondAttribute="centerX" id="WRa-es-izB"/>
+                            <constraint firstItem="Tcq-xY-elf" firstAttribute="centerX" secondItem="BDs-4v-B8W" secondAttribute="centerX" id="cBt-07-nB5"/>
+                            <constraint firstItem="Thi-U7-x17" firstAttribute="top" secondItem="Zra-za-l9A" secondAttribute="bottom" constant="8" symbolic="YES" id="lWr-E3-NER"/>
+                            <constraint firstItem="raE-aI-QeS" firstAttribute="trailing" secondItem="Zra-za-l9A" secondAttribute="trailing" id="mC5-3e-QW2"/>
+                            <constraint firstItem="Tcq-xY-elf" firstAttribute="top" secondItem="BDs-4v-B8W" secondAttribute="top" constant="27" id="nez-Ax-3Qk"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="mKq-CX-uWR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-897" y="943"/>
+        </scene>
+        <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
@@ -875,6 +975,14 @@
                 <customObject id="cma-dw-fw5" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="691" y="815"/>
+        </scene>
+        <!--Languages-->
+        <scene sceneID="lJT-1c-LzQ">
+            <objects>
+                <controllerPlaceholder storyboardIdentifier="Languages" storyboardName="Languages" referencedIdentifier="Languages" id="Rni-ue-gJo" sceneMemberID="viewController"/>
+                <customObject id="iSv-Aa-Iu7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1292" y="819.5"/>
         </scene>
     </scenes>
     <resources>

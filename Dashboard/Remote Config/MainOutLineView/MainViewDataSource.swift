@@ -25,7 +25,6 @@ class MainViewDataSource: NSObject {
         self.config = config
         self.outlineView.reloadData()
     }
-    
 }
 
 extension MainViewDataSource: NSOutlineViewDataSource {

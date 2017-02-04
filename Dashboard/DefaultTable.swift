@@ -44,11 +44,12 @@ import Foundation
 //
 //}
 
-
-struct GenericTable: JSONSerializable {
+struct Document: JSONSerializable {
     
-    var row: [AnyObject]!
-    var columns: [String]!
+    var hasChildren: Int = 0
+    var key: String?
+    var value : AnyObject?
+    var children: [Document]?
     
     init() {}
     init(dict: [String : Any]) {}
@@ -56,9 +57,26 @@ struct GenericTable: JSONSerializable {
     init(dict: [String]) {}
     init(dict: String) {}
     
-    init(dict: [AnyObject], columns: [String]) {
+    init( key: String, value: AnyObject, children: [Document] = [], hasChildren: Int = 0 ) {
+        self.key = key
+        self.value = value
+        self.children = children
+        self.hasChildren = hasChildren
+    }
+}
+
+struct GenericTable: JSONSerializable {
+    
+    var row: [Document]!
+    
+    init() {}
+    init(dict: [String : Any]) {}
+    
+    init(dict: [String]) {}
+    init(dict: String) {}
+    
+    init(dict: [Document]) {
         self.row = dict
-        self.columns = columns
     }
     
 }

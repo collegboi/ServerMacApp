@@ -92,7 +92,7 @@ struct Issue: JSONSerializable {
     
     init( dict: [String:Any] ) {
         self.name = dict["name"] as! String
-        self.version = dict.tryConvert(forKey: "version",defaultVal: "1.2.2")
+        self.version = dict.tryConvert(forKey: "version","1.2.2")
         self.status = dict.tryConvert(forKey: "status")
         self.assingee = dict.tryConvert(forKey: "assingee")
         self.timeSpent = dict.tryConvert(forKey: "timeSpent")

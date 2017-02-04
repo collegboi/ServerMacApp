@@ -10,28 +10,53 @@ import Cocoa
 
 class StorageDetailDataSource: NSObject {
 
-    var mainSettingsCount: Int = 0
+    var records: [Document]?
     
-    fileprivate var tableView: NSTableView
+    fileprivate var outlineView: NSOutlineView
     
-    init(tableView: NSTableView) {
-        self.tableView = tableView
+    init(outlineView: NSOutlineView) {
+        self.outlineView = outlineView
         super.init()
-        self.tableView.dataSource = self
+        self.outlineView.dataSource = self
     }
     
-    func reload(count: Int) {
-        self.mainSettingsCount = count
-        //self.tableView.reloadData()
+    func reload(records: [Document]) {
+        self.records = records
+        self.outlineView.reloadData()
+    }
+    
+}
+
+extension StorageDetailDataSource: NSOutlineViewDataSource {
+    
+    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
+        if let child = item as? Document {
+            return child.hasChildren
+        }
+        
+        guard let contollerCount = self.records?.count else {
+            return 0
+        }
+        
+        return contollerCount
     }
     
-}
-
-extension StorageDetailDataSource: NSTableViewDataSource {
+    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
+        
+        if let record = item as? Document {
+            return record.children![index]
+        }
+        return self.records![index]
+    }
     
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        return self.mainSettingsCount
+    
+    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
+        
+        if let parent = item as? Document {
+            return parent.hasChildren > 0
+        }
+        
+        return false
     }
 }
-

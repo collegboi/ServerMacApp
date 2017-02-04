@@ -45,6 +45,7 @@ class SideBarDataSource: NSObject {
         let services = [
             Section.Item(item: "Storage"),
             Section.Item(item: "Analytics"),
+            Section.Item(item: "Languages"),
             Section.Item(item: "Notificaitons"),
             Section.Item(item: "Remote Config"),
             Section.Item(item: "Backup"),
@@ -62,10 +63,10 @@ class SideBarDataSource: NSObject {
             Section.Item(item: "Users")
         ]
         
-        let langs = [
-            Section.Item(item: "English"),
-            Section.Item(item: "French"),
-            Section.Item(item: "Russian")]
+//        let langs = [
+//            Section.Item(item: "English"),
+//            Section.Item(item: "French"),
+//            Section.Item(item: "Russian")]
         
         let tracker = [
             Section.Item(item: "Sprint Board"),
@@ -76,7 +77,6 @@ class SideBarDataSource: NSObject {
             Section(name: "Server", volumes: server),
             Section(name: "Accounts", volumes: accounts),
             Section(name: "Services", volumes: services ),
-            Section(name: "Languages", volumes: langs),
             Section(name: "Tracker", volumes: tracker)
         ]
         

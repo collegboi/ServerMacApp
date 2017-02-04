@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E144f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
@@ -15,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KV2-mf-6Kp">
-                                <rect key="frame" x="147" y="481" width="145" height="46"/>
+                                <rect key="frame" x="175" y="481" width="145" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="GkN-Bh-qe6"/>
                                     <constraint firstAttribute="width" constant="141" id="Yo9-rW-0PQ"/>
@@ -27,12 +28,12 @@
                                 </textFieldCell>
                             </textField>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BL6-PD-8o0">
-                                <rect key="frame" x="20" y="450" width="100" height="100"/>
+                                <rect key="frame" x="20" y="422" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="93k-QB-IRT"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="jGM-LZ-eA8"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSActionTemplate" id="lUU-dP-Dm3"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="Sprint" id="lUU-dP-Dm3"/>
                             </imageView>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Xje-0X-WrU">
                                 <rect key="frame" x="20" y="426" width="1072" height="5"/>
@@ -44,7 +45,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="392"/>
                                         <clipView key="contentView" id="zR7-MZ-stI">
                                             <rect key="frame" x="1" y="0.0" width="238" height="391"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="O93-kK-O6B" viewBased="YES" id="ntS-78-jeQ">
                                                     <rect key="frame" x="0.0" y="0.0" width="238" height="368"/>
@@ -87,7 +88,7 @@
                                         <rect key="frame" x="277" y="0.0" width="240" height="392"/>
                                         <clipView key="contentView" id="8IE-1n-TdQ">
                                             <rect key="frame" x="1" y="0.0" width="238" height="391"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="F9l-bW-BDt" viewBased="YES" id="3d7-Op-FaG">
                                                     <rect key="frame" x="0.0" y="0.0" width="238" height="368"/>
@@ -130,7 +131,7 @@
                                         <rect key="frame" x="554" y="0.0" width="240" height="392"/>
                                         <clipView key="contentView" id="NBs-Ug-4Kl">
                                             <rect key="frame" x="1" y="0.0" width="238" height="391"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="teD-gj-8Vz" viewBased="YES" id="QtS-kF-5I2">
                                                     <rect key="frame" x="0.0" y="0.0" width="238" height="368"/>
@@ -173,7 +174,7 @@
                                         <rect key="frame" x="831" y="0.0" width="240" height="392"/>
                                         <clipView key="contentView" id="NwE-vl-U9f">
                                             <rect key="frame" x="1" y="0.0" width="238" height="391"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="0iG-gO-KVa" viewBased="YES" id="Q4D-6d-1h3">
                                                     <rect key="frame" x="0.0" y="0.0" width="238" height="368"/>
@@ -271,6 +272,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSActionTemplate" width="14" height="14"/>
+        <image name="Sprint" width="128" height="128"/>
     </resources>
 </document>

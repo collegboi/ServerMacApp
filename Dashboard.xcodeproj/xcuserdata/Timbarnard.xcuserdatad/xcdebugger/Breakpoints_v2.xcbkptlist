@@ -9,69 +9,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Dashboard/StorageViewController.swift"
-            timestampString = "507691480.283147"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "getTableValues(tableName:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dashboard.StorageViewController.getTableValues (tableName : Swift.String) -&gt; ()"
-                  moduleName = "Dashboard"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Timbarnard/Documents/Projects/MacApps/Dashboard/Dashboard/StorageViewController.swift"
-                  timestampString = "507691037.967991"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "89">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dashboard.StorageViewController.(getTableValues (tableName : Swift.String) -&gt; ()).(closure #1)"
-                  moduleName = "Dashboard"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Timbarnard/Documents/Projects/MacApps/Dashboard/Dashboard/StorageViewController.swift"
-                  timestampString = "507691037.970234"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "33">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dashboard.StorageViewController.(getTableValues (tableName : Swift.String) -&gt; ()).(closure #1).(closure #1)"
-                  moduleName = "Dashboard"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Timbarnard/Documents/Projects/MacApps/Dashboard/Dashboard/StorageViewController.swift"
-                  timestampString = "507691037.972278"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "25">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Dashboard/StorageMainDelegate.swift"
             timestampString = "507694080.866863"
             startingColumnNumber = "9223372036854775807"
@@ -89,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dashboard/StorageViewController.swift"
-            timestampString = "507694341.464545"
+            timestampString = "507919687.393208"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "getTableValues(tableName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -104,13 +41,93 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Dashboard/Model/JSONRepresentable.swift"
-            timestampString = "507694710.056529"
+            filePath = "Dashboard/StorageDetailDataSource.swift"
+            timestampString = "507914054.106218"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "outlineView(_:child:ofItem:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dashboard/Model/JSONRepresentable.swift"
+            timestampString = "507928414.992983"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "getGenericAllInBackground(tableName:getCompleted:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dashboard/TranslationKeysDelegate.swift"
+            timestampString = "507929972.085473"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "tableView(_:viewFor:row:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dashboard/PublishLanguage.swift"
+            timestampString = "507941456.474869"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "viewWillAppear()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dashboard/TranslationViewController.swift"
+            timestampString = "507941951.509714"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "sendBackData(data:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dashboard/TranslationViewController.swift"
+            timestampString = "507943672.48442"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "publishLanguage(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

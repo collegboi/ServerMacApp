@@ -251,7 +251,6 @@ extension JSONSerializable {
      - type: struct name
      - getCompleted: return value of success state
      - data: return array of objects
-     
      */
     
     func getGenericAllInBackground(tableName: String, getCompleted : @escaping (_ succeeded: Bool, _ data: GenericTable? ) -> ()) {
@@ -288,44 +287,36 @@ extension JSONSerializable {
             do {
                 
                 let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:Any]
-                
-                var columns = [String]()
-                var records = [AnyObject]()
+        
+                var records = [Document]()
                 
                 let allObjects = dataObjects["data"] as? NSArray
                 
-//                guard let firstObject = allObjects?.first else {
-//                    getCompleted(false, genericTable)
-//                    return
-//                }
-//                
-//                if let newObject = firstObject as? [String:Any] {
-//                    
-//                    for (key, _) in newObject {
-//                        columns.append(key)
-//                    }
-//                }
-                
-                var firstTime: Bool = true
-                
                 for object in allObjects! {
-
-                    if let newObject = object as? [String:Any] {
+                
+                    var parentChildren = [Document]()
+                    
+                    if let parentObjects = object as? [String:Any] {
                         
-                        if firstTime {
-                            for (key, _) in newObject {
-                                columns.append(key)
-                            }
-                            firstTime = false
+                        for parentObject in parentObjects {
+                    
+                            let key = parentObject.key
+                            let value = parentObject.value as AnyObject
+                    
+                            let childrenRecords = self.recursiveFindChildren(object: value)
+                        
+                            let parentDoc = Document(key: key, value: value, children: childrenRecords, hasChildren: childrenRecords.count)
+                        
+                            parentChildren.append(parentDoc)
                         }
-                        
-                        records.append(newObject as AnyObject)
-                        
                     }
+                    
+                    let parentDoc = Document(key: "", value: "" as AnyObject, children: parentChildren, hasChildren: parentChildren.count)
+                    
+                    records.append(parentDoc)
                 }
                 
-                genericTable = GenericTable(dict: records, columns: columns)
-                
+                genericTable = GenericTable(dict: records )
             
                 
             } catch let error as NSError {
@@ -335,7 +326,45 @@ extension JSONSerializable {
             getCompleted(true, genericTable)
             
             }.resume()
+    }
+    
+    internal func recursiveFindChildren( object: AnyObject ) -> [Document] {
         
+        var children = [Document]()
+        
+        func tryFindChildren( object: AnyObject ) {
+            
+            if let parentObjects = object as? [String:Any] {
+                
+                for childObject in parentObjects {
+                    
+                    let key = childObject.key
+                    let value = childObject.value as AnyObject
+                    
+                    let childDoc = Document(key: key, value: value, children: [], hasChildren: 0)
+                    children.append(childDoc)
+                    
+                    if self.recursiveChildren( value ) {
+                        tryFindChildren(object: value )
+                    }
+                }
+            }
+        }
+        
+        tryFindChildren(object: object)
+        
+        
+        return children
+
+    }
+    
+    internal func recursiveChildren(_ object: AnyObject  ) -> Bool {
+        
+        if object is [String:AnyObject] || object is [AnyObject] {
+            return true
+        }
+        return false
+
     }
     
     func sendInBackground(_ objectID: String, postCompleted : @escaping (_ succeeded: Bool, _ data: NSData) -> ()) {

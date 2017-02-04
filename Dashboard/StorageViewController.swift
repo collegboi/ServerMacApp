@@ -11,16 +11,20 @@ import Cocoa
 class StorageViewController: NSViewController {
 
     
+    @IBOutlet weak var totalTables: NSTextField!
+    @IBOutlet weak var tableName: NSTextField!
+    @IBOutlet weak var totalRecords: NSTextField!
+    
+    @IBOutlet weak var predicateEditor: NSPredicateEditor!
+    
     @IBOutlet weak var mainTableView: NSTableView!
-    @IBOutlet weak var detailTableView: NSTableView!
+    @IBOutlet weak var detailOutLineView: NSOutlineView!
     
     fileprivate var storageMainDelegate: StorageMainDelegate!
     fileprivate var storageMainDataSource: StorageMainDataSource!
     
     fileprivate var storageDetailDataSource: StorageDetailDataSource!
     fileprivate var storageDetailDelegate: StorageDetailDelegate!
-    
-    
     
     
     override func viewDidLoad() {
@@ -31,12 +35,24 @@ class StorageViewController: NSViewController {
             self.getTableValues(tableName: table)
         }
         
-        storageDetailDataSource = StorageDetailDataSource(tableView: detailTableView)
-        storageDetailDelegate = StorageDetailDelegate(tableView: detailTableView)
+        storageDetailDataSource = StorageDetailDataSource(outlineView: detailOutLineView)
+        storageDetailDelegate = StorageDetailDelegate(outlineView: detailOutLineView)
         
         // Do view setup here.
         
+        let expression = NSExpression(forKeyPath: "test")
+        
+        let rowTemplate = NSPredicateEditorRowTemplate(leftExpressions: [expression], rightExpressionAttributeType: .stringAttributeType, modifier: .all, operators: [1], options: .allZeros)
+        
+        self.predicateEditor.rowTemplates.append(rowTemplate)
+        
+        
         self.reloadMainTables()
+    }
+    
+    func reloadData() {
+        
+        
     }
     
     func reloadMainTables() {
@@ -48,13 +64,21 @@ class StorageViewController: NSViewController {
             DispatchQueue.main.async {
                 if (succeeded) {
                     allTables = data
-                    print("scucess")
+                    print("success")
                     self.storageMainDataSource.reload(count: allTables.count)
                     self.storageMainDelegate.reload(tableList: allTables)
                     
-                    let table = allTables.first
-                    self.getTableValues(tableName: table!.tableName)
-                    
+                    if allTables.count > 0 {
+                        
+                        let table = allTables.first
+                        
+                        if let tableName = table?.tableName {
+                            
+                            self.tableName.stringValue = tableName
+                            self.totalTables.stringValue = "\(allTables.count)"
+                            self.getTableValues(tableName: tableName)
+                        }
+                    }
 //                    self.getTableValues(tableName: "Issue")
                 } else {
                     print("error")
@@ -72,11 +96,9 @@ class StorageViewController: NSViewController {
             DispatchQueue.main.async {
                 if (succeeded) {
                     allRecords = data!
-                    print("scucess")
-                    self.storageDetailDataSource.reload(count: allRecords.row.count )
-                    self.storageDetailDelegate.reload(tableList: allRecords)
-                    self.detailTableView.reloadData()
-                    
+                    print("success")
+                    self.storageDetailDataSource.reload(records: allRecords.row)
+                    self.totalRecords.stringValue = "\(allRecords.row.count)"
                 } else {
                     print("error")
                 }
