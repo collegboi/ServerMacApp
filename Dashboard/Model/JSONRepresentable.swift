@@ -367,6 +367,99 @@ extension JSONSerializable {
 
     }
     
+    func genericRemoveInBackground(_ objectID: String, collectioName: String, deleteCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
+        
+        var url: String = ""
+        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        let apiEndpoint = "/storage/"
+        let networkURL = url + apiEndpoint + collectioName + "/" + objectID
+        
+        guard let endpoint = URL(string: networkURL) else {
+            print("Error creating endpoint")
+            return
+        }
+        var request = URLRequest(url: endpoint)
+        request.httpMethod = "DELETE"
+        //if let token = _currentUser?.currentToken {
+        //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        // }
+        
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if ((error) != nil) {
+                deleteCompleted(false, "Not removed")
+            }
+            
+            guard let _ = data else {
+                return
+            }
+            
+            do {
+                
+                //let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:Any]
+                
+                
+                
+            } catch let error as NSError {
+                print(error)
+            }
+            
+            deleteCompleted(true, "Removed")
+            
+            }.resume()
+        
+    }
+
+    
+    
+    func removeInBackground(_ objectID: String, deleteCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
+        
+        let className = ("\(type(of: self))")
+        
+        var url: String = ""
+        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        let apiEndpoint = "/storage/"
+        let networkURL = url + apiEndpoint + className + "/" + objectID
+        
+        guard let endpoint = URL(string: networkURL) else {
+            print("Error creating endpoint")
+            return
+        }
+        var request = URLRequest(url: endpoint)
+        request.httpMethod = "DELETE"
+        //if let token = _currentUser?.currentToken {
+        //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        // }
+        
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if ((error) != nil) {
+                deleteCompleted(false, "Not removed")
+            }
+            
+            guard let _ = data else {
+                return
+            }
+            
+            do {
+                
+                //let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:Any]
+                
+                
+                
+            } catch let error as NSError {
+                print(error)
+            }
+            
+            deleteCompleted(true, "Removed")
+            
+            }.resume()
+        
+    }
+
+    
     func sendInBackground(_ objectID: String, postCompleted : @escaping (_ succeeded: Bool, _ data: NSData) -> ()) {
         
         let className = ("\(type(of: self))")

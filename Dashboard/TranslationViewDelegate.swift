@@ -50,14 +50,22 @@ extension TranslationViewDelegate: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
         let (key, value) = self.translations.getValueAtIndex(index: row)
+        var cellIdenifier = ""
+        var textvalue = ""
         
-        if let cell = tableView.make(withIdentifier: "KeyCell", owner: nil) as? NSTableCellView {
-            cell.textField?.stringValue = key
+        if tableColumn?.identifier == "KeyCol" {
+            cellIdenifier = "KeyCell"
+            textvalue = key
+        } else {
+            cellIdenifier = "ValueCell"
+            textvalue = value
+        }
+        
+        
+        if let cell = tableView.make(withIdentifier: cellIdenifier, owner: nil) as? NSTableCellView {
+            cell.textField?.stringValue = textvalue
             return cell
             
-        } else if let cell = tableView.make(withIdentifier: "ValueCell", owner: nil) as? NSTableCellView {
-            cell.textField?.stringValue = value
-            return cell
         }
         
         return nil

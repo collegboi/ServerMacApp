@@ -30,21 +30,34 @@ class TranslationViewController: NSViewController {
     var currentLanguage: String?
     var currentVersion:String?
     var allLanguages: [Languages]?
-    
+    var currentLanguageNo: Int = 0
     var firstLoad: Bool = false
+    
+    var versionData = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        versionData.append("1.2.1")
+        versionData.append("1.3")
+        versionData.append("1.5")
+        
+        self.appVersions.removeAllItems()
+        
         self.appVersions.addItem(withObjectValue: "1.2.1")
         self.appVersions.addItem(withObjectValue: "1.3")
-        self.appVersions.addItem(withObjectValue: "1.1")
+        self.appVersions.addItem(withObjectValue: "1.5")
         
         self.appVersions.delegate = self
         self.appVersions.dataSource = self
         
+        self.appVersions.reloadData()
+        
+        self.appVersions.selectItem(at: 0)
+        
         languageDataSource = GenericDataSource(tableView: languageTableView)
         languagesDelegate = LanguagesDelegate(tableView: languageTableView) { row, language in
+            self.currentLanguage = language.name
             self.getTranslation(filePath: language.filePath)
         }
         
@@ -57,7 +70,6 @@ class TranslationViewController: NSViewController {
         translationViewDelegate = TranslationViewDelegate(tableView: translationTableView) { row, value in
             
         }
-        
         self.getAllLanguages()
     }
     
@@ -66,11 +78,12 @@ class TranslationViewController: NSViewController {
      
         var myList = [String:AnyObject]()
         
-        self.allLanguages?[0].version = "1.5"
+        self.allLanguages?[currentLanguageNo].version = self.currentVersion
+        self.allLanguages?[currentLanguageNo].filePath = self.currentLanguage! + "/" + self.currentVersion! + ".json"
         
         myList["translationList"] = self.translationList as AnyObject
-        myList["language"] = self.allLanguages?[0].toJSONObjects() as AnyObject
-        myList["newVersion"] = "/" + self.allLanguages![0].name + "/" + "1.5.json" as AnyObject
+        myList["language"] = self.allLanguages?[currentLanguageNo].toJSONObjects() as AnyObject
+        myList["newVersion"] = self.allLanguages![currentLanguageNo].name + "/" + self.currentVersion! + ".json" as AnyObject
         
         self.sendInBackground(myList) { (succeeded, data) in
             DispatchQueue.main.async {
@@ -80,8 +93,6 @@ class TranslationViewController: NSViewController {
                     print("error")
                 }
             }
-
-            
         }
         
 //        let storyboard = NSStoryboard(name: "Languages", bundle: nil)
@@ -122,7 +133,9 @@ class TranslationViewController: NSViewController {
     
     func getTranslation( filePath: String ) {
         
-        self.getTranslationFile(filePath: filePath) { (succeeded: Bool, data: [String:String]) -> () in
+        let filePathStr = "/"+filePath
+        
+        self.getTranslationFile(filePath: filePathStr) { (succeeded: Bool, data: [String:String]) -> () in
             
             DispatchQueue.main.async {
                 if (succeeded) {
@@ -156,22 +169,20 @@ extension TranslationViewController: NSComboBoxDataSource,NSComboBoxDelegate {
         guard let comboBox = notification.object as? NSComboBox else {
             return
         }
-        let selectedRow = comboBox.indexOfSelectedItem
         
-        if selectedRow < 0 {
-            return
-        }
+        print("comboBox objectValueOfSelectedItem: \(comboBox.objectValueOfSelectedItem)")
+        /* This printed the correct selected String value */
         
-        self.currentLanguage = "English"
-        self.currentVersion = "1.3.json"
+        print("comboBox indexOfSelectedItem: \(comboBox.indexOfSelectedItem)")
         
-        let filePath = "/"+self.currentLanguage! + "/" + self.currentVersion!
+        let version = "\(comboBox.objectValueOfSelectedItem!)"
+        
+        self.currentLanguage = self.allLanguages?[self.currentLanguageNo].name ?? "English"
+        self.currentVersion = version
+        
+        let filePath = self.currentLanguage! + "/" + self.currentVersion! + ".json"
         
         self.getTranslation(filePath: filePath)
-    }
-    
-    func numberOfItems(in comboBox: NSComboBox) -> Int {
-        return 3
     }
 }
 

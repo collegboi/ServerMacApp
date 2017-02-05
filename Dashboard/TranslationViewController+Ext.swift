@@ -18,7 +18,7 @@ extension TranslationViewController {
         url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
         
         let apiEndpoint = "/translation/"
-        let networkURL = url + apiEndpoint + className
+        let networkURL = url + apiEndpoint
         
         let request = NSMutableURLRequest(url: NSURL(string: networkURL)! as URL)
         let session = URLSession.shared

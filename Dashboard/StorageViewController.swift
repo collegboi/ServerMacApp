@@ -48,10 +48,22 @@ class StorageViewController: NSViewController {
         
         
         self.reloadMainTables()
+        
+        //self.reloadData()
     }
     
     func reloadData() {
         
+        let deleteRecord = GenericTable()
+        deleteRecord.genericRemoveInBackground("0d2cd597-bb34-4b97-9bc9-476af56ce843", collectioName: "Languages") { (removed, response) in
+            DispatchQueue.main.async {
+                if (removed) {
+                    print("success")
+                } else {
+                    print("error")
+                }
+            }
+        }
         
     }
     
@@ -99,6 +111,7 @@ class StorageViewController: NSViewController {
                     print("success")
                     self.storageDetailDataSource.reload(records: allRecords.row)
                     self.totalRecords.stringValue = "\(allRecords.row.count)"
+                    self.tableName.stringValue = tableName
                 } else {
                     print("error")
                 }
