@@ -515,11 +515,94 @@ extension JSONSerializable {
 extension Array where Element: JSONSerializable {
     
     /**
+     getFilteredInBackground
+     - parameters:
+     - type: struct name
+     - query: Dictionary of objects to find : ("name":"Timothy")
+     - getCompleted: return value of success state
+     - data: return array of objects
+     
+     */
+    
+    func getFilteredInBackground<T:JSONSerializable>(ofType type:T.Type, query: [String:AnyObject],  getCompleted : @escaping (_ succeeded: Bool, _ data: [T]) -> ()) {
+        
+        let className = ("\(type(of: T()))")
+        
+        var url: String = ""
+        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        let apiEndpoint = "/storage/query/"
+        let networkURL = url + apiEndpoint + className
+        
+        guard let endpoint = URL(string: networkURL) else {
+            print("Error creating endpoint")
+            return
+        }
+        var request = URLRequest(url: endpoint)
+        request.httpMethod = "POST"
+        //if let token = _currentUser?.currentToken {
+        //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        // }
+        
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: query, options: [])
+        } catch {
+            //err = error
+            request.httpBody = nil
+        }
+        
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        var allT = [T]()
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if ((error) != nil) {
+                getCompleted(false, allT)
+            }
+            
+            guard let data = data else {
+                return
+            }
+            
+            do {
+                
+                let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:Any]
+                
+                let allObjects = dataObjects["data"] as? NSArray
+                
+                for object in allObjects! {
+                    
+                    if let newObject = object as? [String:Any] {
+                        allT.append(T(dict: newObject ))
+                    }
+                    else if let newStringArr = object as? [String] {
+                        allT.append(T(dict: newStringArr))
+                    }
+                    else if let newString = object as? String {
+                        allT.append(T(dict: newString))
+                    }
+                }
+                
+            } catch let error as NSError {
+                print(error)
+            }
+            
+            getCompleted(true, allT)
+            
+            }.resume()
+    }
+
+    
+    
+    /**
+     getAllInBackground
      - parameters:
         - type: struct name
         - getCompleted: return value of success state
         - data: return array of objects
-     
      */
     
     func getAllInBackground<T:JSONSerializable>(ofType type:T.Type, getCompleted : @escaping (_ succeeded: Bool, _ data: [T]) -> ()) {

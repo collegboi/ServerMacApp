@@ -51,6 +51,17 @@ class StorageViewController: NSViewController {
         
         //self.reloadData()
     }
+    @IBAction func importFileDatabase(_ sender: Any) {
+        
+        let storyboard = NSStoryboard(name: "Storage", bundle: nil)
+        let importFileWindowController = storyboard.instantiateController(withIdentifier: "ImportFile") as! NSWindowController
+        
+        if let importFileWindow = importFileWindowController.window{
+            
+            let application = NSApplication.shared()
+            application.runModal(for: importFileWindow)
+        }
+    }
     
     func reloadData() {
         
@@ -64,7 +75,6 @@ class StorageViewController: NSViewController {
                 }
             }
         }
-        
     }
     
     func reloadMainTables() {

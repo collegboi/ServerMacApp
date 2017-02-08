@@ -58,6 +58,16 @@ class NotificationViewController: NSViewController {
     @IBAction func configureNotifcation(_ sender: Any) {
     }
     
+    func sendFile(_ filePath: String) {
+        
+        HTTPSConnection.httpPostFileRequest(path: filePath, endPoint: "/upload/Images/", name:"Image1") { (sent, message) in
+            DispatchQueue.main.async {
+                print(message)
+            }
+        }
+    }
+    
+    
     
     func showSendNotifcationWindow() {
         
