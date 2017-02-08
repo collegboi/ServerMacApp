@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dashboard/StorageViewController.swift"
-            timestampString = "507991200.1427"
+            timestampString = "508009090.431267"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "getTableValues(tableName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -176,22 +176,6 @@
             startingLineNumber = "57"
             endingLineNumber = "57"
             landmarkName = "reloadData()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dashboard/Model/JSONRepresentable.swift"
-            timestampString = "507991238.803143"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "372"
-            endingLineNumber = "372"
-            landmarkName = "genericRemoveInBackground(_:collectioName:deleteCompleted:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

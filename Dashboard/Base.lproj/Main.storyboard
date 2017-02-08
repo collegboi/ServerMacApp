@@ -982,7 +982,15 @@
                 <controllerPlaceholder storyboardIdentifier="Languages" storyboardName="Languages" referencedIdentifier="Languages" id="Rni-ue-gJo" sceneMemberID="viewController"/>
                 <customObject id="iSv-Aa-Iu7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1292" y="819.5"/>
+            <point key="canvasLocation" x="700" y="873"/>
+        </scene>
+        <!--Notifications-->
+        <scene sceneID="XIU-5B-aZu">
+            <objects>
+                <controllerPlaceholder storyboardIdentifier="Notifications" storyboardName="Notifications" referencedIdentifier="Notifications" id="lng-nP-zWP" sceneMemberID="viewController"/>
+                <customObject id="xta-oz-xJD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="712" y="921"/>
         </scene>
     </scenes>
     <resources>

@@ -46,14 +46,16 @@ class SideBarDataSource: NSObject {
             Section.Item(item: "Storage"),
             Section.Item(item: "Analytics"),
             Section.Item(item: "Languages"),
-            Section.Item(item: "Notificaitons"),
+            Section.Item(item: "Notifications"),
             Section.Item(item: "Remote Config"),
+            Section.Item(item: "AB Testing"),
             Section.Item(item: "Backup"),
             Section.Item(item: "Crashes"),
             Section.Item(item: "New Service")]
         
         let server = [
             Section.Item(item: "Status"),
+            Section.Item(item: "Settings"),
             Section.Item(item: "Logs")
         ]
         

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E144f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Testing View Controller-->
+        <scene sceneID="Wph-cx-6Wr">
+            <objects>
+                <viewController storyboardIdentifier="AB Testing" id="LvF-nq-cDA" customClass="ABTestingViewController" customModule="Dashboard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="5j0-os-psW">
+                        <rect key="frame" x="0.0" y="0.0" width="1136" height="624"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43W-ZD-im3">
+                                <rect key="frame" x="187" y="535" width="145" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="141" id="Pe8-kG-d8a"/>
+                                    <constraint firstAttribute="height" constant="46" id="qc7-I8-Xey"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="AB Testing" id="gIj-XM-2rd">
+                                    <font key="font" size="20" name="AvenirNext-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ybs-NV-tnI">
+                                <rect key="frame" x="20" y="476" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="JaH-Ap-A21"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="X4w-vP-0tC"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="Notification" id="xs0-1H-cOq"/>
+                            </imageView>
+                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="mUW-H0-bao">
+                                <rect key="frame" x="20" y="453" width="1096" height="5"/>
+                            </box>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="bq9-a9-6cn" customClass="AnalyticsView" customModule="Dashboard" customModuleProvider="target">
+                                <rect key="frame" x="20" y="20" width="1096" height="415"/>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="bq9-a9-6cn" secondAttribute="trailing" constant="20" id="3Wt-ae-wln"/>
+                            <constraint firstAttribute="bottom" secondItem="bq9-a9-6cn" secondAttribute="bottom" constant="20" id="CxE-BG-Gmg"/>
+                            <constraint firstAttribute="trailing" secondItem="mUW-H0-bao" secondAttribute="trailing" constant="20" id="EQA-vp-Z1k"/>
+                            <constraint firstItem="Ybs-NV-tnI" firstAttribute="top" secondItem="5j0-os-psW" secondAttribute="top" constant="20" id="Lxt-3C-btc"/>
+                            <constraint firstItem="mUW-H0-bao" firstAttribute="top" secondItem="Ybs-NV-tnI" secondAttribute="bottom" constant="20" id="MTT-EB-YSb"/>
+                            <constraint firstItem="bq9-a9-6cn" firstAttribute="leading" secondItem="5j0-os-psW" secondAttribute="leading" constant="20" id="NKr-4J-2FT"/>
+                            <constraint firstItem="mUW-H0-bao" firstAttribute="top" secondItem="Ybs-NV-tnI" secondAttribute="bottom" constant="20" id="NYJ-i5-x6s"/>
+                            <constraint firstItem="43W-ZD-im3" firstAttribute="leading" secondItem="Ybs-NV-tnI" secondAttribute="trailing" constant="41" id="UXF-Hy-gcw"/>
+                            <constraint firstItem="bq9-a9-6cn" firstAttribute="top" secondItem="mUW-H0-bao" secondAttribute="bottom" constant="20" id="WHd-MO-s0O"/>
+                            <constraint firstItem="43W-ZD-im3" firstAttribute="top" secondItem="5j0-os-psW" secondAttribute="top" constant="43" id="joa-K7-rkG"/>
+                            <constraint firstItem="mUW-H0-bao" firstAttribute="leading" secondItem="5j0-os-psW" secondAttribute="leading" constant="20" id="kCP-2d-hg5"/>
+                            <constraint firstItem="Ybs-NV-tnI" firstAttribute="leading" secondItem="5j0-os-psW" secondAttribute="leading" constant="20" id="tv8-Uf-Iej"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="AAnalyticsView" destination="bq9-a9-6cn" id="Xsv-BA-EhB"/>
+                    </connections>
+                </viewController>
+                <customObject id="CHv-39-Dox" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1497" y="983"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Notification" width="128" height="128"/>
+    </resources>
+</document>

@@ -52,6 +52,5 @@ class UserView: NSView {
         
         data.addDataSet(ds)
         self.lineChartView!.data = data
-        
     }
 }

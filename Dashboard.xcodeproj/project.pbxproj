@@ -30,6 +30,14 @@
 		B2088F6D1E429E5900458F58 /* Tables.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2088F6C1E429E5900458F58 /* Tables.swift */; };
 		B2088F6F1E42ADE900458F58 /* DefaultTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2088F6E1E42ADE900458F58 /* DefaultTable.swift */; };
 		B21021171E43B59400AC4C5D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21021161E43B59400AC4C5D /* LoginViewController.swift */; };
+		B253B2351E4A7CB500E86B9B /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253B2341E4A7CB500E86B9B /* NotificationViewController.swift */; };
+		B253B2381E4A7D1700E86B9B /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B253B2361E4A7D1700E86B9B /* Notifications.storyboard */; };
+		B253B23A1E4A871B00E86B9B /* SendNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253B2391E4A871B00E86B9B /* SendNotificationView.swift */; };
+		B253B23D1E4A892A00E86B9B /* NotifcationViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253B23C1E4A892A00E86B9B /* NotifcationViewDelegate.swift */; };
+		B253B23F1E4A89C200E86B9B /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253B23E1E4A89C200E86B9B /* Notifications.swift */; };
+		B253B2471E4AA13800E86B9B /* ABTestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253B2461E4AA13800E86B9B /* ABTestingViewController.swift */; };
+		B253B2491E4AA2C500E86B9B /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253B2481E4AA2C500E86B9B /* AnalyticsView.swift */; };
+		B253B24C1E4AA42900E86B9B /* ABTesting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B253B24A1E4AA42900E86B9B /* ABTesting.storyboard */; };
 		B27D840C1E326BE5007ADB39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D840B1E326BE5007ADB39 /* AppDelegate.swift */; };
 		B27D840E1E326BE5007ADB39 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D840D1E326BE5007ADB39 /* ViewController.swift */; };
 		B27D84101E326BE5007ADB39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B27D840F1E326BE5007ADB39 /* Assets.xcassets */; };
@@ -154,6 +162,14 @@
 		B2088F6C1E429E5900458F58 /* Tables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tables.swift; sourceTree = "<group>"; };
 		B2088F6E1E42ADE900458F58 /* DefaultTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTable.swift; sourceTree = "<group>"; };
 		B21021161E43B59400AC4C5D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B253B2341E4A7CB500E86B9B /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		B253B2371E4A7D1700E86B9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Notifications.storyboard; sourceTree = "<group>"; };
+		B253B2391E4A871B00E86B9B /* SendNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendNotificationView.swift; sourceTree = "<group>"; };
+		B253B23C1E4A892A00E86B9B /* NotifcationViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotifcationViewDelegate.swift; sourceTree = "<group>"; };
+		B253B23E1E4A89C200E86B9B /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		B253B2461E4AA13800E86B9B /* ABTestingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABTestingViewController.swift; sourceTree = "<group>"; };
+		B253B2481E4AA2C500E86B9B /* AnalyticsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
+		B253B24B1E4AA42900E86B9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ABTesting.storyboard; sourceTree = "<group>"; };
 		B27D84081E326BE5007ADB39 /* Dashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B27D840B1E326BE5007ADB39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B27D840D1E326BE5007ADB39 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -235,6 +251,8 @@
 				B2088F501E422FCD00458F58 /* ViewCrash.storyboard */,
 				B2088F3B1E4213C900458F58 /* SprintBoard.storyboard */,
 				B2088F381E4213AC00458F58 /* Status.storyboard */,
+				B253B2361E4A7D1700E86B9B /* Notifications.storyboard */,
+				B253B24A1E4AA42900E86B9B /* ABTesting.storyboard */,
 			);
 			name = StoryBoards;
 			sourceTree = "<group>";
@@ -298,6 +316,34 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		B253B2311E4A746200E86B9B /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				B253B23B1E4A891000E86B9B /* TableView */,
+				B253B2341E4A7CB500E86B9B /* NotificationViewController.swift */,
+				B253B2391E4A871B00E86B9B /* SendNotificationView.swift */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
+		B253B23B1E4A891000E86B9B /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				B253B23C1E4A892A00E86B9B /* NotifcationViewDelegate.swift */,
+				B253B23E1E4A89C200E86B9B /* Notifications.swift */,
+			);
+			name = TableView;
+			sourceTree = "<group>";
+		};
+		B253B2451E4AA12100E86B9B /* A/B Testing */ = {
+			isa = PBXGroup;
+			children = (
+				B253B2461E4AA13800E86B9B /* ABTestingViewController.swift */,
+				B253B2481E4AA2C500E86B9B /* AnalyticsView.swift */,
+			);
+			name = "A/B Testing";
+			sourceTree = "<group>";
+		};
 		B27D83FF1E326BE4007ADB39 = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +363,8 @@
 		B27D840A1E326BE5007ADB39 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				B253B2451E4AA12100E86B9B /* A/B Testing */,
+				B253B2311E4A746200E86B9B /* Notifications */,
 				B2D3BDD11E46432400273E9C /* Languages */,
 				B21021131E43B57900AC4C5D /* Login */,
 				B2088F5A1E429B6800458F58 /* Storage */,
@@ -649,6 +697,7 @@
 				B2088F511E422FCD00458F58 /* ViewCrash.storyboard in Resources */,
 				B2088F371E42137F00458F58 /* RemoteConfig.storyboard in Resources */,
 				B2088F3F1E4213EE00458F58 /* Issues.storyboard in Resources */,
+				B253B24C1E4AA42900E86B9B /* ABTesting.storyboard in Resources */,
 				B2088F6B1E429D4F00458F58 /* Storage.storyboard in Resources */,
 				B2088F411E421A9600458F58 /* Crashes.storyboard in Resources */,
 				B27D84101E326BE5007ADB39 /* Assets.xcassets in Resources */,
@@ -658,6 +707,7 @@
 				B27D84131E326BE5007ADB39 /* Main.storyboard in Resources */,
 				B2D4F2011E3C079900106A97 /* CustomCellView.xib in Resources */,
 				B2088F3C1E4213C900458F58 /* SprintBoard.storyboard in Resources */,
+				B253B2381E4A7D1700E86B9B /* Notifications.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,6 +719,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2D3BDEF1E466C7200273E9C /* PublishLanguage.swift in Sources */,
+				B253B23A1E4A871B00E86B9B /* SendNotificationView.swift in Sources */,
 				B2088F6F1E42ADE900458F58 /* DefaultTable.swift in Sources */,
 				B2088F6D1E429E5900458F58 /* Tables.swift in Sources */,
 				B2088F461E421BBC00458F58 /* CrashStatsView.swift in Sources */,
@@ -691,8 +742,11 @@
 				B27D84321E32B329007ADB39 /* RemoteConfigView.swift in Sources */,
 				B27D840E1E326BE5007ADB39 /* ViewController.swift in Sources */,
 				B2D4F20F1E3C0DD900106A97 /* SprintBoardViewController.swift in Sources */,
+				B253B23F1E4A89C200E86B9B /* Notifications.swift in Sources */,
+				B253B2491E4AA2C500E86B9B /* AnalyticsView.swift in Sources */,
 				B27D84631E3545C0007ADB39 /* ServerViewController.swift in Sources */,
 				B2D4F2121E3C219B00106A97 /* IssueViewControlleer.swift in Sources */,
+				B253B2471E4AA13800E86B9B /* ABTestingViewController.swift in Sources */,
 				B27D841C1E326D2B007ADB39 /* SideBarDelegate.swift in Sources */,
 				B27D842D1E3282E7007ADB39 /* Dictionary+Ext.swift in Sources */,
 				B27D84531E33DFBE007ADB39 /* SettingsViewDataSource.swift in Sources */,
@@ -708,6 +762,7 @@
 				B27D84591E34E9E6007ADB39 /* Image+Ext.swift in Sources */,
 				B2D3BDDA1E4649B200273E9C /* LanguagesDelegate.swift in Sources */,
 				B2088F631E429BE100458F58 /* StorageMainDataSource.swift in Sources */,
+				B253B23D1E4A892A00E86B9B /* NotifcationViewDelegate.swift in Sources */,
 				B27D84261E327A73007ADB39 /* Controllers.swift in Sources */,
 				B27D846C1E354827007ADB39 /* NSFont+Ext.swift in Sources */,
 				B2088F4D1E421ED100458F58 /* Exception.swift in Sources */,
@@ -727,6 +782,7 @@
 				B27D841E1E326D6B007ADB39 /* SideBarDataSource.swift in Sources */,
 				B27D84801E355813007ADB39 /* UserView.swift in Sources */,
 				B27D84681E3547D0007ADB39 /* GraphView.swift in Sources */,
+				B253B2351E4A7CB500E86B9B /* NotificationViewController.swift in Sources */,
 				B2D4F2581E3E276B00106A97 /* TestObject.swift in Sources */,
 				B2D3BDD71E46459800273E9C /* Languages.swift in Sources */,
 				B2D3BDE21E4650F400273E9C /* TranslationViewDelegate.swift in Sources */,
@@ -774,6 +830,22 @@
 				B2088F6A1E429D4F00458F58 /* Base */,
 			);
 			name = Storage.storyboard;
+			sourceTree = "<group>";
+		};
+		B253B2361E4A7D1700E86B9B /* Notifications.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B253B2371E4A7D1700E86B9B /* Base */,
+			);
+			name = Notifications.storyboard;
+			sourceTree = "<group>";
+		};
+		B253B24A1E4AA42900E86B9B /* ABTesting.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B253B24B1E4AA42900E86B9B /* Base */,
+			);
+			name = ABTesting.storyboard;
 			sourceTree = "<group>";
 		};
 		B27D84111E326BE5007ADB39 /* Main.storyboard */ = {
