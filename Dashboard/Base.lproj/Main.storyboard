@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E144f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E154a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="aUM-zk-txF">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
@@ -51,6 +51,9 @@
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
                                         <menuItem title="Log Out" keyEquivalent="l" id="hXM-Ei-T8K">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="logoutButton:" target="Ady-hI-5gd" id="ioX-qx-Dwp"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem title="Quit Dashboard" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
@@ -662,7 +665,7 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Dashboard" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="75" y="4"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="bWK-zY-f2M">
@@ -680,7 +683,7 @@
                 </windowController>
                 <customObject id="9bx-x1-8Es" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-959" y="473"/>
+            <point key="canvasLocation" x="-912" y="475"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="dBZ-4o-iMd">
@@ -712,11 +715,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uoq-dx-aKg">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uoq-dx-aKg">
                                 <rect key="frame" x="166" y="196" width="270" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="176" id="MGu-oY-Ad7"/>
-                                </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" placeholderString="IP Address" drawsBackground="YES" id="T2Z-oq-Glf">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -740,11 +740,15 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="loginButton:" target="lR4-Xq-Mkb" id="rb7-R5-oWG"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Zra-za-l9A" firstAttribute="top" secondItem="raE-aI-QeS" secondAttribute="bottom" constant="10" symbolic="YES" id="4wH-7z-kGp"/>
                             <constraint firstItem="Zra-za-l9A" firstAttribute="centerX" secondItem="Thi-U7-x17" secondAttribute="centerX" id="9xu-hZ-1lP"/>
+                            <constraint firstAttribute="trailing" secondItem="uoq-dx-aKg" secondAttribute="trailing" constant="168" id="DJx-6O-Hc8"/>
                             <constraint firstItem="raE-aI-QeS" firstAttribute="leading" secondItem="Zra-za-l9A" secondAttribute="leading" id="EGY-Pf-jVI"/>
                             <constraint firstItem="uoq-dx-aKg" firstAttribute="top" secondItem="Tcq-xY-elf" secondAttribute="bottom" constant="19" id="EK1-8t-PHz"/>
                             <constraint firstItem="raE-aI-QeS" firstAttribute="top" secondItem="uoq-dx-aKg" secondAttribute="bottom" constant="10" symbolic="YES" id="LTa-cF-gRk"/>
@@ -754,8 +758,14 @@
                             <constraint firstItem="Thi-U7-x17" firstAttribute="top" secondItem="Zra-za-l9A" secondAttribute="bottom" constant="8" symbolic="YES" id="lWr-E3-NER"/>
                             <constraint firstItem="raE-aI-QeS" firstAttribute="trailing" secondItem="Zra-za-l9A" secondAttribute="trailing" id="mC5-3e-QW2"/>
                             <constraint firstItem="Tcq-xY-elf" firstAttribute="top" secondItem="BDs-4v-B8W" secondAttribute="top" constant="27" id="nez-Ax-3Qk"/>
+                            <constraint firstItem="uoq-dx-aKg" firstAttribute="leading" secondItem="BDs-4v-B8W" secondAttribute="leading" constant="166" id="yZ2-kH-GwV"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="ipAddress" destination="uoq-dx-aKg" id="jXA-Wt-x5L"/>
+                        <outlet property="password" destination="Zra-za-l9A" id="ZRJ-2h-lkd"/>
+                        <outlet property="username" destination="raE-aI-QeS" id="rJq-Xu-CFy"/>
+                    </connections>
                 </viewController>
                 <customObject id="mKq-CX-uWR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -764,11 +774,11 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="MainViewController" id="B8D-0N-5wS" sceneMemberID="viewController">
                     <window key="window" title="Dashboard" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="contentRect" x="192" y="240" width="484" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                     </window>
                     <connections>
@@ -777,7 +787,7 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="250"/>
+            <point key="canvasLocation" x="73" y="250"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">

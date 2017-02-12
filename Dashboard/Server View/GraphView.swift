@@ -10,7 +10,7 @@ import Foundation
 import Cocoa
 
 
-@IBDesignable class GraphView: NSView {
+class GraphView: NSView {
     
     fileprivate var bytesFormatter = ByteCountFormatter()
     

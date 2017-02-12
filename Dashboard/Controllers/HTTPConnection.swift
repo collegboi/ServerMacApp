@@ -11,7 +11,7 @@ import Foundation
 public class HTTPSConnection {
     
     class func readPlistURL() -> String {
-        var defaultURL = "http://0.0.0.0:8181"
+        var defaultURL = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
         if let path = Bundle.main.path(forResource: "Info", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
             
             guard let url = dict["URL"] as? String else {
@@ -61,7 +61,9 @@ public class HTTPSConnection {
     
     class func httpPostFileRequest(path : String, endPoint : String, name: String, postCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
         
-        let urlPath = readPlistURL() + endPoint
+        let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
+        
+        let urlPath = url + endPoint
         
         let request: URLRequest
         
@@ -101,9 +103,9 @@ public class HTTPSConnection {
     
     /// Create request
     ///
-    /// - parameter userid:   The userid to be passed to web service
+    /// - parameter userid: The userid to be passed to web service
     /// - parameter password: The password to be passed to web service
-    /// - parameter email:    The email address to be passed to web service
+    /// - parameter email: The email address to be passed to web service
     ///
     /// - returns:            The NSURLRequest that was created
     
@@ -193,7 +195,9 @@ public class HTTPSConnection {
     
     class func httpPostRequest(params : Any, endPoint : String, postCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
         
-        let urlPath = readPlistURL() + endPoint
+        let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
+        
+        let urlPath = url + endPoint
         
         let request = NSMutableURLRequest(url: NSURL(string: urlPath)! as URL)
         let session = URLSession.shared
@@ -246,7 +250,6 @@ public class HTTPSConnection {
                 postCompleted(false, NSData())
             }
             
-            //do {
                 guard let data = data else {
                     return
                 }

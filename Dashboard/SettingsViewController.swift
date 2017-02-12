@@ -11,33 +11,37 @@ import Cocoa
 class SettingsViewController: NSViewController {
 
     @IBOutlet weak var keyFilePathLabel: NSTextField!
-    @IBOutlet weak var certFilePathLabel: NSTextField!
     
+    @IBOutlet weak var appIDTextField: NSTextField!
+    @IBOutlet weak var teamIDTextField: NSTextField!
+    @IBOutlet weak var keyIDTextField: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.getFileNames()
     }
     
     
     func getFileNames() {
         
-        let dict = [
-            "type":"Notifications" as AnyObject
-        ]
+//        let dict = [
+//            "type":"Notifications" as AnyObject
+//        ]
         
-        var allFiles = [Files]()
+        var allFiles = [NotificationSetting]()
         
-        allFiles.getFilteredInBackground(ofType: Files.self, query: dict) { ( completed, files) in
+        allFiles.getFilteredInBackground(ofType: NotificationSetting.self, query: [:]) { ( completed, files) in
             
             DispatchQueue.main.async {
                 if completed {
                     allFiles = files
                     
-                    if files.count > 1 {
-                        self.keyFilePathLabel.stringValue = files[0].filePath
-                        self.certFilePathLabel.stringValue = files[1].filePath
+                    if files.count > 0 {
+                        self.keyFilePathLabel.stringValue = files[0].path
+                        self.appIDTextField.stringValue = files[0].appID
+                        self.teamIDTextField.stringValue = files[0].teamID
+                        self.keyIDTextField.stringValue = files[0].keyID
                     }
                 }
             }
@@ -47,21 +51,10 @@ class SettingsViewController: NSViewController {
     
     @IBAction func selectKeyFile(_ sender: Any) {
         
-        let keyFilePath = selectFileDialog("pem")
+        let keyFilePath = selectFileDialog("p8")
         
         if keyFilePath != "" {
             self.keyFilePathLabel.stringValue = keyFilePath
-            self.sendFile(keyFilePath, name: "key.pem")
-        }
-    }
-    
-    @IBAction func selectCertFile(_ sender: Any) {
-        
-        let certFilePath = selectFileDialog("pem")
-        
-        if certFilePath != "" {
-            self.certFilePathLabel.stringValue = certFilePath
-            self.sendFile(certFilePath, name: "cert.pem")
         }
     }
 
@@ -90,6 +83,28 @@ class SettingsViewController: NSViewController {
         }
         
         return ""
+    }
+    
+    @IBAction func sendNotificaitonDetails(_ sender: Any) {
+        
+        let path = self.keyFilePathLabel.stringValue
+        let name = "APNSAuthenKey_" + self.keyIDTextField.stringValue + ".p8"
+        
+        self.sendFile(path, name: name)
+        
+        let notifcationSetting = NotificationSetting(name: name, path: "Notifications/" + name,
+                                                     keyID: self.keyIDTextField.stringValue,
+                                                     appID: self.appIDTextField.stringValue,
+                                                     teamID: self.teamIDTextField.stringValue)
+        
+        
+        notifcationSetting.sendInBackground("") { (sent, data) in
+            DispatchQueue.main.async {
+                if sent {
+                    print("sent")
+                }
+            }
+        }
     }
     
     func sendFile(_ filePath: String, name: String ) {

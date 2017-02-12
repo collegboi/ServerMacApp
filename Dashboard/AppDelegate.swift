@@ -25,8 +25,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //            let application = NSApplication.shared()
 //            application.runModal(for: editIssueWindow)
 //        }
-
         
+//        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+//        guard let mainWC = storyboard.instantiateController(withIdentifier: "MainLoginWindow") as? NSWindowController else {
+//            fatalError("Error getting main window controller")
+//        }
+//        // optionally store the reference here
+//        //self.mainWindowController = mainWC
+//        
+//        mainWC.showWindow(self) // or use `.showWindow(self)`
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

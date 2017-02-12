@@ -14,8 +14,7 @@ extension TranslationViewController {
     
     func sendInBackground(_ data:  [String:AnyObject], postCompleted : @escaping (_ succeeded: Bool, _ data: NSData) -> ()) {
         
-        var url: String = ""
-        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
         
         let apiEndpoint = "/translation/"
         let networkURL = url + apiEndpoint
@@ -56,8 +55,8 @@ extension TranslationViewController {
         
         //let className = ("\(type(of: T()))")
         
-        var url: String = ""
-        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
+        
         let apiEndpoint = "/translation"
         let networkURL = url + apiEndpoint + filePath
         

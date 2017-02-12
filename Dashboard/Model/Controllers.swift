@@ -34,14 +34,17 @@ enum RCObjectType : String {
     case Label = "UILabel"
     case ImageView = "UIImageView"
     case TextField = "UITextField"
+    case Cell = "UICell"
+    case TableView = "UITableView"
     case Object = "Object"
+    case NavigationBar = "UINavigationBar"
 }
 
-enum ListType {
-    case LanguageType
-    case ColorType
-    case ControllerType
-    case MainSettingType
+enum ListType: Int {
+    case LanguageType = 0
+    case ColorType = 1
+    case TextType = 2
+    case NumberType = 3
 }
 
 
@@ -75,41 +78,81 @@ struct RCColor: JSONSerializable {
     }
 }
 
-struct RCProperty: JSONSerializable {
+//struct RCProperty: JSONSerializable {
+//    
+//    var key: String!
+//    var value: String!
+//    var type: ListType!
+//    
+//    init() {}
+//    
+//    init(dict: String){}
+//    
+//    init(key: String, value: String, type: ListType) {
+//        self.key = key
+//        self.value = value
+//        self.type = type
+//    }
+//    
+//    init(dict: [String : Any]) {
+//        self.key = dict.tryConvert(forKey: "key")
+//        self.value = dict.tryConvert(forKey: "value")
+//        
+//        switch dict["type"] as? Int ?? 0 {
+//        case 0:
+//            self.type = ListType.LanguageType
+//            break
+//        case 1:
+//            self.type = ListType.ColorType
+//            break
+//        case 2:
+//            self.type = ListType.TextType
+//            break
+//        case 2:
+//            self.type = ListType.NumberType
+//            break
+//        default:
+//            self.type = ListType.TextType
+//        }
+//
+//    }
+//    
+//    init(dict: [String]){}
+//    
+//}
+
+struct RCProperty {
     
-    var key: String!
-    var value: String!
-    var type: ListType!
+    var key: String = ""
+    var valueStr: String = ""
+    var valueNo: Int = -1
+    var row: Int = -1
+    var type: String = ""
+    var parent: Int = -1
     
-    init() {
-        
+    init(key: String, valueStr:String, valueNo: Int, row:Int, type: String, parent: Int) {
+        self.key = key
+        self.valueStr = valueStr
+        self.valueNo = valueNo
+        self.row = row
+        self.type = type
+        self.parent = parent
     }
-    
-    init(dict: String){}
-    
-    init(key: String, value: String, type: ListType) {
-        
-    }
-    
-    init(dict: [String : Any]) {
-        
-    }
-    
-    init(dict: [String]){}
-    
 }
 
 struct RCObject: JSONSerializable {
     
     var objectType : RCObjectType!
+    var objectDesc: String!
     var objectName : String!
     var objectProperties : [String: Any]!
     
     init() {}
     init(dict: String){}
     
-    init( objectName: String, objectType: RCObjectType) {
+    init( objectName: String, objectDescription: String, objectType: RCObjectType) {
         self.objectName = objectName
+        self.objectDesc = objectDescription
         self.objectType = objectType
         self.objectProperties = [String:Any]()
         self.objectProperties["type"] = objectType.rawValue
@@ -119,6 +162,7 @@ struct RCObject: JSONSerializable {
     
     init( dict: [String:Any] ) {
         self.objectName = dict["objectName"] as! String
+        self.objectDesc = dict.tryConvert(forKey: "objectDesc")
         self.objectProperties = dict["objectProperties"] as! [String: Any]!
         
         switch objectProperties["type"] as! String {
@@ -133,6 +177,12 @@ struct RCObject: JSONSerializable {
             break
         case "UITextField":
             self.objectType = .TextField
+        case "UICell":
+            self.objectType = .Cell
+        case "UITableView":
+            self.objectType = .TableView
+        case "UINavigationBar":
+            self.objectType = .NavigationBar
         default:
             self.objectType = .Object
         }
@@ -143,6 +193,7 @@ struct RCController: JSONSerializable {
     
     var objectsList: [RCObject]!
     var name : String!
+    var parent: Int = 0
     
     init() {}
     init(dict: String){}
@@ -174,6 +225,7 @@ struct Config : JSONSerializable {
     var controllers : [RCController]!
     var mainSettings: [String:String]!
     var languagesList : [String]!
+    var version : String = "1.2.2"
     
     init() {}
     init(dict: String){}
@@ -206,6 +258,7 @@ struct Config : JSONSerializable {
             return
         }
         self.mainSettings = settings
+        self.version = dict.tryConvert(forKey: "version")
     }
 }
 

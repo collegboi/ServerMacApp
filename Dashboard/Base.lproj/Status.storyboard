@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E144f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E154a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <scenes>
         <!--Server View Controller-->
@@ -29,9 +30,6 @@
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="cPH-jZ-poK">
                                 <rect key="frame" x="20" y="547" width="1072" height="5"/>
                             </box>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="aWI-LI-fPY" customClass="GraphView" customModule="Dashboard" customModuleProvider="target">
-                                <rect key="frame" x="20" y="306" width="1072" height="222"/>
-                            </customView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kc6-L0-9uA">
                                 <rect key="frame" x="20" y="545" width="115" height="128"/>
                                 <constraints>
@@ -46,36 +44,71 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="xwX-SY-6MX" customClass="UserView" customModule="Dashboard" customModuleProvider="target">
                                 <rect key="frame" x="20" y="29" width="1072" height="228"/>
                             </customView>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zGw-Pd-UTL">
+                                <rect key="frame" x="20" y="296" width="1072" height="229"/>
+                                <subviews>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="aJi-Ks-ZO2" customClass="SystemsView" customModule="Dashboard" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="266" height="229"/>
+                                    </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="aRc-hA-GvA" customClass="SystemsView" customModule="Dashboard" customModuleProvider="target">
+                                        <rect key="frame" x="274" y="0.0" width="266" height="229"/>
+                                    </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="q9W-oM-8lt" customClass="SystemsView" customModule="Dashboard" customModuleProvider="target">
+                                        <rect key="frame" x="548" y="0.0" width="250" height="229"/>
+                                    </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="dtb-f4-edn" customClass="SystemsView" customModule="Dashboard" customModuleProvider="target">
+                                        <rect key="frame" x="806" y="0.0" width="266" height="229"/>
+                                    </customView>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="xwX-SY-6MX" firstAttribute="leading" secondItem="bdm-qD-ATJ" secondAttribute="leading" constant="20" id="4Cq-qG-JtB"/>
                             <constraint firstAttribute="trailing" secondItem="et7-Zd-rKd" secondAttribute="trailing" constant="20" id="90U-mY-TLW"/>
                             <constraint firstItem="sEd-E8-HBv" firstAttribute="leading" secondItem="kc6-L0-9uA" secondAttribute="trailing" constant="29" id="AN4-5a-fOH"/>
+                            <constraint firstAttribute="trailing" secondItem="zGw-Pd-UTL" secondAttribute="trailing" constant="20" id="DGV-Wz-Vo3"/>
                             <constraint firstItem="cPH-jZ-poK" firstAttribute="top" secondItem="bdm-qD-ATJ" secondAttribute="top" constant="145" id="DJ9-81-5wG"/>
                             <constraint firstItem="kc6-L0-9uA" firstAttribute="leading" secondItem="bdm-qD-ATJ" secondAttribute="leading" constant="20" id="HIi-st-kP6"/>
                             <constraint firstItem="et7-Zd-rKd" firstAttribute="leading" secondItem="bdm-qD-ATJ" secondAttribute="leading" constant="20" id="LH7-CP-eKn"/>
                             <constraint firstItem="kc6-L0-9uA" firstAttribute="top" secondItem="bdm-qD-ATJ" secondAttribute="top" constant="22" id="LeF-22-xPc"/>
-                            <constraint firstItem="aWI-LI-fPY" firstAttribute="top" secondItem="cPH-jZ-poK" secondAttribute="bottom" constant="21" id="NqW-18-amd"/>
-                            <constraint firstItem="cPH-jZ-poK" firstAttribute="leading" secondItem="aWI-LI-fPY" secondAttribute="leading" id="YoT-Nb-Rka"/>
+                            <constraint firstAttribute="trailing" secondItem="q9W-oM-8lt" secondAttribute="trailing" constant="294" id="Ob6-53-aus"/>
+                            <constraint firstItem="zGw-Pd-UTL" firstAttribute="top" secondItem="kc6-L0-9uA" secondAttribute="bottom" constant="20" id="V9y-Ee-RVM"/>
+                            <constraint firstAttribute="trailing" secondItem="aJi-Ks-ZO2" secondAttribute="trailing" constant="826" id="VDp-3a-rBm"/>
+                            <constraint firstAttribute="trailing" secondItem="aRc-hA-GvA" secondAttribute="trailing" constant="552" id="Zvo-c6-ghh"/>
                             <constraint firstAttribute="trailing" secondItem="xwX-SY-6MX" secondAttribute="trailing" constant="20" id="dKD-M9-uzd"/>
                             <constraint firstItem="xwX-SY-6MX" firstAttribute="top" secondItem="bdm-qD-ATJ" secondAttribute="top" constant="438" id="fxT-Ak-Pfd"/>
-                            <constraint firstItem="cPH-jZ-poK" firstAttribute="trailing" secondItem="aWI-LI-fPY" secondAttribute="trailing" id="mF3-XG-Ag9"/>
-                            <constraint firstItem="et7-Zd-rKd" firstAttribute="top" secondItem="aWI-LI-fPY" secondAttribute="bottom" constant="30" id="nKJ-I8-7Sc"/>
+                            <constraint firstItem="et7-Zd-rKd" firstAttribute="top" secondItem="zGw-Pd-UTL" secondAttribute="bottom" constant="20" id="hmr-Ep-SS3"/>
                             <constraint firstItem="xwX-SY-6MX" firstAttribute="top" secondItem="et7-Zd-rKd" secondAttribute="bottom" constant="18" id="oer-Jv-OVR"/>
                             <constraint firstItem="cPH-jZ-poK" firstAttribute="leading" secondItem="bdm-qD-ATJ" secondAttribute="leading" constant="20" id="rpW-wd-udm"/>
+                            <constraint firstItem="zGw-Pd-UTL" firstAttribute="leading" secondItem="bdm-qD-ATJ" secondAttribute="leading" constant="20" id="uZP-cY-L4I"/>
                             <constraint firstItem="sEd-E8-HBv" firstAttribute="top" secondItem="bdm-qD-ATJ" secondAttribute="top" constant="45" id="vb4-te-T98"/>
                             <constraint firstAttribute="trailing" secondItem="cPH-jZ-poK" secondAttribute="trailing" constant="20" symbolic="YES" id="yQp-pd-2Aa"/>
                             <constraint firstAttribute="bottom" secondItem="xwX-SY-6MX" secondAttribute="bottom" constant="29" id="zEq-Ym-pqA"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="graphView" destination="aWI-LI-fPY" id="swV-f1-4qR"/>
+                        <outlet property="systemsView1" destination="aJi-Ks-ZO2" id="z5L-QK-JRx"/>
+                        <outlet property="systemsView2" destination="aRc-hA-GvA" id="Fex-Kc-lf7"/>
+                        <outlet property="systemsView3" destination="q9W-oM-8lt" id="HSs-Dg-5Wo"/>
+                        <outlet property="systemsView4" destination="dtb-f4-edn" id="vfa-mB-dje"/>
                         <outlet property="userView" destination="xwX-SY-6MX" id="nMd-PA-dt0"/>
                     </connections>
                 </viewController>
                 <customObject id="uQi-op-Keb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1435" y="1725.5"/>
+            <point key="canvasLocation" x="1007" y="1644.5"/>
         </scene>
     </scenes>
     <resources>

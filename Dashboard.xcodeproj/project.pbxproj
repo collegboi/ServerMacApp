@@ -30,6 +30,14 @@
 		B2088F6D1E429E5900458F58 /* Tables.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2088F6C1E429E5900458F58 /* Tables.swift */; };
 		B2088F6F1E42ADE900458F58 /* DefaultTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2088F6E1E42ADE900458F58 /* DefaultTable.swift */; };
 		B21021171E43B59400AC4C5D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21021161E43B59400AC4C5D /* LoginViewController.swift */; };
+		B23BF8211E4F5870005E7083 /* SystemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23BF8201E4F5870005E7083 /* SystemsView.swift */; };
+		B23BF8371E4FAC54005E7083 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = B23BF8361E4FAC54005E7083 /* config.json */; };
+		B23BF83A1E4FB6D9005E7083 /* EditTextViewControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23BF8391E4FB6D9005E7083 /* EditTextViewControlller.swift */; };
+		B23BF83C1E4FB709005E7083 /* EditListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23BF83B1E4FB709005E7083 /* EditListViewController.swift */; };
+		B23BF8411E509639005E7083 /* EditABTestingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23BF8401E509639005E7083 /* EditABTestingView.swift */; };
+		B23BF8431E5096CE005E7083 /* ABTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23BF8421E5096CE005E7083 /* ABTesting.swift */; };
+		B23BF8461E50AD24005E7083 /* NotificationSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23BF8451E50AD24005E7083 /* NotificationSetting.swift */; };
+		B23BF84B1E510715005E7083 /* SystemStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23BF84A1E510715005E7083 /* SystemStatus.swift */; };
 		B253B2351E4A7CB500E86B9B /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253B2341E4A7CB500E86B9B /* NotificationViewController.swift */; };
 		B253B2381E4A7D1700E86B9B /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B253B2361E4A7D1700E86B9B /* Notifications.storyboard */; };
 		B253B23A1E4A871B00E86B9B /* SendNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253B2391E4A871B00E86B9B /* SendNotificationView.swift */; };
@@ -169,6 +177,14 @@
 		B2088F6C1E429E5900458F58 /* Tables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tables.swift; sourceTree = "<group>"; };
 		B2088F6E1E42ADE900458F58 /* DefaultTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTable.swift; sourceTree = "<group>"; };
 		B21021161E43B59400AC4C5D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B23BF8201E4F5870005E7083 /* SystemsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemsView.swift; sourceTree = "<group>"; };
+		B23BF8361E4FAC54005E7083 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = config.json; path = ../../../../../../Desktop/config.json; sourceTree = "<group>"; };
+		B23BF8391E4FB6D9005E7083 /* EditTextViewControlller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextViewControlller.swift; sourceTree = "<group>"; };
+		B23BF83B1E4FB709005E7083 /* EditListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditListViewController.swift; sourceTree = "<group>"; };
+		B23BF8401E509639005E7083 /* EditABTestingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditABTestingView.swift; sourceTree = "<group>"; };
+		B23BF8421E5096CE005E7083 /* ABTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABTesting.swift; sourceTree = "<group>"; };
+		B23BF8451E50AD24005E7083 /* NotificationSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSetting.swift; sourceTree = "<group>"; };
+		B23BF84A1E510715005E7083 /* SystemStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemStatus.swift; sourceTree = "<group>"; };
 		B253B2341E4A7CB500E86B9B /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		B253B2371E4A7D1700E86B9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Notifications.storyboard; sourceTree = "<group>"; };
 		B253B2391E4A871B00E86B9B /* SendNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendNotificationView.swift; sourceTree = "<group>"; };
@@ -332,6 +348,24 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		B23BF8381E4FB6BD005E7083 /* Edit Views */ = {
+			isa = PBXGroup;
+			children = (
+				B23BF8391E4FB6D9005E7083 /* EditTextViewControlller.swift */,
+				B23BF83B1E4FB709005E7083 /* EditListViewController.swift */,
+			);
+			name = "Edit Views";
+			sourceTree = "<group>";
+		};
+		B23BF8441E50AD14005E7083 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B23BF8451E50AD24005E7083 /* NotificationSetting.swift */,
+				B23BF84A1E510715005E7083 /* SystemStatus.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		B253B2311E4A746200E86B9B /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +390,8 @@
 			children = (
 				B253B2461E4AA13800E86B9B /* ABTestingViewController.swift */,
 				B253B2481E4AA2C500E86B9B /* AnalyticsView.swift */,
+				B23BF8401E509639005E7083 /* EditABTestingView.swift */,
+				B23BF8421E5096CE005E7083 /* ABTesting.swift */,
 			);
 			name = "A/B Testing";
 			sourceTree = "<group>";
@@ -373,6 +409,7 @@
 		B253B2601E4B7F2700E86B9B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				B23BF8441E50AD14005E7083 /* Models */,
 				B253B2611E4B7F5500E86B9B /* SettingsViewController.swift */,
 				B253B2631E4B8B4C00E86B9B /* Files.swift */,
 			);
@@ -498,6 +535,8 @@
 		B27D844D1E33DED4007ADB39 /* Remote Config */ = {
 			isa = PBXGroup;
 			children = (
+				B23BF8381E4FB6BD005E7083 /* Edit Views */,
+				B23BF8361E4FAC54005E7083 /* config.json */,
 				B27D844F1E33DF8D007ADB39 /* ColorsView */,
 				B27D84341E32C0BD007ADB39 /* DetailOutlineVIew */,
 				B27D841F1E32786F007ADB39 /* MainOutLineView */,
@@ -532,6 +571,7 @@
 				B27D84671E3547D0007ADB39 /* GraphView.swift */,
 				B27D84611E3545C0007ADB39 /* ServerViewController.swift */,
 				B27D847F1E355813007ADB39 /* UserView.swift */,
+				B23BF8201E4F5870005E7083 /* SystemsView.swift */,
 			);
 			path = "Server View";
 			sourceTree = "<group>";
@@ -732,6 +772,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2088F511E422FCD00458F58 /* ViewCrash.storyboard in Resources */,
+				B23BF8371E4FAC54005E7083 /* config.json in Resources */,
 				B2088F371E42137F00458F58 /* RemoteConfig.storyboard in Resources */,
 				B2088F3F1E4213EE00458F58 /* Issues.storyboard in Resources */,
 				B253B24C1E4AA42900E86B9B /* ABTesting.storyboard in Resources */,
@@ -797,14 +838,19 @@
 				B21021171E43B59400AC4C5D /* LoginViewController.swift in Sources */,
 				B2D3BDDC1E464AAE00273E9C /* GenericDataSource.swift in Sources */,
 				B27D84381E32C0E7007ADB39 /* DetailViewDelegate.swift in Sources */,
+				B23BF8461E50AD24005E7083 /* NotificationSetting.swift in Sources */,
 				B253B2581E4B786E00E86B9B /* Data+Ext.swift in Sources */,
+				B23BF8431E5096CE005E7083 /* ABTesting.swift in Sources */,
 				B2D4F2161E3C24E000106A97 /* IssueViewDelegate.swift in Sources */,
 				B2088F4B1E421DB400458F58 /* CrashViewDataSource.swift in Sources */,
+				B23BF8411E509639005E7083 /* EditABTestingView.swift in Sources */,
+				B23BF8211E4F5870005E7083 /* SystemsView.swift in Sources */,
 				B27D84551E34DC45007ADB39 /* ColorViewDataSource.swift in Sources */,
 				B2088F611E429BCB00458F58 /* StorageMainDelegate.swift in Sources */,
 				B27D84591E34E9E6007ADB39 /* Image+Ext.swift in Sources */,
 				B2D3BDDA1E4649B200273E9C /* LanguagesDelegate.swift in Sources */,
 				B2088F631E429BE100458F58 /* StorageMainDataSource.swift in Sources */,
+				B23BF83A1E4FB6D9005E7083 /* EditTextViewControlller.swift in Sources */,
 				B253B23D1E4A892A00E86B9B /* NotifcationViewDelegate.swift in Sources */,
 				B27D84261E327A73007ADB39 /* Controllers.swift in Sources */,
 				B27D846C1E354827007ADB39 /* NSFont+Ext.swift in Sources */,
@@ -815,12 +861,14 @@
 				B2D4F2181E3C254400106A97 /* Issue.swift in Sources */,
 				B27D840C1E326BE5007ADB39 /* AppDelegate.swift in Sources */,
 				B2D4F2141E3C24B300106A97 /* IssueViewDataSource.swift in Sources */,
+				B23BF83C1E4FB709005E7083 /* EditListViewController.swift in Sources */,
 				B27D84511E33DFB0007ADB39 /* SettingsViewDelegate.swift in Sources */,
 				B27D845D1E3517B3007ADB39 /* Float+Ext.swift in Sources */,
 				B2088F4F1E42270900458F58 /* String+Ext.swift in Sources */,
 				B27D842A1E327C1F007ADB39 /* HTTPConnection.swift in Sources */,
 				B2088F681E429C0F00458F58 /* StorageDetailDataSource.swift in Sources */,
 				B27D84361E32C0D7007ADB39 /* DetailViewDataSource.swift in Sources */,
+				B23BF84B1E510715005E7083 /* SystemStatus.swift in Sources */,
 				B2088F531E42323C00458F58 /* ViewCrashViewController.swift in Sources */,
 				B27D841E1E326D6B007ADB39 /* SideBarDataSource.swift in Sources */,
 				B27D84801E355813007ADB39 /* UserView.swift in Sources */,

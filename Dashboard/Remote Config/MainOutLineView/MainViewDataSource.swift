@@ -8,9 +8,21 @@
 
 import Cocoa
 
+struct RCTableObject {
+    
+    var rcObject : RCObject!
+    var parentRow: Int!
+    
+    init(rcObject: RCObject, parentRow: Int) {
+        self.rcObject = rcObject
+        self.parentRow = parentRow
+    }
+}
+
 class MainViewDataSource: NSObject {
     
     var config : Config?
+    var curParentRow: Int = 0
     
     fileprivate var outlineView: NSOutlineView
     
@@ -44,12 +56,19 @@ extension MainViewDataSource: NSOutlineViewDataSource {
     
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         
-        if let contoller = item as? RCController {
+        if let controller = item as? RCController {
             
-            return contoller.objectsList[index]
-        }
+            let object = RCTableObject(rcObject: controller.objectsList[index],
+                                       parentRow: controller.parent)
+            
+            return object //contoller.objectsList[index]
         
-        return self.config!.controllers[index]
+        } else {
+            
+            self.config?.controllers[index].parent = index
+            
+            return self.config!.controllers[index]
+        }
     }
     
     

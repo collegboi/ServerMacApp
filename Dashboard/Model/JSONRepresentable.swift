@@ -91,6 +91,16 @@ extension JSONSerializable {
 }
 
 extension JSONSerializable {
+    
+    func toData() -> [ String: AnyObject ]  {
+        
+        if let jsonObj = self.toJSON() {
+            
+            return self.convertStringToDictionary(text: jsonObj)!
+        }
+        return [:]
+    }
+    
     func toJSON() -> String? {
         let representation = JSONRepresentation
         
@@ -198,8 +208,7 @@ extension JSONSerializable {
             getCompleted(false, T())
         }
         
-        var url: String = ""
-        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
         
         let apiEndpoint = "/storage/"
         let networkURL = url + apiEndpoint + className + "/"+objectID
@@ -257,8 +266,8 @@ extension JSONSerializable {
         
         //let className = ("\(type(of: T()))")
         
-        var url: String = ""
-        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
+        
         let apiEndpoint = "/storage/"
         let networkURL = url + apiEndpoint + tableName
         
@@ -369,8 +378,8 @@ extension JSONSerializable {
     
     func genericRemoveInBackground(_ objectID: String, collectioName: String, deleteCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
         
-        var url: String = ""
-        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
+        
         let apiEndpoint = "/storage/"
         let networkURL = url + apiEndpoint + collectioName + "/" + objectID
         
@@ -417,8 +426,8 @@ extension JSONSerializable {
         
         let className = ("\(type(of: self))")
         
-        var url: String = ""
-        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
+        
         let apiEndpoint = "/storage/"
         let networkURL = url + apiEndpoint + className + "/" + objectID
         
@@ -474,8 +483,8 @@ extension JSONSerializable {
                 newData["_id"] = objectID as AnyObject?
             }
             
-            var url: String = ""
-            url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+            let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
+            
             
             let apiEndpoint = "/storage/"
             let networkURL = url + apiEndpoint + className
@@ -528,8 +537,8 @@ extension Array where Element: JSONSerializable {
         
         let className = ("\(type(of: T()))")
         
-        var url: String = ""
-        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
+        
         let apiEndpoint = "/storage/query/"
         let networkURL = url + apiEndpoint + className
         
@@ -609,8 +618,8 @@ extension Array where Element: JSONSerializable {
         
         let className = ("\(type(of: T()))")
         
-        var url: String = ""
-        url = url.readPlistString(value: "URL", "http://0.0.0.0:8181")
+        let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
+        
         let apiEndpoint = "/storage/"
         let networkURL = url + apiEndpoint + className
         

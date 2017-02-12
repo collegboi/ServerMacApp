@@ -21,12 +21,6 @@ class RemoteConigViewController: NSViewController {
         static let volumeCellID = "VolumeCell"
     }
     
-    @IBOutlet var view1: NSView!
-    @IBOutlet var view2: NSView!
-    @IBOutlet var view3: NSView!
-    @IBOutlet var view4: NSView!
-    
-    
     fileprivate var mainDataSource: MainViewDataSource!
     fileprivate var mainDelegate: MainViewDelegate!
     
@@ -44,29 +38,28 @@ class RemoteConigViewController: NSViewController {
     
     @IBOutlet var settingsTableView: NSTableView!
     @IBOutlet var colorTableView: NSTableView!
+
+    @IBOutlet weak var comboBoxVersion: NSComboBox!
     
     var pathRow: Int = -1
+    var parentRow: Int = -1
+    var object: RCObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view1.layer?.backgroundColor = NSColor.lightGray.cgColor
-        self.view2.layer?.backgroundColor = NSColor.lightGray.cgColor
-        self.view3.layer?.backgroundColor = NSColor.lightGray.cgColor
-        self.view4.layer?.backgroundColor = NSColor.lightGray.cgColor
-        
-        self.view1.layer?.cornerRadius = 10
-        self.view2.layer?.cornerRadius = 10
-        self.view3.layer?.cornerRadius = 10
-        self.view4.layer?.cornerRadius = 10
-        
         mainDataSource = MainViewDataSource(outlineView: mainOutlineView)
-        mainDelegate = MainViewDelegate(outlineView: mainOutlineView) { volume in
-            self.showVolumeInfo(volume)
+        mainDelegate = MainViewDelegate(outlineView: mainOutlineView) { volume, row, parent in
+            self.object = volume
+            self.pathRow = row
+            self.parentRow = parent
+            self.loadDetailTable(volume)
         }
         
         detailDataSource = DetailViewDataSource(outlineView: detailOutlineView)
-        detailDelegate = DetailViewDelegate(outlineView: detailOutlineView)
+        detailDelegate = DetailViewDelegate(outlineView: detailOutlineView) { row, value in
+            self.loadEditView( value.key, value.value )
+        }
         
         settingsViewDataSource = SettingsViewDataSource(tableView: settingsTableView)
         settingsViewDelegate = SettingsViewDelegate(tableView: settingsTableView ) { key, value, row in
@@ -77,14 +70,126 @@ class RemoteConigViewController: NSViewController {
         colorViewDelegate = ColorViewDelegate(tableView: colorTableView ) { key, color in
             self.showColorPicker(name: key, color: color)
         }
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
         
         self.getRemoteConfigFiles()
+    }
+    
+    func loadEditView(_ property: String, _ value: String ) {
+        
+        if self.object != nil {
+        
+            let values = self.readConfigJSONFile((self.object?.objectType.rawValue)!, property)
+            
+            //Combobox list values
+            if values.count > 1 {
+                self.loadComboBoxView(values, property, "List", self.pathRow)
+            
+            } else if values.count == 1 && values[0] == "color" {
+                
+                let list = self.config?.colors
+                
+                self.loadComboBoxView(list!, property, "Text", self.pathRow)
+            
+            } else { // textView type
+                self.loadEditTextView(property, value, self.pathRow)
+            }
+        }
+    }
+    
+    func loadEditTextView(_ key: String, _ value: String, _ row: Int) {
+        
+        let storyboard = NSStoryboard(name: "RemoteConfig", bundle: nil)
+        let editPropertyWindowController = storyboard.instantiateController(withIdentifier: "EditTextValue") as! NSWindowController
+        
+        if let editWindow = editPropertyWindowController.window{
+            
+            let editTextViewControlller = editWindow.contentViewController as! EditTextViewControlller
+            editTextViewControlller.keyString = key
+            editTextViewControlller.valueString = value
+            editTextViewControlller.row = row
+            editTextViewControlller.parentRow = self.parentRow
+            editTextViewControlller.delegate = self
+            
+            let application = NSApplication.shared()
+            application.runModal(for: editWindow)
+        }
+
+    }
+    
+    func loadComboBoxView(_ list: [RCColor], _ key : String, _ type: String, _ row: Int ) {
+        
+        let storyboard = NSStoryboard(name: "RemoteConfig", bundle: nil)
+        let editListWindowController = storyboard.instantiateController(withIdentifier: "EditComboView") as! NSWindowController
+        
+        if let editListWindow = editListWindowController.window{
+            
+            let editListViewController = editListWindow.contentViewController as! EditListViewController
+            editListViewController.colorList = list
+            editListViewController.keyValue = key
+            editListViewController.type = type
+            editListViewController.row = row
+            editListViewController.parentRow = self.parentRow
+            editListViewController.delegate = self
+            
+            let application = NSApplication.shared()
+            application.runModal(for: editListWindow)
+        }
+        
+    }
+
+    
+    func loadComboBoxView(_ list: [String], _ key : String, _ type: String, _ row: Int ) {
+        
+        let storyboard = NSStoryboard(name: "RemoteConfig", bundle: nil)
+        let editListWindowController = storyboard.instantiateController(withIdentifier: "EditComboView") as! NSWindowController
+        
+        if let editListWindow = editListWindowController.window{
+            
+            let editListViewController = editListWindow.contentViewController as! EditListViewController
+            editListViewController.list = list
+            editListViewController.keyValue = key
+            editListViewController.type = type
+            editListViewController.row = row
+            editListViewController.parentRow = self.parentRow
+            editListViewController.delegate = self
+            
+            let application = NSApplication.shared()
+            application.runModal(for: editListWindow)
+        }
+
+    }
+    
+    func readConfigJSONFile(_ uiObject: String, _ property: String ) -> [String] {
+        if let path = Bundle.main.path(forResource: "config", ofType: "json") {
+            
+            if let jsonData = NSData(contentsOfFile: path) as Data? {
+                
+                do {
+                
+                    if let jsonResult = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String:Any] {
+                        
+                        if let object = jsonResult[uiObject] as? [String:Any] {
+                            
+                            if let  list = object[property] as? [String]  {
+                                return list
+                            }
+                            else if let strVal = object[property] as? String {
+                                return [strVal]
+                            }
+                        }
+                    }
+                    
+                } catch let error {
+                    print(error)
+                }
+            }
+        }
+        
+        return [""]
     }
     
     func reloadSettingsTableView() {
@@ -105,7 +210,6 @@ class RemoteConigViewController: NSViewController {
         let wordCountWindowController = storyboard.instantiateController(withIdentifier: "Color Picker") as! NSWindowController
         
         if let wordCountWindow = wordCountWindowController.window{
-            
 
             let colorPickerViewController = wordCountWindow.contentViewController as! ColorPickerViewController
             colorPickerViewController.colorNameStr = name
@@ -119,10 +223,8 @@ class RemoteConigViewController: NSViewController {
         }
     }
     
-    func showVolumeInfo(_ volume: RCObject) {
-        
+    func loadDetailTable(_ volume: RCObject) {
         detailDataSource.reload(keyValuePairs: volume.objectProperties  )
-        
     }
     
     func reloadAllData() {
@@ -158,17 +260,55 @@ class RemoteConigViewController: NSViewController {
             }
         }
     }
+    
+    func sendConfigFiles() {
+    
+        self.config?.version = self.comboBoxVersion.stringValue
+        
+        if let data = self.config?.toData() {
+         
+            HTTPSConnection.httpPostRequest(params: data, endPoint: "/remote") { ( sent, message) in
+                
+                DispatchQueue.main.async {
+                    
+                    if sent {
+                        print("sent")
+                    } else {
+                        print("not sent")
+                    }
+                }
+            }
+
+        }
+    }
+    
+    @IBAction func publishButton(_ sender: Any) {
+        self.sendConfigFiles()
+    }
 }
 
 extension RemoteConigViewController: ReturnDelegate {
     
     func sendBackData( data: Any ) {
         
-        self.config?.colors[0] = (data as! RCColor)
-        self.reloadAllData()
+        if let color = data as? RCColor {
+            self.config?.colors[0] = color
+            self.reloadAllData()
         
+        } else if let property = data as? RCProperty {
+            
+            if property.type == "List" {
+                self.object?.objectProperties[property.key] = property.valueNo
+            } else {
+                self.object?.objectProperties[property.key] = property.valueStr
+            }
+        
+            self.config?.controllers[property.parent].objectsList[property.row] = self.object!
+            
+            
+            self.loadDetailTable(self.config!.controllers[property.parent].objectsList[property.row])
+        }
     }
-    
 }
 
 extension RemoteConigViewController: NSMenuDelegate {
@@ -196,54 +336,40 @@ extension RemoteConigViewController: NSMenuDelegate {
             
         case "Popup":
             
-            // Check if the menu is already correctly initialized
-            
-            if menu.items.count == 1 { // When 1, there is the item that was defined in the XIB
-                
-                
-                // Get rid of the item that is defined in the XIB
+            if menu.items.count == 1 {
                 
                 menu.removeAllItems()
                 
-                
-                // Add the default "remove" item
-                
                 menu.addItem(withTitle: "Remove", action: #selector(self.removeMainSetting), keyEquivalent: "")
                 menu.addItem(withTitle: "Add", action: #selector(self.addMainSetting), keyEquivalent: "")
+            }
+            break
+            
+        case "PropMenu":
+        
+            if menu.items.count == 1 {
                 
-//                // Add a submenu to add items
-//                
-//                let addMenu = NSMenu(title: "Add")
-//                addMenu.delegate = self
-//                let addMenuItem = NSMenuItem(title: "Add Item ...", action: nil, keyEquivalent: "")
-//                
-//                menu.addItem(addMenuItem)
-//                menu.setSubmenu(addMenu, for: addMenuItem)
-//                
-//                
-//                // Add a submenu to convert items
-//                
-//                let convertMenu = NSMenu(title: "Convert")
-//                convertMenu.delegate = self
-//                let convertMenuItem = NSMenuItem(title: "Convert Item ...", action: nil, keyEquivalent: "")
-//                
-//                menu.addItem(convertMenuItem)
-//                menu.setSubmenu(convertMenu, for: convertMenuItem)
-//                
+                menu.removeAllItems()
+                
+                if self.object != nil {
+                    
+                    let addMenu = NSMenu(title: "Add")
+                    addMenu.delegate = self
+                    let addMenuItem = NSMenuItem(title: "Add Item ...", action: nil, keyEquivalent: "")
+
+                    menu.addItem(addMenuItem)
+                    menu.setSubmenu(addMenu, for: addMenuItem)
+                    
+                    let convertMenu = NSMenu(title: "Convert")
+                    convertMenu.delegate = self
+                    let convertMenuItem = NSMenuItem(title: "Convert Item ...", action: nil, keyEquivalent: "")
+
+                    menu.addItem(convertMenuItem)
+                    menu.setSubmenu(convertMenu, for: convertMenuItem)
+                }
             }
             
-            
-        case "Add":
-            
-            // Build this menu if there are no items yet
-            
-            if menu.items.count == 0 {
-                
-                menu.addItem(withTitle: "Null", action: Selector(("addNull:")), keyEquivalent: "")
-                menu.addItem(withTitle: "Bool", action: Selector(("addBool:")), keyEquivalent: "")
-                menu.addItem(withTitle: "Number", action: Selector(("addNumber:")), keyEquivalent: "")
-            }
-            
+            break
             
         case "Convert": break
             
@@ -274,4 +400,3 @@ extension RemoteConigViewController: NSMenuDelegate {
         }
     }
 }
-

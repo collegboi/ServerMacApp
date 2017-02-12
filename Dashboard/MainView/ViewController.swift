@@ -36,6 +36,27 @@ class ViewController: NSViewController {
         }
     }
     
+    
+    @IBAction func logoutButton(_ sender: Any) {
+        
+        print("logging out")
+            
+        UserDefaults.standard.set(false, forKey: "login")
+        
+            
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        let mainWindowController = storyboard.instantiateController(withIdentifier: "LoginWindow") as! NSWindowController
+        
+        if let mainWindow = mainWindowController.window{
+            
+            self.view.window?.close()
+            
+            let application1 = NSApplication.shared()
+            application1.runModal(for: mainWindow)
+            
+        }
+    }
+    
     override func viewWillAppear() {
         super.viewWillAppear()
         

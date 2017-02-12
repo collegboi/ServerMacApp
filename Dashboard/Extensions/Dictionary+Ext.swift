@@ -69,26 +69,39 @@ extension Dictionary {
     
     func tryConvert(forKey key:Key, _ defaultVal :Int = 0 ) -> Int {
         
-        guard let test = self[key] as? Int else {
+        guard let test = self[key] as? String else {
             return defaultVal
         }
-        return test
+        guard let integerVal =  Int(test) else {
+            return defaultVal
+        }
+        
+        return integerVal
     }
     
     func tryConvert(forKey key:Key, _ defaultVal :Float = 0 ) -> Float {
         
-        guard let test = self[key] as? Float else {
+        guard let test = self[key] as? String else {
             return defaultVal
         }
-        return test
+        
+        guard let floatVal =  Float(test) else {
+            return defaultVal
+        }
+        
+        return floatVal
     }
     
     func tryConvert(forKey key:Key, _ defaultVal :CGFloat = 0 ) -> CGFloat {
         
-        guard let test = self[key] as? CGFloat else {
+        guard let test = self[key] as? String else {
             return defaultVal
         }
-        return test
+        if let n = NumberFormatter().number(from: test) {
+            return CGFloat(n)
+        }
+        
+        return defaultVal
     }
     
     
@@ -102,10 +115,14 @@ extension Dictionary {
     
     func tryConvert(forKey key:Key, _ defaultVal : Double = 0 ) -> Double {
         
-        guard let test = self[key] as? Double else {
+        guard let test = self[key] as? String else {
             return defaultVal
         }
-        return test
+        guard let doubleVal =  Double(test) else {
+            return defaultVal
+        }
+        
+        return doubleVal
     }
     
     func tryConvert(forKey key:Key, _ defaultVal : [String] = [String]() ) -> [String] {

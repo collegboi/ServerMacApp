@@ -59,7 +59,9 @@ class TBNotification {
      */
     func sendNotification( notificationCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
         
-        let networkURL = "http://0.0.0.0:8181/notification"//"http://Timothys-MacBook-Pro.local:8181/notification/"
+        let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
+        
+        let networkURL = url + "/notification/"
         
         if (self.deviceID == "" && self.message == "") || (self.userID == "" && self.message == "") {
             notificationCompleted(false, "values not set")
@@ -114,7 +116,10 @@ extension Array where Element:TBNotification {
     
     func getAllNotifications( notificationGot : @escaping (_ succeeded: Bool, _ notications: [TBNotification] ) -> ()) {
         
-        let networkURL = "http://0.0.0.0:8181/notification/"//"http://Timothys-MacBook-Pro.local:8181/notification/"
+    
+        let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
+        
+        let networkURL = url + "/notification/"
         
         guard let endpoint = URL(string: networkURL) else {
             print("Error creating endpoint")

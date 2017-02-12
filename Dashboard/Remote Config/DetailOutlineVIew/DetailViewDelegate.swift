@@ -8,20 +8,21 @@
 
 import Cocoa
 
+typealias SelectionRCObject = (_ row: Int, _ object: KeyValuePair ) -> Void
 
 class DetailViewDelegate: NSObject {
     
     var outlineView: NSOutlineView
-    //var objectSelectionBlock: SelectionObject?
+    var objectSelectionBlock: SelectionRCObject?
     
     fileprivate struct Constants {
         static let headerCellID = "MainHeaderCell"
         static let volumeCellID = "MainVolumeCell"
     }
     
-    init(outlineView: NSOutlineView ) { // selectionBlock: @escaping SelectionObject) {
+    init(outlineView: NSOutlineView , selectionBlock: @escaping SelectionRCObject) {
         self.outlineView = outlineView
-        //self.objectSelectionBlock = selectionBlock
+        self.objectSelectionBlock = selectionBlock
         super.init()
         self.outlineView.delegate = self
     }
@@ -29,6 +30,18 @@ class DetailViewDelegate: NSObject {
 
 extension DetailViewDelegate: NSOutlineViewDelegate {
     
+    func outlineViewSelectionDidChange(_ notification: Notification) {
+        
+        guard let outlineView = notification.object as? NSOutlineView else {
+            return
+        }
+        let selectedRow = outlineView.selectedRow
+        guard let item = outlineView.item(atRow: selectedRow) as? KeyValuePair , selectedRow >= 0 else {
+            return
+        }
+        objectSelectionBlock?( selectedRow, item)
+    }
+
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         
         var view: NSTableCellView?

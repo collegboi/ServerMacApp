@@ -8,7 +8,7 @@
 
 import Cocoa
 
-typealias SelectionObject = (_ volume: RCObject) -> Void
+typealias SelectionObject = (_ volume: RCObject, _ row: Int, _ parent: Int) -> Void
 
 class MainViewDelegate: NSObject {
     
@@ -36,10 +36,13 @@ extension MainViewDelegate: NSOutlineViewDelegate {
             return
         }
         let selectedRow = outlineView.selectedRow
-        guard let item = outlineView.item(atRow: selectedRow) as? RCObject , selectedRow >= 0 else {
+        guard let item = outlineView.item(atRow: selectedRow) as? RCTableObject , selectedRow >= 0 else {
             return
         }
-        objectSelectionBlock?(item)
+        let object = item.rcObject
+        let parentRow = item.parentRow
+        
+        objectSelectionBlock?(object!, selectedRow, parentRow!)
     }
     
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
@@ -68,7 +71,7 @@ extension MainViewDelegate: NSOutlineViewDelegate {
                 }
             }
             
-        } else if let objectItem = item as? RCObject {
+        } else if let objectItem = item as? RCTableObject {
             
             if tableColumn?.identifier == "ValueColumn" {
                 
@@ -76,7 +79,7 @@ extension MainViewDelegate: NSOutlineViewDelegate {
                 
                 if let textField = view?.textField {
                     
-                    textField.stringValue = objectItem.objectName
+                    textField.stringValue = objectItem.rcObject.objectName
                     textField.sizeToFit()
                 }
             } else {
@@ -85,7 +88,7 @@ extension MainViewDelegate: NSOutlineViewDelegate {
                 
                 if let textField = view?.textField {
                     
-                    textField.stringValue = objectItem.objectType.rawValue
+                    textField.stringValue = objectItem.rcObject.objectType.rawValue
                     textField.sizeToFit()
                 }
                 
