@@ -15,10 +15,13 @@ class StorageViewController: NSViewController {
     @IBOutlet weak var tableName: NSTextField!
     @IBOutlet weak var totalRecords: NSTextField!
     
-    @IBOutlet weak var predicateEditor: NSPredicateEditor!
+    @IBOutlet weak var databaseTableView: NSTableView!
     
     @IBOutlet weak var mainTableView: NSTableView!
     @IBOutlet weak var detailOutLineView: NSOutlineView!
+    
+    fileprivate var databaseViewDelegate: DatabaseViewDelegate!
+    fileprivate var databaseViewDataSource: StorageMainDataSource!
     
     fileprivate var storageMainDelegate: StorageMainDelegate!
     fileprivate var storageMainDataSource: StorageMainDataSource!
@@ -26,28 +29,26 @@ class StorageViewController: NSViewController {
     fileprivate var storageDetailDataSource: StorageDetailDataSource!
     fileprivate var storageDetailDelegate: StorageDetailDelegate!
     
+    var appKey: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        databaseViewDataSource = StorageMainDataSource(tableView: databaseTableView)
+        databaseViewDelegate = DatabaseViewDelegate(tableView: databaseTableView) { appKey in
+            self.appKey = appKey
+            self.reloadMainTables(appKey: appKey)
+        }
+        
         storageMainDataSource = StorageMainDataSource(tableView: mainTableView)
         storageMainDelegate = StorageMainDelegate(tableView: mainTableView) { table in
-            self.getTableValues(tableName: table)
+            self.getTableValues(tableName: table, appKey: self.appKey)
         }
         
         storageDetailDataSource = StorageDetailDataSource(outlineView: detailOutLineView)
         storageDetailDelegate = StorageDetailDelegate(outlineView: detailOutLineView)
         
-        // Do view setup here.
-        
-        let expression = NSExpression(forKeyPath: "test")
-        
-        let rowTemplate = NSPredicateEditorRowTemplate(leftExpressions: [expression], rightExpressionAttributeType: .stringAttributeType, modifier: .all, operators: [1], options: .allZeros)
-        
-        self.predicateEditor.rowTemplates.append(rowTemplate)
-        
-        
-        self.reloadMainTables()
+        self.reloadDatabaseTables()
         
         //self.reloadData()
     }
@@ -77,11 +78,41 @@ class StorageViewController: NSViewController {
         }
     }
     
-    func reloadMainTables() {
+    func reloadDatabaseTables() {
+        
+        var allDatabases = [TBApplication]()
+        
+        allDatabases.getAllInBackground(ofType: TBApplication.self) { (succeeded: Bool, data: [TBApplication]) -> () in
+            
+            DispatchQueue.main.async {
+                if (succeeded) {
+                    allDatabases = data
+                    print("success")
+                    self.databaseViewDataSource.reload(count: allDatabases.count)
+                    self.databaseViewDelegate.reload(tableList: allDatabases)
+                    
+                    if allDatabases.count > 0 {
+                        
+                        let database = allDatabases.first
+                        
+                        if let appKey = database?.appKey {
+                            self.reloadMainTables(appKey: appKey)
+                        }
+                    }
+                    
+                } else {
+                    print("error")
+                }
+            }
+        }
+    }
+
+    
+    func reloadMainTables(appKey: String) {
         
         var allTables = [Tables]()
         
-        allTables.getAllInBackground(ofType:Tables.self) { (succeeded: Bool, data: [Tables]) -> () in
+        allTables.getAllInBackground(ofType:Tables.self, appKey: appKey) { (succeeded: Bool, data: [Tables]) -> () in
             
             DispatchQueue.main.async {
                 if (succeeded) {
@@ -98,7 +129,7 @@ class StorageViewController: NSViewController {
                             
                             self.tableName.stringValue = tableName
                             self.totalTables.stringValue = "\(allTables.count)"
-                            self.getTableValues(tableName: tableName)
+                            self.getTableValues(tableName: tableName, appKey: appKey)
                         }
                     }
 //                    self.getTableValues(tableName: "Issue")
@@ -109,11 +140,11 @@ class StorageViewController: NSViewController {
         }
     }
     
-    func getTableValues( tableName: String ) {
+    func getTableValues( tableName: String, appKey: String ) {
         
         var allRecords = GenericTable()
         
-        allRecords.getGenericAllInBackground(tableName: tableName) { (succeeded: Bool, data: GenericTable? ) -> () in
+        allRecords.getGenericAllInBackground(tableName: tableName, appKey: appKey) { (succeeded: Bool, data: GenericTable? ) -> () in
             
             DispatchQueue.main.async {
                 if (succeeded) {

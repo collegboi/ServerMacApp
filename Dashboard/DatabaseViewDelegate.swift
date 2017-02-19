@@ -1,36 +1,37 @@
 //
-//  StorageMainDelegate.swift
+//  DatabaseViewDelegate.swift
 //  Dashboard
 //
-//  Created by Timothy Barnard on 01/02/2017.
+//  Created by Timothy Barnard on 19/02/2017.
 //  Copyright © 2017 Timothy Barnard. All rights reserved.
 //
 
+import Foundation
 import Cocoa
 
-typealias SelectionDatabaseObject = (_ table: String) -> Void
+typealias SelectionTableObject = (_ table: String) -> Void
 
-class StorageMainDelegate: NSObject {
+class DatabaseViewDelegate: NSObject {
     
-    var tableList = [Tables]()
+    var tableList = [TBApplication]()
     
     var tableView: NSTableView
-    var objectSelectionBlock: SelectionDatabaseObject?
-
+    var objectSelectionBlock: SelectionTableObject?
     
-    init(tableView: NSTableView, selectionBlock: @escaping SelectionDatabaseObject) {
+    
+    init(tableView: NSTableView, selectionBlock: @escaping SelectionTableObject) {
         self.tableView = tableView
         self.objectSelectionBlock = selectionBlock
         super.init()
         self.tableView.delegate = self
     }
     
-    func reload( tableList: [Tables] ) {
+    func reload( tableList: [TBApplication] ) {
         self.tableList = tableList
         self.tableView.reloadData()
     }
 }
-extension StorageMainDelegate: NSTableViewDelegate {
+extension DatabaseViewDelegate: NSTableViewDelegate {
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         
@@ -40,14 +41,14 @@ extension StorageMainDelegate: NSTableViewDelegate {
         let selectedRow = tableView.selectedRow
         
         if selectedRow >= 0 {
-            objectSelectionBlock?(self.tableList[selectedRow].tableName)
+            objectSelectionBlock?(self.tableList[selectedRow].appKey)
         }
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
         if let cell = tableView.make(withIdentifier: "TableCell", owner: nil) as? NSTableCellView {
-            cell.textField?.stringValue = self.tableList[row].tableName
+            cell.textField?.stringValue = self.tableList[row].databaseName
             return cell
         }
         

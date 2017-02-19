@@ -40,13 +40,35 @@ class RemoteConigViewController: NSViewController {
     @IBOutlet var colorTableView: NSTableView!
 
     @IBOutlet weak var comboBoxVersion: NSComboBox!
+    @IBOutlet weak var comboBoxApp: NSComboBox!
+    
+    fileprivate var appNameDelegate: AppNameDelegate!
+    fileprivate var appNameDataSource: AppNameDataSource!
+    
+    fileprivate var appVersionDelegate: AppVersionDelegate!
+    fileprivate var appVersionDataSource: AppNameDataSource!
     
     var pathRow: Int = -1
     var parentRow: Int = -1
     var object: RCObject?
+    var applicationID: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        appNameDelegate = AppNameDelegate(comboxBox: comboBoxApp, selectionBlock: { ( row, app) in
+            self.applicationID = (app.objectID?.objectID)!
+            self.getAllAppsVersions((app.objectID?.objectID)!)
+        })
+        
+        appNameDataSource = AppNameDataSource(comboxBox: comboBoxApp)
+        
+        appVersionDelegate = AppVersionDelegate(comboxBox: comboBoxVersion, selectionBlock: { ( row, version) in
+            self.getRemoteConfigFiles(version: version.version )
+        })
+        
+        appVersionDataSource = AppNameDataSource(comboxBox: comboBoxVersion)
+        
         
         mainDataSource = MainViewDataSource(outlineView: mainOutlineView)
         mainDelegate = MainViewDelegate(outlineView: mainOutlineView) { volume, row, parent in
@@ -74,8 +96,47 @@ class RemoteConigViewController: NSViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
+        self.getAllApps()
+    }
+    
+    func getAllAppsVersions(_ appID: String ) {
         
-        self.getRemoteConfigFiles()
+        var allVersions = [RemoteConfig]()
+        
+         allVersions.getFilteredInBackground(ofType: RemoteConfig.self, query: ["applicationID": appID as AnyObject ]) { (retrieved, versions) in
+            DispatchQueue.main.async {
+                if retrieved {
+                    allVersions = versions
+                    
+                    for version in versions {
+                        self.comboBoxVersion.addItem(withObjectValue: version.version)
+                    }
+                    
+                    self.appVersionDelegate.reload(versions)
+                    self.appVersionDataSource.reload(versions.count)
+                }
+            }
+        }
+    }
+    
+    func getAllApps() {
+        
+        var allApps = [TBApplication]()
+        
+        allApps.getAllInBackground(ofType: TBApplication.self) { (retrieved, apps) in
+            DispatchQueue.main.async {
+                if retrieved {
+                    allApps = apps
+                    
+                    for app in apps {
+                        self.comboBoxApp.addItem(withObjectValue: app.name)
+                    }
+                    
+                    self.appNameDelegate.reload(apps)
+                    self.appNameDataSource.reload(apps.count)
+                }
+            }
+        }
     }
     
     func loadEditView(_ property: String, _ value: String ) {
@@ -197,13 +258,6 @@ class RemoteConigViewController: NSViewController {
         self.settingsViewDelegate.reload(mainSettings: self.config!.mainSettings)
     }
     
-    
-    override var representedObject: Any? {
-        didSet {
-            // Update the view, if already loaded.
-        }
-    }
-    
     func showColorPicker( name:String, color: NSColor ) {
         
         let storyboard = NSStoryboard(name: "RemoteConfig", bundle: nil)
@@ -238,13 +292,13 @@ class RemoteConigViewController: NSViewController {
         colorViewDataSource.reload(count: self.config!.colors.count)
     }
     
-    func getRemoteConfigFiles() {
+    func getRemoteConfigFiles( version: String ) {
         // Correct url and username/password
         
         print("sendRawTimetable")
-        let networkURL = "https://timothybarnard.org/Scrap/appDataRequest.php?type=config"
+        let networkURL = "/api/94a12bfc-223d-4f71-9336-fc4ac94f86d4/remote/" + version//"https://timothybarnard.org/Scrap/appDataRequest.php?type=config"
         let dic = [String: AnyObject]()
-        HTTPSConnection.httpRequest(params: dic, url: networkURL, httpMethod: "POST") { (succeeded: Bool, data: NSData) -> () in
+        HTTPSConnection.httpGetRequest(params: dic, url: networkURL) { (succeeded: Bool, data: NSData) -> () in
             // Move to the UI thread
             
             DispatchQueue.main.async {
@@ -264,10 +318,11 @@ class RemoteConigViewController: NSViewController {
     func sendConfigFiles() {
     
         self.config?.version = self.comboBoxVersion.stringValue
+        self.config?.applicationID = self.applicationID
         
         if let data = self.config?.toData() {
-         
-            HTTPSConnection.httpPostRequest(params: data, endPoint: "/remote") { ( sent, message) in
+            let key = UniqueSting.apID()
+            HTTPSConnection.httpPostRequest(params: data, endPoint: "/api/"+key+"/remote") { ( sent, message) in
                 
                 DispatchQueue.main.async {
                     

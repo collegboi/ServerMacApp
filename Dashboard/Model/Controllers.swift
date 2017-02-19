@@ -225,7 +225,8 @@ struct Config : JSONSerializable {
     var controllers : [RCController]!
     var mainSettings: [String:String]!
     var languagesList : [String]!
-    var version : String = "1.2.2"
+    var version : String = "0"
+    var applicationID : String = ""
     
     init() {}
     init(dict: String){}

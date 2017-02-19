@@ -12,6 +12,7 @@ class EditABTestingView: NSViewController {
 
     @IBOutlet weak var abTestingNameField: NSTextField!
     
+    @IBOutlet weak var comboBoxVersion: NSComboBox!
     @IBOutlet weak var comboxBoxVersionA: NSComboBox!
     @IBOutlet weak var comboBoxVersionB: NSComboBox!
     
@@ -31,6 +32,7 @@ class EditABTestingView: NSViewController {
     @IBAction func pushButton(_ sender: Any) {
         
         let abTesting = ABTesting(name: self.abTestingNameField.stringValue,
+                                  version: self.comboBoxVersion.stringValue,
                                   versionA: self.comboxBoxVersionA.stringValue,
                                   versionB: self.comboBoxVersionB.stringValue,
                                   startDateTime: self.datePickerStart.stringValue,

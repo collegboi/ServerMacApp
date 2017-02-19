@@ -16,19 +16,49 @@ class SettingsViewController: NSViewController {
     @IBOutlet weak var teamIDTextField: NSTextField!
     @IBOutlet weak var keyIDTextField: NSTextField!
     
+    @IBOutlet weak var appTableView: NSTableView!
+    
+    
+    fileprivate var appViewDelegate: AppViewDelegate!
+    fileprivate var appViewDataSource: AppViewDataSource!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        appViewDataSource = AppViewDataSource(tableView: appTableView)
+        appViewDelegate = AppViewDelegate(tableView: appTableView) { app in
+            self.showAppView(app)
+        }
+        
         self.getFileNames()
+        self.getAllApplications()
+    }
+    
+    func getAllApplications() {
+        
+        var allApplications = [TBApplication]()
+        
+        allApplications.getAllInBackground(ofType:TBApplication.self) { (succeeded: Bool, data: [TBApplication]) -> () in
+            
+            DispatchQueue.main.async {
+                if (succeeded) {
+                    allApplications = data
+                    print("scucess")
+                    
+                    self.appViewDelegate.reload(allApplications)
+                    self.appViewDataSource.reload(count: allApplications.count)
+                    
+                } else {
+                    print("error")
+                }
+            }
+        }
     }
     
     
     func getFileNames() {
-        
-//        let dict = [
-//            "type":"Notifications" as AnyObject
-//        ]
-        
+
         var allFiles = [NotificationSetting]()
         
         allFiles.getFilteredInBackground(ofType: NotificationSetting.self, query: [:]) { ( completed, files) in
@@ -46,8 +76,37 @@ class SettingsViewController: NSViewController {
                 }
             }
         }
-        
     }
+    
+    @IBAction func createNewApp(_ sender: Any) {
+        let storyboard = NSStoryboard(name: "Settings", bundle: nil)
+        let appWindowController = storyboard.instantiateController(withIdentifier: "ViewApp") as! NSWindowController
+        
+        if let appWindow = appWindowController.window {
+            let application = NSApplication.shared()
+            application.runModal(for: appWindow)
+        }
+
+    }
+    
+    func showAppView(_ application: TBApplication ) {
+        
+        
+        let storyboard = NSStoryboard(name: "Settings", bundle: nil)
+        let appWindowController = storyboard.instantiateController(withIdentifier: "ViewApp") as! NSWindowController
+        
+        if let appWindow = appWindowController.window {
+            
+            let editAppViewController = appWindow.contentViewController as! EditAppViewController
+            editAppViewController.application = application
+            
+            let application = NSApplication.shared()
+            application.runModal(for: appWindow)
+        }
+
+    }
+    
+    
     
     @IBAction func selectKeyFile(_ sender: Any) {
         

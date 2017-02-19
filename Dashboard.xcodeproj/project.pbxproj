@@ -12,6 +12,18 @@
 		15174FCB1E590AE700539953 /* Backup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FCA1E590AE700539953 /* Backup.swift */; };
 		15174FCE1E590EBD00539953 /* BackupDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FCD1E590EBD00539953 /* BackupDataSource.swift */; };
 		15174FD01E590FB000539953 /* BackupDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FCF1E590FB000539953 /* BackupDelegate.swift */; };
+		15174FD31E59CA7600539953 /* DatabaseViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FD21E59CA7600539953 /* DatabaseViewDelegate.swift */; };
+		15174FD61E59D0BE00539953 /* AppViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FD51E59D0BE00539953 /* AppViewDelegate.swift */; };
+		15174FD81E59D23200539953 /* TBApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FD71E59D23200539953 /* TBApplication.swift */; };
+		15174FDA1E59D45400539953 /* AppViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FD91E59D45400539953 /* AppViewDataSource.swift */; };
+		15174FDD1E59D64700539953 /* EditAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FDC1E59D64700539953 /* EditAppViewController.swift */; };
+		15174FE01E59E35800539953 /* AppVersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FDF1E59E35800539953 /* AppVersionViewController.swift */; };
+		15174FE21E59E5E100539953 /* VersionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FE11E59E5E100539953 /* VersionViewDelegate.swift */; };
+		15174FE61E5A00EA00539953 /* AppNameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FE51E5A00EA00539953 /* AppNameDelegate.swift */; };
+		15174FE81E5A019900539953 /* AppNameDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FE71E5A019900539953 /* AppNameDataSource.swift */; };
+		15174FEB1E5A0D4900539953 /* AppVersionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FEA1E5A0D4900539953 /* AppVersionDelegate.swift */; };
+		15174FEE1E5A0F4700539953 /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FED1E5A0F4700539953 /* RemoteConfig.swift */; };
+		15174FF01E5A149400539953 /* NowDAte.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FEF1E5A149400539953 /* NowDAte.swift */; };
 		15350BBF1E58A0A3008CF844 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 15350BBE1E58A0A3008CF844 /* config.json */; };
 		B2088F371E42137F00458F58 /* RemoteConfig.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F361E42137F00458F58 /* RemoteConfig.storyboard */; };
 		B2088F3A1E4213AC00458F58 /* Status.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F381E4213AC00458F58 /* Status.storyboard */; };
@@ -164,6 +176,18 @@
 		15174FCA1E590AE700539953 /* Backup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Backup.swift; sourceTree = "<group>"; };
 		15174FCD1E590EBD00539953 /* BackupDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupDataSource.swift; sourceTree = "<group>"; };
 		15174FCF1E590FB000539953 /* BackupDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupDelegate.swift; sourceTree = "<group>"; };
+		15174FD21E59CA7600539953 /* DatabaseViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseViewDelegate.swift; sourceTree = "<group>"; };
+		15174FD51E59D0BE00539953 /* AppViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppViewDelegate.swift; sourceTree = "<group>"; };
+		15174FD71E59D23200539953 /* TBApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBApplication.swift; sourceTree = "<group>"; };
+		15174FD91E59D45400539953 /* AppViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppViewDataSource.swift; sourceTree = "<group>"; };
+		15174FDC1E59D64700539953 /* EditAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAppViewController.swift; sourceTree = "<group>"; };
+		15174FDF1E59E35800539953 /* AppVersionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionViewController.swift; sourceTree = "<group>"; };
+		15174FE11E59E5E100539953 /* VersionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionViewDelegate.swift; sourceTree = "<group>"; };
+		15174FE51E5A00EA00539953 /* AppNameDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNameDelegate.swift; sourceTree = "<group>"; };
+		15174FE71E5A019900539953 /* AppNameDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNameDataSource.swift; sourceTree = "<group>"; };
+		15174FEA1E5A0D4900539953 /* AppVersionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionDelegate.swift; sourceTree = "<group>"; };
+		15174FED1E5A0F4700539953 /* RemoteConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteConfig.swift; sourceTree = "<group>"; };
+		15174FEF1E5A149400539953 /* NowDAte.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowDAte.swift; sourceTree = "<group>"; };
 		15350BBE1E58A0A3008CF844 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = config.json; path = ../config.json; sourceTree = "<group>"; };
 		B2088F361E42137F00458F58 /* RemoteConfig.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RemoteConfig.storyboard; sourceTree = "<group>"; };
 		B2088F391E4213AC00458F58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Status.storyboard; sourceTree = "<group>"; };
@@ -298,6 +322,75 @@
 			name = OutlineView;
 			sourceTree = "<group>";
 		};
+		15174FD11E59CA6200539953 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				15174FD21E59CA7600539953 /* DatabaseViewDelegate.swift */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
+		15174FD41E59D0AE00539953 /* App TableView */ = {
+			isa = PBXGroup;
+			children = (
+				15174FD51E59D0BE00539953 /* AppViewDelegate.swift */,
+				15174FD91E59D45400539953 /* AppViewDataSource.swift */,
+			);
+			name = "App TableView";
+			sourceTree = "<group>";
+		};
+		15174FDB1E59D60E00539953 /* New App View */ = {
+			isa = PBXGroup;
+			children = (
+				15174FDE1E59E33C00539953 /* Version View */,
+				15174FDC1E59D64700539953 /* EditAppViewController.swift */,
+				15174FE11E59E5E100539953 /* VersionViewDelegate.swift */,
+			);
+			name = "New App View";
+			sourceTree = "<group>";
+		};
+		15174FDE1E59E33C00539953 /* Version View */ = {
+			isa = PBXGroup;
+			children = (
+				15174FDF1E59E35800539953 /* AppVersionViewController.swift */,
+			);
+			name = "Version View";
+			sourceTree = "<group>";
+		};
+		15174FE31E5A00CB00539953 /* ComboxBox */ = {
+			isa = PBXGroup;
+			children = (
+				15174FE91E5A0D3B00539953 /* App Version */,
+				15174FE41E5A00D900539953 /* App Name */,
+			);
+			name = ComboxBox;
+			sourceTree = "<group>";
+		};
+		15174FE41E5A00D900539953 /* App Name */ = {
+			isa = PBXGroup;
+			children = (
+				15174FE51E5A00EA00539953 /* AppNameDelegate.swift */,
+				15174FE71E5A019900539953 /* AppNameDataSource.swift */,
+			);
+			name = "App Name";
+			sourceTree = "<group>";
+		};
+		15174FE91E5A0D3B00539953 /* App Version */ = {
+			isa = PBXGroup;
+			children = (
+				15174FEA1E5A0D4900539953 /* AppVersionDelegate.swift */,
+			);
+			name = "App Version";
+			sourceTree = "<group>";
+		};
+		15174FEC1E5A0F3F00539953 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				15174FED1E5A0F4700539953 /* RemoteConfig.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		B2088F311E42122C00458F58 /* StoryBoards */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +435,7 @@
 		B2088F5A1E429B6800458F58 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				15174FD11E59CA6200539953 /* Database */,
 				B253B24D1E4B397600E86B9B /* Import File */,
 				B2088F641E429BE700458F58 /* DetailTableView */,
 				B2088F5F1E429B9700458F58 /* MainTableView */,
@@ -392,6 +486,7 @@
 			children = (
 				B23BF8451E50AD24005E7083 /* NotificationSetting.swift */,
 				B23BF84A1E510715005E7083 /* SystemStatus.swift */,
+				15174FD71E59D23200539953 /* TBApplication.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -399,8 +494,8 @@
 		B253B2311E4A746200E86B9B /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
-				B253B23B1E4A891000E86B9B /* TableView */,
 				B253B2341E4A7CB500E86B9B /* NotificationViewController.swift */,
+				B253B23B1E4A891000E86B9B /* TableView */,
 				B253B2391E4A871B00E86B9B /* SendNotificationView.swift */,
 			);
 			name = Notifications;
@@ -439,6 +534,8 @@
 		B253B2601E4B7F2700E86B9B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				15174FDB1E59D60E00539953 /* New App View */,
+				15174FD41E59D0AE00539953 /* App TableView */,
 				B23BF8441E50AD14005E7083 /* Models */,
 				B253B2611E4B7F5500E86B9B /* SettingsViewController.swift */,
 				B253B2631E4B8B4C00E86B9B /* Files.swift */,
@@ -532,6 +629,7 @@
 				B27D845E1E3522A9007ADB39 /* NSView+Ext.swift */,
 				B2088F4E1E42270900458F58 /* String+Ext.swift */,
 				B253B2571E4B786E00E86B9B /* Data+Ext.swift */,
+				15174FEF1E5A149400539953 /* NowDAte.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -566,6 +664,8 @@
 		B27D844D1E33DED4007ADB39 /* Remote Config */ = {
 			isa = PBXGroup;
 			children = (
+				15174FEC1E5A0F3F00539953 /* Models */,
+				15174FE31E5A00CB00539953 /* ComboxBox */,
 				15350BBE1E58A0A3008CF844 /* config.json */,
 				B23BF8381E4FB6BD005E7083 /* Edit Views */,
 				B27D844F1E33DF8D007ADB39 /* ColorsView */,
@@ -836,8 +936,10 @@
 				B2088F6D1E429E5900458F58 /* Tables.swift in Sources */,
 				B2088F461E421BBC00458F58 /* CrashStatsView.swift in Sources */,
 				B2D3BDF21E466FEF00273E9C /* PublishLangDelegate.swift in Sources */,
+				15174FE81E5A019900539953 /* AppNameDataSource.swift in Sources */,
 				B2088F491E421DA300458F58 /* CrashViewDelegate.swift in Sources */,
 				B29380131E46932200F00003 /* TranslationViewController+Ext.swift in Sources */,
+				15174FE61E5A00EA00539953 /* AppNameDelegate.swift in Sources */,
 				B2D3BDF41E46758400273E9C /* PublishLangCell.swift in Sources */,
 				B253B2621E4B7F5500E86B9B /* SettingsViewController.swift in Sources */,
 				B253B24F1E4B398B00E86B9B /* ImportFileViewController.swift in Sources */,
@@ -857,18 +959,23 @@
 				B27D84321E32B329007ADB39 /* RemoteConfigView.swift in Sources */,
 				15174FD01E590FB000539953 /* BackupDelegate.swift in Sources */,
 				B27D840E1E326BE5007ADB39 /* ViewController.swift in Sources */,
+				15174FDD1E59D64700539953 /* EditAppViewController.swift in Sources */,
 				B2D4F20F1E3C0DD900106A97 /* SprintBoardViewController.swift in Sources */,
 				B253B23F1E4A89C200E86B9B /* Notifications.swift in Sources */,
 				B253B2491E4AA2C500E86B9B /* AnalyticsView.swift in Sources */,
 				B253B2641E4B8B4C00E86B9B /* Files.swift in Sources */,
 				B27D84631E3545C0007ADB39 /* ServerViewController.swift in Sources */,
+				15174FDA1E59D45400539953 /* AppViewDataSource.swift in Sources */,
 				B2D4F2121E3C219B00106A97 /* IssueViewControlleer.swift in Sources */,
+				15174FE21E59E5E100539953 /* VersionViewDelegate.swift in Sources */,
 				B253B2471E4AA13800E86B9B /* ABTestingViewController.swift in Sources */,
 				B27D841C1E326D2B007ADB39 /* SideBarDelegate.swift in Sources */,
 				B27D842D1E3282E7007ADB39 /* Dictionary+Ext.swift in Sources */,
 				B27D84531E33DFBE007ADB39 /* SettingsViewDataSource.swift in Sources */,
+				15174FF01E5A149400539953 /* NowDAte.swift in Sources */,
 				B27D84231E3278B8007ADB39 /* MainViewDelegate.swift in Sources */,
 				B27D84211E327894007ADB39 /* MainViewDataSource.swift in Sources */,
+				15174FD31E59CA7600539953 /* DatabaseViewDelegate.swift in Sources */,
 				B21021171E43B59400AC4C5D /* LoginViewController.swift in Sources */,
 				B2D3BDDC1E464AAE00273E9C /* GenericDataSource.swift in Sources */,
 				B27D84381E32C0E7007ADB39 /* DetailViewDelegate.swift in Sources */,
@@ -891,8 +998,10 @@
 				B27D846C1E354827007ADB39 /* NSFont+Ext.swift in Sources */,
 				B2088F4D1E421ED100458F58 /* Exception.swift in Sources */,
 				B2D4F2281E3CF35C00106A97 /* EditIssueViewController.swift in Sources */,
+				15174FD61E59D0BE00539953 /* AppViewDelegate.swift in Sources */,
 				B2D4F22F1E3D229C00106A97 /* IssueComments.swift in Sources */,
 				B27D845B1E3515C6007ADB39 /* ColorPickerViewController.swift in Sources */,
+				15174FE01E59E35800539953 /* AppVersionViewController.swift in Sources */,
 				B2D4F2181E3C254400106A97 /* Issue.swift in Sources */,
 				B27D840C1E326BE5007ADB39 /* AppDelegate.swift in Sources */,
 				B2D4F2141E3C24B300106A97 /* IssueViewDataSource.swift in Sources */,
@@ -900,13 +1009,16 @@
 				B27D84511E33DFB0007ADB39 /* SettingsViewDelegate.swift in Sources */,
 				15174FCB1E590AE700539953 /* Backup.swift in Sources */,
 				B27D845D1E3517B3007ADB39 /* Float+Ext.swift in Sources */,
+				15174FEE1E5A0F4700539953 /* RemoteConfig.swift in Sources */,
 				B2088F4F1E42270900458F58 /* String+Ext.swift in Sources */,
 				B27D842A1E327C1F007ADB39 /* HTTPConnection.swift in Sources */,
 				B2088F681E429C0F00458F58 /* StorageDetailDataSource.swift in Sources */,
 				B27D84361E32C0D7007ADB39 /* DetailViewDataSource.swift in Sources */,
 				B23BF84B1E510715005E7083 /* SystemStatus.swift in Sources */,
+				15174FEB1E5A0D4900539953 /* AppVersionDelegate.swift in Sources */,
 				B2088F531E42323C00458F58 /* ViewCrashViewController.swift in Sources */,
 				B27D841E1E326D6B007ADB39 /* SideBarDataSource.swift in Sources */,
+				15174FD81E59D23200539953 /* TBApplication.swift in Sources */,
 				B27D84801E355813007ADB39 /* UserView.swift in Sources */,
 				B27D84681E3547D0007ADB39 /* GraphView.swift in Sources */,
 				B253B2511E4B427C00E86B9B /* ImportTableViewDelegate.swift in Sources */,

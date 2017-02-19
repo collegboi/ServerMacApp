@@ -29,5 +29,27 @@ struct Tables: JSONSerializable {
     init(dict: [String]) {
         
     }
+}
+
+
+struct Databases: JSONSerializable {
     
+    var databaseName: String!
+    
+    init() {
+        
+    }
+    init(dict: String){
+        self.databaseName = dict
+    }
+    
+    init(tableName: String) {
+        self.databaseName = tableName
+    }
+    
+    init(dict: [String : Any]) {}
+    
+    init(dict: [String]) {
+        
+    }
 }

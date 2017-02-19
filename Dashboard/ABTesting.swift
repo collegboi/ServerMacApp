@@ -11,14 +11,16 @@ import Foundation
 struct ABTesting: JSONSerializable {
     
     var name: String!
+    var version: String!
     var versionA: String!
     var versionB: String!
     var startDateTime: String!
     var endDateTime: String!
     
     
-    init(name: String, versionA: String, versionB: String, startDateTime: String, endDateTime: String) {
+    init(name: String, version: String, versionA: String, versionB: String, startDateTime: String, endDateTime: String) {
         self.name = name
+        self.version = version
         self.versionA = versionA
         self.versionB = versionB
         self.startDateTime = startDateTime
@@ -27,6 +29,7 @@ struct ABTesting: JSONSerializable {
     
     init(dict: [String : Any]) {
         self.name = dict.tryConvert(forKey: "name")
+        self.version = dict.tryConvert(forKey: "version")
         self.versionA = dict.tryConvert(forKey: "versionA")
         self.versionB = dict.tryConvert(forKey: "versionB")
         self.startDateTime = dict.tryConvert(forKey: "startDateTime")

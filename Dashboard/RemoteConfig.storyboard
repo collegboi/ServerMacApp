@@ -53,38 +53,6 @@
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="K1G-tM-vhl">
                                 <rect key="frame" x="20" y="815" width="1325" height="5"/>
                             </box>
-                            <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BBP-fb-GtD">
-                                <rect key="frame" x="1019" y="838" width="326" height="27"/>
-                                <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5D-KJ-HNz">
-                                        <rect key="frame" x="-2" y="0.0" width="163" height="27"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="App/Remote Version:" id="euE-2s-veZ">
-                                            <font key="font" size="16" name="AvenirNext-Regular"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NxI-ZK-6Gv">
-                                        <rect key="frame" x="167" y="0.0" width="162" height="26"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="159" id="8qJ-hP-EfF"/>
-                                        </constraints>
-                                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="UhS-0e-gYT">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </comboBoxCell>
-                                    </comboBox>
-                                </subviews>
-                                <visibilityPriorities>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                </visibilityPriorities>
-                                <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                </customSpacing>
-                            </stackView>
                             <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hi3-yS-o1E">
                                 <rect key="frame" x="20" y="470" width="1325" height="327"/>
                                 <subviews>
@@ -575,17 +543,95 @@
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="CLD-nG-YNN">
                                 <rect key="frame" x="20" y="447" width="1325" height="5"/>
                             </box>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="40" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kbi-PP-AZd">
+                                <rect key="frame" x="653" y="838" width="692" height="27"/>
+                                <subviews>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Nr-nc-YJD">
+                                        <rect key="frame" x="0.0" y="0.0" width="326" height="27"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlR-vV-tW3">
+                                                <rect key="frame" x="-2" y="0.0" width="163" height="27"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="App Name Version:" id="OTZ-fM-nrz">
+                                                    <font key="font" size="16" name="AvenirNext-Regular"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8P0-JX-PaP">
+                                                <rect key="frame" x="167" y="0.0" width="162" height="26"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="159" id="lyl-NC-Soh"/>
+                                                </constraints>
+                                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="7B9-zF-9mQ">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </comboBoxCell>
+                                            </comboBox>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BBP-fb-GtD">
+                                        <rect key="frame" x="366" y="0.0" width="326" height="27"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5D-KJ-HNz">
+                                                <rect key="frame" x="-2" y="0.0" width="163" height="27"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="App/Remote Version:" id="euE-2s-veZ">
+                                                    <font key="font" size="16" name="AvenirNext-Regular"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NxI-ZK-6Gv">
+                                                <rect key="frame" x="167" y="0.0" width="162" height="26"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="159" id="8qJ-hP-EfF"/>
+                                                </constraints>
+                                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="UhS-0e-gYT">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </comboBoxCell>
+                                            </comboBox>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="CLD-nG-YNN" firstAttribute="top" secondItem="Hi3-yS-o1E" secondAttribute="bottom" constant="20" id="4Ls-UH-fIG"/>
                             <constraint firstAttribute="bottom" secondItem="CLD-nG-YNN" secondAttribute="bottom" constant="449" id="AvO-9r-oJq"/>
-                            <constraint firstAttribute="trailing" secondItem="BBP-fb-GtD" secondAttribute="trailing" constant="20" id="Eib-Br-M8L"/>
                             <constraint firstItem="CLD-nG-YNN" firstAttribute="leading" secondItem="tDa-b2-NLd" secondAttribute="leading" id="FtA-Gu-ieA"/>
                             <constraint firstAttribute="trailing" secondItem="K1G-tM-vhl" secondAttribute="trailing" constant="20" id="H2M-3i-tDC"/>
                             <constraint firstItem="0OW-td-Ynp" firstAttribute="top" secondItem="hDe-V2-fkT" secondAttribute="top" constant="20" id="J2R-mK-Boj"/>
                             <constraint firstItem="K1G-tM-vhl" firstAttribute="top" secondItem="QO9-Yv-py6" secondAttribute="bottom" constant="20" id="Km0-OT-PgP"/>
                             <constraint firstItem="Hv8-uH-fHN" firstAttribute="top" secondItem="hDe-V2-fkT" secondAttribute="top" constant="43" id="LSV-ei-iqh"/>
                             <constraint firstAttribute="bottom" secondItem="tDa-b2-NLd" secondAttribute="bottom" constant="20" symbolic="YES" id="VwE-BE-NoX"/>
+                            <constraint firstItem="K1G-tM-vhl" firstAttribute="top" secondItem="kbi-PP-AZd" secondAttribute="bottom" constant="20" id="Vwf-Xh-A9Z"/>
+                            <constraint firstAttribute="trailing" secondItem="kbi-PP-AZd" secondAttribute="trailing" constant="20" id="a5x-h9-Nx6"/>
                             <constraint firstItem="Hi3-yS-o1E" firstAttribute="leading" secondItem="hDe-V2-fkT" secondAttribute="leading" constant="20" id="bs5-Li-ODR"/>
                             <constraint firstItem="Hv8-uH-fHN" firstAttribute="leading" secondItem="QO9-Yv-py6" secondAttribute="trailing" constant="41" id="c9U-UZ-O5x"/>
                             <constraint firstItem="tDa-b2-NLd" firstAttribute="top" secondItem="CLD-nG-YNN" secondAttribute="bottom" constant="19" id="ceO-Cg-Q5Y"/>
@@ -598,14 +644,13 @@
                             <constraint firstItem="Hi3-yS-o1E" firstAttribute="top" secondItem="K1G-tM-vhl" secondAttribute="bottom" constant="20" id="l4a-Rj-a7e"/>
                             <constraint firstItem="K1G-tM-vhl" firstAttribute="leading" secondItem="hDe-V2-fkT" secondAttribute="leading" constant="20" id="nln-a4-lPL"/>
                             <constraint firstItem="Hi3-yS-o1E" firstAttribute="top" secondItem="K1G-tM-vhl" secondAttribute="bottom" constant="20" id="qBK-Jh-o6b"/>
-                            <constraint firstItem="K1G-tM-vhl" firstAttribute="top" secondItem="BBP-fb-GtD" secondAttribute="bottom" constant="20" id="sZn-Fn-84s"/>
-                            <constraint firstItem="K1G-tM-vhl" firstAttribute="top" secondItem="BBP-fb-GtD" secondAttribute="bottom" constant="20" id="tdE-YD-LXQ"/>
                             <constraint firstAttribute="trailing" secondItem="Hi3-yS-o1E" secondAttribute="trailing" constant="20" id="trU-NH-p3S"/>
                             <constraint firstItem="QO9-Yv-py6" firstAttribute="top" secondItem="hDe-V2-fkT" secondAttribute="top" constant="20" id="yZo-j8-P34"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="colorTableView" destination="i6a-nz-C3G" id="PFB-Hq-cu7"/>
+                        <outlet property="comboBoxApp" destination="8P0-JX-PaP" id="2NV-jY-v5b"/>
                         <outlet property="comboBoxVersion" destination="NxI-ZK-6Gv" id="Aff-J5-vIk"/>
                         <outlet property="detailOutlineView" destination="BMb-do-g1L" id="Fxn-9x-SnR"/>
                         <outlet property="mainOutlineView" destination="mDW-6A-C9i" id="yVH-2X-E6F"/>
