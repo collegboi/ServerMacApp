@@ -1,0 +1,47 @@
+{
+    "UILabel": {
+        "text": "text",
+        "textAlignment": [ "left","center", "right", "justified","natural"],
+        "backgroundColor": "color",
+        "font": "text",
+        "fontSize": "number",
+        "textColor": "color",
+        "isEnabled": ["False", "True"],
+        "isHidden": ["False", "True"],
+        "isUserInteractionEnabled": ["False", "True"]
+    },
+    "UIButton": {
+        "title": "text",
+        "backgroundColor": "colors",
+        "fontName": "text",
+        "fontSize": "number",
+        "titleColor": "colors",
+        "cornerRadius": "number",
+        "clipsToBounds": ["False", "True"],
+        "isEnabled": ["False", "True"],
+        "isHidden": ["False", "True"],
+        "isUserInteractionEnabled": ["False", "True"]
+    },
+    "UITableView": {
+        "image": "text",
+         "contentMode": ["scaleToFill","scaleAspectFit", "scaleAspectFill","redraw",
+         "center", "top","bottom", "left", "right","topLeft", "topRight", "bottomLeft", "bottomRight" ],
+        "isHidden": ["False", "True"],
+        "isUserInteractionEnabled": ["False", "True"]
+    },
+    "UIImageView": {
+
+    },
+    "UITextField": {
+        "text": "text",
+        "textAlignment": [ "left","center", "right", "justified","natural"],
+        "backgroundColor": "color",
+        "font": "text",
+        "fontSize": "number",
+        "textColor": "color",
+        "placeholder": "text",
+        "isEnabled": ["False", "True"],
+        "isHidden": ["False", "True"],
+        "isUserInteractionEnabled": ["False", "True"]
+    }
+}

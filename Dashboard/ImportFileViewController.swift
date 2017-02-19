@@ -65,8 +65,11 @@ class ImportFileViewController: NSViewController, NSWindowDelegate {
     
     func computeCSVFile(_ filePath: String) {
         self.convertCSV(filePath)
-        self.data.remove(at: 0)
-        self.importTableDataSource.reload(records: self.data)
+        
+        if data.count > 0 {
+            self.data.remove(at: 0)
+            self.importTableDataSource.reload(records: self.data)
+        }
         //self.databaseOutLineView.expandItem(nil, expandChildren: true)
     }
     
@@ -78,7 +81,7 @@ class ImportFileViewController: NSViewController, NSWindowDelegate {
     
     @IBAction func saveButton(_ sender: Any) {
         
-        HTTPSConnection.httpPostRequest(params: self.data, endPoint: "/storage/all/Insurance") { (completed, result) in
+        HTTPSConnection.httpPostRequest(params: self.data, endPoint: "/storage/all/"+self.dBNameTextField.stringValue) { (completed, result) in
             
             DispatchQueue.main.async {
                 if completed {
@@ -94,7 +97,7 @@ class ImportFileViewController: NSViewController, NSWindowDelegate {
 
 extension ImportFileViewController {
     
-    func readDataFromFile(file:String)-> String!{
+    func readDataFromFile(file:String)-> String! {
         do {
             let contents = try String(contentsOfFile: file)
             return contents
