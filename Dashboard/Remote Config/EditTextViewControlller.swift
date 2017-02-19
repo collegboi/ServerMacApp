@@ -9,11 +9,8 @@
 import Cocoa
 
 class EditTextViewControlller: NSViewController {
-
-    var keyString = ""
-    var valueString = ""
-    var row: Int = -1
-    var parentRow: Int = -1
+    
+    var rcProperty: RCProperty?
     
     var delegate: ReturnDelegate?
     
@@ -26,8 +23,8 @@ class EditTextViewControlller: NSViewController {
     }
     
     override func viewDidAppear() {
-        self.keyTextField.stringValue = keyString
-        self.valueTextField.stringValue = valueString
+        self.keyTextField.stringValue = rcProperty?.key ?? ""
+        self.valueTextField.stringValue = rcProperty?.valueStr ?? ""
     }
     
     @IBAction func cancelButton(_ sender: Any) {
@@ -36,9 +33,15 @@ class EditTextViewControlller: NSViewController {
     }
     @IBAction func doneButton(_ sender: Any) {
         
-        let rcProperty = RCProperty(key: self.keyTextField.stringValue, valueStr: self.valueTextField.stringValue, valueNo: -1, row: row, type: "Text", parent: self.parentRow)
+        let rc1Property = RCProperty(key: self.keyTextField.stringValue,
+                                    valueStr: self.valueTextField.stringValue,
+                                    valueNo: self.rcProperty?.valueNo ?? -1,
+                                    row: self.rcProperty?.row ?? 0,
+                                    type: "Text",
+                                    parent: self.rcProperty?.parent ?? 0,
+                                    settingPart: self.rcProperty?.settingPart ?? .MainSetting )
         
-        self.delegate?.sendBackData(data: rcProperty)
+        self.delegate?.sendBackData(data: rc1Property)
         
         let application = NSApplication.shared()
         application.stopModal()

@@ -121,6 +121,27 @@ struct RCColor: JSONSerializable {
 //    
 //}
 
+enum SettingPart {
+    case MainSetting
+    case Properties
+    case Class
+    case Object
+    case Color
+}
+
+
+struct RCColorProp {
+    
+    var color: RCColor!
+    var row: Int = 0
+    
+    init(color: RCColor, row: Int) {
+        self.color = color
+        self.row = row
+    }
+}
+
+
 struct RCProperty {
     
     var key: String = ""
@@ -129,14 +150,16 @@ struct RCProperty {
     var row: Int = -1
     var type: String = ""
     var parent: Int = -1
+    var settingPart: SettingPart!
     
-    init(key: String, valueStr:String, valueNo: Int, row:Int, type: String, parent: Int) {
+    init(key: String, valueStr:String, valueNo: Int, row:Int, type: String, parent: Int, settingPart: SettingPart) {
         self.key = key
         self.valueStr = valueStr
         self.valueNo = valueNo
         self.row = row
         self.type = type
         self.parent = parent
+        self.settingPart = settingPart
     }
 }
 

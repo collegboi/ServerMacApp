@@ -251,6 +251,9 @@
                                                             </prototypeCellViews>
                                                         </tableColumn>
                                                     </tableColumns>
+                                                    <connections>
+                                                        <outlet property="menu" destination="vdC-Pf-rMC" id="gse-jg-cVl"/>
+                                                    </connections>
                                                 </tableView>
                                             </subviews>
                                         </clipView>
@@ -411,6 +414,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="749" height="23"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableHeaderView>
+                                                <connections>
+                                                    <outlet property="menu" destination="sWn-HR-0Rj" id="dk9-eV-GgP"/>
+                                                </connections>
                                             </scrollView>
                                             <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDs-8n-vcr">
                                                 <rect key="frame" x="759" y="0.0" width="566" height="410"/>
@@ -678,26 +684,28 @@
                         <outlet property="delegate" destination="BWa-tc-x1s" id="HYX-or-OBJ"/>
                     </connections>
                 </menu>
-            </objects>
-            <point key="canvasLocation" x="1185.5" y="670"/>
-        </scene>
-        <!--Window Controller-->
-        <scene sceneID="lR7-A6-ABq">
-            <objects>
-                <windowController storyboardIdentifier="Color Picker" id="qCP-YL-bxj" sceneMemberID="viewController">
-                    <window key="window" title="Color Picker" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="uXd-75-Cs1">
-                        <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="425" y="470" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1440"/>
-                    </window>
+                <menu title="MainMenu" id="sWn-HR-0Rj">
+                    <items>
+                        <menuItem title="Main" id="00b-1U-ZOK">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                    </items>
                     <connections>
-                        <segue destination="cb6-ks-1nC" kind="relationship" relationship="window.shadowedContentViewController" id="6Vv-nL-Ixa"/>
+                        <outlet property="delegate" destination="BWa-tc-x1s" id="gsN-d8-TXN"/>
                     </connections>
-                </windowController>
-                <customObject id="uzT-jD-RZ2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                </menu>
+                <menu title="ColorMenu" id="vdC-Pf-rMC">
+                    <items>
+                        <menuItem title="Color" id="TmA-Ek-qHX">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                    </items>
+                    <connections>
+                        <outlet property="delegate" destination="BWa-tc-x1s" id="ogM-XP-Zto"/>
+                    </connections>
+                </menu>
             </objects>
-            <point key="canvasLocation" x="2290" y="517"/>
+            <point key="canvasLocation" x="753" y="661"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="u5h-WQ-mXM">
@@ -925,6 +933,24 @@
             </objects>
             <point key="canvasLocation" x="2910" y="848"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="jHs-xT-40B">
+            <objects>
+                <windowController storyboardIdentifier="Color Picker" id="pIU-GY-tNn" sceneMemberID="viewController">
+                    <window key="window" title="Color" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="WUH-Zg-VHB">
+                        <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="425" y="470" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1440"/>
+                    </window>
+                    <connections>
+                        <segue destination="cb6-ks-1nC" kind="relationship" relationship="window.shadowedContentViewController" id="nSI-C9-djQ"/>
+                    </connections>
+                </windowController>
+                <customObject id="MwZ-H6-8ma" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1740" y="511"/>
+        </scene>
         <!--Color Picker View Controller-->
         <scene sceneID="zeI-gf-VV5">
             <objects>
@@ -938,21 +964,21 @@
                             </customView>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fV4-e0-RwX">
                                 <rect key="frame" x="34" y="343" width="294" height="19"/>
-                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="d2b-6D-29R"/>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="255" doubleValue="126" tickMarkPosition="above" sliderType="linear" id="d2b-6D-29R"/>
                                 <connections>
                                     <action selector="redSlider:" target="cb6-ks-1nC" id="vwv-B8-rIq"/>
                                 </connections>
                             </slider>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OjT-3q-d4u">
                                 <rect key="frame" x="34" y="307" width="294" height="19"/>
-                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="px7-wl-yiw"/>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="255" doubleValue="126" tickMarkPosition="above" sliderType="linear" id="px7-wl-yiw"/>
                                 <connections>
                                     <action selector="greenSlider:" target="cb6-ks-1nC" id="FOs-b1-3WH"/>
                                 </connections>
                             </slider>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9GE-Sk-Fci">
                                 <rect key="frame" x="34" y="267" width="294" height="19"/>
-                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="OG9-Is-6yO"/>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="255" doubleValue="126" tickMarkPosition="above" sliderType="linear" id="OG9-Is-6yO"/>
                                 <connections>
                                     <action selector="blueSlider:" target="cb6-ks-1nC" id="sMX-eL-Q77"/>
                                 </connections>
@@ -1008,9 +1034,9 @@
                                     <action selector="dismissColorPickerWindowWithSender:" target="cb6-ks-1nC" id="8xa-tW-deB"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ic8-S3-iAj">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ic8-S3-iAj">
                                 <rect key="frame" x="36" y="222" width="290" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="1Rs-L6-7Wb">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="name" drawsBackground="YES" allowsEditingTextAttributes="YES" id="1Rs-L6-7Wb">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

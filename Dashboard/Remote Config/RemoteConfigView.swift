@@ -86,11 +86,14 @@ class RemoteConigViewController: NSViewController {
         settingsViewDataSource = SettingsViewDataSource(tableView: settingsTableView)
         settingsViewDelegate = SettingsViewDelegate(tableView: settingsTableView ) { key, value, row in
             self.pathRow = row
+            
+            let rcProperty = RCProperty(key: key, valueStr: value, valueNo: 1, row: row, type: "Text", parent: 0, settingPart: .MainSetting)
+            self.loadEditTextView(rcProperty)
         }
         
         colorViewDataSource = ColorViewDataSource(tableView: colorTableView)
-        colorViewDelegate = ColorViewDelegate(tableView: colorTableView ) { key, color in
-            self.showColorPicker(name: key, color: color)
+        colorViewDelegate = ColorViewDelegate(tableView: colorTableView ) { key, color, row in
+            self.showColorPicker(name: key, color: color, row: row)
         }
     }
     
@@ -145,23 +148,48 @@ class RemoteConigViewController: NSViewController {
         
             let values = self.readConfigJSONFile((self.object?.objectType.rawValue)!, property)
             
+            var rcProperty = RCProperty(key: property, valueStr: value, valueNo: -1, row: 0, type: "Text", parent: self.parentRow, settingPart: .Properties)
+            
             //Combobox list values
             if values.count > 1 {
-                self.loadComboBoxView(values, property, "List", self.pathRow)
+                
+                rcProperty.type = "List"
+                rcProperty.settingPart = .Properties
+                rcProperty.parent = self.parentRow
+                
+                self.loadComboBoxView(values, rcProperty)
             
-            } else if values.count == 1 && values[0] == "color" {
+            } else if values.count == 1 && values[0] == "number" {
+                
+                var list = [String]()
+                
+                for i in 0...40 {
+                    list.append("\(i)")
+                }
+                
+                rcProperty.type = "Text"
+                rcProperty.settingPart = .Color
+                rcProperty.parent = self.parentRow
+                
+                self.loadComboBoxView(list, rcProperty)
+                
+            }else if values.count == 1 && values[0] == "color" {
                 
                 let list = self.config?.colors
                 
-                self.loadComboBoxView(list!, property, "Text", self.pathRow)
+                rcProperty.type = "Text"
+                rcProperty.settingPart = .Color
+                rcProperty.parent = self.parentRow
+                
+                self.loadComboBoxView(list!, rcProperty)
             
             } else { // textView type
-                self.loadEditTextView(property, value, self.pathRow)
+                self.loadEditTextView(rcProperty)
             }
         }
     }
     
-    func loadEditTextView(_ key: String, _ value: String, _ row: Int) {
+    func loadEditTextView(_ rcProperty: RCProperty ) {
         
         let storyboard = NSStoryboard(name: "RemoteConfig", bundle: nil)
         let editPropertyWindowController = storyboard.instantiateController(withIdentifier: "EditTextValue") as! NSWindowController
@@ -169,10 +197,7 @@ class RemoteConigViewController: NSViewController {
         if let editWindow = editPropertyWindowController.window{
             
             let editTextViewControlller = editWindow.contentViewController as! EditTextViewControlller
-            editTextViewControlller.keyString = key
-            editTextViewControlller.valueString = value
-            editTextViewControlller.row = row
-            editTextViewControlller.parentRow = self.parentRow
+            editTextViewControlller.rcProperty = rcProperty
             editTextViewControlller.delegate = self
             
             let application = NSApplication.shared()
@@ -181,7 +206,7 @@ class RemoteConigViewController: NSViewController {
 
     }
     
-    func loadComboBoxView(_ list: [RCColor], _ key : String, _ type: String, _ row: Int ) {
+    func loadComboBoxView(_ list: [RCColor], _ rcProperty: RCProperty ) {
         
         let storyboard = NSStoryboard(name: "RemoteConfig", bundle: nil)
         let editListWindowController = storyboard.instantiateController(withIdentifier: "EditComboView") as! NSWindowController
@@ -190,10 +215,7 @@ class RemoteConigViewController: NSViewController {
             
             let editListViewController = editListWindow.contentViewController as! EditListViewController
             editListViewController.colorList = list
-            editListViewController.keyValue = key
-            editListViewController.type = type
-            editListViewController.row = row
-            editListViewController.parentRow = self.parentRow
+            editListViewController.rcProperty = rcProperty
             editListViewController.delegate = self
             
             let application = NSApplication.shared()
@@ -203,7 +225,7 @@ class RemoteConigViewController: NSViewController {
     }
 
     
-    func loadComboBoxView(_ list: [String], _ key : String, _ type: String, _ row: Int ) {
+    func loadComboBoxView(_ list: [String], _ rcProperty: RCProperty , _ keyEditable:Bool = false ) {
         
         let storyboard = NSStoryboard(name: "RemoteConfig", bundle: nil)
         let editListWindowController = storyboard.instantiateController(withIdentifier: "EditComboView") as! NSWindowController
@@ -212,10 +234,8 @@ class RemoteConigViewController: NSViewController {
             
             let editListViewController = editListWindow.contentViewController as! EditListViewController
             editListViewController.list = list
-            editListViewController.keyValue = key
-            editListViewController.type = type
-            editListViewController.row = row
-            editListViewController.parentRow = self.parentRow
+            editListViewController.rcProperty = rcProperty
+            editListViewController.keyEditable = keyEditable
             editListViewController.delegate = self
             
             let application = NSApplication.shared()
@@ -223,6 +243,32 @@ class RemoteConigViewController: NSViewController {
         }
 
     }
+    
+    
+    func readConfigJSONFile(_ uiObject: String ) -> [String:Any] {
+        if let path = Bundle.main.path(forResource: "config", ofType: "json") {
+            
+            if let jsonData = NSData(contentsOfFile: path) as Data? {
+                
+                do {
+                    
+                    if let jsonResult = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String:Any] {
+                        
+                        if let object = jsonResult[uiObject] as? [String:Any] {
+                            
+                            return object
+                        }
+                    }
+                    
+                } catch let error {
+                    print(error)
+                }
+            }
+        }
+        
+        return [:]
+    }
+
     
     func readConfigJSONFile(_ uiObject: String, _ property: String ) -> [String] {
         if let path = Bundle.main.path(forResource: "config", ofType: "json") {
@@ -258,7 +304,7 @@ class RemoteConigViewController: NSViewController {
         self.settingsViewDelegate.reload(mainSettings: self.config!.mainSettings)
     }
     
-    func showColorPicker( name:String, color: NSColor ) {
+    func showColorPicker( name:String, color: NSColor, row: Int = 0 ) {
         
         let storyboard = NSStoryboard(name: "RemoteConfig", bundle: nil)
         let wordCountWindowController = storyboard.instantiateController(withIdentifier: "Color Picker") as! NSWindowController
@@ -267,9 +313,11 @@ class RemoteConigViewController: NSViewController {
 
             let colorPickerViewController = wordCountWindow.contentViewController as! ColorPickerViewController
             colorPickerViewController.colorNameStr = name
-            colorPickerViewController.blue = Float(color.blueComponent)
-            colorPickerViewController.red = Float(color.redComponent)
-            colorPickerViewController.green = Float(color.greenComponent)
+            colorPickerViewController.blue = Float(color.blueComponent * 255)
+            colorPickerViewController.red = Float(color.redComponent * 255)
+            colorPickerViewController.green = Float(color.greenComponent * 255)
+            colorPickerViewController.row = row
+            colorPickerViewController.color = color
             colorPickerViewController.delegate = self
             
             let application = NSApplication.shared()
@@ -346,8 +394,18 @@ extension RemoteConigViewController: ReturnDelegate {
     
     func sendBackData( data: Any ) {
         
-        if let color = data as? RCColor {
-            self.config?.colors[0] = color
+        if let color = data as? RCColorProp {
+            
+            if color.row == -1 {
+                let newColor = RCColor(blue: color.color.blue,
+                                       green: color.color.green,
+                                       red: color.color.red,
+                                       alpha: color.color.alpha,
+                                       name: color.color.name)
+                self.config?.colors.append(newColor)
+            } else {
+                self.config?.colors[color.row] = color.color
+            }
             self.reloadAllData()
         
         } else if let property = data as? RCProperty {
@@ -357,12 +415,42 @@ extension RemoteConigViewController: ReturnDelegate {
             } else {
                 self.object?.objectProperties[property.key] = property.valueStr
             }
+            
+            if property.settingPart == .MainSetting {
+                
+                self.config?.mainSettings[property.key] = property.valueStr
+                
+            }
+            else if property.settingPart == SettingPart.Class {
+                
+                let newController = RCController(name: property.valueStr)
+            
+                self.config?.controllers.append(newController)
+                
+            } else if property.settingPart == SettingPart.Object {
+                
+                var properties = [String:Any]()
+                
+                for (item, _ ) in self.readConfigJSONFile(property.valueStr) {
+                    
+                    properties[item] = ""
+                }
+                
+                var rcObject = RCObject(objectName: property.key, objectDescription: "", objectType: RCObjectType(rawValue: property.valueStr)! )
+                rcObject.objectProperties = properties
+                
+                self.config?.controllers[property.parent].objectsList.append(rcObject)
+                
+            } else {
         
-            self.config?.controllers[property.parent].objectsList[property.row] = self.object!
+                self.config?.controllers[property.parent].objectsList[property.row] = self.object!
             
             
-            self.loadDetailTable(self.config!.controllers[property.parent].objectsList[property.row])
+                self.loadDetailTable(self.config!.controllers[property.parent].objectsList[property.row])
+            }
         }
+        
+        self.reloadAllData()
     }
 }
 
@@ -371,6 +459,8 @@ extension RemoteConigViewController: NSMenuDelegate {
     func menuWillOpen(_ menu: NSMenu) {
         
     }
+    
+    
     
     func removeMainSetting() {
         if self.pathRow >= 0 {
@@ -381,8 +471,50 @@ extension RemoteConigViewController: NSMenuDelegate {
         }
     }
     func addMainSetting() {
-        self.config?.mainSettings[" "] = " "
-        self.reloadSettingsTableView()
+        
+        let rcProperty = RCProperty(key: "", valueStr: "",
+                                    valueNo: 0, row: 0,
+                                    type: "Text", parent: 0,
+                                    settingPart: .MainSetting)
+        self.loadEditTextView(rcProperty)
+    }
+    
+    func addColor() {
+        let color = NSColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0)
+        self.showColorPicker(name: "", color: color, row: -1)
+    }
+    
+    func addClass() {
+        
+        let rcProperty = RCProperty(key: "name", valueStr: "",
+                                    valueNo: 0, row: 0,
+                                    type: "Text", parent: 0,
+                                    settingPart: .Class)
+        self.loadEditTextView(rcProperty)
+    }
+    
+    func addProperty() {
+        
+        let rcProperty = RCProperty(key: "", valueStr: "",
+                                    valueNo: 0, row: 0,
+                                    type: "Text", parent: self.parentRow,
+                                    settingPart: .Properties)
+        self.loadEditTextView(rcProperty)
+    }
+    
+    func addObject() {
+        
+        
+        let values: [String] = ["UIImageView", "UITextField", "UICell", "UITableView", "UILabel", "Object"]
+        
+        
+        let rcProperty = RCProperty(key: "name", valueStr: "",
+                                    valueNo: 0, row: 0,
+                                    type: "Text", parent: self.parentRow,
+                                    settingPart: .Object)
+        
+        self.loadComboBoxView(values, rcProperty, true)
+
     }
     
     func menuNeedsUpdate(_ menu: NSMenu) {
@@ -408,48 +540,47 @@ extension RemoteConigViewController: NSMenuDelegate {
                 
                 if self.object != nil {
                     
-                    let addMenu = NSMenu(title: "Add")
-                    addMenu.delegate = self
-                    let addMenuItem = NSMenuItem(title: "Add Item ...", action: nil, keyEquivalent: "")
-
-                    menu.addItem(addMenuItem)
-                    menu.setSubmenu(addMenu, for: addMenuItem)
-                    
-                    let convertMenu = NSMenu(title: "Convert")
-                    convertMenu.delegate = self
-                    let convertMenuItem = NSMenuItem(title: "Convert Item ...", action: nil, keyEquivalent: "")
-
-                    menu.addItem(convertMenuItem)
-                    menu.setSubmenu(convertMenu, for: convertMenuItem)
+                    menu.addItem(withTitle: "Add Property", action: #selector(self.addProperty), keyEquivalent: "")
                 }
             }
             
             break
             
-        case "Convert": break
+        case "MainMenu":
             
-            // This is done dynamically, so get rid of the existing items
+            if menu.items.count == 1 {
+                
+                menu.removeAllItems()
+                
+                //if self.object != nil {
+                    
+                    menu.addItem(withTitle: "Add Class", action: #selector(self.addClass), keyEquivalent: "")
+                    menu.addItem(withTitle: "Add Object", action: #selector(self.addObject), keyEquivalent: "")
+                    
+//                    let convertMenu = NSMenu(title: "Add Object")
+//                    convertMenu.delegate = self
+//                    let convertMenuItem = NSMenuItem(title: "Convert Item ...", action: nil, keyEquivalent: "")
+//                    
+//                    menu.addItem(convertMenuItem)
+//                    menu.setSubmenu(convertMenu, for: convertMenuItem)
+               // }
+            }
+
             
-//            menu.removeAllItems()
-//            
-//            
-//            // Now it depends on what exactly is in this line.
-//            
-//            if let object = document.determineObject() {
-//                
-//                switch object {
-//                    
-//                case .NULL:
-//                    menu.addItem(withTitle: "To Bool", action: Selector("convertToBool:"), keyEquivalent: "")
-//                    menu.addItem(withTitle: "To Number", action: "convertToNumber:", keyEquivalent: "")
-//                    
-//                case .BOOL:
-//                    menu.addItemWithTitle("To Null", action: "convertToNull:", keyEquivalent: "")
-//                    menu.addItemWithTitle("To Number", action: Selector("convertToNumber:"), keyEquivalent: "")
-//                    
-//                }
-//            }
-//            
+            break
+            
+        case "ColorMenu":
+            
+            if menu.items.count == 1 {
+                
+                menu.removeAllItems()
+                
+                menu.addItem(withTitle: "Add Color", action: #selector(self.addColor), keyEquivalent: "")
+
+            }
+            
+            
+            break
             
         default: break
         }

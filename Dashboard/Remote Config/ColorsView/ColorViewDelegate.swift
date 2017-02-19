@@ -9,7 +9,7 @@
 import Cocoa
 
 
-typealias SelectionSettingColor = (_ key: String, _ value: NSColor ) -> Void
+typealias SelectionSettingColor = (_ key: String, _ value: NSColor,_ row: Int ) -> Void
 
 class ColorViewDelegate: NSObject {
     
@@ -51,7 +51,7 @@ extension ColorViewDelegate: NSTableViewDelegate {
         }
         let item =  self.colorSettings[selectedRow] 
         let color = NSColor(red: item.red/255.0, green: item.green/255.0, blue: item.blue/255.0, alpha: item.alpha)
-        objectSelectionBlock?(item.name, color)
+        objectSelectionBlock?(item.name, color, selectedRow)
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {

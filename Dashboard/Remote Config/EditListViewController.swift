@@ -12,11 +12,10 @@ class EditListViewController: NSViewController {
 
     var list = [String]()
     var colorList = [RCColor]()
-    var keyValue = ""
+    
     var keyEditable: Bool = false
-    var row: Int = 0
-    var parentRow: Int = 0
-    var type : String = "List"
+
+    var rcProperty: RCProperty?
     var delegate: ReturnDelegate?
     
     var returnString = ""
@@ -29,12 +28,10 @@ class EditListViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.comboxBox.delegate = self
-        //self.comboxBox.dataSource = self
-        
     }
     
     override func viewDidAppear() {
-        self.keyTextField.stringValue = keyValue
+        self.keyTextField.stringValue = (rcProperty?.key)!
         self.keyTextField.isEditable = keyEditable
         
         for item in self.list {
@@ -58,10 +55,15 @@ class EditListViewController: NSViewController {
     
     @IBAction func doneButton(_ sender: Any) {
         
-        let rcProperty = RCProperty(key: keyValue, valueStr: returnString, valueNo: returnNo,
-                                    row: row, type: type, parent: self.parentRow)
+        let rcProperty1 = RCProperty(key: self.keyTextField.stringValue,
+                                    valueStr: self.returnString,
+                                    valueNo: self.returnNo,
+                                    row: self.rcProperty!.row,
+                                    type: self.rcProperty!.type,
+                                    parent: self.rcProperty!.parent,
+                                    settingPart: self.rcProperty!.settingPart)
         
-        self.delegate?.sendBackData(data: rcProperty )
+        self.delegate?.sendBackData(data: rcProperty1 )
         
         let application = NSApplication.shared()
         application.stopModal()

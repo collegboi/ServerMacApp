@@ -40,13 +40,13 @@ class ImportFileViewController: NSViewController, NSWindowDelegate {
         
         let dialog = NSOpenPanel();
         
-        dialog.title                   = "Choose a .csv file";
+        dialog.title                   = "Choose a .csv or .json file";
         dialog.showsResizeIndicator    = true;
         dialog.showsHiddenFiles        = false;
         dialog.canChooseDirectories    = true;
         dialog.canCreateDirectories    = true;
         dialog.allowsMultipleSelection = false;
-        dialog.allowedFileTypes        = ["csv"];
+        dialog.allowedFileTypes        = ["csv", "json"];
         
         if (dialog.runModal() == NSModalResponseOK) {
             let result = dialog.url
@@ -54,8 +54,13 @@ class ImportFileViewController: NSViewController, NSWindowDelegate {
             if (result != nil) {
                 let path = result!.path
                 filePathLabel.stringValue = path
-                self.computeCSVFile(path)
-                //self.sendFile(path)
+                
+                let pathExtention = NSURL(fileURLWithPath: path).pathExtension
+                
+                if pathExtention == "csv" {
+                    self.computeCSVFile(path)
+                }
+                
             }
         } else {
             // User clicked on "Cancel"

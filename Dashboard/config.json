@@ -1,5 +1,6 @@
 {
     "UILabel": {
+        "type": "UILabel",
         "text": "text",
         "textAlignment": [ "left","center", "right", "justified","natural"],
         "backgroundColor": "color",
@@ -11,6 +12,7 @@
         "isUserInteractionEnabled": ["False", "True"]
     },
     "UIButton": {
+        "type": "UIButton",
         "title": "text",
         "backgroundColor": "colors",
         "fontName": "text",
@@ -23,10 +25,12 @@
         "isUserInteractionEnabled": ["False", "True"]
     },
     "UITableView": {
+        "type": "UITableView",
         "isHidden": ["False", "True"],
         "allowsSelection": ["False", "True"]
     },
     "UIImageView": {
+        "type": "UIImageView",
         "image": "text",
         "contentMode": ["scaleToFill","scaleAspectFit", "scaleAspectFill","redraw",
                         "center", "top","bottom", "left", "right","topLeft", "topRight", "bottomLeft", "bottomRight" ],
@@ -34,6 +38,7 @@
         "isUserInteractionEnabled": ["False", "True"]
     },
     "UITextField": {
+        "type": "UITextField",
         "text": "text",
         "textAlignment": [ "left","center", "right", "justified","natural"],
         "backgroundColor": "color",
@@ -44,5 +49,8 @@
         "isEnabled": ["False", "True"],
         "isHidden": ["False", "True"],
         "isUserInteractionEnabled": ["False", "True"]
+    },
+    "Object": {
+        "type": "Object"
     }
 }

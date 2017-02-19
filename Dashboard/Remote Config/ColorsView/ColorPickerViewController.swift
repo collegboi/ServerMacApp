@@ -21,8 +21,10 @@ class ColorPickerViewController: NSViewController {
     @IBOutlet weak var blueTextFIeld: NSTextField!
     
     @IBOutlet weak var colorName: NSTextField!
-    
+    var color: NSColor?
     var delegate: ReturnDelegate?
+    
+    var row: Int = -1
     
     var colorNameStr: String = "" {
         didSet {
@@ -67,7 +69,11 @@ class ColorPickerViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        
+    }
+    
+    override func viewDidAppear() {
+        self.colorView.setBackgroundColor(self.color!)
     }
     
     func updateView() {
@@ -114,7 +120,9 @@ class ColorPickerViewController: NSViewController {
         
         let updateColor = RCColor(blue: CGFloat(self.blue), green: CGFloat(self.green), red: CGFloat(self.red), alpha: 1, name: self.colorNameStr)
         
-        delegate?.sendBackData(data: updateColor)
+        let rcColor = RCColorProp(color: updateColor, row: self.row)
+        
+        delegate?.sendBackData(data: rcColor)
         
         let application = NSApplication.shared()
         application.stopModal()

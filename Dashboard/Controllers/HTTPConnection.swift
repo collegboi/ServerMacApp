@@ -63,7 +63,11 @@ public class HTTPSConnection {
         
         let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
         
-        let urlPath = url + endPoint
+        var key = UniqueSting.apID()
+        
+        let apiEndpoint = "/api/"+key
+        
+        let urlPath = url + apiEndpoint + endPoint
         
         let request: URLRequest
         
@@ -197,7 +201,11 @@ public class HTTPSConnection {
         
         let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
         
-        let urlPath = url + endPoint
+        var key = UniqueSting.apID()
+    
+        let apiEndpoint = "/api/"+key
+        
+        let urlPath = url + apiEndpoint + endPoint
         
         let request = NSMutableURLRequest(url: NSURL(string: urlPath)! as URL)
         let session = URLSession.shared
@@ -260,7 +268,6 @@ public class HTTPSConnection {
               //  print(err.debugDescription)
             //}
         }.resume()
-
     }
     
     class func convertStringToDictionary(text: String) -> [String:AnyObject]? {
