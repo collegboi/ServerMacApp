@@ -8,23 +8,21 @@
 
 import Foundation
 
-struct Languages: JSONSerializable {
+struct LanguageVersion: JSONSerializable {
     
+    var objectID: MBOjectID?
+    var langaugeID: String!
     var version: String!
     var filePath:String!
     var name:String!
     var published:String!
     var date: String!
     
-    init() {
-        self.version = ""
-        self.filePath = ""
-        self.name = ""
-        self.published = ""
-        self.date = ""
-    }
+    init() {}
     
-    init(version:String, filePath:String, name:String, published:String, date:String) {
+    init(langaugeID: String, version:String, filePath:String, name:String, published:String, date:String, objectID: String = "") {
+        self.objectID = MBOjectID(objectID: objectID)
+        self.langaugeID = langaugeID
         self.version = version
         self.filePath = filePath
         self.name = name
@@ -33,6 +31,8 @@ struct Languages: JSONSerializable {
     }
     
     init(dict:[String:Any]) {
+        self.objectID = MBOjectID(objectID: dict.tryConvert(forKey: "_id"))
+        self.langaugeID = dict.tryConvert(forKey: "langaugeID")
         self.version = dict.tryConvert(forKey: "version")
         self.filePath = dict.tryConvert(forKey: "filePath")
         self.name = dict.tryConvert(forKey: "name")
@@ -42,4 +42,51 @@ struct Languages: JSONSerializable {
     init(dict: [String]) {}
     init(dict: String) {
     }
+}
+
+
+struct Languages: JSONSerializable {
+    
+    var objectID: MBOjectID?
+    var name:String!
+    var available: Int!
+    
+    init() {
+        self.objectID = MBOjectID(objectID: "")
+        self.name = ""
+        self.available = 0
+    }
+    
+    init(name:String, available:Int ) {
+        self.name = name
+        self.available = available
+    }
+    
+    init(dict:[String:Any]) {
+        self.objectID = MBOjectID(objectID: dict.tryConvert(forKey: "_id"))
+        self.name = dict.tryConvert(forKey: "name")
+        self.available = dict.tryConvert(forKey: "available")
+    }
+    init(dict: [String]) {}
+    init(dict: String) {
+    }
+}
+
+struct TranslationKeys: JSONSerializable {
+    
+    var name:String!
+    
+    init() {
+        self.name = ""
+    }
+    
+    init(name:String ) {
+        self.name = name
+    }
+    
+    init(dict:[String:Any]) {
+        self.name = dict.tryConvert(forKey: "name")
+    }
+    init(dict: [String]) {}
+    init(dict: String) {}
 }

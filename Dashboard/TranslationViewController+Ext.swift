@@ -16,7 +16,7 @@ extension TranslationViewController {
         
         let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
         
-        let apiEndpoint = "/translation/"
+        let apiEndpoint = "/api/JKHSDGHFKJGH454645GRRLKJF/translation/"
         let networkURL = url + apiEndpoint
         
         let request = NSMutableURLRequest(url: NSURL(string: networkURL)! as URL)
@@ -57,7 +57,7 @@ extension TranslationViewController {
         
         let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
         
-        let apiEndpoint = "/translation"
+        let apiEndpoint = "/api/JKHSDGHFKJGH454645GRRLKJF/translation"
         let networkURL = url + apiEndpoint + filePath
         
         guard let endpoint = URL(string: networkURL) else {

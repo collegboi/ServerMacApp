@@ -104,6 +104,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="163" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
+                                <connections>
+                                    <outlet property="menu" destination="7YL-73-iGD" id="EW8-oH-iGu"/>
+                                </connections>
                             </scrollView>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CqJ-70-UZ5">
                                 <rect key="frame" x="205" y="20" width="165" height="479"/>
@@ -171,6 +174,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="163" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
+                                <connections>
+                                    <outlet property="menu" destination="OWL-5D-Fsw" id="eKK-n8-imd"/>
+                                </connections>
                             </scrollView>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGC-tT-yTR">
                                 <rect key="frame" x="390" y="20" width="726" height="479"/>
@@ -325,29 +331,42 @@
                                     <action selector="publishLanguage:" target="EQj-HZ-V6N" id="VhT-CY-9ZX"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hrf-Dn-h3M">
+                                <rect key="frame" x="823" y="637" width="145" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="141" id="QW1-uL-EaA"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="English" id="fci-Lp-3uO">
+                                    <font key="font" size="18" name="AvenirNext-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="tGC-tT-yTR" secondAttribute="bottom" constant="20" id="0JZ-iU-oCG"/>
                             <constraint firstItem="tGC-tT-yTR" firstAttribute="leading" secondItem="Rpr-gJ-kR2" secondAttribute="leading" constant="390" id="2CN-gc-yyK"/>
                             <constraint firstAttribute="trailing" secondItem="tGC-tT-yTR" secondAttribute="trailing" constant="20" id="9Lp-4M-aWO"/>
+                            <constraint firstItem="GTb-Ga-Tcr" firstAttribute="leading" secondItem="Hrf-Dn-h3M" secondAttribute="trailing" constant="20" id="BGD-Tm-c7U"/>
                             <constraint firstItem="fA6-Bd-JoZ" firstAttribute="top" secondItem="uvU-An-gDW" secondAttribute="bottom" constant="20" id="Bbx-RO-TS6"/>
                             <constraint firstItem="tGC-tT-yTR" firstAttribute="top" secondItem="uvU-An-gDW" secondAttribute="bottom" constant="20" id="DNf-rs-mWv"/>
                             <constraint firstAttribute="trailing" secondItem="YcV-Pf-ZCU" secondAttribute="trailing" constant="20" id="EMH-vN-ulm"/>
                             <constraint firstItem="CqJ-70-UZ5" firstAttribute="top" secondItem="uvU-An-gDW" secondAttribute="bottom" constant="20" id="Ghn-eA-ulJ"/>
-                            <constraint firstItem="GTb-Ga-Tcr" firstAttribute="top" secondItem="Rpr-gJ-kR2" secondAttribute="top" constant="20" id="MTJ-y3-Bzw"/>
                             <constraint firstItem="uvU-An-gDW" firstAttribute="top" secondItem="YcV-Pf-ZCU" secondAttribute="bottom" constant="20" id="NJR-ov-jKp"/>
+                            <constraint firstItem="Hrf-Dn-h3M" firstAttribute="top" secondItem="Rpr-gJ-kR2" secondAttribute="top" constant="20" id="SAC-Qj-kkP"/>
                             <constraint firstItem="fA6-Bd-JoZ" firstAttribute="leading" secondItem="Rpr-gJ-kR2" secondAttribute="leading" constant="20" id="VSY-A8-mJ1"/>
                             <constraint firstItem="KBf-R7-CzZ" firstAttribute="top" secondItem="Rpr-gJ-kR2" secondAttribute="top" constant="43" id="Wjx-cF-1NK"/>
+                            <constraint firstItem="GTb-Ga-Tcr" firstAttribute="top" secondItem="Rpr-gJ-kR2" secondAttribute="top" constant="20" id="YO1-xb-W54"/>
                             <constraint firstItem="CqJ-70-UZ5" firstAttribute="leading" secondItem="fA6-Bd-JoZ" secondAttribute="trailing" constant="20" id="d8A-k1-WIn"/>
                             <constraint firstItem="kBG-wf-mJb" firstAttribute="top" secondItem="Rpr-gJ-kR2" secondAttribute="top" constant="20" id="fCv-Fe-awa"/>
                             <constraint firstItem="kBG-wf-mJb" firstAttribute="leading" secondItem="Rpr-gJ-kR2" secondAttribute="leading" constant="20" id="hsj-bB-hGO"/>
                             <constraint firstItem="KBf-R7-CzZ" firstAttribute="leading" secondItem="kBG-wf-mJb" secondAttribute="trailing" constant="41" id="htN-l8-hPZ"/>
+                            <constraint firstAttribute="trailing" secondItem="GTb-Ga-Tcr" secondAttribute="trailing" constant="20" id="iDJ-X8-m4D"/>
                             <constraint firstItem="tGC-tT-yTR" firstAttribute="top" secondItem="uvU-An-gDW" secondAttribute="bottom" constant="20" id="iam-hx-b4v"/>
                             <constraint firstItem="tGC-tT-yTR" firstAttribute="leading" secondItem="CqJ-70-UZ5" secondAttribute="trailing" constant="20" id="oko-Zn-d6B"/>
                             <constraint firstAttribute="trailing" secondItem="uvU-An-gDW" secondAttribute="trailing" constant="20" id="qfR-7q-aEm"/>
                             <constraint firstAttribute="bottom" secondItem="fA6-Bd-JoZ" secondAttribute="bottom" constant="20" id="sbX-wy-JFA"/>
                             <constraint firstItem="uvU-An-gDW" firstAttribute="top" secondItem="kBG-wf-mJb" secondAttribute="bottom" constant="20" id="tgt-ot-amb"/>
-                            <constraint firstAttribute="trailing" secondItem="GTb-Ga-Tcr" secondAttribute="trailing" constant="20" id="uXO-h2-lo4"/>
                             <constraint firstAttribute="bottom" secondItem="CqJ-70-UZ5" secondAttribute="bottom" constant="20" id="yjp-PW-V0B"/>
                             <constraint firstItem="CqJ-70-UZ5" firstAttribute="leading" secondItem="Rpr-gJ-kR2" secondAttribute="leading" constant="205" id="ykg-5F-WuQ"/>
                             <constraint firstItem="uvU-An-gDW" firstAttribute="leading" secondItem="Rpr-gJ-kR2" secondAttribute="leading" constant="20" id="zEB-wc-RL0"/>
@@ -355,6 +374,7 @@
                     </view>
                     <connections>
                         <outlet property="appVersions" destination="KMI-M2-M2K" id="kpY-Lm-sL0"/>
+                        <outlet property="currentLanguageLabel" destination="Hrf-Dn-h3M" id="aIu-V9-ZsI"/>
                         <outlet property="languageTableView" destination="rET-En-Igq" id="fcf-n9-aNn"/>
                         <outlet property="publishLanguage" destination="GTb-Ga-Tcr" id="ce7-l4-UHP"/>
                         <outlet property="translationKeysTableView" destination="lgv-64-a4A" id="pgy-50-OkI"/>
@@ -362,6 +382,26 @@
                     </connections>
                 </viewController>
                 <customObject id="8Wm-5G-M13" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <menu title="Language" id="7YL-73-iGD">
+                    <items>
+                        <menuItem title="Add Language" id="5Al-iT-8N5">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                    </items>
+                    <connections>
+                        <outlet property="delegate" destination="EQj-HZ-V6N" id="jhB-vB-RoC"/>
+                    </connections>
+                </menu>
+                <menu title="Key" id="OWL-5D-Fsw">
+                    <items>
+                        <menuItem title="Add key" id="8rP-VP-5A6">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                    </items>
+                    <connections>
+                        <outlet property="delegate" destination="EQj-HZ-V6N" id="4B8-js-jcI"/>
+                    </connections>
+                </menu>
             </objects>
             <point key="canvasLocation" x="1278" y="745"/>
         </scene>

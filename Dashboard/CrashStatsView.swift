@@ -56,6 +56,4 @@ import Charts
         self.lineChartView!.data = data
         
     }
-
-    
 }

@@ -12,7 +12,7 @@ typealias SelectionTranslationkey = (_ row: Int, _ key: String ) -> Void
 
 class TranslationKeysDelegate: NSObject {
     
-    var keys = [String:String]()
+    var keys = [TranslationKeys]()
     
     var tableView: NSTableView
     var objectSelectionBlock: SelectionTranslationkey?
@@ -24,7 +24,7 @@ class TranslationKeysDelegate: NSObject {
         self.tableView.delegate = self
     }
     
-    func reload( keys: [String:String] ) {
+    func reload( keys: [TranslationKeys] ) {
         self.keys = keys
         self.tableView.reloadData()
     }
@@ -42,17 +42,17 @@ extension TranslationKeysDelegate: NSTableViewDelegate {
         if selectedRow < 0 {
             return
         }
-        let (item,_) =  self.keys.getValueAtIndex(index: selectedRow)
+        let item =  self.keys[selectedRow]
         
-        objectSelectionBlock?(selectedRow, item)
+        objectSelectionBlock?(selectedRow, item.name)
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
-        let (item,_) = self.keys.getValueAtIndex(index: row)
+        let item = self.keys[row]
         
         if let cell = tableView.make(withIdentifier: "KeyCell", owner: nil) as? NSTableCellView {
-            cell.textField?.stringValue = item
+            cell.textField?.stringValue = item.name
             return cell
         }
         

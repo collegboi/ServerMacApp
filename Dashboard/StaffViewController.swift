@@ -10,7 +10,7 @@ import Cocoa
 
 class StaffViewController: NSViewController {
 
-    @IBOutlet weak var staffAnalyticsView: NSView!
+    @IBOutlet weak var staffAnalyticsView: StaffStatsView!
     @IBOutlet weak var staffTableView: NSTableView!
     
     fileprivate var staffViewDelegate: StaffViewDelegate!
@@ -20,6 +20,12 @@ class StaffViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.staffAnalyticsView.setBackgroundColor(NSColor.white)
+        let strings4 : [String] = ["Used", "Left"]
+        let double4 : [Double] = [90, 10]
+        self.staffAnalyticsView.setBarChart(dataPoints: strings4, values: double4, label: "Test")
+        self.staffAnalyticsView.updateChartWithData()
         
         self.staffViewDataSource = GenericDataSource(tableView: self.staffTableView)
         self.staffViewDelegate = StaffViewDelegate(tableView: self.staffTableView, selectionBlock: { (staff) in
