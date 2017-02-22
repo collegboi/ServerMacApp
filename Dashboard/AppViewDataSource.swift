@@ -32,6 +32,6 @@ extension AppViewDataSource: NSTableViewDataSource {
     
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return self.appCount - 1
+        return self.appCount
     }
 }

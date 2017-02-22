@@ -25,6 +25,17 @@
 		15174FEE1E5A0F4700539953 /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FED1E5A0F4700539953 /* RemoteConfig.swift */; };
 		15174FF01E5A149400539953 /* NowDAte.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FEF1E5A149400539953 /* NowDAte.swift */; };
 		15350BBF1E58A0A3008CF844 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 15350BBE1E58A0A3008CF844 /* config.json */; };
+		159509571E5CEC8900D636A8 /* iTunesResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159509561E5CEC8900D636A8 /* iTunesResults.swift */; };
+		159509591E5CECA200D636A8 /* iTunesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159509581E5CECA200D636A8 /* iTunesManager.swift */; };
+		1595095C1E5DA2B700D636A8 /* Staff.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1595095A1E5DA2B700D636A8 /* Staff.storyboard */; };
+		159509601E5DA3C800D636A8 /* StaffTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1595095F1E5DA3C800D636A8 /* StaffTableViewDelegate.swift */; };
+		159509641E5DA3EF00D636A8 /* StaffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159509631E5DA3EF00D636A8 /* StaffViewController.swift */; };
+		159509671E5DA51600D636A8 /* Staff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159509661E5DA51600D636A8 /* Staff.swift */; };
+		1595096A1E5DA78000D636A8 /* EditStaffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159509691E5DA78000D636A8 /* EditStaffView.swift */; };
+		1595096C1E5DBE1700D636A8 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1595096B1E5DBE1700D636A8 /* ResetPasswordViewController.swift */; };
+		159509771E5DF0F300D636A8 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159509761E5DF0F300D636A8 /* LogViewController.swift */; };
+		159509791E5DF23C00D636A8 /* GenericTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159509781E5DF23C00D636A8 /* GenericTableViewDelegate.swift */; };
+		1595097C1E5DF35900D636A8 /* Logs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1595097A1E5DF35900D636A8 /* Logs.storyboard */; };
 		B2088F371E42137F00458F58 /* RemoteConfig.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F361E42137F00458F58 /* RemoteConfig.storyboard */; };
 		B2088F3A1E4213AC00458F58 /* Status.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F381E4213AC00458F58 /* Status.storyboard */; };
 		B2088F3C1E4213C900458F58 /* SprintBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F3B1E4213C900458F58 /* SprintBoard.storyboard */; };
@@ -189,6 +200,17 @@
 		15174FED1E5A0F4700539953 /* RemoteConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteConfig.swift; sourceTree = "<group>"; };
 		15174FEF1E5A149400539953 /* NowDAte.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowDAte.swift; sourceTree = "<group>"; };
 		15350BBE1E58A0A3008CF844 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = config.json; path = ../config.json; sourceTree = "<group>"; };
+		159509561E5CEC8900D636A8 /* iTunesResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesResults.swift; sourceTree = "<group>"; };
+		159509581E5CECA200D636A8 /* iTunesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesManager.swift; sourceTree = "<group>"; };
+		1595095B1E5DA2B700D636A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Staff.storyboard; sourceTree = "<group>"; };
+		1595095F1E5DA3C800D636A8 /* StaffTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaffTableViewDelegate.swift; sourceTree = "<group>"; };
+		159509631E5DA3EF00D636A8 /* StaffViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaffViewController.swift; sourceTree = "<group>"; };
+		159509661E5DA51600D636A8 /* Staff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Staff.swift; sourceTree = "<group>"; };
+		159509691E5DA78000D636A8 /* EditStaffView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStaffView.swift; sourceTree = "<group>"; };
+		1595096B1E5DBE1700D636A8 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		159509761E5DF0F300D636A8 /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
+		159509781E5DF23C00D636A8 /* GenericTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericTableViewDelegate.swift; sourceTree = "<group>"; };
+		1595097B1E5DF35900D636A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Logs.storyboard; sourceTree = "<group>"; };
 		B2088F361E42137F00458F58 /* RemoteConfig.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RemoteConfig.storyboard; sourceTree = "<group>"; };
 		B2088F391E4213AC00458F58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Status.storyboard; sourceTree = "<group>"; };
 		B2088F3B1E4213C900458F58 /* SprintBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SprintBoard.storyboard; sourceTree = "<group>"; };
@@ -342,6 +364,7 @@
 		15174FDB1E59D60E00539953 /* New App View */ = {
 			isa = PBXGroup;
 			children = (
+				159509531E5CEC3B00D636A8 /* iTunes Connect */,
 				15174FDE1E59E33C00539953 /* Version View */,
 				15174FDC1E59D64700539953 /* EditAppViewController.swift */,
 				15174FE11E59E5E100539953 /* VersionViewDelegate.swift */,
@@ -391,9 +414,62 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		159509531E5CEC3B00D636A8 /* iTunes Connect */ = {
+			isa = PBXGroup;
+			children = (
+				159509561E5CEC8900D636A8 /* iTunesResults.swift */,
+				159509581E5CECA200D636A8 /* iTunesManager.swift */,
+			);
+			name = "iTunes Connect";
+			sourceTree = "<group>";
+		};
+		1595095D1E5DA3B000D636A8 /* Staff */ = {
+			isa = PBXGroup;
+			children = (
+				159509681E5DA76D00D636A8 /* EditStaffView */,
+				159509651E5DA50C00D636A8 /* Model */,
+				1595095E1E5DA3B500D636A8 /* Staff TableView */,
+				159509631E5DA3EF00D636A8 /* StaffViewController.swift */,
+			);
+			name = Staff;
+			sourceTree = "<group>";
+		};
+		1595095E1E5DA3B500D636A8 /* Staff TableView */ = {
+			isa = PBXGroup;
+			children = (
+				1595095F1E5DA3C800D636A8 /* StaffTableViewDelegate.swift */,
+			);
+			name = "Staff TableView";
+			sourceTree = "<group>";
+		};
+		159509651E5DA50C00D636A8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				159509661E5DA51600D636A8 /* Staff.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		159509681E5DA76D00D636A8 /* EditStaffView */ = {
+			isa = PBXGroup;
+			children = (
+				159509691E5DA78000D636A8 /* EditStaffView.swift */,
+			);
+			name = EditStaffView;
+			sourceTree = "<group>";
+		};
+		159509731E5DF0C100D636A8 /* Logs */ = {
+			isa = PBXGroup;
+			children = (
+				159509761E5DF0F300D636A8 /* LogViewController.swift */,
+			);
+			name = Logs;
+			sourceTree = "<group>";
+		};
 		B2088F311E42122C00458F58 /* StoryBoards */ = {
 			isa = PBXGroup;
 			children = (
+				1595095A1E5DA2B700D636A8 /* Staff.storyboard */,
 				B2D3BDCC1E463EB800273E9C /* Languages.storyboard */,
 				B2088F691E429D4F00458F58 /* Storage.storyboard */,
 				B253B2361E4A7D1700E86B9B /* Notifications.storyboard */,
@@ -407,6 +483,7 @@
 				B253B24A1E4AA42900E86B9B /* ABTesting.storyboard */,
 				B253B25D1E4B7D4100E86B9B /* Settings.storyboard */,
 				15174FC21E5904CE00539953 /* Backup.storyboard */,
+				1595097A1E5DF35900D636A8 /* Logs.storyboard */,
 			);
 			name = StoryBoards;
 			sourceTree = "<group>";
@@ -468,6 +545,7 @@
 			isa = PBXGroup;
 			children = (
 				B21021161E43B59400AC4C5D /* LoginViewController.swift */,
+				1595096B1E5DBE1700D636A8 /* ResetPasswordViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -562,6 +640,8 @@
 		B27D840A1E326BE5007ADB39 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				159509731E5DF0C100D636A8 /* Logs */,
+				1595095D1E5DA3B000D636A8 /* Staff */,
 				15174FC71E59097200539953 /* Backup */,
 				B253B2601E4B7F2700E86B9B /* Settings */,
 				B253B2451E4AA12100E86B9B /* A/B Testing */,
@@ -648,6 +728,7 @@
 			children = (
 				B27D84291E327C1F007ADB39 /* HTTPConnection.swift */,
 				B2D3BDDB1E464AAE00273E9C /* GenericDataSource.swift */,
+				159509781E5DF23C00D636A8 /* GenericTableViewDelegate.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -903,9 +984,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2088F511E422FCD00458F58 /* ViewCrash.storyboard in Resources */,
+				1595095C1E5DA2B700D636A8 /* Staff.storyboard in Resources */,
 				B2088F371E42137F00458F58 /* RemoteConfig.storyboard in Resources */,
 				B2088F3F1E4213EE00458F58 /* Issues.storyboard in Resources */,
 				B253B24C1E4AA42900E86B9B /* ABTesting.storyboard in Resources */,
+				1595097C1E5DF35900D636A8 /* Logs.storyboard in Resources */,
 				B2088F6B1E429D4F00458F58 /* Storage.storyboard in Resources */,
 				B2088F411E421A9600458F58 /* Crashes.storyboard in Resources */,
 				B27D84101E326BE5007ADB39 /* Assets.xcassets in Resources */,
@@ -964,11 +1047,15 @@
 				B253B23F1E4A89C200E86B9B /* Notifications.swift in Sources */,
 				B253B2491E4AA2C500E86B9B /* AnalyticsView.swift in Sources */,
 				B253B2641E4B8B4C00E86B9B /* Files.swift in Sources */,
+				1595096C1E5DBE1700D636A8 /* ResetPasswordViewController.swift in Sources */,
 				B27D84631E3545C0007ADB39 /* ServerViewController.swift in Sources */,
 				15174FDA1E59D45400539953 /* AppViewDataSource.swift in Sources */,
+				159509601E5DA3C800D636A8 /* StaffTableViewDelegate.swift in Sources */,
 				B2D4F2121E3C219B00106A97 /* IssueViewControlleer.swift in Sources */,
 				15174FE21E59E5E100539953 /* VersionViewDelegate.swift in Sources */,
+				1595096A1E5DA78000D636A8 /* EditStaffView.swift in Sources */,
 				B253B2471E4AA13800E86B9B /* ABTestingViewController.swift in Sources */,
+				159509641E5DA3EF00D636A8 /* StaffViewController.swift in Sources */,
 				B27D841C1E326D2B007ADB39 /* SideBarDelegate.swift in Sources */,
 				B27D842D1E3282E7007ADB39 /* Dictionary+Ext.swift in Sources */,
 				B27D84531E33DFBE007ADB39 /* SettingsViewDataSource.swift in Sources */,
@@ -1000,6 +1087,7 @@
 				B2D4F2281E3CF35C00106A97 /* EditIssueViewController.swift in Sources */,
 				15174FD61E59D0BE00539953 /* AppViewDelegate.swift in Sources */,
 				B2D4F22F1E3D229C00106A97 /* IssueComments.swift in Sources */,
+				159509591E5CECA200D636A8 /* iTunesManager.swift in Sources */,
 				B27D845B1E3515C6007ADB39 /* ColorPickerViewController.swift in Sources */,
 				15174FE01E59E35800539953 /* AppVersionViewController.swift in Sources */,
 				B2D4F2181E3C254400106A97 /* Issue.swift in Sources */,
@@ -1009,15 +1097,19 @@
 				B27D84511E33DFB0007ADB39 /* SettingsViewDelegate.swift in Sources */,
 				15174FCB1E590AE700539953 /* Backup.swift in Sources */,
 				B27D845D1E3517B3007ADB39 /* Float+Ext.swift in Sources */,
+				159509571E5CEC8900D636A8 /* iTunesResults.swift in Sources */,
 				15174FEE1E5A0F4700539953 /* RemoteConfig.swift in Sources */,
 				B2088F4F1E42270900458F58 /* String+Ext.swift in Sources */,
+				159509791E5DF23C00D636A8 /* GenericTableViewDelegate.swift in Sources */,
 				B27D842A1E327C1F007ADB39 /* HTTPConnection.swift in Sources */,
 				B2088F681E429C0F00458F58 /* StorageDetailDataSource.swift in Sources */,
 				B27D84361E32C0D7007ADB39 /* DetailViewDataSource.swift in Sources */,
 				B23BF84B1E510715005E7083 /* SystemStatus.swift in Sources */,
+				159509671E5DA51600D636A8 /* Staff.swift in Sources */,
 				15174FEB1E5A0D4900539953 /* AppVersionDelegate.swift in Sources */,
 				B2088F531E42323C00458F58 /* ViewCrashViewController.swift in Sources */,
 				B27D841E1E326D6B007ADB39 /* SideBarDataSource.swift in Sources */,
+				159509771E5DF0F300D636A8 /* LogViewController.swift in Sources */,
 				15174FD81E59D23200539953 /* TBApplication.swift in Sources */,
 				B27D84801E355813007ADB39 /* UserView.swift in Sources */,
 				B27D84681E3547D0007ADB39 /* GraphView.swift in Sources */,
@@ -1046,6 +1138,22 @@
 				15174FC31E5904CE00539953 /* Base */,
 			);
 			name = Backup.storyboard;
+			sourceTree = "<group>";
+		};
+		1595095A1E5DA2B700D636A8 /* Staff.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1595095B1E5DA2B700D636A8 /* Base */,
+			);
+			name = Staff.storyboard;
+			sourceTree = "<group>";
+		};
+		1595097A1E5DF35900D636A8 /* Logs.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1595097B1E5DF35900D636A8 /* Base */,
+			);
+			name = Logs.storyboard;
 			sourceTree = "<group>";
 		};
 		B2088F381E4213AC00458F58 /* Status.storyboard */ = {

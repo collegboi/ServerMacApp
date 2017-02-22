@@ -33,17 +33,23 @@ class EditListViewController: NSViewController {
     override func viewDidAppear() {
         self.keyTextField.stringValue = (rcProperty?.key)!
         self.keyTextField.isEditable = keyEditable
-        
+
         for item in self.list {
+            
             self.comboxBox.addItem(withObjectValue: item)
         }
         
         for color in self.colorList {
             let view = NSView()
+            
+            let myText = NSAttributedString(string: color.name)
+            myText.changeColor(NSColor.blue)
+            
             view.setBackgroundColor(NSColor(colorLiteralRed: Float(CGFloat(color.red/255)),
                                             green: Float(CGFloat(color.green/255)),
                                             blue: Float(CGFloat(color.blue/255)), alpha: 1))
-            self.comboxBox.addItem(withObjectValue: color.name)
+            
+            self.comboxBox.addItem(withObjectValue: myText)
         }
     }
     

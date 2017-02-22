@@ -8,6 +8,22 @@
 
 import Foundation
 
+enum HTTPResult: String {
+    case Success = "success"
+    case Error = "error"
+    
+    static func parse( result: String ) -> HTTPResult {
+        
+        switch result {
+        case "success":
+            return .Success
+        default:
+            return .Error
+        }
+        return .Success
+    }
+}
+
 public class HTTPSConnection {
     
     class func readPlistURL() -> String {
@@ -63,7 +79,7 @@ public class HTTPSConnection {
         
         let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
         
-        var key = UniqueSting.apID()
+        let key = UniqueSting.apID()
         
         let apiEndpoint = "/api/"+key
         
@@ -201,7 +217,7 @@ public class HTTPSConnection {
         
         let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
         
-        var key = UniqueSting.apID()
+        let key = UniqueSting.apID()
     
         let apiEndpoint = "/api/"+key
         
@@ -236,6 +252,25 @@ public class HTTPSConnection {
         task.resume()
     }
 
+    class func parseResult(data: Data) -> ( HTTPResult, String )  {
+        
+        do {
+            guard let responseDictionary = try JSONSerialization.jsonObject(with: data) as? [String:Any] else {
+                return (.Error , "parsing")
+            }
+        
+            let result: String =  responseDictionary.tryConvert(forKey: "result")
+            let message: String = responseDictionary.tryConvert(forKey: "message")
+            let resultHTTP: HTTPResult = HTTPResult.parse(result: result)
+            
+            return ( resultHTTP, message)
+            
+        } catch {
+            return ( .Error , "parsing")
+        }
+    }
+
+    
     
     class func httpGetRequest(params : Dictionary<String, AnyObject>, url : String, postCompleted : @escaping (_ succeeded: Bool, _ data: NSData) -> ()) {
         
@@ -247,6 +282,14 @@ public class HTTPSConnection {
         }
         var request = URLRequest(url: endpoint)
         request.httpMethod = "GET"
+        
+//        do {
+//            request.httpBody = try JSONSerialization.data(withJSONObject: params, options: [])
+//        } catch {
+//            //err = error
+//            request.httpBody = nil
+//        }
+        
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
        // }
@@ -287,7 +330,9 @@ public class HTTPSConnection {
         
         do {
             
-            let parsedData = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:Any]
+            guard let parsedData = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [String:Any] else {
+                return returnData
+            }
             
             returnData = Config(dict: parsedData)
             

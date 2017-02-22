@@ -52,11 +52,13 @@ class RemoteConigViewController: NSViewController {
     var parentRow: Int = -1
     var object: RCObject?
     var applicationID: String = ""
+    var appKey: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         appNameDelegate = AppNameDelegate(comboxBox: comboBoxApp, selectionBlock: { ( row, app) in
+            self.appKey = app.appKey
             self.applicationID = (app.objectID?.objectID)!
             self.getAllAppsVersions((app.objectID?.objectID)!)
         })
@@ -344,7 +346,7 @@ class RemoteConigViewController: NSViewController {
         // Correct url and username/password
         
         print("sendRawTimetable")
-        let networkURL = "/api/94a12bfc-223d-4f71-9336-fc4ac94f86d4/remote/" + version//"https://timothybarnard.org/Scrap/appDataRequest.php?type=config"
+        let networkURL = "/api/"+self.appKey+"/remote/" + version//"https://timothybarnard.org/Scrap/appDataRequest.php?type=config"
         let dic = [String: AnyObject]()
         HTTPSConnection.httpGetRequest(params: dic, url: networkURL) { (succeeded: Bool, data: NSData) -> () in
             // Move to the UI thread
@@ -354,7 +356,10 @@ class RemoteConigViewController: NSViewController {
                     print("Succeeded")
                     self.config = HTTPSConnection.parseJSONConfig(data: data)
                 
-                    self.reloadAllData()
+                    if self.config != nil  {
+                    
+                        self.reloadAllData()
+                    }
                     
                 } else {
                     print("Error")

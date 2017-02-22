@@ -744,6 +744,17 @@
                                     <action selector="loginButton:" target="lR4-Xq-Mkb" id="rb7-R5-oWG"/>
                                 </connections>
                             </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="1Ph-Cp-Ffw">
+                                <rect key="frame" x="471" y="18" width="115" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="9Bl-UV-hnw"/>
+                                    <constraint firstAttribute="width" constant="111" id="guG-4L-5Hn"/>
+                                </constraints>
+                                <buttonCell key="cell" type="check" title="Remeber me" bezelStyle="regularSquare" imagePosition="right" inset="2" id="C8c-OI-CcM">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Zra-za-l9A" firstAttribute="top" secondItem="raE-aI-QeS" secondAttribute="bottom" constant="10" symbolic="YES" id="4wH-7z-kGp"/>
@@ -751,10 +762,12 @@
                             <constraint firstAttribute="trailing" secondItem="uoq-dx-aKg" secondAttribute="trailing" constant="168" id="DJx-6O-Hc8"/>
                             <constraint firstItem="raE-aI-QeS" firstAttribute="leading" secondItem="Zra-za-l9A" secondAttribute="leading" id="EGY-Pf-jVI"/>
                             <constraint firstItem="uoq-dx-aKg" firstAttribute="top" secondItem="Tcq-xY-elf" secondAttribute="bottom" constant="19" id="EK1-8t-PHz"/>
+                            <constraint firstAttribute="trailing" secondItem="1Ph-Cp-Ffw" secondAttribute="trailing" constant="20" id="Gop-Ak-K7E"/>
                             <constraint firstItem="raE-aI-QeS" firstAttribute="top" secondItem="uoq-dx-aKg" secondAttribute="bottom" constant="10" symbolic="YES" id="LTa-cF-gRk"/>
                             <constraint firstItem="Tcq-xY-elf" firstAttribute="centerX" secondItem="raE-aI-QeS" secondAttribute="centerX" id="TeK-Hj-C0z"/>
                             <constraint firstItem="uoq-dx-aKg" firstAttribute="centerX" secondItem="Thi-U7-x17" secondAttribute="centerX" id="WRa-es-izB"/>
                             <constraint firstItem="Tcq-xY-elf" firstAttribute="centerX" secondItem="BDs-4v-B8W" secondAttribute="centerX" id="cBt-07-nB5"/>
+                            <constraint firstAttribute="bottom" secondItem="1Ph-Cp-Ffw" secondAttribute="bottom" constant="20" id="ghN-Ca-5Qg"/>
                             <constraint firstItem="Thi-U7-x17" firstAttribute="top" secondItem="Zra-za-l9A" secondAttribute="bottom" constant="8" symbolic="YES" id="lWr-E3-NER"/>
                             <constraint firstItem="raE-aI-QeS" firstAttribute="trailing" secondItem="Zra-za-l9A" secondAttribute="trailing" id="mC5-3e-QW2"/>
                             <constraint firstItem="Tcq-xY-elf" firstAttribute="top" secondItem="BDs-4v-B8W" secondAttribute="top" constant="27" id="nez-Ax-3Qk"/>
@@ -764,12 +777,143 @@
                     <connections>
                         <outlet property="ipAddress" destination="uoq-dx-aKg" id="jXA-Wt-x5L"/>
                         <outlet property="password" destination="Zra-za-l9A" id="ZRJ-2h-lkd"/>
+                        <outlet property="rememberMe" destination="1Ph-Cp-Ffw" id="6f7-T4-wch"/>
                         <outlet property="username" destination="raE-aI-QeS" id="rJq-Xu-CFy"/>
                     </connections>
                 </viewController>
                 <customObject id="mKq-CX-uWR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-897" y="943"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="zbb-cL-sxF">
+            <objects>
+                <windowController storyboardIdentifier="ResetPassword" id="hGj-oC-CCy" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="vFB-h4-i2Q">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="425" y="470" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1440"/>
+                    </window>
+                    <connections>
+                        <segue destination="y2R-sJ-7gK" kind="relationship" relationship="window.shadowedContentViewController" id="oi3-6b-NG2"/>
+                    </connections>
+                </windowController>
+                <customObject id="MyY-ki-kWL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-935" y="1369"/>
+        </scene>
+        <!--Reset Password View Controller-->
+        <scene sceneID="5He-n6-tPd">
+            <objects>
+                <viewController id="y2R-sJ-7gK" customClass="ResetPasswordViewController" customModule="Dashboard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="yzW-uW-OEv">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zce-xE-y26">
+                                <rect key="frame" x="190" y="150" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="LHw-Z7-Nzg"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="mEW-a4-Rie"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSActionTemplate" id="alm-Je-Fyj"/>
+                            </imageView>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ByU-G7-HiT">
+                                <rect key="frame" x="111" y="38" width="258" height="85"/>
+                                <subviews>
+                                    <secureTextField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eZ-Zw-rnq">
+                                        <rect key="frame" x="0.0" y="63" width="258" height="22"/>
+                                        <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" placeholderString="password" drawsBackground="YES" usesSingleLineMode="YES" id="XLE-AJ-MjE">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <allowedInputSourceLocales>
+                                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                            </allowedInputSourceLocales>
+                                        </secureTextFieldCell>
+                                    </secureTextField>
+                                    <secureTextField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g39-mi-gUh">
+                                        <rect key="frame" x="0.0" y="31" width="258" height="22"/>
+                                        <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" placeholderString="retype password" drawsBackground="YES" usesSingleLineMode="YES" id="0pv-ew-zhC">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <allowedInputSourceLocales>
+                                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                            </allowedInputSourceLocales>
+                                        </secureTextFieldCell>
+                                    </secureTextField>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7XA-H3-hKg">
+                                        <rect key="frame" x="0.0" y="0.0" width="258" height="21"/>
+                                        <subviews>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="r9V-GF-mAy">
+                                                <rect key="frame" x="-6" y="-7" width="137" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="125" id="f5a-EE-JkO"/>
+                                                </constraints>
+                                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iTq-oX-vHa">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="cancelButton:" target="y2R-sJ-7gK" id="kb2-rm-3nW"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RLK-Ag-pyx">
+                                                <rect key="frame" x="127" y="-7" width="137" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="125" id="X7g-9J-Eik"/>
+                                                </constraints>
+                                                <buttonCell key="cell" type="push" title="Change" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="veL-mn-ktO">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="resetPasswordButton:" target="y2R-sJ-7gK" id="z57-8y-Ur9"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Zce-xE-y26" firstAttribute="centerX" secondItem="yzW-uW-OEv" secondAttribute="centerX" id="Ln2-nL-zPD"/>
+                            <constraint firstAttribute="bottom" secondItem="ByU-G7-HiT" secondAttribute="bottom" constant="38" id="RXL-ee-EIe"/>
+                            <constraint firstItem="ByU-G7-HiT" firstAttribute="top" secondItem="Zce-xE-y26" secondAttribute="bottom" constant="27" id="y8a-Of-0Il"/>
+                            <constraint firstItem="g39-mi-gUh" firstAttribute="centerX" secondItem="yzW-uW-OEv" secondAttribute="centerX" id="z9a-LO-1zK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="password1TextField" destination="1eZ-Zw-rnq" id="CAi-as-r0l"/>
+                        <outlet property="password2TextField" destination="g39-mi-gUh" id="W6N-T5-6NU"/>
+                    </connections>
+                </viewController>
+                <customObject id="Ygh-Qa-FtA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-228" y="1344"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -1008,7 +1152,23 @@
                 <controllerPlaceholder storyboardIdentifier="Backup" storyboardName="Backup" referencedIdentifier="Backup" id="lAY-PF-7nI" sceneMemberID="viewController"/>
                 <customObject id="a1l-bV-l7i" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1300.5" y="820.5"/>
+            <point key="canvasLocation" x="696" y="972"/>
+        </scene>
+        <!--Staff-->
+        <scene sceneID="1ze-nj-3hX">
+            <objects>
+                <controllerPlaceholder storyboardIdentifier="Staff" storyboardName="Staff" referencedIdentifier="Staff" id="5nd-Xe-zPP" sceneMemberID="viewController"/>
+                <customObject id="3lQ-tf-JVZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="691" y="1025"/>
+        </scene>
+        <!--Logs-->
+        <scene sceneID="p6l-3F-EEq">
+            <objects>
+                <controllerPlaceholder storyboardIdentifier="Logs" storyboardName="Logs" referencedIdentifier="Logs" id="1hn-QS-LGA" sceneMemberID="viewController"/>
+                <customObject id="9Fu-ND-vH7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="687" y="1075"/>
         </scene>
     </scenes>
     <resources>

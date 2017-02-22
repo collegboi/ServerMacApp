@@ -60,8 +60,7 @@ class SideBarDataSource: NSObject {
         ]
         
         let accounts = [
-            Section.Item(item: "Stats"),
-            Section.Item(item: "Admin"),
+            Section.Item(item: "Staff"),
             Section.Item(item: "Users")
         ]
         

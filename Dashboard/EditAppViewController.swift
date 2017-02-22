@@ -11,10 +11,21 @@ import Cocoa
 class EditAppViewController: NSViewController, NSWindowDelegate {
 
     @IBOutlet weak var appViewLabel: NSTextField!
+    @IBOutlet weak var appIconImageView: NSImageView!
+    
+    @IBOutlet weak var itunesID: NSTextField!
     @IBOutlet weak var appName: NSTextField!
-    @IBOutlet weak var appKey: NSTextField!
-    @IBOutlet weak var appID: NSTextField!
+    
+    @IBOutlet weak var appDescTextVIew: NSTextView!
+    
     @IBOutlet weak var comboBoxAppType: NSComboBox!
+    
+    @IBOutlet weak var appID: NSTextField!
+    @IBOutlet weak var priceTextField: NSTextField!
+    @IBOutlet weak var ageRatingTextField: NSTextField!
+    @IBOutlet weak var genresTextField: NSTextField!
+    
+    @IBOutlet weak var appKey: NSTextField!
     @IBOutlet weak var databaseName: NSTextField!
     
     @IBOutlet weak var appVersionTableView: NSTableView!
@@ -23,6 +34,9 @@ class EditAppViewController: NSViewController, NSWindowDelegate {
     fileprivate var appVersionDataSource: AppViewDataSource!
     
     var application: TBApplication?
+    var itunesResult: Result?
+    
+    var iconURL: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +49,55 @@ class EditAppViewController: NSViewController, NSWindowDelegate {
         
     }
     
+    
+    @IBAction func iTunesConnectButton(_ sender: Any) {
+        
+        if self.itunesID.stringValue == "" {
+            return
+        }
+        
+        guard Int(itunesID.stringValue) != nil else { return }
+        
+        iTunesRequestManager.getSearchResults( itunesID.stringValue) {
+            (results, error) in
+            
+            let itunesResults = results.map{ return Result(dictionary: $0) }
+                
+                .enumerated()
+                .map( { index, element -> Result in
+                    element.rank = index + 1
+                    return element
+                })
+            
+            DispatchQueue.main.sync {
+                
+                guard let result = itunesResults.first else {return}
+                self.itunesResult = result
+            
+                self.appName.stringValue = result.trackName
+                self.appID.stringValue = result.bundleID
+                self.priceTextField.stringValue = result.price.asLocaleCurrency
+                self.ageRatingTextField.stringValue = result.trackContentRating
+                self.genresTextField.stringValue = result.primaryGenre
+                self.appDescTextVIew.string = result.itemDescription
+                self.iconURL = result.artworkURL
+                if let artURL = URL(string: result.artworkURL) {
+                    self.loadIcon(artURL)
+                }
+            }
+        }
+    }
+    
+    func loadIcon(_ artworkURL: URL ) {
+        
+        iTunesRequestManager.downloadImage(artworkURL, completionHandler: { (image, error) -> Void in
+            DispatchQueue.main.async(execute: {
+                self.appIconImageView.image = image
+            })
+        })
+    }
+    
+    
     @IBAction func createNewVersionButton(_ sender: Any) {
         
         let storyboard = NSStoryboard(name: "Settings", bundle: nil)
@@ -44,6 +107,8 @@ class EditAppViewController: NSViewController, NSWindowDelegate {
             
             let editAppVersionViewController = appWindow.contentViewController as! AppVersionViewController
             editAppVersionViewController.appplicationID = self.application?.objectID?.objectID
+            editAppVersionViewController.itunesResult = itunesResult
+            editAppVersionViewController.itunesID = self.itunesID.stringValue
             
             let application = NSApplication.shared()
             application.runModal(for: appWindow)
@@ -61,6 +126,8 @@ class EditAppViewController: NSViewController, NSWindowDelegate {
             let editAppVersionViewController = appWindow.contentViewController as! AppVersionViewController
             editAppVersionViewController.appplicationID = self.application?.objectID?.objectID
             editAppVersionViewController.appVersion = appVersion
+            editAppVersionViewController.itunesID = self.itunesID.stringValue
+            editAppVersionViewController.itunesResult = itunesResult
             
             let application = NSApplication.shared()
             application.runModal(for: appWindow)
@@ -80,14 +147,27 @@ class EditAppViewController: NSViewController, NSWindowDelegate {
             self.appViewLabel.stringValue = "New Application"
             self.appKey.stringValue = UniqueSting.myNewUUID()
         } else {
+            
             self.getVersionsData(self.application!.objectID!.objectID)
             self.appViewLabel.stringValue = "Edit Application"
+            self.itunesID.stringValue = self.application!.itunesAppID
             
             self.appName.stringValue = self.application!.name
+            self.appDescTextVIew.string = self.application!.appDescription
+            self.priceTextField.stringValue = self.application!.appPrice
+            self.ageRatingTextField.stringValue = self.application!.appRating
+            self.genresTextField.stringValue = self.application!.appPrimaryGenre
+            
             self.databaseName.stringValue = self.application!.databaseName
             self.appID.stringValue = self.application!.apID
             self.appKey.stringValue = self.application!.appKey
             self.comboBoxAppType.stringValue = self.application!.appType.rawValue
+            
+            self.iconURL = self.application?.itunesAppIconURL
+            
+            if let artURL = URL(string: (self.application?.itunesAppIconURL)! ) {
+                self.loadIcon(artURL)
+            }
             
         }
     }
@@ -119,7 +199,13 @@ class EditAppViewController: NSViewController, NSWindowDelegate {
                                         databaseName: self.databaseName.stringValue,
                                         apID: self.appID.stringValue,
                                         appKey: self.appKey.stringValue,
-                                        appType: self.comboBoxAppType.stringValue)
+                                        appType: self.comboBoxAppType.stringValue,
+                                        itunesAppID: self.itunesID.stringValue,
+                                        itunesAppIconURL: self.iconURL,
+                                        appPrice: self.priceTextField.stringValue,
+                                        appRating: self.ageRatingTextField.stringValue,
+                                        appDescription: self.appDescTextVIew.string ?? "",
+                                        appPrimaryGenre: self.genresTextField.stringValue)
         } else {
             
             self.application?.name = self.appName.stringValue
@@ -127,6 +213,15 @@ class EditAppViewController: NSViewController, NSWindowDelegate {
             self.application?.apID = self.appID.stringValue
             self.application?.appKey = self.appKey.stringValue
             self.application?.setApptype( self.comboBoxAppType.stringValue )
+            self.application?.itunesAppID = self.itunesID.stringValue
+            
+            self.application?.appDescription = self.appDescTextVIew.string
+            self.application?.appPrice = self.priceTextField.stringValue
+            self.application?.appRating = self.ageRatingTextField.stringValue
+            self.application?.appPrimaryGenre = self.genresTextField.stringValue
+            self.application?.itunesAppIconURL = self.iconURL
+            
+            
         }
         
         application?.sendInBackground((self.application?.objectID?.objectID)!, postCompleted: { (sent, data) in

@@ -13,6 +13,7 @@ class LoginViewController: NSViewController {
     @IBOutlet weak var ipAddress: NSTextField!
     @IBOutlet weak var username: NSTextField!
     @IBOutlet weak var password: NSSecureTextField!
+    @IBOutlet weak var rememberMe: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,8 @@ class LoginViewController: NSViewController {
         
         UserDefaults.standard.set(self.ipAddress.stringValue, forKey: "URL")
         
+        //self.loadResetPasswordView()
+        
         if UserDefaults.standard.bool(forKey: "login") {
             self.view.window?.close()
             self.loadMainView()
@@ -54,40 +57,71 @@ class LoginViewController: NSViewController {
         }
     }
     
-    func tryLogin(_ username: String, password: String ) {
-    
+    func loadResetPasswordView() {
         
-        HTTPSConnection.httpGetRequest(params: ["username": username as AnyObject, "password": password as AnyObject], url: "/serverlogin") { ( completed, data) in
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        let mainWindowController = storyboard.instantiateController(withIdentifier: "ResetPassword") as! NSWindowController
+        
+        if let mainWindow = mainWindowController.window{
+            
+            let resetPasswordVview = mainWindow.contentViewController as! ResetPasswordViewController
+            resetPasswordVview.username = self.username.stringValue
+            
+            let application1 = NSApplication.shared()
+            application1.runModal(for: mainWindow)
+        }
+    }
+
+    
+    func tryLogin(_ username: String, password: String ) {
+        
+        
+        let staff = Staff(username: self.username.stringValue, password: self.password.stringValue)
+       
+        staff.login { (completed, result, message) in
             
             DispatchQueue.main.async {
                 
                 if completed {
                     
-                    do {
+                    if result == .Success {
                         
-                        //let responseDictionary = try JSONSerialization.jsonObject(with: data as Data)
-                        //print("success == \(responseDictionary)")
+                        if message == "1" {
+                            self.loadResetPasswordView()
+                        } else {
+                            
+                            UserDefaults.standard.set(self.ipAddress.stringValue, forKey: "URL")
+                            
+                            UserDefaults.standard.set(self.username.stringValue, forKey: "username")
+                            
+                            if self.rememberMe.state == 1 {
+                            
+                                UserDefaults.standard.set(true, forKey: "login")
                         
-                        UserDefaults.standard.set(true, forKey: "login")
+                            }
+                            self.view.window?.close()
+                            
+                            self.loadMainView()
+                        }
+                    } else {
                         
-                        UserDefaults.standard.set(self.ipAddress.stringValue, forKey: "URL")
-                        
-                        UserDefaults.standard.set(self.username.stringValue, forKey: "username")
-                        
-                        self.view.window?.close()
-                        
-                        self.loadMainView()
-
-
-                    } catch let error {
-                        print( error)
+                        self.dialogOKCancel(message: "Error", text: "Your credentials are incorrect")
                     }
+                    
                 } else {
                     print("error")
                 }
             }
-            
         }
-        
+    }
+    
+    @discardableResult
+    func dialogOKCancel(message: String, text: String) -> Bool {
+        let myPopup: NSAlert = NSAlert()
+        myPopup.messageText = message
+        myPopup.informativeText = text
+        myPopup.alertStyle = NSAlertStyle.warning
+        myPopup.addButton(withTitle: "OK")
+        return myPopup.runModal() == NSAlertFirstButtonReturn
     }
 }

@@ -69,14 +69,24 @@ extension Dictionary {
     
     func tryConvert(forKey key:Key, _ defaultVal :Int = 0 ) -> Int {
         
-        guard let test = self[key] as? String else {
-            return defaultVal
-        }
-        guard let integerVal =  Int(test) else {
-            return defaultVal
+        var value = defaultVal
+        
+        if let int = self[key] as? Int {
+            value =  int
+        
+        } else {
+        
+            guard let test = self[key] as? String else {
+                return defaultVal
+            }
+            guard let integerVal =  Int(test) else {
+                return defaultVal
+            }
+            
+            value = integerVal
         }
         
-        return integerVal
+        return value
     }
     
     func tryConvert(forKey key:Key, _ defaultVal :Float = 0 ) -> Float {
