@@ -18,17 +18,17 @@ struct TBApplication: JSONSerializable {
     
     var name: String!
     var databaseName: String!
-    var apID: String!
+    var apID: String = ""
     var itunesAppID: String!
-    var itunesAppIconURL: String!
+    var itunesAppIconURL: String = ""
     var appKey: String!
-    var appPrice: String!
-    var appRating: String!
-    var appDescription: String!
-    var appPrimaryGenre: String!
+    var appPrice: String = ""
+    var appRating: String = ""
+    var appDescription: String = ""
+    var appPrimaryGenre: String = ""
     var appType: AppType!
     var objectID: MBOjectID?
-    var notificationSet: Int!
+    var notificationSet: Int = 0
     var notificationPath: String = ""
     var keyID: String = ""
     var teamID: String = ""

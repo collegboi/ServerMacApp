@@ -45,6 +45,7 @@ class EditAppViewController: NSViewController, NSWindowDelegate {
         super.viewDidLoad()
         self.notifcationCheck.isEnabled = false
         self.notifcationCheck.state = 0
+        self.iconURL = ""
     }
     
     func windowShouldClose(_ sender: Any) -> Bool {
@@ -226,7 +227,7 @@ class EditAppViewController: NSViewController, NSWindowDelegate {
             self.application?.notificationSet = self.notifcationCheck.state
             self.application?.itunesAppID = self.itunesID.stringValue
             
-            self.application?.appDescription = self.appDescTextVIew.string
+            self.application?.appDescription = self.appDescTextVIew.string!
             self.application?.appPrice = self.priceTextField.stringValue
             self.application?.appRating = self.ageRatingTextField.stringValue
             self.application?.appPrimaryGenre = self.genresTextField.stringValue

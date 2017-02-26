@@ -169,7 +169,7 @@ class StorageViewController: NSViewController {
                 if (succeeded) {
                     self.allRecords = data!
                     print("success")
-                    self.totalRecords.stringValue = "\(self.allRecords?.row.count)"
+                    self.totalRecords.stringValue = "\(self.allRecords?.row.count ?? 0)"
                     self.tableName.stringValue = tableName
                     self.reloadDocuments()
                 } else {
