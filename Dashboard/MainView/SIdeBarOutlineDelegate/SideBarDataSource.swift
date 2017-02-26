@@ -8,14 +8,14 @@
 
 import Cocoa
 
-class Section {
-    
-    class Item {
-        let volume: String
-        init(item: String) {
-            self.volume = item
-        }
+class Item {
+    let volume: String
+    init(item: String) {
+        self.volume = item
     }
+}
+
+class Section {
     
     let name: String
     let items: [Item]
@@ -37,31 +37,42 @@ class SideBarDataSource: NSObject {
         self.outlineView.dataSource = self
     }
     
+    func serviceList(_ row: Int ) -> String {
+        let serviceLists = ["Storage", "Analytics", "Languages", "Notifications", "Remote Config", "AB Testing",
+                            "Backup","Crashes", "New Service"]
+        
+        return serviceLists[row]
+    }
+    
     func reload() {
+        
+        let servicePerms = UserDefaults.standard.string(forKey: "services") ?? ""
+        
+        let servicesPerms = servicePerms.components(separatedBy: ",")
+        
+        var services = [Item]()
+
+        for (index, aService ) in servicesPerms.enumerated() {
+            
+            let serviceIndex: Int = Int(aService) ?? 0
+            
+            if serviceIndex == 1 {
+                services.append(Item(item: serviceList(index)))
+            }
+        }
+
         
         //let emptyArr = [Any]()
         
-        
-        let services = [
-            Section.Item(item: "Storage"),
-            Section.Item(item: "Analytics"),
-            Section.Item(item: "Languages"),
-            Section.Item(item: "Notifications"),
-            Section.Item(item: "Remote Config"),
-            Section.Item(item: "AB Testing"),
-            Section.Item(item: "Backup"),
-            Section.Item(item: "Crashes"),
-            Section.Item(item: "New Service")]
-        
         let server = [
-            Section.Item(item: "Status"),
-            Section.Item(item: "Settings"),
-            Section.Item(item: "Logs")
+            Item(item: "Status"),
+            Item(item: "Settings"),
+            Item(item: "Logs")
         ]
         
         let accounts = [
-            Section.Item(item: "Staff"),
-            Section.Item(item: "Users")
+            Item(item: "Staff"),
+            Item(item: "Users")
         ]
         
 //        let langs = [
@@ -70,9 +81,9 @@ class SideBarDataSource: NSObject {
 //            Section.Item(item: "Russian")]
         
         let tracker = [
-            Section.Item(item: "Sprint Board"),
-            Section.Item(item: "Issues"),
-            Section.Item(item: "Charts")]
+            Item(item: "Sprint Board"),
+            Item(item: "Issues"),
+            Item(item: "Charts")]
         
         sections = [
             Section(name: "Server", volumes: server),

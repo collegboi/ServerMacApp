@@ -93,10 +93,11 @@ extension NotificationViewController: ReturnDelegate {
     
     func sendBackData( data: Any ) {
         
-        if let newNotification = data as? TBNotification {
-            self.allNotifications.append(newNotification)
-            self.reloadTable()
-        }
+        self.getAllNotifications()
+//        if let newNotification = data as? TBNotification {
+//            self.allNotifications.append(newNotification)
+//            self.reloadTable()
+//        }
     }
     
 }

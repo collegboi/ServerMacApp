@@ -9,10 +9,15 @@
 import Cocoa
 
 class SettingsViewController: NSViewController {
-
-    @IBOutlet weak var keyFilePathLabel: NSTextField!
     
-    @IBOutlet weak var appIDTextField: NSTextField!
+    ///Configuration Settings
+    
+    @IBOutlet weak var dbUsernameTextField: NSTextField!
+    @IBOutlet weak var dbPasswordTextField: NSTextField!
+    @IBOutlet weak var secretKeyTextField: NSTextField!
+    
+    ///Notifications Settings
+    @IBOutlet weak var keyFilePathLabel: NSTextField!
     @IBOutlet weak var teamIDTextField: NSTextField!
     @IBOutlet weak var keyIDTextField: NSTextField!
     
@@ -21,7 +26,7 @@ class SettingsViewController: NSViewController {
     
     fileprivate var appViewDelegate: AppViewDelegate!
     fileprivate var appViewDataSource: AppViewDataSource!
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +35,36 @@ class SettingsViewController: NSViewController {
         appViewDelegate = AppViewDelegate(tableView: appTableView) { app in
             self.showAppView(app)
         }
-        
+        self.getConfigSettings()
         self.getFileNames()
         self.getAllApplications()
+    }
+    
+    
+    func getConfigSettings () {
+        
+        let configSettings = ConfigSettings(secretServerkey: "", dbUsername: "", dbPassword: "")
+        
+        configSettings.getConfigSettings { (got ) in
+            DispatchQueue.main.async {
+                if got {
+                    
+                    if configSettings.secretServerKey == ""  {
+                        self.secretKeyTextField.stringValue = UniqueSting.myNewUUID()
+                    } else {
+                        self.secretKeyTextField.stringValue = configSettings.secretServerKey
+                    }
+
+                    self.dbUsernameTextField.stringValue = configSettings.dbUsername
+                    self.dbPasswordTextField.stringValue = configSettings.dbPassword
+                    
+                    
+                } else {
+                    self.secretKeyTextField.stringValue = UniqueSting.myNewUUID()
+                }
+            }
+        }
+        
     }
     
     func getAllApplications() {
@@ -69,7 +101,6 @@ class SettingsViewController: NSViewController {
                     
                     if files.count > 0 {
                         self.keyFilePathLabel.stringValue = files[0].path
-                        self.appIDTextField.stringValue = files[0].appID
                         self.teamIDTextField.stringValue = files[0].teamID
                         self.keyIDTextField.stringValue = files[0].keyID
                     }
@@ -78,15 +109,52 @@ class SettingsViewController: NSViewController {
         }
     }
     
+    @IBAction func sendConfigSettings(_ sender: Any) {
+        
+        let configSettings = ConfigSettings(secretServerkey: self.secretKeyTextField.stringValue, dbUsername: self.dbUsernameTextField.stringValue, dbPassword: self.dbPasswordTextField.stringValue)
+        
+        configSettings.sendConfigSettings { (sent, message) in
+            
+            DispatchQueue.main.async {
+                if sent {
+                    print(message)
+                }
+            }
+        }
+        
+    }
+    
+    
     @IBAction func createNewApp(_ sender: Any) {
         let storyboard = NSStoryboard(name: "Settings", bundle: nil)
         let appWindowController = storyboard.instantiateController(withIdentifier: "ViewApp") as! NSWindowController
         
         if let appWindow = appWindowController.window {
             let application = NSApplication.shared()
+            
+            let editAppViewController = appWindow.contentViewController as! EditAppViewController
+            
+            let name = "APNSAuthenKey_" + self.keyIDTextField.stringValue + ".p8"
+            
+            let notificationSetting = NotificationSetting(name: name, path: "Notifications/" + name,
+                                                         keyID: self.keyIDTextField.stringValue,
+                                                         teamID: self.teamIDTextField.stringValue)
+            
+            editAppViewController.notificationSetting = notificationSetting
+            
+            let bookCheck = self.checkNotificaitonSetting()
+            
+            editAppViewController.notificationSet = bookCheck
+            
             application.runModal(for: appWindow)
         }
 
+    }
+    
+    func checkNotificaitonSetting() -> Bool {
+        
+        return (( self.keyFilePathLabel.stringValue != "" ) && ( self.keyIDTextField.stringValue != "") && (self.teamIDTextField.stringValue != ""))
+        
     }
     
     func showAppView(_ application: TBApplication ) {
@@ -99,6 +167,17 @@ class SettingsViewController: NSViewController {
             
             let editAppViewController = appWindow.contentViewController as! EditAppViewController
             editAppViewController.application = application
+            
+            let name = "APNSAuthenKey_" + self.keyIDTextField.stringValue + ".p8"
+            
+            let notificationSetting = NotificationSetting(name: name, path: "Notifications/" + name,
+                                                         keyID: self.keyIDTextField.stringValue,
+                                                         teamID: self.teamIDTextField.stringValue)
+            
+            editAppViewController.notificationSetting = notificationSetting
+            
+            let bookCheck = self.checkNotificaitonSetting()
+            editAppViewController.notificationSet = bookCheck
             
             let application = NSApplication.shared()
             application.runModal(for: appWindow)
@@ -153,7 +232,6 @@ class SettingsViewController: NSViewController {
         
         let notifcationSetting = NotificationSetting(name: name, path: "Notifications/" + name,
                                                      keyID: self.keyIDTextField.stringValue,
-                                                     appID: self.appIDTextField.stringValue,
                                                      teamID: self.teamIDTextField.stringValue)
         
         

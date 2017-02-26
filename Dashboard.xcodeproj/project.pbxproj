@@ -40,6 +40,7 @@
 		159509821E5E3DD300D636A8 /* AlertTextField.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 159509801E5E3DD300D636A8 /* AlertTextField.storyboard */; };
 		159509841E5E3E0900D636A8 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159509831E5E3E0900D636A8 /* TextViewController.swift */; };
 		159509871E5E468900D636A8 /* TextKeyValueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159509861E5E468900D636A8 /* TextKeyValueController.swift */; };
+		15FAA3D01E61DFF000AAB1C6 /* ConfigSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FAA3CF1E61DFF000AAB1C6 /* ConfigSettings.swift */; };
 		B2088F371E42137F00458F58 /* RemoteConfig.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F361E42137F00458F58 /* RemoteConfig.storyboard */; };
 		B2088F3A1E4213AC00458F58 /* Status.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F381E4213AC00458F58 /* Status.storyboard */; };
 		B2088F3C1E4213C900458F58 /* SprintBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F3B1E4213C900458F58 /* SprintBoard.storyboard */; };
@@ -113,8 +114,8 @@
 		B27D84681E3547D0007ADB39 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D84671E3547D0007ADB39 /* GraphView.swift */; };
 		B27D846A1E354800007ADB39 /* NSColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D84691E354800007ADB39 /* NSColor+Ext.swift */; };
 		B27D846C1E354827007ADB39 /* NSFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D846B1E354827007ADB39 /* NSFont+Ext.swift */; };
-		B27D847A1E355791007ADB39 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = B27D84751E35575A007ADB39 /* Charts.framework */; };
-		B27D847B1E355791007ADB39 /* ReferenceProxy in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B27D84751E35575A007ADB39 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B27D847A1E355791007ADB39 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B27D84751E35575A007ADB39 /* Charts.framework */; };
+		B27D847B1E355791007ADB39 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B27D84751E35575A007ADB39 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B27D84801E355813007ADB39 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D847F1E355813007ADB39 /* UserView.swift */; };
 		B29380131E46932200F00003 /* TranslationViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29380121E46932200F00003 /* TranslationViewController+Ext.swift */; };
 		B2D3BDCE1E463EB800273E9C /* Languages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D3BDCC1E463EB800273E9C /* Languages.storyboard */; };
@@ -178,7 +179,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B27D847B1E355791007ADB39 /* ReferenceProxy in Embed Frameworks */,
+				B27D847B1E355791007ADB39 /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,7 +204,7 @@
 		15174FEA1E5A0D4900539953 /* AppVersionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionDelegate.swift; sourceTree = "<group>"; };
 		15174FED1E5A0F4700539953 /* RemoteConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteConfig.swift; sourceTree = "<group>"; };
 		15174FEF1E5A149400539953 /* NowDAte.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowDAte.swift; sourceTree = "<group>"; };
-		15350BBE1E58A0A3008CF844 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = config.json; path = config.json; sourceTree = "<group>"; };
+		15350BBE1E58A0A3008CF844 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		159509561E5CEC8900D636A8 /* iTunesResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesResults.swift; sourceTree = "<group>"; };
 		159509581E5CECA200D636A8 /* iTunesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesManager.swift; sourceTree = "<group>"; };
 		1595095B1E5DA2B700D636A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Staff.storyboard; sourceTree = "<group>"; };
@@ -219,6 +220,7 @@
 		159509811E5E3DD300D636A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AlertTextField.storyboard; sourceTree = "<group>"; };
 		159509831E5E3E0900D636A8 /* TextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		159509861E5E468900D636A8 /* TextKeyValueController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextKeyValueController.swift; sourceTree = "<group>"; };
+		15FAA3CF1E61DFF000AAB1C6 /* ConfigSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigSettings.swift; sourceTree = "<group>"; };
 		B2088F361E42137F00458F58 /* RemoteConfig.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RemoteConfig.storyboard; sourceTree = "<group>"; };
 		B2088F391E4213AC00458F58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Status.storyboard; sourceTree = "<group>"; };
 		B2088F3B1E4213C900458F58 /* SprintBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SprintBoard.storyboard; sourceTree = "<group>"; };
@@ -301,7 +303,7 @@
 		B2D3BDD21E46433D00273E9C /* TranslationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationViewController.swift; sourceTree = "<group>"; };
 		B2D3BDD61E46459800273E9C /* Languages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		B2D3BDD91E4649B200273E9C /* LanguagesDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguagesDelegate.swift; sourceTree = "<group>"; };
-		B2D3BDDB1E464AAE00273E9C /* GenericDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenericDataSource.swift; path = GenericDataSource.swift; sourceTree = "<group>"; };
+		B2D3BDDB1E464AAE00273E9C /* GenericDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericDataSource.swift; sourceTree = "<group>"; };
 		B2D3BDDE1E46502D00273E9C /* TranslationKeysDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationKeysDelegate.swift; sourceTree = "<group>"; };
 		B2D3BDE11E4650F400273E9C /* TranslationViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationViewDelegate.swift; sourceTree = "<group>"; };
 		B2D3BDEE1E466C7200273E9C /* PublishLanguage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishLanguage.swift; sourceTree = "<group>"; };
@@ -326,7 +328,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B27D847A1E355791007ADB39 /* ReferenceProxy in Frameworks */,
+				B27D847A1E355791007ADB39 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +342,6 @@
 				15174FCA1E590AE700539953 /* Backup.swift */,
 				15174FC81E59098A00539953 /* BackupViewController.swift */,
 			);
-			name = Backup;
 			path = Backup;
 			sourceTree = "<group>";
 		};
@@ -350,7 +351,6 @@
 				15174FCD1E590EBD00539953 /* BackupDataSource.swift */,
 				15174FCF1E590FB000539953 /* BackupDelegate.swift */,
 			);
-			name = OutlineView;
 			path = OutlineView;
 			sourceTree = "<group>";
 		};
@@ -359,7 +359,6 @@
 			children = (
 				15174FD21E59CA7600539953 /* DatabaseViewDelegate.swift */,
 			);
-			name = Database;
 			path = Database;
 			sourceTree = "<group>";
 		};
@@ -369,7 +368,6 @@
 				15174FD91E59D45400539953 /* AppViewDataSource.swift */,
 				15174FD51E59D0BE00539953 /* AppViewDelegate.swift */,
 			);
-			name = "App TableView";
 			path = "App TableView";
 			sourceTree = "<group>";
 		};
@@ -381,7 +379,6 @@
 				15174FDC1E59D64700539953 /* EditAppViewController.swift */,
 				15174FE11E59E5E100539953 /* VersionViewDelegate.swift */,
 			);
-			name = "New App View";
 			path = "New App View";
 			sourceTree = "<group>";
 		};
@@ -390,7 +387,6 @@
 			children = (
 				15174FDF1E59E35800539953 /* AppVersionViewController.swift */,
 			);
-			name = "Version View";
 			path = "Version View";
 			sourceTree = "<group>";
 		};
@@ -400,7 +396,6 @@
 				15174FE41E5A00D900539953 /* App Name */,
 				15174FE91E5A0D3B00539953 /* App Version */,
 			);
-			name = ComboxBox;
 			path = ComboxBox;
 			sourceTree = "<group>";
 		};
@@ -410,7 +405,6 @@
 				15174FE71E5A019900539953 /* AppNameDataSource.swift */,
 				15174FE51E5A00EA00539953 /* AppNameDelegate.swift */,
 			);
-			name = "App Name";
 			path = "App Name";
 			sourceTree = "<group>";
 		};
@@ -419,7 +413,6 @@
 			children = (
 				15174FEA1E5A0D4900539953 /* AppVersionDelegate.swift */,
 			);
-			name = "App Version";
 			path = "App Version";
 			sourceTree = "<group>";
 		};
@@ -428,7 +421,6 @@
 			children = (
 				15174FED1E5A0F4700539953 /* RemoteConfig.swift */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
@@ -438,7 +430,6 @@
 				159509581E5CECA200D636A8 /* iTunesManager.swift */,
 				159509561E5CEC8900D636A8 /* iTunesResults.swift */,
 			);
-			name = "iTunes Connect";
 			path = "iTunes Connect";
 			sourceTree = "<group>";
 		};
@@ -451,7 +442,6 @@
 				1595097D1E5E289D00D636A8 /* StaffStatsView.swift */,
 				159509631E5DA3EF00D636A8 /* StaffViewController.swift */,
 			);
-			name = Staff;
 			path = Staff;
 			sourceTree = "<group>";
 		};
@@ -460,7 +450,6 @@
 			children = (
 				1595095F1E5DA3C800D636A8 /* StaffTableViewDelegate.swift */,
 			);
-			name = "Staff TableView";
 			path = "Staff TableView";
 			sourceTree = "<group>";
 		};
@@ -469,7 +458,6 @@
 			children = (
 				159509661E5DA51600D636A8 /* Staff.swift */,
 			);
-			name = Model;
 			path = Model;
 			sourceTree = "<group>";
 		};
@@ -478,7 +466,6 @@
 			children = (
 				159509691E5DA78000D636A8 /* EditStaffView.swift */,
 			);
-			name = EditStaffView;
 			path = EditStaffView;
 			sourceTree = "<group>";
 		};
@@ -487,7 +474,6 @@
 			children = (
 				159509761E5DF0F300D636A8 /* LogViewController.swift */,
 			);
-			name = Logs;
 			path = Logs;
 			sourceTree = "<group>";
 		};
@@ -495,7 +481,6 @@
 			isa = PBXGroup;
 			children = (
 			);
-			name = Views;
 			path = Views;
 			sourceTree = "<group>";
 		};
@@ -505,7 +490,6 @@
 				159509861E5E468900D636A8 /* TextKeyValueController.swift */,
 				159509831E5E3E0900D636A8 /* TextViewController.swift */,
 			);
-			name = TextView;
 			path = TextView;
 			sourceTree = "<group>";
 		};
@@ -529,7 +513,6 @@
 				B2088F691E429D4F00458F58 /* Storage.storyboard */,
 				B2088F501E422FCD00458F58 /* ViewCrash.storyboard */,
 			);
-			name = StoryBoards;
 			path = StoryBoards;
 			sourceTree = "<group>";
 		};
@@ -542,7 +525,6 @@
 				B2088F4C1E421ED100458F58 /* Exception.swift */,
 				B2088F521E42323C00458F58 /* ViewCrashViewController.swift */,
 			);
-			name = "Crashes-Bugs";
 			path = "Crashes-Bugs";
 			sourceTree = "<group>";
 		};
@@ -552,7 +534,6 @@
 				B2088F4A1E421DB400458F58 /* CrashViewDataSource.swift */,
 				B2088F481E421DA300458F58 /* CrashViewDelegate.swift */,
 			);
-			name = TableView;
 			path = TableView;
 			sourceTree = "<group>";
 		};
@@ -567,7 +548,6 @@
 				B2088F5B1E429B7C00458F58 /* StorageViewController.swift */,
 				B2088F6C1E429E5900458F58 /* Tables.swift */,
 			);
-			name = Storage;
 			path = Storage;
 			sourceTree = "<group>";
 		};
@@ -577,7 +557,6 @@
 				B2088F621E429BE100458F58 /* StorageMainDataSource.swift */,
 				B2088F601E429BCB00458F58 /* StorageMainDelegate.swift */,
 			);
-			name = MainTableView;
 			path = MainTableView;
 			sourceTree = "<group>";
 		};
@@ -587,7 +566,6 @@
 				B2088F671E429C0F00458F58 /* StorageDetailDataSource.swift */,
 				B2088F651E429BFC00458F58 /* StorageDetailDelegate.swift */,
 			);
-			name = DetailTableView;
 			path = DetailTableView;
 			sourceTree = "<group>";
 		};
@@ -597,7 +575,6 @@
 				B21021161E43B59400AC4C5D /* LoginViewController.swift */,
 				1595096B1E5DBE1700D636A8 /* ResetPasswordViewController.swift */,
 			);
-			name = Login;
 			path = Login;
 			sourceTree = "<group>";
 		};
@@ -607,7 +584,6 @@
 				B23BF83B1E4FB709005E7083 /* EditListViewController.swift */,
 				B23BF8391E4FB6D9005E7083 /* EditTextViewControlller.swift */,
 			);
-			name = "Edit Views";
 			path = "Edit Views";
 			sourceTree = "<group>";
 		};
@@ -617,8 +593,8 @@
 				B23BF8451E50AD24005E7083 /* NotificationSetting.swift */,
 				B23BF84A1E510715005E7083 /* SystemStatus.swift */,
 				15174FD71E59D23200539953 /* TBApplication.swift */,
+				15FAA3CF1E61DFF000AAB1C6 /* ConfigSettings.swift */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
@@ -629,7 +605,6 @@
 				B253B2341E4A7CB500E86B9B /* NotificationViewController.swift */,
 				B253B2391E4A871B00E86B9B /* SendNotificationView.swift */,
 			);
-			name = Notifications;
 			path = Notifications;
 			sourceTree = "<group>";
 		};
@@ -639,7 +614,6 @@
 				B253B23C1E4A892A00E86B9B /* NotifcationViewDelegate.swift */,
 				B253B23E1E4A89C200E86B9B /* Notifications.swift */,
 			);
-			name = TableView;
 			path = TableView;
 			sourceTree = "<group>";
 		};
@@ -651,7 +625,6 @@
 				B253B2481E4AA2C500E86B9B /* AnalyticsView.swift */,
 				B23BF8401E509639005E7083 /* EditABTestingView.swift */,
 			);
-			name = "AB Testing";
 			path = "AB Testing";
 			sourceTree = "<group>";
 		};
@@ -662,7 +635,6 @@
 				B253B2521E4B428A00E86B9B /* ImportTableDataSource.swift */,
 				B253B2501E4B427C00E86B9B /* ImportTableViewDelegate.swift */,
 			);
-			name = "Import File";
 			path = "Import File";
 			sourceTree = "<group>";
 		};
@@ -675,7 +647,6 @@
 				B253B2631E4B8B4C00E86B9B /* Files.swift */,
 				B253B2611E4B7F5500E86B9B /* SettingsViewController.swift */,
 			);
-			name = Settings;
 			path = Settings;
 			sourceTree = "<group>";
 		};
@@ -869,7 +840,6 @@
 				B29380121E46932200F00003 /* TranslationViewController+Ext.swift */,
 				B2D3BDD21E46433D00273E9C /* TranslationViewController.swift */,
 			);
-			name = Languages;
 			path = Languages;
 			sourceTree = "<group>";
 		};
@@ -878,7 +848,6 @@
 			children = (
 				B2D3BDD91E4649B200273E9C /* LanguagesDelegate.swift */,
 			);
-			name = "Languages TableView";
 			path = "Languages TableView";
 			sourceTree = "<group>";
 		};
@@ -887,7 +856,6 @@
 			children = (
 				B2D3BDDE1E46502D00273E9C /* TranslationKeysDelegate.swift */,
 			);
-			name = "Translation Keys";
 			path = "Translation Keys";
 			sourceTree = "<group>";
 		};
@@ -896,7 +864,6 @@
 			children = (
 				B2D3BDE11E4650F400273E9C /* TranslationViewDelegate.swift */,
 			);
-			name = "Translations TableView";
 			path = "Translations TableView";
 			sourceTree = "<group>";
 		};
@@ -907,7 +874,6 @@
 				B2D3BDF11E466FEF00273E9C /* PublishLangDelegate.swift */,
 				B2D3BDEE1E466C7200273E9C /* PublishLanguage.swift */,
 			);
-			name = PublishLanguage;
 			path = PublishLanguage;
 			sourceTree = "<group>";
 		};
@@ -917,7 +883,6 @@
 				B2D4F1FD1E3C075600106A97 /*  Cell View */,
 				B2D4F20E1E3C0DD900106A97 /* SprintBoardViewController.swift */,
 			);
-			name = "Sprint Board";
 			path = "Sprint Board";
 			sourceTree = "<group>";
 		};
@@ -927,7 +892,6 @@
 				B2D4F2041E3C092A00106A97 /* CustomCellView.swift */,
 				B2D4F2001E3C079900106A97 /* CustomCellView.xib */,
 			);
-			name = " Cell View";
 			path = " Cell View";
 			sourceTree = "<group>";
 		};
@@ -940,7 +904,6 @@
 				B2D4F2131E3C24B300106A97 /* IssueViewDataSource.swift */,
 				B2D4F2151E3C24E000106A97 /* IssueViewDelegate.swift */,
 			);
-			name = "Issues View";
 			path = "Issues View";
 			sourceTree = "<group>";
 		};
@@ -951,7 +914,6 @@
 				B2D4F2301E3D284B00106A97 /* IssueActivity.swift */,
 				B2D4F22E1E3D229C00106A97 /* IssueComments.swift */,
 			);
-			name = "Edit Issue";
 			path = "Edit Issue";
 			sourceTree = "<group>";
 		};
@@ -1186,6 +1148,7 @@
 				15174FD81E59D23200539953 /* TBApplication.swift in Sources */,
 				B27D84801E355813007ADB39 /* UserView.swift in Sources */,
 				B27D84681E3547D0007ADB39 /* GraphView.swift in Sources */,
+				15FAA3D01E61DFF000AAB1C6 /* ConfigSettings.swift in Sources */,
 				B253B2511E4B427C00E86B9B /* ImportTableViewDelegate.swift in Sources */,
 				B253B2351E4A7CB500E86B9B /* NotificationViewController.swift in Sources */,
 				B2D4F2581E3E276B00106A97 /* TestObject.swift in Sources */,

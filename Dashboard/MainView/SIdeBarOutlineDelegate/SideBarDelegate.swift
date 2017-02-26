@@ -2,7 +2,7 @@
 
 import Cocoa
 
-typealias SelectionBlock = (_ volume: Section.Item) -> Void
+typealias SelectionBlock = (_ volume: Item) -> Void
 
 class SideBarDelegate: NSObject {
     
@@ -29,7 +29,7 @@ extension SideBarDelegate: NSOutlineViewDelegate {
             return
         }
         let selectedRow = outlineView.selectedRow
-        guard let item = outlineView.item(atRow: selectedRow) as? Section.Item , selectedRow >= 0 else {
+        guard let item = outlineView.item(atRow: selectedRow) as? Item , selectedRow >= 0 else {
             return
         }
         volumeSelectionBlock?(item)
@@ -41,7 +41,7 @@ extension SideBarDelegate: NSOutlineViewDelegate {
         if let section = item as? Section {
             cell = outlineView.make(withIdentifier: Constants.headerCellID, owner: self) as? NSTableCellView
             cell?.textField?.stringValue = section.name
-        } else if let item = item as? Section.Item {
+        } else if let item = item as? Item {
             cell = outlineView.make(withIdentifier: Constants.volumeCellID, owner: self) as? NSTableCellView
             cell?.textField?.stringValue = item.volume
             //cell?.textField?.stringValue = item.volume.name

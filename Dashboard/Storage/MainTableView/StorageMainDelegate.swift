@@ -8,7 +8,7 @@
 
 import Cocoa
 
-typealias SelectionDatabaseObject = (_ table: String) -> Void
+typealias SelectionDatabaseObject = (_ table: String,_ row: Int ) -> Void
 
 class StorageMainDelegate: NSObject {
     
@@ -40,7 +40,7 @@ extension StorageMainDelegate: NSTableViewDelegate {
         let selectedRow = tableView.selectedRow
         
         if selectedRow >= 0 {
-            objectSelectionBlock?(self.tableList[selectedRow].tableName)
+            objectSelectionBlock?(self.tableList[selectedRow].tableName, selectedRow)
         }
     }
     

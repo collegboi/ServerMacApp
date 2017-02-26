@@ -104,7 +104,7 @@ class ViewController: NSViewController {
         }
     }
     
-    func showVolumeInfo(_ volume: Section.Item) {
+    func showVolumeInfo(_ volume: Item) {
         
         self.changeDetailViewBody(volume.volume)
     }

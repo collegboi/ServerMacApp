@@ -38,20 +38,6 @@
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="uIk-Tf-X91">
                                 <rect key="frame" x="20" y="475" width="1096" height="5"/>
                             </box>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hj7-GY-T50">
-                                <rect key="frame" x="986" y="592" width="130" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="GSX-1a-9mP"/>
-                                    <constraint firstAttribute="height" constant="34" id="TLF-jJ-7Xt"/>
-                                </constraints>
-                                <buttonCell key="cell" type="square" title="Configure" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vkp-AZ-fVV">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" size="15" name="AvenirNext-Regular"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="configureNotifcation:" target="w6U-rU-Zj7" id="cMP-Yf-PQs"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zly-Mr-Dpm">
                                 <rect key="frame" x="937" y="498" width="179" height="34"/>
                                 <constraints>
@@ -79,7 +65,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="ID" width="100" minWidth="40" maxWidth="1000" id="thG-hh-zvJ" userLabel="ID">
+                                                <tableColumn identifier="IDCol" width="100" minWidth="40" maxWidth="1000" id="thG-hh-zvJ" userLabel="ID">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="ID">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -112,7 +98,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="DeviceID" width="100" minWidth="40" maxWidth="1000" id="VZh-D8-taB" userLabel="DeviceID">
+                                                <tableColumn identifier="DeviceIDCol" width="100" minWidth="40" maxWidth="1000" id="VZh-D8-taB" userLabel="DeviceID">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Device ID">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -145,7 +131,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="TimeStamp" width="100" minWidth="40" maxWidth="1000" id="q8R-iR-lqa" userLabel="TimeStamp">
+                                                <tableColumn identifier="TimeStampCol" width="100" minWidth="40" maxWidth="1000" id="q8R-iR-lqa" userLabel="TimeStamp">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="TimeStamp">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -178,7 +164,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="Message" width="300" minWidth="40" maxWidth="1000" id="auV-gV-B9N" userLabel="Message">
+                                                <tableColumn identifier="MessageCol" width="300" minWidth="40" maxWidth="1000" id="auV-gV-B9N" userLabel="Message">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Message">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -211,7 +197,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="Status" width="50" minWidth="40" maxWidth="1000" id="XSg-Bo-285" userLabel="Status">
+                                                <tableColumn identifier="StatusCol" width="50" minWidth="40" maxWidth="1000" id="XSg-Bo-285" userLabel="Status">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Status">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -296,7 +282,6 @@
                             </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="hj7-GY-T50" firstAttribute="top" secondItem="k22-mr-8C3" secondAttribute="top" constant="20" id="1KY-ap-WbD"/>
                             <constraint firstItem="0BN-hL-yzK" firstAttribute="top" secondItem="k22-mr-8C3" secondAttribute="top" constant="20" id="2y2-4V-lJV"/>
                             <constraint firstItem="esU-Yy-Ihh" firstAttribute="leading" secondItem="0BN-hL-yzK" secondAttribute="trailing" constant="41" id="32F-dg-gr4"/>
                             <constraint firstItem="uIk-Tf-X91" firstAttribute="top" secondItem="0BN-hL-yzK" secondAttribute="bottom" constant="20" id="4HP-vE-dJr"/>
@@ -308,7 +293,6 @@
                             <constraint firstAttribute="trailing" secondItem="Zly-Mr-Dpm" secondAttribute="trailing" constant="20" id="O6g-Yj-Naf"/>
                             <constraint firstItem="aAP-G5-IXo" firstAttribute="top" secondItem="uIk-Tf-X91" secondAttribute="bottom" constant="20" id="dbG-At-4yL"/>
                             <constraint firstItem="0BN-hL-yzK" firstAttribute="leading" secondItem="k22-mr-8C3" secondAttribute="leading" constant="20" id="eKo-hc-cRp"/>
-                            <constraint firstAttribute="trailing" secondItem="hj7-GY-T50" secondAttribute="trailing" constant="20" id="fBB-DK-7vn"/>
                             <constraint firstAttribute="trailing" secondItem="aAP-G5-IXo" secondAttribute="trailing" constant="20" id="lTA-0J-TdF"/>
                             <constraint firstItem="aAP-G5-IXo" firstAttribute="leading" secondItem="k22-mr-8C3" secondAttribute="leading" constant="20" id="rgH-zE-ai9"/>
                         </constraints>
@@ -433,21 +417,21 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="114" id="vY6-AR-POg"/>
                                             </constraints>
-                                            <buttonCell key="cell" type="check" title="Title" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="J5u-Ko-kOq">
+                                            <buttonCell key="cell" type="check" title="Title" bezelStyle="regularSquare" imagePosition="left" inset="2" id="J5u-Ko-kOq">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                         </button>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="92f-Q6-ROT">
                                             <rect key="frame" x="18" y="88" width="118" height="29"/>
-                                            <buttonCell key="cell" type="check" title="Badge" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Tme-CA-tN8">
+                                            <buttonCell key="cell" type="check" title="Badge" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Tme-CA-tN8">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                         </button>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="CfP-uB-EWQ">
                                             <rect key="frame" x="18" y="53" width="118" height="28"/>
-                                            <buttonCell key="cell" type="check" title="Sound" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="P8P-PF-glf">
+                                            <buttonCell key="cell" type="check" title="Sound" bezelStyle="regularSquare" imagePosition="left" inset="2" id="P8P-PF-glf">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -481,7 +465,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="153" id="QZy-ff-Jax"/>
                                             </constraints>
-                                            <buttonCell key="cell" type="check" title="Content-Available" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="0uZ-95-JaX">
+                                            <buttonCell key="cell" type="check" title="Content-Available" bezelStyle="regularSquare" imagePosition="left" inset="2" id="0uZ-95-JaX">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -514,8 +498,19 @@
                                     </constraints>
                                 </view>
                             </box>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="9af-KW-OIp">
+                                <rect key="frame" x="83" y="67" width="118" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="dWX-bD-mth"/>
+                                </constraints>
+                                <buttonCell key="cell" type="check" title="Development" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8q6-MU-EWr">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="9af-KW-OIp" firstAttribute="top" secondItem="sS3-uq-fAj" secondAttribute="bottom" constant="12" id="71U-8b-f7V"/>
                             <constraint firstAttribute="bottom" secondItem="OL2-Qm-DtP" secondAttribute="bottom" constant="20" symbolic="YES" id="ECk-ih-jn0"/>
                             <constraint firstItem="UaV-6h-8zd" firstAttribute="top" secondItem="mhR-aJ-0Tg" secondAttribute="bottom" constant="14" id="GDj-gJ-8k6"/>
                             <constraint firstItem="IcA-RM-fbB" firstAttribute="trailing" secondItem="m5c-1i-CYU" secondAttribute="trailing" id="Jce-gT-9UV"/>
@@ -523,9 +518,11 @@
                             <constraint firstItem="AfJ-cP-QgF" firstAttribute="top" secondItem="eky-f2-euv" secondAttribute="top" constant="20" symbolic="YES" id="NuU-N7-zRr"/>
                             <constraint firstItem="IcA-RM-fbB" firstAttribute="leading" secondItem="mhR-aJ-0Tg" secondAttribute="leading" id="Thq-7S-SId"/>
                             <constraint firstItem="sS3-uq-fAj" firstAttribute="centerX" secondItem="OL2-Qm-DtP" secondAttribute="centerX" id="Txk-x0-68U"/>
+                            <constraint firstItem="9af-KW-OIp" firstAttribute="leading" secondItem="eky-f2-euv" secondAttribute="leading" constant="85" id="VAo-WL-OEO"/>
                             <constraint firstItem="AfJ-cP-QgF" firstAttribute="centerX" secondItem="eky-f2-euv" secondAttribute="centerX" id="Vb5-f0-P9T"/>
                             <constraint firstItem="mhR-aJ-0Tg" firstAttribute="top" secondItem="IcA-RM-fbB" secondAttribute="bottom" constant="20" id="WDU-5d-1O1"/>
                             <constraint firstItem="UaV-6h-8zd" firstAttribute="trailing" secondItem="sS3-uq-fAj" secondAttribute="trailing" id="Wlb-bR-TS0"/>
+                            <constraint firstItem="OL2-Qm-DtP" firstAttribute="top" secondItem="9af-KW-OIp" secondAttribute="bottom" constant="15" id="YbQ-oV-La2"/>
                             <constraint firstItem="IcA-RM-fbB" firstAttribute="top" secondItem="AfJ-cP-QgF" secondAttribute="bottom" constant="24" id="cSr-YD-3TY"/>
                             <constraint firstItem="IcA-RM-fbB" firstAttribute="leading" secondItem="eky-f2-euv" secondAttribute="leading" constant="85" id="dO2-85-FgV"/>
                             <constraint firstItem="AfJ-cP-QgF" firstAttribute="centerX" secondItem="IcA-RM-fbB" secondAttribute="centerX" id="mb9-6k-y8V"/>
@@ -541,6 +538,7 @@
                         <outlet property="badgeNoTextField" destination="HZx-iI-4gG" id="qqg-0p-0Sr"/>
                         <outlet property="columnComboBox" destination="mhR-aJ-0Tg" id="mqc-ip-CaO"/>
                         <outlet property="conditionComboBox" destination="m5c-1i-CYU" id="NH3-jd-9oh"/>
+                        <outlet property="development" destination="9af-KW-OIp" id="8pD-pN-hKL"/>
                         <outlet property="messageTextField" destination="IcA-RM-fbB" id="Mna-XA-hHP"/>
                         <outlet property="sendButton" destination="OL2-Qm-DtP" id="Lfu-jx-1WT"/>
                         <outlet property="soundTextField" destination="v92-d1-F4G" id="L9v-Md-Gjf"/>

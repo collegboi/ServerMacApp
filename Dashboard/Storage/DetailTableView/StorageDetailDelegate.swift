@@ -8,10 +8,12 @@
 
 import Cocoa
 
+typealias SelectionDetailObject = (_ table: Document, _ row: Int) -> Void
+
 class StorageDetailDelegate: NSObject {
     
     var outlineView: NSOutlineView
-    var objectSelectionBlock: SelectionTableObject?
+    var objectSelectionBlock: SelectionDetailObject?
     
     fileprivate struct ColIdentifiers {
         static let ValueCol = "ValueCol"
@@ -25,9 +27,9 @@ class StorageDetailDelegate: NSObject {
         static let TypeCell = "TypeCell"
     }
     
-    init(outlineView: NSOutlineView) { //selectionBlock: @escaping SelectionTableObject) {
+    init(outlineView: NSOutlineView, selectionBlock: @escaping SelectionDetailObject ) {
         self.outlineView = outlineView
-        //self.objectSelectionBlock = selectionBlock
+        self.objectSelectionBlock = selectionBlock
         super.init()
         self.outlineView.delegate = self
     }
@@ -37,14 +39,14 @@ extension StorageDetailDelegate: NSOutlineViewDelegate {
     
     func outlineViewSelectionDidChange(_ notification: Notification) {
         
-        /*guard let outlineView = notification.object as? NSOutlineView else {
+        guard let outlineView = notification.object as? NSOutlineView else {
             return
         }
-        let selectedRow = outlineView.selectedRow*/
-        //guard let item = outlineView.item(atRow: selectedRow) as? RCObject , selectedRow >= 0 else {
-        //    return
-        //}
-        //objectSelectionBlock?(item)
+        let selectedRow = outlineView.selectedRow
+        guard let item = outlineView.item(atRow: selectedRow) as? Document , selectedRow >= 0 else {
+            return
+        }
+        objectSelectionBlock?(item, selectedRow)
     }
     
     func getCellValue( item: Any ) -> ( key:String, value: String, type:String ) {

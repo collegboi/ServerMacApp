@@ -506,6 +506,58 @@ extension JSONSerializable {
     }
 
     
+    func genericCollectionRemoveInBackground(_ collectioName: String, appKey: String = "", deleteCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
+        
+        let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
+        
+        var key = UniqueSting.apID()
+        
+        if appKey != "" {
+            key = appKey
+        }
+        
+        let apiEndpoint = "/api/"+key+"/storage/"
+        
+        let networkURL = url + apiEndpoint + collectioName + "/"
+        
+        guard let endpoint = URL(string: networkURL) else {
+            print("Error creating endpoint")
+            return
+        }
+        var request = URLRequest(url: endpoint)
+        request.httpMethod = "DELETE"
+        //if let token = _currentUser?.currentToken {
+        //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        // }
+        
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if ((error) != nil) {
+                deleteCompleted(false, "Not removed")
+            }
+            
+            guard let _ = data else {
+                return
+            }
+            
+            do {
+                
+                //let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:Any]
+                
+                
+                
+            } catch let error as NSError {
+                print(error)
+            }
+            
+            deleteCompleted(true, "Removed")
+            
+            }.resume()
+        
+    }
+
+    
     
     func removeInBackground(_ objectID: String, appKey: String = "", deleteCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
         

@@ -13,6 +13,8 @@ class EditAppViewController: NSViewController, NSWindowDelegate {
     @IBOutlet weak var appViewLabel: NSTextField!
     @IBOutlet weak var appIconImageView: NSImageView!
     
+    @IBOutlet weak var notifcationCheck: NSButton!
+    
     @IBOutlet weak var itunesID: NSTextField!
     @IBOutlet weak var appName: NSTextField!
     
@@ -35,11 +37,14 @@ class EditAppViewController: NSViewController, NSWindowDelegate {
     
     var application: TBApplication?
     var itunesResult: Result?
-    
+    var notificationSet: Bool = false
+    var notificationSetting: NotificationSetting?
     var iconURL: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.notifcationCheck.isEnabled = false
+        self.notifcationCheck.state = 0
     }
     
     func windowShouldClose(_ sender: Any) -> Bool {
@@ -148,6 +153,10 @@ class EditAppViewController: NSViewController, NSWindowDelegate {
             self.appKey.stringValue = UniqueSting.myNewUUID()
         } else {
             
+            if notificationSet {
+                self.notifcationCheck.state = self.application!.notificationSet
+            }
+            
             self.getVersionsData(self.application!.objectID!.objectID)
             self.appViewLabel.stringValue = "Edit Application"
             self.itunesID.stringValue = self.application!.itunesAppID
@@ -200,6 +209,7 @@ class EditAppViewController: NSViewController, NSWindowDelegate {
                                         apID: self.appID.stringValue,
                                         appKey: self.appKey.stringValue,
                                         appType: self.comboBoxAppType.stringValue,
+                                        notificationSet: self.notifcationCheck.state,
                                         itunesAppID: self.itunesID.stringValue,
                                         itunesAppIconURL: self.iconURL,
                                         appPrice: self.priceTextField.stringValue,
@@ -213,6 +223,7 @@ class EditAppViewController: NSViewController, NSWindowDelegate {
             self.application?.apID = self.appID.stringValue
             self.application?.appKey = self.appKey.stringValue
             self.application?.setApptype( self.comboBoxAppType.stringValue )
+            self.application?.notificationSet = self.notifcationCheck.state
             self.application?.itunesAppID = self.itunesID.stringValue
             
             self.application?.appDescription = self.appDescTextVIew.string
@@ -222,6 +233,10 @@ class EditAppViewController: NSViewController, NSWindowDelegate {
             self.application?.itunesAppIconURL = self.iconURL
             
             
+        }
+        
+        if self.notificationSet {
+            self.application?.setNotification(path: self.notificationSetting!.path, keyID: self.notificationSetting!.keyID, teamID: self.notificationSetting!.teamID )
         }
         
         application?.sendInBackground((self.application?.objectID?.objectID)!, postCompleted: { (sent, data) in

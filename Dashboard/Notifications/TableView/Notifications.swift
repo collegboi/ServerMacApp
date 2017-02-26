@@ -17,8 +17,9 @@ class TBNotification {
     var badgeNo: String = ""
     var contentAvailable: String = ""
     var title:String = ""
-    var timeStamp:String = ""
+    var timestamp:String = ""
     var status:String = "Sent"
+    var development: String = "0"
     
     init(){}
     
@@ -37,6 +38,9 @@ class TBNotification {
     func setBadgeNo(_ no: Int) {
         self.badgeNo = "\(no)"
     }
+    func setDevelopment(_ no: Int) {
+        self.development = "\(no)"
+    }
     func setContentAvailable(_ set: Bool) {
         switch set {
         case true:
@@ -46,7 +50,7 @@ class TBNotification {
         }
     }
     func setTimeStamp(_ timeStamp:String) {
-        self.timeStamp = timeStamp
+        self.timestamp = timeStamp
     }
     
     
@@ -61,7 +65,10 @@ class TBNotification {
         
         let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
         
-        let networkURL = url + "/notification/"
+        let key = UniqueSting.apID()
+        
+        let apiEndpoint = "/api/"+key+"/notification/"
+        let networkURL = url + apiEndpoint
         
         if (self.deviceID == "" && self.message == "") || (self.userID == "" && self.message == "") {
             notificationCompleted(false, "values not set")
@@ -84,7 +91,8 @@ class TBNotification {
             "badgeNo":self.badgeNo as AnyObject,
             "contentAvailable":self.contentAvailable as AnyObject,
             "title":self.title as AnyObject,
-            "timestamp":self.timeStamp as AnyObject
+            "timestamp":self.timestamp as AnyObject,
+            "development": self.development as AnyObject
         ]
         
         do {
@@ -102,8 +110,32 @@ class TBNotification {
             
             if ((error) != nil) {
                 print(error!.localizedDescription)
+                
                 notificationCompleted(false, "not sent")
+                
             } else {
+                
+//                do {
+//                    
+//                    guard let returnData = data else {
+//                        notificationCompleted(false, "not sent")
+//                        return
+//                    }
+//                    
+//                    guard let dataObjects = try JSONSerialization.jsonObject(with: returnData, options: .allowFragments) as? [String:Any] else {
+//                        notificationCompleted(false, "not sent")
+//                        return
+//                    }
+//                    
+//                    
+//                    
+//                    
+//                } catch {
+//                    
+//                }
+//                
+
+                
                 notificationCompleted(true, "sent")
             }
         })
@@ -119,7 +151,10 @@ extension Array where Element:TBNotification {
     
         let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
         
-        let networkURL = url + "/notification/"
+        let key = UniqueSting.apID()
+        
+        let apiEndpoint = "/api/"+key+"/notification/"
+        let networkURL = url + apiEndpoint
         
         guard let endpoint = URL(string: networkURL) else {
             print("Error creating endpoint")

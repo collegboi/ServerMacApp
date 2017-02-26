@@ -81,7 +81,7 @@ class EditStaffView: NSViewController, NSWindowDelegate {
                 self.deleteTickBox.state = Int(databasePerms[3]) ?? 0
             }
             
-            let servicesPerms = self.staffMember!.servciesPerms.components(separatedBy: ",")
+            let servicesPerms = self.staffMember!.servicesPerms.components(separatedBy: ",")
             
             if servicesPerms.count >= 8 {
                 self.storageTickBox.state = Int(servicesPerms[0]) ?? 0

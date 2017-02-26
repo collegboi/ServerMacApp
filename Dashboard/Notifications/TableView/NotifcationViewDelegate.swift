@@ -20,16 +20,18 @@ class NotifcationViewDelegate: NSObject {
     
     fileprivate enum CellIdentifiers {
         static let IDCell = "IDCell"
+        static let DeviceID = "DeviceIDCell"
         static let TimeStampCell = "TimeStampCell"
         static let MessageCell = "MessageCell"
         static let StatusCell = "StatusCell"
     }
     
     fileprivate enum ColIdentifiers {
-        static let ID = "ID"
-        static let TimeStamp = "TimeStamp"
-        static let Message = "Message"
-        static let Status = "Status"
+        static let ID = "IDCol"
+        static let DeviceID = "DeviceIDCol"
+        static let TimeStamp = "TimeStampCol"
+        static let Message = "MessageCol"
+        static let Status = "StatusCol"
     }
     
     
@@ -73,15 +75,15 @@ extension NotifcationViewDelegate: NSTableViewDelegate {
             text = notification.objectID
             
         }
-        else  if tableColumn?.identifier == ColIdentifiers.TimeStamp  {
+        else  if tableColumn?.identifier == ColIdentifiers.DeviceID  {
             
-            cellIdentifier = CellIdentifiers.TimeStampCell
-            text = notification.timeStamp
+            cellIdentifier = CellIdentifiers.DeviceID
+            text = notification.deviceID
         }
         else if tableColumn?.identifier == ColIdentifiers.TimeStamp {
             
             cellIdentifier = CellIdentifiers.TimeStampCell
-            text = notification.timeStamp
+            text = notification.timestamp
         }
         else if tableColumn?.identifier == ColIdentifiers.Message {
             

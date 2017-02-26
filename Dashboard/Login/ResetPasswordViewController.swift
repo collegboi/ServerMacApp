@@ -38,9 +38,8 @@ class ResetPasswordViewController: NSViewController, NSWindowDelegate {
             return
         }
         
-        let staff = Staff(username: self.username!, password: self.password1TextField.stringValue)
-        
-        staff.resetPassword { (completed, result, message) in
+        //let staff = Staff(username: self.username!, password: self.password1TextField.stringValue)
+        Staff.resetPassword(username: self.username!, password: self.password1TextField.stringValue) { (completed, result, message) in
             
             DispatchQueue.main.async {
                 

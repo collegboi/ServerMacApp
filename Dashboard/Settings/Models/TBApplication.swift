@@ -28,6 +28,10 @@ struct TBApplication: JSONSerializable {
     var appPrimaryGenre: String!
     var appType: AppType!
     var objectID: MBOjectID?
+    var notificationSet: Int!
+    var notificationPath: String = ""
+    var keyID: String = ""
+    var teamID: String = ""
     
     mutating func setApptype(_ appType: String) {
         switch appType {
@@ -38,16 +42,23 @@ struct TBApplication: JSONSerializable {
         }
     }
     
+    mutating func setNotification(path:String, keyID: String, teamID: String ) {
+        self.notificationPath = path
+        self.keyID = keyID
+        self.teamID = teamID
+    }
+    
     init() {}
     
     init(dict: String){}
     
-    init(name:String, databaseName: String, apID: String, appKey:String, appType: String,
+    init(name:String, databaseName: String, apID: String, appKey:String, appType: String, notificationSet: Int,
          itunesAppID: String, itunesAppIconURL: String, appPrice: String, appRating: String, appDescription: String, appPrimaryGenre: String ) {
         self.objectID = MBOjectID(objectID: "")
         self.name = name
         self.databaseName = databaseName
         self.apID = apID
+        self.notificationSet = notificationSet
         self.appKey = appKey
         self.itunesAppID = itunesAppID
         self.itunesAppIconURL = itunesAppIconURL
@@ -68,6 +79,7 @@ struct TBApplication: JSONSerializable {
         self.databaseName = dict.tryConvert(forKey: "databaseName")
         self.apID = dict.tryConvert(forKey: "apID")
         self.name = dict.tryConvert(forKey: "name")
+        self.notificationSet = dict.tryConvert(forKey: "notificationSet")
         self.appKey = dict.tryConvert(forKey: "appKey")
         self.objectID = MBOjectID(objectID: dict.tryConvert(forKey: "_id"))
         let appType: String  = dict.tryConvert(forKey: "appType")

@@ -20,6 +20,9 @@ class SendNotificationView: NSViewController, NSWindowDelegate {
     @IBOutlet weak var badgeNoTextField: NSTextField!
     @IBOutlet weak var soundTextField: NSTextField!
     @IBOutlet weak var valueTextField: NSTextField!
+
+    
+    @IBOutlet weak var development: NSButton!
     
     @IBOutlet weak var sendButton: NSButton!
     
@@ -52,8 +55,9 @@ class SendNotificationView: NSViewController, NSWindowDelegate {
         let newNotification = TBNotification()
         newNotification.message = self.messageTextField.stringValue
         newNotification.deviceID = self.valueTextField.stringValue
+        newNotification.setDevelopment(self.development.state)
         
-        newNotification.sendNotification { (completed, returnStr) in
+        newNotification.sendNotification { (completed, returnStr ) in
          
             DispatchQueue.main.async {
                 if (completed) {

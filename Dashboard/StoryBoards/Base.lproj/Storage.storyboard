@@ -178,6 +178,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="701" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
+                                <connections>
+                                    <outlet property="menu" destination="HG6-tk-Pat" id="KXo-ah-fWe"/>
+                                </connections>
                             </scrollView>
                             <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t3V-ZR-4zb">
                                 <rect key="frame" x="833" y="588" width="224" height="27"/>
@@ -292,13 +295,13 @@
                                     <action selector="importFileDatabase:" target="Gps-uT-a8e" id="yAe-Eh-e6z"/>
                                 </connections>
                             </button>
-                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Mu-DP-Pwz">
+                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="42" horizontalPageScroll="10" verticalLineScroll="42" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Mu-DP-Pwz">
                                 <rect key="frame" x="20" y="20" width="167" height="453"/>
                                 <clipView key="contentView" id="5aT-F9-AtJ">
                                     <rect key="frame" x="1" y="0.0" width="165" height="452"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Ieh-5P-Spn" viewBased="YES" id="emi-1X-2jR">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="40" rowSizeStyle="automatic" headerView="Ieh-5P-Spn" viewBased="YES" id="emi-1X-2jR">
                                             <rect key="frame" x="0.0" y="0.0" width="165" height="429"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -359,13 +362,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="455" horizontalPageScroll="10" verticalLineScroll="455" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSp-Wh-4Lv">
+                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSp-Wh-4Lv">
                                 <rect key="frame" x="197" y="20" width="182" height="453"/>
                                 <clipView key="contentView" id="LAk-SP-gcu">
                                     <rect key="frame" x="1" y="0.0" width="180" height="452"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="453" rowSizeStyle="automatic" headerView="UFU-9b-5N5" viewBased="YES" id="B6J-IN-eeQ">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="UFU-9b-5N5" viewBased="YES" id="B6J-IN-eeQ">
                                             <rect key="frame" x="0.0" y="0.0" width="180" height="429"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -470,6 +473,16 @@
                     </connections>
                 </viewController>
                 <customObject id="P4M-y0-kq0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <menu title="Documents" id="HG6-tk-Pat">
+                    <items>
+                        <menuItem title="Remove Document" id="3Oz-bb-gHr">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                    </items>
+                    <connections>
+                        <outlet property="delegate" destination="Gps-uT-a8e" id="1DU-Fz-bcM"/>
+                    </connections>
+                </menu>
             </objects>
             <point key="canvasLocation" x="1385" y="816.5"/>
         </scene>

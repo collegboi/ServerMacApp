@@ -14,6 +14,7 @@ class LoginViewController: NSViewController {
     @IBOutlet weak var username: NSTextField!
     @IBOutlet weak var password: NSSecureTextField!
     @IBOutlet weak var rememberMe: NSButton!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +39,10 @@ class LoginViewController: NSViewController {
         //self.loadResetPasswordView()
         
         if UserDefaults.standard.bool(forKey: "login") {
+            
             self.view.window?.close()
             self.loadMainView()
+           
         } else {
             self.tryLogin(username.stringValue, password: password.stringValue)
         }
@@ -71,36 +74,34 @@ class LoginViewController: NSViewController {
             application1.runModal(for: mainWindow)
         }
     }
-
     
     func tryLogin(_ username: String, password: String ) {
         
         
-        let staff = Staff(username: self.username.stringValue, password: self.password.stringValue)
-       
-        staff.login { (completed, result, message) in
-            
+        //let staff = Staff(username: self.username.stringValue, password: self.password.stringValue)
+        
+        Staff.login(username: self.username.stringValue, password: self.password.stringValue) { (completed, result, staff) in
             DispatchQueue.main.async {
-                
                 if completed {
-                    
-                    if result == .Success {
-                        
-                        if message == "1" {
+
+                    if result == .Success && staff != nil {
+
+                        if staff!.resetPassword == 1 {
                             self.loadResetPasswordView()
                         } else {
-                            
-                            UserDefaults.standard.set(self.ipAddress.stringValue, forKey: "URL")
-                            
+
                             UserDefaults.standard.set(self.username.stringValue, forKey: "username")
-                            
+
+                            UserDefaults.standard.set(staff!.databasePerms, forKey: "database")
+                            UserDefaults.standard.set(staff!.servicesPerms, forKey: "services")
+
                             if self.rememberMe.state == 1 {
-                            
+
                                 UserDefaults.standard.set(true, forKey: "login")
-                        
+
                             }
                             self.view.window?.close()
-                            
+
                             self.loadMainView()
                         }
                     } else {
@@ -112,6 +113,7 @@ class LoginViewController: NSViewController {
                     print("error")
                 }
             }
+
         }
     }
     
