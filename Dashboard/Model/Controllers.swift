@@ -170,7 +170,12 @@ struct RCObject: JSONSerializable {
     var objectName : String!
     var objectProperties : [String: Any]!
     
-    init() {}
+    init() {
+        objectType = RCObjectType.Object
+        objectDesc = ""
+        objectName = ""
+        objectProperties = [:]
+    }
     init(dict: String){}
     
     init( objectName: String, objectDescription: String, objectType: RCObjectType) {
@@ -218,7 +223,10 @@ struct RCController: JSONSerializable {
     var name : String!
     var parent: Int = 0
     
-    init() {}
+    init() {
+        objectsList = [RCObject]()
+        name = ""
+    }
     init(dict: String){}
     
     init(name: String) {
@@ -251,7 +259,12 @@ struct Config : JSONSerializable {
     var version : String = "0"
     var applicationID : String = ""
     
-    init() {}
+    init() {
+        colors = [RCColor]()
+        controllers = [RCController]()
+        mainSettings = [:]
+        languagesList = []
+    }
     init(dict: String){}
     
     init(dict: [String]){}

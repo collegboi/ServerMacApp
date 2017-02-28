@@ -57,6 +57,8 @@ class RemoteConigViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        config = Config()
+        
         appNameDelegate = AppNameDelegate(comboxBox: comboBoxApp, selectionBlock: { ( row, app) in
             self.appKey = app.appKey
             self.applicationID = (app.objectID?.objectID)!
@@ -374,8 +376,8 @@ class RemoteConigViewController: NSViewController {
         self.config?.applicationID = self.applicationID
         
         if let data = self.config?.toData() {
-            let key = UniqueSting.apID()
-            HTTPSConnection.httpPostRequest(params: data, endPoint: "/api/"+key+"/remote") { ( sent, message) in
+            //let key = UniqueSting.apID()
+            HTTPSConnection.httpPostRequest(params: data, endPoint: "/remote") { ( sent, message) in
                 
                 DispatchQueue.main.async {
                     
