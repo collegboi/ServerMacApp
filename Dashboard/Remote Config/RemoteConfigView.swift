@@ -62,6 +62,8 @@ class RemoteConigViewController: NSViewController {
         appNameDelegate = AppNameDelegate(comboxBox: comboBoxApp, selectionBlock: { ( row, app) in
             self.appKey = app.appKey
             self.applicationID = (app.objectID?.objectID)!
+            self.comboBoxVersion.removeAllItems()
+            self.comboBoxVersion.reloadData()
             self.getAllAppsVersions((app.objectID?.objectID)!)
         })
         
@@ -374,10 +376,12 @@ class RemoteConigViewController: NSViewController {
     
         self.config?.version = self.comboBoxVersion.stringValue
         self.config?.applicationID = self.applicationID
+        self.config?.filePath = "ConfigFiles/" + self.comboBoxApp.stringValue + "/config_" + self.comboBoxVersion.stringValue + ".json"
         
         if let data = self.config?.toData() {
+            
             //let key = UniqueSting.apID()
-            HTTPSConnection.httpPostRequest(params: data, endPoint: "/remote") { ( sent, message) in
+            HTTPSConnection.httpPostRequest(params: data, endPoint: "/remote", appKey: self.appKey) { ( sent, message) in
                 
                 DispatchQueue.main.async {
                     

@@ -86,7 +86,7 @@ class ImportFileViewController: NSViewController, NSWindowDelegate {
     
     @IBAction func saveButton(_ sender: Any) {
         
-        HTTPSConnection.httpPostRequest(params: self.data, endPoint: "/storage/all/"+self.dBNameTextField.stringValue) { (completed, result) in
+        HTTPSConnection.httpPostRequest(params: self.data, endPoint: "/storage/all/"+self.dBNameTextField.stringValue, appKey: "") { (completed, result) in
             
             DispatchQueue.main.async {
                 if completed {

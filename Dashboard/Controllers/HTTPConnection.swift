@@ -213,13 +213,17 @@ public class HTTPSConnection {
     
     
     
-    class func httpPostRequest(params : Any, endPoint : String, postCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
+    class func httpPostRequest(params : Any, endPoint : String, appKey: String = "", postCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
         
         let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
         
-        let key = UniqueSting.apID()
+        var key = UniqueSting.apID()
+        
+        if appKey != "" {
+            key = appKey
+        }
     
-        let apiEndpoint = "/api/"+key
+        let apiEndpoint = "/api/"+appKey
         
         let urlPath = url + apiEndpoint + endPoint
         
