@@ -180,7 +180,9 @@ extension Array where Element:TBNotification {
             
             do {
                 
-                let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:Any]
+                guard let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as? [String:Any] else {
+                    return
+                }
                 
                 let allObjects = dataObjects["data"] as? NSArray
                 

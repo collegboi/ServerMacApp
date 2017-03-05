@@ -112,7 +112,8 @@ class RemoteConigViewController: NSViewController {
         
         var allVersions = [RemoteConfig]()
         
-         allVersions.getFilteredInBackground(ofType: RemoteConfig.self, query: ["applicationID": appID as AnyObject ]) { (retrieved, versions) in
+        allVersions.getFilteredInBackground(ofType: RemoteConfig.self, query: ["applicationID": appID as AnyObject ], appKey: self.appKey ) { (retrieved, versions) in
+        
             DispatchQueue.main.async {
                 if retrieved {
                     allVersions = versions
