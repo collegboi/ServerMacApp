@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class EditTextViewControlller: NSViewController {
+class EditTextViewControlller: NSViewController, NSWindowDelegate {
     
     var rcProperty: RCProperty?
     
@@ -19,6 +19,7 @@ class EditTextViewControlller: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.window?.delegate = self
         
     }
     
@@ -28,9 +29,17 @@ class EditTextViewControlller: NSViewController {
     }
     
     @IBAction func cancelButton(_ sender: Any) {
+        self.view.window?.close()
         let application = NSApplication.shared()
         application.stopModal()
     }
+    
+    func windowShouldClose(_ sender: Any) -> Bool {
+        let application = NSApplication.shared()
+        application.stopModal()
+        return true
+    }
+    
     @IBAction func doneButton(_ sender: Any) {
         
         let rc1Property = RCProperty(key: self.keyTextField.stringValue,
@@ -43,6 +52,7 @@ class EditTextViewControlller: NSViewController {
         
         self.delegate?.sendBackData(data: rc1Property)
         
+        self.view.window?.close()
         let application = NSApplication.shared()
         application.stopModal()
     }

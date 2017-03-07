@@ -29,6 +29,12 @@
         "isHidden": ["False", "True"],
         "allowsSelection": ["False", "True"]
     },
+    "UIView": {
+        "type": "UIView",
+        "backgroundColor": "colors",
+        "isHidden": ["False", "True"],
+        "isUserInteractionEnabled": ["False", "True"]
+    },
     "UIImageView": {
         "type": "UIImageView",
         "image": "text",

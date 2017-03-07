@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class EditListViewController: NSViewController {
+class EditListViewController: NSViewController, NSWindowDelegate {
 
     var list = [String]()
     var colorList = [RCColor]()
@@ -28,7 +28,15 @@ class EditListViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.comboxBox.delegate = self
+        self.view.window?.delegate = self
     }
+    
+    func windowShouldClose(_ sender: Any) -> Bool {
+        let application = NSApplication.shared()
+        application.stopModal()
+        return true
+    }
+    
     
     override func viewDidAppear() {
         self.keyTextField.stringValue = (rcProperty?.key)!
@@ -40,21 +48,21 @@ class EditListViewController: NSViewController {
         }
         
         for color in self.colorList {
-            let view = NSView()
+//            let view = NSView()
+//            
+//            let myText = NSAttributedString(string: color.name)
+//            myText.changeColor(NSColor.blue)
+//            
+//            view.setBackgroundColor(NSColor(colorLiteralRed: Float(CGFloat(color.red/255)),
+//                                            green: Float(CGFloat(color.green/255)),
+//                                            blue: Float(CGFloat(color.blue/255)), alpha: 1))
             
-            let myText = NSAttributedString(string: color.name)
-            myText.changeColor(NSColor.blue)
-            
-            view.setBackgroundColor(NSColor(colorLiteralRed: Float(CGFloat(color.red/255)),
-                                            green: Float(CGFloat(color.green/255)),
-                                            blue: Float(CGFloat(color.blue/255)), alpha: 1))
-            
-            self.comboxBox.addItem(withObjectValue: myText)
+            self.comboxBox.addItem(withObjectValue: color.name)
         }
     }
     
     @IBAction func cancelButton(_ sender: Any) {
-        
+        self.view.window?.close()
         let application = NSApplication.shared()
         application.stopModal()
     }
@@ -71,6 +79,7 @@ class EditListViewController: NSViewController {
         
         self.delegate?.sendBackData(data: rcProperty1 )
         
+        self.view.window?.close()
         let application = NSApplication.shared()
         application.stopModal()
     }

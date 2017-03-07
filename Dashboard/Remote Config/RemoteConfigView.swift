@@ -453,6 +453,10 @@ extension RemoteConigViewController: ReturnDelegate {
                 
                 self.config?.controllers[property.parent].objectsList.append(rcObject)
                 
+            } else if property.settingPart == .ClassProperties {
+                
+                self.config?.controllers[property.parent].classProperties[property.key] = property.valueStr
+                
             } else {
         
                 self.config?.controllers[property.parent].objectsList[property.row] = self.object!
@@ -514,10 +518,19 @@ extension RemoteConigViewController: NSMenuDelegate {
         self.loadEditTextView(rcProperty)
     }
     
+    func addValue() {
+        
+        let rcProperty = RCProperty(key: "", valueStr: "",
+                                    valueNo: 0, row: 0,
+                                    type: "Text", parent: self.parentRow,
+                                    settingPart: .ClassProperties)
+        self.loadEditTextView(rcProperty)
+    }
+    
     func addObject() {
         
         
-        let values: [String] = ["UIImageView", "UITextField", "UICell", "UITableView", "UILabel", "Object"]
+        let values: [String] = ["UIImageView", "UITextField", "UICell", "UITableView", "UILabel", "UIView" , "Object"]
         
         
         let rcProperty = RCProperty(key: "name", valueStr: "",
@@ -565,7 +578,8 @@ extension RemoteConigViewController: NSMenuDelegate {
                 menu.removeAllItems()
                 
                 //if self.object != nil {
-                    
+                
+                    menu.addItem(withTitle: "Add Value", action: #selector(self.addValue), keyEquivalent: "")
                     menu.addItem(withTitle: "Add Class", action: #selector(self.addClass), keyEquivalent: "")
                     menu.addItem(withTitle: "Add Object", action: #selector(self.addObject), keyEquivalent: "")
                     

@@ -35,6 +35,7 @@ enum RCObjectType : String {
     case ImageView = "UIImageView"
     case TextField = "UITextField"
     case Cell = "UICell"
+    case View = "UIView"
     case TableView = "UITableView"
     case Object = "Object"
     case NavigationBar = "UINavigationBar"
@@ -122,6 +123,7 @@ struct RCColor: JSONSerializable {
 //}
 
 enum SettingPart {
+    case ClassProperties
     case MainSetting
     case Properties
     case Class
@@ -222,16 +224,19 @@ struct RCController: JSONSerializable {
     var objectsList: [RCObject]!
     var name : String!
     var parent: Int = 0
+    var classProperties : [String: Any]!
     
     init() {
         objectsList = [RCObject]()
         name = ""
+        classProperties = [:]
     }
     init(dict: String){}
     
     init(name: String) {
         self.name = name
         self.objectsList = [RCObject]()
+        self.classProperties = [String:Any]()
     }
     
     init(dict: [String]){}
@@ -241,6 +246,9 @@ struct RCController: JSONSerializable {
         self.name = dict["name"] as! String
         
         self.objectsList = [RCObject]()
+        
+        self.classProperties = dict.tryConvertObj(forKey: "classProperties")
+        
         
         for ( value) in dict["objectsList"] as! NSArray {
             
