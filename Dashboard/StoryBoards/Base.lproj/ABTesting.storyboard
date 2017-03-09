@@ -234,7 +234,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="A0b-u7-qiM">
-                                        <rect key="frame" x="150" y="6" width="417" height="26"/>
+                                        <rect key="frame" x="149" y="6" width="417" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="414" id="gF4-cJ-kp6"/>
                                         </constraints>
@@ -343,7 +343,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pas-QY-j26">
-                                        <rect key="frame" x="150" y="6" width="417" height="26"/>
+                                        <rect key="frame" x="149" y="6" width="417" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="414" id="KJ5-5c-wqd"/>
                                         </constraints>
@@ -416,7 +416,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rEY-Vq-u4d">
-                                        <rect key="frame" x="150" y="6" width="417" height="26"/>
+                                        <rect key="frame" x="149" y="6" width="417" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="414" id="IiL-YI-VeU"/>
                                         </constraints>

@@ -1,38 +1,39 @@
 //
-//  AppVersionDelegate.swift
+//  AppConfigVersionDelegate.swift
 //  Dashboard
 //
-//  Created by Timothy Barnard on 19/02/2017.
+//  Created by Timothy Barnard on 09/03/2017.
 //  Copyright © 2017 Timothy Barnard. All rights reserved.
 //
+
 
 import Foundation
 import Cocoa
 
-typealias SelectVersion = (_ row: Int, _ application: TBAppVersion ) -> Void
+typealias SelectConfigVersion = (_ row: Int, _ application: RemoteConfig ) -> Void
 
-class AppVersionDelegate: NSObject {
+class AppConfigVersionDelegate: NSObject {
     
-    var appVersions = [TBAppVersion]()
+    var appVersions = [RemoteConfig]()
     
-    var selectVersion: SelectVersion?
+    var selectConfigVersion: SelectConfigVersion?
     fileprivate var comboxBox: NSComboBox
     
-    init(comboxBox: NSComboBox , selectionBlock: @escaping SelectVersion) {
+    init(comboxBox: NSComboBox , selectionBlock: @escaping SelectConfigVersion) {
         self.comboxBox = comboxBox
         super.init()
-        self.selectVersion = selectionBlock
+        self.selectConfigVersion = selectionBlock
         self.comboxBox.delegate = self
     }
     
-    func reload(_ appVersions: [TBAppVersion]  ) {
+    func reload(_ appVersions: [RemoteConfig]  ) {
         self.appVersions = appVersions
         self.comboxBox.reloadData()
     }
     
 }
 
-extension AppVersionDelegate: NSComboBoxDelegate {
+extension AppConfigVersionDelegate: NSComboBoxDelegate {
     
     func comboBoxSelectionDidChange(_ notification: Notification) {
         
@@ -41,6 +42,6 @@ extension AppVersionDelegate: NSComboBoxDelegate {
         }
         let selectedRow = comboBox.indexOfSelectedItem
         let item = self.appVersions[selectedRow]
-        selectVersion?( selectedRow, item)
+        selectConfigVersion?( selectedRow, item)
     }
 }

@@ -21,6 +21,9 @@ class RemoteConigViewController: NSViewController {
         static let volumeCellID = "VolumeCell"
     }
     
+    @IBOutlet weak var publishButton: NSButton!
+    
+    
     fileprivate var mainDataSource: MainViewDataSource!
     fileprivate var mainDelegate: MainViewDelegate!
     
@@ -39,6 +42,7 @@ class RemoteConigViewController: NSViewController {
     @IBOutlet var settingsTableView: NSTableView!
     @IBOutlet var colorTableView: NSTableView!
 
+    @IBOutlet weak var comboBoxConfigVersion: NSComboBox!
     @IBOutlet weak var comboBoxVersion: NSComboBox!
     @IBOutlet weak var comboBoxApp: NSComboBox!
     
@@ -48,6 +52,9 @@ class RemoteConigViewController: NSViewController {
     fileprivate var appVersionDelegate: AppVersionDelegate!
     fileprivate var appVersionDataSource: AppNameDataSource!
     
+    fileprivate var appConfigVersionDelegate: AppConfigVersionDelegate!
+    fileprivate var appConfigVersionDataSource: AppNameDataSource!
+    
     var pathRow: Int = -1
     var parentRow: Int = -1
     var object: RCObject?
@@ -56,9 +63,10 @@ class RemoteConigViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.publishButton.isEnabled = false
         config = Config()
         
+        appNameDataSource = AppNameDataSource(comboxBox: comboBoxApp)
         appNameDelegate = AppNameDelegate(comboxBox: comboBoxApp, selectionBlock: { ( row, app) in
             self.appKey = app.appKey
             self.applicationID = (app.objectID?.objectID)!
@@ -67,14 +75,18 @@ class RemoteConigViewController: NSViewController {
             self.getAllAppsVersions((app.objectID?.objectID)!)
         })
         
-        appNameDataSource = AppNameDataSource(comboxBox: comboBoxApp)
-        
+        appVersionDataSource = AppNameDataSource(comboxBox: comboBoxVersion)
         appVersionDelegate = AppVersionDelegate(comboxBox: comboBoxVersion, selectionBlock: { ( row, version) in
-            self.getRemoteConfigFiles(version: version.version )
+            self.publishButton.isEnabled = true
+            self.comboBoxConfigVersion.removeAllItems()
+            self.comboBoxConfigVersion.reloadData()
+            self.getAllConfigVersions(version.applicationID, version.version)
         })
         
-        appVersionDataSource = AppNameDataSource(comboxBox: comboBoxVersion)
-        
+        appConfigVersionDataSource = AppNameDataSource(comboxBox: comboBoxConfigVersion)
+        appConfigVersionDelegate = AppConfigVersionDelegate(comboxBox: comboBoxConfigVersion, selectionBlock: { ( row, version) in
+            self.getRemoteConfigFiles(version: version.version )
+        })
         
         mainDataSource = MainViewDataSource(outlineView: mainOutlineView)
         mainDelegate = MainViewDelegate(outlineView: mainOutlineView) { volume, row, parent in
@@ -108,13 +120,35 @@ class RemoteConigViewController: NSViewController {
         self.getAllApps()
     }
     
-    func getAllAppsVersions(_ appID: String ) {
+    func getAllConfigVersions(_ appID: String, _ version: String ) {
         
         var allVersions = [RemoteConfig]()
         
-        allVersions.getFilteredInBackground(ofType: RemoteConfig.self, query: ["applicationID": appID as AnyObject ], appKey: self.appKey ) { (retrieved, versions) in
+        allVersions.getFilteredInBackground(ofType: RemoteConfig.self, query: ["applicationID": appID as AnyObject, "version": version as AnyObject ], appKey: self.appKey ) { (retrieved, versions) in
         
             DispatchQueue.main.async {
+                if retrieved {
+                    allVersions = versions
+                    
+                    for version in versions {
+                        self.comboBoxConfigVersion.addItem(withObjectValue: version.version)
+                    }
+                    
+                    self.appConfigVersionDelegate.reload(versions)
+                    self.appVersionDataSource.reload(versions.count)
+                }
+            }
+        }
+    }
+    
+    func getAllAppsVersions(_ appID: String) {
+        
+        var allVersions = [TBAppVersion]()
+        
+        allVersions.getFilteredInBackground(ofType: TBAppVersion.self, query: ["applicationID":appID as AnyObject]) { (retrieved, versions ) in
+            
+            DispatchQueue.main.async {
+                
                 if retrieved {
                     allVersions = versions
                     
@@ -124,10 +158,13 @@ class RemoteConigViewController: NSViewController {
                     
                     self.appVersionDelegate.reload(versions)
                     self.appVersionDataSource.reload(versions.count)
+            
                 }
             }
+            
         }
     }
+
     
     func getAllApps() {
         
@@ -373,32 +410,26 @@ class RemoteConigViewController: NSViewController {
         }
     }
     
-    func sendConfigFiles() {
-    
-        self.config?.version = self.comboBoxVersion.stringValue
-        self.config?.applicationID = self.applicationID
-        self.config?.filePath = "ConfigFiles/" + self.comboBoxApp.stringValue + "/config_" + self.comboBoxVersion.stringValue + ".json"
-        
-        if let data = self.config?.toData() {
-            
-            //let key = UniqueSting.apID()
-            HTTPSConnection.httpPostRequest(params: data, endPoint: "/remote", appKey: self.appKey) { ( sent, message) in
-                
-                DispatchQueue.main.async {
-                    
-                    if sent {
-                        print("sent")
-                    } else {
-                        print("not sent")
-                    }
-                }
-            }
-
-        }
-    }
-    
     @IBAction func publishButton(_ sender: Any) {
-        self.sendConfigFiles()
+        
+        self.config?.applicationID = self.applicationID
+        
+        let storyboard = NSStoryboard(name: "RemoteConfig", bundle: nil)
+        let sendConfigWindowController = storyboard.instantiateController(withIdentifier: "SendConfig") as! NSWindowController
+        
+        if let sendConfigWindow = sendConfigWindowController.window{
+            
+            let sendConfigViewController = sendConfigWindow.contentViewController as! SendConfigViewController
+            sendConfigViewController.config = self.config
+            sendConfigViewController.appName = self.comboBoxApp.stringValue
+            sendConfigViewController.appVersion = self.comboBoxVersion.stringValue
+            sendConfigViewController.configVersion = self.comboBoxConfigVersion.stringValue
+            sendConfigViewController.appKey = self.appKey
+            
+            let application = NSApplication.shared()
+            application.runModal(for: sendConfigWindow)
+        }
+
     }
 }
 

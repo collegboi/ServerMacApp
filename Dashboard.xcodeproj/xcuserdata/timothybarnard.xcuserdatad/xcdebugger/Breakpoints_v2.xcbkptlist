@@ -137,22 +137,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Dashboard/Remote Config/RemoteConfigView.swift"
-            timestampString = "510433828.622086"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "getAllApps()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Dashboard/Remote Config/AppNameDelegate.swift"
             timestampString = "509216052.20656"
             startingColumnNumber = "9223372036854775807"
@@ -217,86 +201,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Dashboard/Remote Config/RemoteConfigView.swift"
-            timestampString = "510014181.756953"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dashboard/Remote Config/RemoteConfigView.swift"
-            timestampString = "510014181.756953"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dashboard/Remote Config/RemoteConfigView.swift"
-            timestampString = "509931177.950072"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dashboard.RemoteConigViewController.viewDidLoad () -&gt; ()"
-                  moduleName = "Dashboard"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/timothybarnard/Documents/FYP/ServerMacApp/Dashboard/Remote%20Config/RemoteConfigView.swift"
-                  timestampString = "509218381.006361"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59"
-                  offsetFromSymbolStart = "78">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dashboard.RemoteConigViewController.(viewDidLoad () -&gt; ()).(closure #1)"
-                  moduleName = "Dashboard"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/timothybarnard/Documents/FYP/ServerMacApp/Dashboard/Remote%20Config/RemoteConfigView.swift"
-                  timestampString = "509218381.008984"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "60"
-                  endingLineNumber = "60"
-                  offsetFromSymbolStart = "375">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Dashboard/Controllers/HTTPConnection.swift"
             timestampString = "510013897.92952"
             startingColumnNumber = "9223372036854775807"
@@ -314,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dashboard/Remote Config/RemoteConfigView.swift"
-            timestampString = "510536201.293304"
+            timestampString = "510753062.177732"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "544"
-            endingLineNumber = "544"
+            startingLineNumber = "575"
+            endingLineNumber = "575"
             landmarkName = "RemoteConigViewController"
             landmarkType = "4">
          </BreakpointContent>
@@ -330,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dashboard/Remote Config/RemoteConfigView.swift"
-            timestampString = "510536201.293304"
+            timestampString = "510753062.177732"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "579"
-            endingLineNumber = "579"
+            startingLineNumber = "610"
+            endingLineNumber = "610"
             landmarkName = "menuNeedsUpdate(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -378,43 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dashboard/Remote Config/RemoteConfigView.swift"
-            timestampString = "510014181.756953"
+            timestampString = "510753062.177732"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dashboard/Remote Config/RemoteConfigView.swift"
-            timestampString = "510014181.756953"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dashboard/Remote Config/RemoteConfigView.swift"
-            timestampString = "510433828.622086"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "loadEditView(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -474,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dashboard/Model/Controllers.swift"
-            timestampString = "510540171.292353"
+            timestampString = "510751676.55328"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "283"
-            endingLineNumber = "283"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
             landmarkName = "init(dict:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -496,22 +368,6 @@
             startingLineNumber = "338"
             endingLineNumber = "338"
             landmarkName = "parseJSONConfig(data:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dashboard/Remote Config/RemoteConfigView.swift"
-            timestampString = "510433828.622086"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "378"
-            endingLineNumber = "378"
-            landmarkName = "sendConfigFiles()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -640,22 +496,6 @@
             startingLineNumber = "101"
             endingLineNumber = "101"
             landmarkName = "getConfigSettings(configCompleted:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dashboard/Settings/SettingsViewController.swift"
-            timestampString = "509735039.108803"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "getConfigSettings()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -890,11 +730,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dashboard/Remote Config/RemoteConfigView.swift"
-            timestampString = "510536576.764453"
+            timestampString = "510753062.177732"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "533"
-            endingLineNumber = "533"
+            startingLineNumber = "564"
+            endingLineNumber = "564"
             landmarkName = "addObject()"
             landmarkType = "7">
          </BreakpointContent>
@@ -906,11 +746,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dashboard/Remote Config/RemoteConfigView.swift"
-            timestampString = "510538538.272503"
+            timestampString = "510753062.177732"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "loadEditView(_:_:)"
             landmarkType = "7">
             <Locations>
@@ -954,11 +794,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dashboard/Remote Config/RemoteConfigView.swift"
-            timestampString = "510538636.403025"
+            timestampString = "510753062.177732"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
             landmarkName = "loadComboBoxView(_:_:)"
             landmarkType = "7">
          </BreakpointContent>

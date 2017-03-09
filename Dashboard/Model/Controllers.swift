@@ -267,6 +267,9 @@ struct Config : JSONSerializable {
     var version : String = "0"
     var applicationID : String = ""
     var filePath: String = ""
+    var appTheme: String = ""
+    var appLive: Int = 1
+    var configVersion: String = ""
     
     init() {
         colors = [RCColor]()

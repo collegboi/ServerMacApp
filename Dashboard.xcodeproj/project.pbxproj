@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		150A42E71E7169FB00D8C476 /* SendConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150A42E61E7169FB00D8C476 /* SendConfigViewController.swift */; };
+		150A42EA1E716FB000D8C476 /* AppConfigVersionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150A42E91E716FB000D8C476 /* AppConfigVersionDelegate.swift */; };
 		15174FC41E5904CE00539953 /* Backup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15174FC21E5904CE00539953 /* Backup.storyboard */; };
 		15174FC91E59098A00539953 /* BackupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FC81E59098A00539953 /* BackupViewController.swift */; };
 		15174FCB1E590AE700539953 /* Backup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FCA1E590AE700539953 /* Backup.swift */; };
@@ -187,6 +189,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		150A42E61E7169FB00D8C476 /* SendConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendConfigViewController.swift; sourceTree = "<group>"; };
+		150A42E91E716FB000D8C476 /* AppConfigVersionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigVersionDelegate.swift; sourceTree = "<group>"; };
 		15174FC31E5904CE00539953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Backup.storyboard; sourceTree = "<group>"; };
 		15174FC81E59098A00539953 /* BackupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupViewController.swift; sourceTree = "<group>"; };
 		15174FCA1E590AE700539953 /* Backup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Backup.swift; sourceTree = "<group>"; };
@@ -335,6 +339,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		150A42E31E7169E400D8C476 /* SendConfig */ = {
+			isa = PBXGroup;
+			children = (
+				150A42E61E7169FB00D8C476 /* SendConfigViewController.swift */,
+			);
+			name = SendConfig;
+			sourceTree = "<group>";
+		};
+		150A42E81E716F9A00D8C476 /* App Config Versions */ = {
+			isa = PBXGroup;
+			children = (
+				150A42E91E716FB000D8C476 /* AppConfigVersionDelegate.swift */,
+			);
+			name = "App Config Versions";
+			sourceTree = "<group>";
+		};
 		15174FC71E59097200539953 /* Backup */ = {
 			isa = PBXGroup;
 			children = (
@@ -393,6 +413,7 @@
 		15174FE31E5A00CB00539953 /* ComboxBox */ = {
 			isa = PBXGroup;
 			children = (
+				150A42E81E716F9A00D8C476 /* App Config Versions */,
 				15174FE41E5A00D900539953 /* App Name */,
 				15174FE91E5A0D3B00539953 /* App Version */,
 			);
@@ -775,6 +796,7 @@
 		B27D844D1E33DED4007ADB39 /* Remote Config */ = {
 			isa = PBXGroup;
 			children = (
+				150A42E31E7169E400D8C476 /* SendConfig */,
 				B27D844F1E33DF8D007ADB39 /* ColorsView */,
 				15174FE31E5A00CB00539953 /* ComboxBox */,
 				B27D84341E32C0BD007ADB39 /* DetailOutlineVIew */,
@@ -1061,6 +1083,7 @@
 				B2088F431E421AFE00458F58 /* CrashesViewController.swift in Sources */,
 				B27D84661E35478B007ADB39 /* VolumeInfo.swift in Sources */,
 				15174FCE1E590EBD00539953 /* BackupDataSource.swift in Sources */,
+				150A42EA1E716FB000D8C476 /* AppConfigVersionDelegate.swift in Sources */,
 				B2D3BDD41E46433D00273E9C /* TranslationViewController.swift in Sources */,
 				B2D4F2051E3C092A00106A97 /* CustomCellView.swift in Sources */,
 				B2D3BDDF1E46502D00273E9C /* TranslationKeysDelegate.swift in Sources */,
@@ -1103,6 +1126,7 @@
 				B253B2581E4B786E00E86B9B /* Data+Ext.swift in Sources */,
 				B23BF8431E5096CE005E7083 /* ABTesting.swift in Sources */,
 				15174FC91E59098A00539953 /* BackupViewController.swift in Sources */,
+				150A42E71E7169FB00D8C476 /* SendConfigViewController.swift in Sources */,
 				1595097E1E5E289D00D636A8 /* StaffStatsView.swift in Sources */,
 				159509841E5E3E0900D636A8 /* TextViewController.swift in Sources */,
 				B2D4F2161E3C24E000106A97 /* IssueViewDelegate.swift in Sources */,
