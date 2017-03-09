@@ -11,19 +11,20 @@ import Cocoa
 class LogViewController: NSViewController {
     
     @IBOutlet weak var logsTableView: NSTableView!
+    @IBOutlet weak var comboBoxLogs: NSComboBox!
     
     var allLogs = [String]()
+    
+    var lognames: [String] = ["requests","database","languages"]
     
     fileprivate var logsViewDelegate: GenericTableViewDelegate!
     fileprivate var logsViewDataSource: GenericDataSource!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.comboBoxLogs.delegate = self
         self.logsViewDataSource = GenericDataSource(tableView: self.logsTableView)
         self.logsViewDelegate = GenericTableViewDelegate(tableView: self.logsTableView)
-        
-        self.getAllLogs()
     }
     
     func reloadLogsTableView() {
@@ -31,9 +32,9 @@ class LogViewController: NSViewController {
         self.logsViewDataSource.reload(count: self.allLogs.count)
     }
     
-    func getAllLogs() {
+    func getAllLogs(name: String ) {
         
-        HTTPSConnection.httpGetRequest(params: [:], url: "/api/JKHSDGHFKJGH454645GRRLKJF/logs") { ( retrieved, data) in
+        HTTPSConnection.httpGetRequest(params: [:], url: "/api/JKHSDGHFKJGH454645GRRLKJF/logs/" + name ) { ( retrieved, data) in
             
             DispatchQueue.main.async {
                 if retrieved {
@@ -54,7 +55,21 @@ class LogViewController: NSViewController {
             }
         }
     }
+}
+
+extension LogViewController: NSComboBoxDelegate {
     
-    
+    func comboBoxSelectionDidChange(_ notification: Notification) {
+        
+        guard let comboBox = notification.object as? NSComboBox else {
+            return
+        }
+        let selectedRow = comboBox.indexOfSelectedItem
+        if selectedRow >= 0 {
+            let item = self.lognames[selectedRow]
+            self.getAllLogs(name: item)
+        }
+    }
+
     
 }

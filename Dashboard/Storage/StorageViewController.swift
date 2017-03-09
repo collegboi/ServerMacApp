@@ -275,15 +275,16 @@ extension StorageViewController: NSMenuDelegate {
                     DispatchQueue.main.async {
                         if (removed) {
                             print("success")
-                            self.allRecords?.row.remove(at: self.selectedDocRow)
-                            self.reloadDocuments()
+                            if self.selectedDocRow >= 0 {
+                                self.allRecords?.row.remove(at: self.selectedDocRow)
+                                self.reloadDocuments()
+                            }
                             self.selectedDocRow = -1;
                         } else {
                             print("error")
                         }
                     }
                 }
-
             }
         })
     }
@@ -301,8 +302,10 @@ extension StorageViewController: NSMenuDelegate {
                     DispatchQueue.main.async {
                         if (removed) {
                             print("success")
-                            self.allTables.remove(at: self.selectedDocRow)
-                            self.reloadCollection()
+                            if self.selectedDocRow >= 0 {
+                                self.allTables.remove(at: self.selectedDocRow)
+                                self.reloadCollection()
+                            }
                             self.selectedDocRow = -1;
                         } else {
                             print("error")

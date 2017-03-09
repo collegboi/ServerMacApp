@@ -8,7 +8,7 @@
 
 import Cocoa
 
-typealias SelectionObject = (_ volume: RCObject, _ row: Int, _ parent: Int) -> Void
+typealias SelectionObject = (_ volume: RCObject?, _ rcController: RCController? , _ row: Int, _ parent: Int) -> Void
 
 class MainViewDelegate: NSObject {
     
@@ -36,13 +36,26 @@ extension MainViewDelegate: NSOutlineViewDelegate {
             return
         }
         let selectedRow = outlineView.selectedRow
-        guard let item = outlineView.item(atRow: selectedRow) as? RCTableObject , selectedRow >= 0 else {
-            return
-        }
-        let object = item.rcObject
-        let parentRow = item.parentRow
         
-        objectSelectionBlock?(object!, selectedRow, parentRow!)
+        if let item = outlineView.item(atRow: selectedRow) as? RCController {
+            
+            if selectedRow >= 0 {
+                objectSelectionBlock?(nil, item, selectedRow, selectedRow)
+            }
+        }
+        else if let item = outlineView.item(atRow: selectedRow) as? RCTableObject {
+            
+            if selectedRow >= 0 {
+                
+                let object = item.rcObject
+                let parentRow = item.parentRow
+                
+                objectSelectionBlock?(object, nil, item.row, parentRow!)
+            }
+            
+        }
+        
+        //objectSelectionBlock?(object!, selectedRow, parentRow!)
     }
     
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {

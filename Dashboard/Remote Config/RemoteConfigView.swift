@@ -58,6 +58,7 @@ class RemoteConigViewController: NSViewController {
     var pathRow: Int = -1
     var parentRow: Int = -1
     var object: RCObject?
+    var rcController: RCController?
     var applicationID: String = ""
     var appKey: String = ""
     
@@ -71,7 +72,7 @@ class RemoteConigViewController: NSViewController {
             self.appKey = app.appKey
             self.applicationID = (app.objectID?.objectID)!
             self.comboBoxVersion.removeAllItems()
-            self.comboBoxVersion.reloadData()
+            //self.comboBoxVersion.reloadData()
             self.getAllAppsVersions((app.objectID?.objectID)!)
         })
         
@@ -79,25 +80,32 @@ class RemoteConigViewController: NSViewController {
         appVersionDelegate = AppVersionDelegate(comboxBox: comboBoxVersion, selectionBlock: { ( row, version) in
             self.publishButton.isEnabled = true
             self.comboBoxConfigVersion.removeAllItems()
-            self.comboBoxConfigVersion.reloadData()
+            
             self.getAllConfigVersions(version.applicationID, version.version)
         })
         
         appConfigVersionDataSource = AppNameDataSource(comboxBox: comboBoxConfigVersion)
         appConfigVersionDelegate = AppConfigVersionDelegate(comboxBox: comboBoxConfigVersion, selectionBlock: { ( row, version) in
-            self.getRemoteConfigFiles(version: version.version )
+            self.getRemoteConfigFiles(configVersion: version.configVersion )
         })
         
         mainDataSource = MainViewDataSource(outlineView: mainOutlineView)
-        mainDelegate = MainViewDelegate(outlineView: mainOutlineView) { volume, row, parent in
+        mainDelegate = MainViewDelegate(outlineView: mainOutlineView) { volume, rcController, row, parent in
+            self.rcController = rcController
             self.object = volume
             self.pathRow = row
             self.parentRow = parent
-            self.loadDetailTable(volume)
+            
+            if rcController != nil {
+                self.loadDetailTable(rcController!)
+            } else if volume != nil {
+                self.loadDetailTable(volume!)
+            }
         }
         
         detailDataSource = DetailViewDataSource(outlineView: detailOutlineView)
         detailDelegate = DetailViewDelegate(outlineView: detailOutlineView) { row, value in
+            //self.parentRow = row
             self.loadEditView( value.key, value.value )
         }
         
@@ -131,7 +139,7 @@ class RemoteConigViewController: NSViewController {
                     allVersions = versions
                     
                     for version in versions {
-                        self.comboBoxConfigVersion.addItem(withObjectValue: version.version)
+                        self.comboBoxConfigVersion.addItem(withObjectValue: version.configVersion)
                     }
                     
                     self.appConfigVersionDelegate.reload(versions)
@@ -186,13 +194,13 @@ class RemoteConigViewController: NSViewController {
         }
     }
     
-    func loadEditView(_ property: String, _ value: String ) {
+    func loadEditView(_ property: String, _ value: String) {
         
         if self.object != nil {
         
             let values = self.readConfigJSONFile((self.object?.objectType.rawValue)!, property)
             
-            var rcProperty = RCProperty(key: property, valueStr: value, valueNo: -1, row: 0, type: "Text", parent: self.parentRow, settingPart: .Properties)
+            var rcProperty = RCProperty(key: property, valueStr: value, valueNo: -1, row: self.pathRow, type: "Text", parent: self.parentRow, settingPart: .Properties)
             
             //Combobox list values
             if values.count > 1 {
@@ -200,6 +208,7 @@ class RemoteConigViewController: NSViewController {
                 rcProperty.type = "List"
                 rcProperty.settingPart = .Properties
                 rcProperty.parent = self.parentRow
+                rcProperty.row = self.pathRow
                 
                 self.loadComboBoxView(values, rcProperty)
             
@@ -214,6 +223,7 @@ class RemoteConigViewController: NSViewController {
                 rcProperty.type = "Text"
                 rcProperty.settingPart = .Color
                 rcProperty.parent = self.parentRow
+                rcProperty.row = self.pathRow
                 
                 self.loadComboBoxView(list, rcProperty)
                 
@@ -224,12 +234,26 @@ class RemoteConigViewController: NSViewController {
                 rcProperty.type = "Text"
                 rcProperty.settingPart = .Color
                 rcProperty.parent = self.parentRow
+                rcProperty.row = self.pathRow
                 
                 self.loadComboBoxView(list!, rcProperty)
             
             } else { // textView type
                 self.loadEditTextView(rcProperty)
             }
+        
+        } else if self.rcController != nil {
+            
+            var rcProperty = RCProperty(key: property, valueStr: value, valueNo: -1, row: self.pathRow, type: "Text", parent: self.parentRow, settingPart: .Properties)
+            
+            let list = self.config?.colors
+            
+            rcProperty.type = "Text"
+            rcProperty.settingPart = .Color
+            rcProperty.parent = self.parentRow
+            rcProperty.row = self.pathRow
+            
+            self.loadComboBoxView(list!, rcProperty)
         }
     }
     
@@ -373,6 +397,10 @@ class RemoteConigViewController: NSViewController {
         detailDataSource.reload(keyValuePairs: volume.objectProperties  )
     }
     
+    func loadDetailTable(_ controller: RCController) {
+        detailDataSource.reload(keyValuePairs: controller.classProperties  )
+    }
+    
     func reloadAllData() {
         
         mainDataSource.reload( config: self.config! )
@@ -384,11 +412,11 @@ class RemoteConigViewController: NSViewController {
         colorViewDataSource.reload(count: self.config!.colors.count)
     }
     
-    func getRemoteConfigFiles( version: String ) {
+    func getRemoteConfigFiles( configVersion: String ) {
         // Correct url and username/password
         
         print("sendRawTimetable")
-        let networkURL = "/api/"+self.appKey+"/remote/" + version//"https://timothybarnard.org/Scrap/appDataRequest.php?type=config"
+        let networkURL = "/api/"+self.appKey+"/remoteConfig/" + configVersion//"https://timothybarnard.org/Scrap/appDataRequest.php?type=config"
         let dic = [String: AnyObject]()
         HTTPSConnection.httpGetRequest(params: dic, url: networkURL) { (succeeded: Bool, data: NSData) -> () in
             // Move to the UI thread
@@ -399,7 +427,7 @@ class RemoteConigViewController: NSViewController {
                     self.config = HTTPSConnection.parseJSONConfig(data: data)
                 
                     if self.config != nil  {
-                    
+                        
                         self.reloadAllData()
                     }
                     
@@ -456,7 +484,12 @@ extension RemoteConigViewController: ReturnDelegate {
             if property.type == "List" {
                 self.object?.objectProperties[property.key] = property.valueNo
             } else {
-                self.object?.objectProperties[property.key] = property.valueStr
+                
+                if self.object != nil {
+                    self.object?.objectProperties[property.key] = property.valueStr
+                } else if self.rcController != nil {
+                    self.rcController?.classProperties[property.key] = property.valueStr
+                }
             }
             
             if property.settingPart == .MainSetting {
@@ -489,11 +522,15 @@ extension RemoteConigViewController: ReturnDelegate {
                 self.config?.controllers[property.parent].classProperties[property.key] = property.valueStr
                 
             } else {
-        
-                self.config?.controllers[property.parent].objectsList[property.row] = self.object!
-            
-            
-                self.loadDetailTable(self.config!.controllers[property.parent].objectsList[property.row])
+                
+                if self.object != nil {
+                    self.config?.controllers[property.parent].objectsList[property.row] = self.object!
+                    self.loadDetailTable(self.config!.controllers[property.parent].objectsList[property.row])
+                }
+                else if self.rcController != nil {
+                    self.config?.controllers[property.parent].classProperties = self.rcController?.classProperties
+                    self.loadDetailTable(self.config!.controllers[property.parent])
+                }
             }
         }
         
@@ -561,7 +598,7 @@ extension RemoteConigViewController: NSMenuDelegate {
     func addObject() {
         
         
-        let values: [String] = ["UIImageView", "UITextField", "UICell", "UITableView", "UILabel", "UIView" , "Object"]
+        let values: [String] = ["UIImageView", "UITextField", "UICell", "UITableView", "UILabel", "UIView", "UIButton" , "Object"]
         
         
         let rcProperty = RCProperty(key: "name", valueStr: "",

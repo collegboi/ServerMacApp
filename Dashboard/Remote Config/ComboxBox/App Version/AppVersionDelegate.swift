@@ -40,7 +40,9 @@ extension AppVersionDelegate: NSComboBoxDelegate {
             return
         }
         let selectedRow = comboBox.indexOfSelectedItem
-        let item = self.appVersions[selectedRow]
-        selectVersion?( selectedRow, item)
+        if selectedRow >= 0 {
+            let item = self.appVersions[selectedRow]
+            selectVersion?( selectedRow, item)
+        }
     }
 }

@@ -34,6 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //        //self.mainWindowController = mainWC
 //        
 //        mainWC.showWindow(self) // or use `.showWindow(self)`
+        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

@@ -15,16 +15,18 @@ struct RemoteConfig: JSONSerializable {
     var applicationID: String!
     var version: String!
     var path: String!
+    var configVersion: String!
     
     init() {}
     
     init(dict: String){}
     
-    init(applicationID:String, version: String, path: String ) {
+    init(applicationID:String, version: String, path: String, configVersion: String ) {
         self.objectID = MBOjectID(objectID: "")
         self.applicationID = applicationID
         self.version = version
         self.path = path
+        self.configVersion = configVersion
     }
     
     init(dict: [String : Any]) {
@@ -32,6 +34,7 @@ struct RemoteConfig: JSONSerializable {
         self.applicationID = dict.tryConvert(forKey: "applicationID")
         self.version = dict.tryConvert(forKey: "version")
         self.path = dict.tryConvert(forKey: "path")
+        self.configVersion = dict.tryConvert(forKey: "configVersion")
     }
     
     init(dict: [String]) {

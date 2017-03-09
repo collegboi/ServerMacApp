@@ -4,6 +4,7 @@
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <scenes>
         <!--Log View Controller-->
@@ -104,8 +105,46 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2g5-s8-Cmj">
+                                <rect key="frame" x="905" y="571" width="211" height="27"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xal-Jc-gdB">
+                                        <rect key="frame" x="-2" y="0.0" width="48" height="27"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title=" Logs:" id="P2E-0h-YOq">
+                                            <font key="font" size="16" name="AvenirNext-Regular"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4Rj-uY-LBC">
+                                        <rect key="frame" x="52" y="0.0" width="162" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="159" id="QyJ-Wd-DCZ"/>
+                                        </constraints>
+                                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="WgS-1j-Eyh">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <objectValues>
+                                                <string>requests</string>
+                                                <string>database</string>
+                                                <string>languages</string>
+                                            </objectValues>
+                                        </comboBoxCell>
+                                    </comboBox>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="yhU-GB-Tfd" firstAttribute="top" secondItem="2g5-s8-Cmj" secondAttribute="bottom" constant="20" id="06a-R5-5aX"/>
                             <constraint firstItem="ABE-HX-xhk" firstAttribute="leading" secondItem="7ai-uN-xXX" secondAttribute="leading" constant="20" id="0uF-xt-7e0"/>
                             <constraint firstAttribute="bottom" secondItem="ABE-HX-xhk" secondAttribute="bottom" constant="20" id="LDf-75-utx"/>
                             <constraint firstAttribute="trailing" secondItem="ABE-HX-xhk" secondAttribute="trailing" constant="20" id="N55-9T-mLr"/>
@@ -115,6 +154,7 @@
                             <constraint firstItem="dqw-Zo-ASW" firstAttribute="leading" secondItem="4dZ-JU-7bE" secondAttribute="trailing" constant="41" id="WdZ-Un-02P"/>
                             <constraint firstItem="yhU-GB-Tfd" firstAttribute="top" secondItem="4dZ-JU-7bE" secondAttribute="bottom" constant="20" id="d8e-nI-19g"/>
                             <constraint firstItem="4dZ-JU-7bE" firstAttribute="top" secondItem="7ai-uN-xXX" secondAttribute="top" constant="20" id="hAV-Ba-4sP"/>
+                            <constraint firstAttribute="trailing" secondItem="2g5-s8-Cmj" secondAttribute="trailing" constant="20" id="ijq-xx-giL"/>
                             <constraint firstItem="yhU-GB-Tfd" firstAttribute="leading" secondItem="7ai-uN-xXX" secondAttribute="leading" constant="20" id="lY8-Cq-7Iq"/>
                             <constraint firstItem="yhU-GB-Tfd" firstAttribute="top" secondItem="dqw-Zo-ASW" secondAttribute="bottom" constant="79" id="t3j-E5-wxX"/>
                             <constraint firstItem="yhU-GB-Tfd" firstAttribute="top" secondItem="4dZ-JU-7bE" secondAttribute="bottom" constant="20" id="t5U-1K-MaR"/>
@@ -122,6 +162,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="comboBoxLogs" destination="4Rj-uY-LBC" id="WGX-73-6XD"/>
                         <outlet property="logsTableView" destination="Vzm-hy-BWF" id="MzK-xt-qsF"/>
                     </connections>
                 </viewController>

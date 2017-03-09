@@ -56,6 +56,21 @@
         "isHidden": ["False", "True"],
         "isUserInteractionEnabled": ["False", "True"]
     },
+    "UICell": {
+        "type": "UICell",
+        "textLabel_text": "text",
+        "textLabel_textColor": "color",
+        "textLabel_BkgdColor": "color",
+        "detailLabel_BkgdColor": "color",
+        "detailLabel_textColor": "color",
+        "detailLabel_text": "text",
+        "backgroundColor" : "color",
+        "font" : "text",
+        "fontSize": "number",
+        "isMultipleTouchEnabled": ["False", "True"],
+        "isHidden" : ["False", "True"],
+        "isUserInteractionEnabled": ["False", "True"]
+    },
     "Object": {
         "type": "Object"
     }

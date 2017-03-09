@@ -12,10 +12,12 @@ struct RCTableObject {
     
     var rcObject : RCObject!
     var parentRow: Int!
+    var row: Int!
     
-    init(rcObject: RCObject, parentRow: Int) {
+    init(rcObject: RCObject, parentRow: Int, row: Int) {
         self.rcObject = rcObject
         self.parentRow = parentRow
+        self.row = row
     }
 }
 
@@ -59,7 +61,7 @@ extension MainViewDataSource: NSOutlineViewDataSource {
         if let controller = item as? RCController {
             
             let object = RCTableObject(rcObject: controller.objectsList[index],
-                                       parentRow: controller.parent)
+                                       parentRow: controller.parent, row: index)
             
             return object //contoller.objectsList[index]
         
