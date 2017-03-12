@@ -598,7 +598,7 @@ extension RemoteConigViewController: NSMenuDelegate {
     func addObject() {
         
         
-        let values: [String] = ["UIImageView", "UITextField", "UICell", "UITableView", "UILabel", "UIView", "UIButton" , "Object"]
+        let values: [String] = ["UIImageView", "UITextField", "UICell", "UITableView", "UILabel", "UIView", "UIButton" , "UINavigationBar", "Object"]
         
         
         let rcProperty = RCProperty(key: "name", valueStr: "",

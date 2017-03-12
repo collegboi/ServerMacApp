@@ -9,40 +9,36 @@
 import Cocoa
 
 class PublishLanguage: NSViewController, NSWindowDelegate {
-
-    var allLanguages: [Languages]?
-    var publishVersionStr:String?
     
-    fileprivate var publishLangDelegate: PublishLangDelegate!
-    fileprivate var publishLangDataSource: GenericDataSource!
+    var appName = ""
+    var appKey = ""
+    var appVersion = ""
+    var languageID = ""
+    var languageName = ""
+    var objectVersionID = ""
+    var langVersion = ""
     
-    @IBOutlet weak var publishLanguageTableView:NSTableView!
-    @IBOutlet weak var publishVersion: NSTextField!
+    var translationList = [String:String]()
+    
+    @IBOutlet weak var publishedButton: NSButton!
+    @IBOutlet weak var appNameTextField: NSTextField!
+    @IBOutlet weak var appVersionTextField: NSTextField!
+    @IBOutlet weak var langNameTextField: NSTextField!
+    @IBOutlet weak var langVersionTextField: NSTextField!
     
     var delegate: ReturnDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.publishedButton.state = 0
         self.view.window?.delegate = self
-        
-        publishLangDelegate = PublishLangDelegate(tableView: publishLanguageTableView)
-        publishLangDataSource = GenericDataSource(tableView: publishLanguageTableView)
-        
     }
     
     override func viewWillAppear() {
-        
-        if publishVersionStr != nil {
-            self.publishVersion.stringValue = publishVersionStr!
-        }
-        
-        if allLanguages != nil {
-            
-            publishLangDataSource.reload(count: self.allLanguages!.count)
-            publishLangDelegate.reload(languages: self.allLanguages!)
-            
-        }
-        
+        self.appVersionTextField.stringValue = appVersion
+        self.appNameTextField.stringValue = appName
+        self.langNameTextField.stringValue = languageName
+        self.langVersionTextField.stringValue = langVersion
     }
     
     func windowShouldClose(_ sender: Any) -> Bool {
@@ -58,9 +54,53 @@ class PublishLanguage: NSViewController, NSWindowDelegate {
     }
     
     @IBAction func saveButton(_ sender: Any) {
-        
-        delegate?.sendBackData(data: self.allLanguages!)
+        self.sendConfigFiles()
     }
     
+    func sendConfigFiles() {
+        
+        let formatter = DateFormatter()
+        formatter.timeZone = NSTimeZone(name: "UTC") as TimeZone!
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        let releaseDate = formatter.string(from: Date())
+        
+        //self.currentVersion = self.appVersions.stringValue
+        
+        var translationVersion = LanguageVersion()
+        translationVersion.published = "\(self.publishedButton.state)"
+        translationVersion.appVersion = self.appVersion
+        translationVersion.date = releaseDate
+        translationVersion.filePath = "Languages/" + self.appName + "/" + self.languageName + "/" + self.appVersion + ".json"
+        translationVersion.languageName = self.languageName
+        translationVersion.langVersion = self.langVersionTextField.stringValue
+        translationVersion.languageID = self.languageID
+
+        translationVersion.sendInBackground(self.objectVersionID, appKey: self.appKey) { (succeded, data) in
+            DispatchQueue.main.async {
+                if (succeded) {
+                    print("success")
+                } else {
+                    print("error")
+                }
+            }
+        }
+
+        translationList["filePath"] = translationVersion.filePath
+        
+        HTTPSConnection.httpPostRequest(params: translationList, endPoint: "translation", appKey: self.appKey) { ( sent, message) in
+                
+            DispatchQueue.main.async {
+                
+                if sent {
+                    print("sent")
+                    self.view.window?.close()
+                    let application = NSApplication.shared()
+                    application.stopModal()
+                } else {
+                    print("not sent")
+                }
+            }
+        }
+    }
     
 }

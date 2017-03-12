@@ -12,11 +12,11 @@ import Cocoa
 extension TranslationViewController {
     
     
-    func sendInBackground(_ data:  [String:AnyObject], postCompleted : @escaping (_ succeeded: Bool, _ data: NSData) -> ()) {
+    func sendInBackground( appkey: String, _ data:  [String:AnyObject], postCompleted : @escaping (_ succeeded: Bool, _ data: NSData) -> ()) {
         
         let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
         
-        let apiEndpoint = "/api/JKHSDGHFKJGH454645GRRLKJF/translation/"
+        let apiEndpoint = "/api/"+appkey+"/translation/"
         let networkURL = url + apiEndpoint
         
         let request = NSMutableURLRequest(url: NSURL(string: networkURL)! as URL)
@@ -46,19 +46,18 @@ extension TranslationViewController {
         
         task.resume()
     }
-    
 }
 
 extension TranslationViewController {
     
-    func getTranslationFile(filePath: String, getCompleted : @escaping (_ succeeded: Bool, _ data: [String:String] ) -> ()) {
+    func getTranslationFile( appKey: String, endPoint: String, version: String, language:String, getCompleted : @escaping (_ succeeded: Bool, _ data: [String:String] ) -> ()) {
         
         //let className = ("\(type(of: T()))")
         
         let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
         
-        let apiEndpoint = "/api/JKHSDGHFKJGH454645GRRLKJF/translation"
-        let networkURL = url + apiEndpoint + filePath
+        let apiEndpoint = "/api/"+appKey+"/" + endPoint + "/"
+        let networkURL = url + apiEndpoint + language + "/" + version
         
         guard let endpoint = URL(string: networkURL) else {
             print("Error creating endpoint")

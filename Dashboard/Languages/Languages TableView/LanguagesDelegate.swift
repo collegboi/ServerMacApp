@@ -53,6 +53,13 @@ extension LanguagesDelegate: NSTableViewDelegate {
         let item = self.languages[row]
         
         if let cell = tableView.make(withIdentifier: "LanguageCell", owner: nil) as? NSTableCellView {
+            
+            cell.textField?.textColor = NSColor.black
+            
+            if item.available == 0 {
+                cell.textField?.textColor = NSColor.gray
+            }
+            
             cell.textField?.stringValue = item.name
             return cell
         }

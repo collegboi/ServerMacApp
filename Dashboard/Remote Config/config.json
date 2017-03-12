@@ -71,6 +71,15 @@
         "isHidden" : ["False", "True"],
         "isUserInteractionEnabled": ["False", "True"]
     },
+    "UINavigationBar": {
+        "type": "UINavigationBar",
+        "statusBarStyle": ["Dark", "Light"],
+        "barTintColor": "color",
+        "tintColor": "color",
+        "font" : "text",
+        "fontSize": "number",
+        "isTranslucent" : ["False", "True"]
+    },
     "Object": {
         "type": "Object"
     }

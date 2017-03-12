@@ -14,7 +14,21 @@ class TranslationViewController: NSViewController {
     @IBOutlet weak var translationKeysTableView:NSTableView!
     @IBOutlet weak var translationTableView:NSTableView!
     
-    @IBOutlet weak var appVersions: NSComboBox!
+    @IBOutlet weak var publishLanguage: NSButton!
+    
+    @IBOutlet weak var comboBoxLangVersion: NSComboBox!
+    @IBOutlet weak var comboBoxVersion: NSComboBox!
+    @IBOutlet weak var comboBoxApp: NSComboBox!
+    
+    fileprivate var appNameDelegate: AppNameDelegate!
+    fileprivate var appNameDataSource: AppNameDataSource!
+    
+    fileprivate var appVersionDelegate: AppVersionDelegate!
+    fileprivate var appVersionDataSource: AppNameDataSource!
+    
+    fileprivate var appLangVersionDelegate: AppLangVersionDelegate!
+    fileprivate var appLangVersionDataSource: AppNameDataSource!
+
     
     @IBOutlet weak var currentLanguageLabel: NSTextField!
     
@@ -30,6 +44,7 @@ class TranslationViewController: NSViewController {
     var translationList = [String:String]()
     var allTranslationKeys = [TranslationKeys]()
     var currentLanguage: String?
+    var activeLanguage = 0
     var currentVersion:String?
     var allLanguages = [Languages]()
     var translationVersion : LanguageVersion?
@@ -39,108 +54,159 @@ class TranslationViewController: NSViewController {
     
     var versionData = [String]()
     
+    var appKey = ""
+    var applicationID = ""
+    var languageID = ""
+    
+    override func viewWillAppear() {
+        self.getAllApps()
+        self.publishLanguage.isEnabled = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        versionData.append("1.2.1")
-        versionData.append("1.3")
-        versionData.append("1.5")
+        appNameDataSource = AppNameDataSource(comboxBox: comboBoxApp)
+        appNameDelegate = AppNameDelegate(comboxBox: comboBoxApp, selectionBlock: { ( row, app) in
+            self.appKey = app.appKey
+            self.applicationID = (app.objectID?.objectID)!
+            self.comboBoxVersion.removeAllItems()
+            //self.comboBoxVersion.reloadData()
+            self.getAllAppsVersions((app.objectID?.objectID)!)
+        })
         
-        self.appVersions.removeAllItems()
+        appVersionDataSource = AppNameDataSource(comboxBox: comboBoxVersion)
+        appVersionDelegate = AppVersionDelegate(comboxBox: comboBoxVersion, selectionBlock: { ( row, version) in
+            self.publishLanguage.isEnabled = true
+            self.comboBoxLangVersion.removeAllItems()
+            
+            self.getAllLanguages()
+            self.getTranslationKeys()
+            
+        })
         
-        self.appVersions.addItem(withObjectValue: "1.2.1")
-        self.appVersions.addItem(withObjectValue: "1.3")
-        self.appVersions.addItem(withObjectValue: "1.5")
-        
-        self.appVersions.delegate = self
-        self.appVersions.dataSource = self
-        
-        self.appVersions.reloadData()
-        
-        self.appVersions.selectItem(at: 0)
+        appLangVersionDataSource = AppNameDataSource(comboxBox: comboBoxLangVersion)
+        appLangVersionDelegate = AppLangVersionDelegate(comboxBox: comboBoxLangVersion, selectionBlock: { ( row, version) in
+            
+            self.getTranslation(endPoint: "translationVersion", version: version.langVersion , language: self.currentLanguage ?? "" )
+        })
+
         
         languageDataSource = GenericDataSource(tableView: languageTableView)
         languagesDelegate = LanguagesDelegate(tableView: languageTableView) { row, language in
+            self.languageID = language.objectID?.objectID ?? ""
             self.currentLanguageNo = row
             self.currentLanguageLabel.stringValue = language.name
             self.currentLanguage = language.name
-            self.getTranslation(filePath: language.name)
+            self.activeLanguage = language.available
+            self.getTranslation(endPoint: "translation", version: self.comboBoxVersion.stringValue , language: language.name )
         }
         
         translKeysDataSource = GenericDataSource(tableView: translationKeysTableView)
         translkeysDelegate = TranslationKeysDelegate(tableView: translationKeysTableView) { row, key in
-            //self.editIssue(issue: issue)
+            
         }
         
         translationViewDataSource = GenericDataSource(tableView: translationTableView)
         translationViewDelegate = TranslationViewDelegate(tableView: translationTableView) { row, value in
             
         }
-        self.getAllLanguages()
-        self.getTranslationKeys()
     }
     
-    
-    @IBAction func publishLanguage(_ sender: Any) {
-     
-        var myList = [String:AnyObject]()
+    func getAllConfigVersions(_ appID: String, _ version: String ) {
         
-        let formatter = DateFormatter()
-        formatter.timeZone = NSTimeZone(name: "UTC") as TimeZone!
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        let releaseDate = formatter.string(from: Date())
+        var allVersions = [LanguageVersion]()
         
-        self.currentVersion = self.appVersions.stringValue
-        
-        self.translationVersion = LanguageVersion(langaugeID: "", version: "1.2", filePath: "", name: "", published: "0", date: releaseDate)
-        
-        self.translationVersion?.version = self.currentVersion
-        self.translationVersion?.filePath = self.currentLanguage! + "/" + self.currentVersion! + ".json"
-        self.translationVersion?.langaugeID = self.allLanguages[self.currentLanguageNo].objectID?.objectID
-        
-        myList["translationList"] = self.translationList as AnyObject
-        myList["language"] = self.allLanguages[currentLanguageNo].toJSONObjects() as AnyObject
-        myList["newVersion"] = self.allLanguages[currentLanguageNo].name + "/" + self.currentVersion! + ".json" as AnyObject
-        
-        self.sendInBackground(myList) { (succeeded, data) in
+        allVersions.getFilteredInBackground(ofType: LanguageVersion.self, query: ["languageID": appID as AnyObject, "appVersion": version as AnyObject ], appKey: self.appKey ) { (retrieved, versions) in
+            
             DispatchQueue.main.async {
-                if (succeeded) {
-                    print("success")
-                } else {
-                    print("error")
+                if retrieved {
+                    allVersions = versions
+                    
+                    for version in versions {
+                        self.comboBoxLangVersion.addItem(withObjectValue: version.langVersion)
+                    }
+                    
+                    self.appLangVersionDelegate.reload(versions)
+                    self.appVersionDataSource.reload(versions.count)
                 }
             }
         }
+    }
+    
+    func getAllAppsVersions(_ appID: String) {
         
-        self.translationVersion?.sendInBackground((self.translationVersion?.objectID?.objectID)!, postCompleted: { (sent, data) in
+        var allVersions = [TBAppVersion]()
+        
+        allVersions.getFilteredInBackground(ofType: TBAppVersion.self, query: ["applicationID":appID as AnyObject]) { (retrieved, versions ) in
             
             DispatchQueue.main.async {
-                if sent {
-                    print("semt")
+                
+                if retrieved {
+                    allVersions = versions
+                    
+                    for version in versions {
+                        self.comboBoxVersion.addItem(withObjectValue: version.version)
+                    }
+                    
+                    self.appVersionDelegate.reload(versions)
+                    self.appVersionDataSource.reload(versions.count)
+                    
                 }
             }
             
-        })
+        }
+    }
+    
+    
+    func getAllApps() {
         
-//        let storyboard = NSStoryboard(name: "Languages", bundle: nil)
-//        let viewExceptionWindowController = storyboard.instantiateController(withIdentifier: "PublishVersion") as! NSWindowController
-//        
-//        if let viewExceptionWindow = viewExceptionWindowController.window {
-//            
-//            let publishLanguage = viewExceptionWindow.contentViewController as! PublishLanguage
-//            publishLanguage.allLanguages = self.allLanguages
-//            publishLanguage.publishVersionStr = self.currentVersion
-//            publishLanguage.delegate = self
-//            
-//            let application = NSApplication.shared()
-//            application.runModal(for: viewExceptionWindow)
-//        }
+        var allApps = [TBApplication]()
+        
+        allApps.getAllInBackground(ofType: TBApplication.self) { (retrieved, apps) in
+            DispatchQueue.main.async {
+                if retrieved {
+                    allApps = apps
+                    
+                    for app in apps {
+                        self.comboBoxApp.addItem(withObjectValue: app.name)
+                    }
+                    
+                    self.appNameDelegate.reload(apps)
+                    self.appNameDataSource.reload(apps.count)
+                }
+            }
+        }
+    }
+
+    
+    
+    @IBAction func publishLanguage(_ sender: Any) {
+        
+        let storyboard = NSStoryboard(name: "Languages", bundle: nil)
+        let viewExceptionWindowController = storyboard.instantiateController(withIdentifier: "PublishVersion") as! NSWindowController
+        
+        if let viewExceptionWindow = viewExceptionWindowController.window {
+            
+            let publishLanguage = viewExceptionWindow.contentViewController as! PublishLanguage
+            publishLanguage.appVersion = self.comboBoxVersion.stringValue
+            publishLanguage.appName = self.comboBoxApp.stringValue
+            publishLanguage.langVersion = self.comboBoxLangVersion.stringValue
+            publishLanguage.languageID = self.languageID
+            publishLanguage.translationList = self.translationList
+            publishLanguage.appKey = self.appKey
+            publishLanguage.languageName = self.currentLanguage ?? ""
+            publishLanguage.delegate = self
+            
+            let application = NSApplication.shared()
+            application.runModal(for: viewExceptionWindow)
+        }
 
     }
     
     func getTranslationKeys() {
         
-        self.allTranslationKeys.getAllInBackground(ofType: TranslationKeys.self) { (succeeded: Bool, data: [TranslationKeys]) -> () in
+        self.allTranslationKeys.getAllInBackground(ofType: TranslationKeys.self, appKey: self.appKey) { (succeeded: Bool, data: [TranslationKeys]) -> () in
             
             DispatchQueue.main.async {
                 if (succeeded) {
@@ -160,7 +226,7 @@ class TranslationViewController: NSViewController {
     
     func getAllLanguages() {
     
-        self.allLanguages.getAllInBackground(ofType:Languages.self) { (succeeded: Bool, data: [Languages]) -> () in
+        self.allLanguages.getAllInBackground(ofType: Languages.self, appKey: self.appKey ) { (succeeded: Bool, data: [Languages]) -> () in
             
             DispatchQueue.main.async {
                 if (succeeded) {
@@ -172,6 +238,12 @@ class TranslationViewController: NSViewController {
                     self.currentLanguageNo = 0
                     self.currentLanguage = firstLang.name
                     self.currentLanguageLabel.stringValue = firstLang.name
+                    self.languageID = firstLang.objectID?.objectID ?? ""
+                    
+                    self.getAllConfigVersions(firstLang.objectID?.objectID ?? "", self.comboBoxVersion.stringValue )
+                    
+                    self.getTranslation(endPoint: "translation", version: self.comboBoxVersion.stringValue , language: firstLang.name )
+                    
                     
                     self.reloadLanguageTable()
                     
@@ -200,11 +272,9 @@ class TranslationViewController: NSViewController {
         self.translationViewDelegate.reload(translations: self.translationList)
     }
     
-    func getTranslation( filePath: String ) {
+    func getTranslation(endPoint: String, version: String, language: String) {
         
-        let filePathStr = "/"+filePath
-        
-        self.getTranslationFile(filePath: filePathStr) { (succeeded: Bool, data: [String:String]) -> () in
+        self.getTranslationFile(appKey: self.appKey, endPoint: endPoint, version: version, language: language) { (succeeded: Bool, data: [String:String]) -> () in
             
             DispatchQueue.main.async {
                 if (succeeded) {
@@ -261,7 +331,6 @@ extension TranslationViewController: NSMenuDelegate {
             let application = NSApplication.shared()
             application.runModal(for: alertTextFieldWindow)
         }
-        
     }
     
     
@@ -283,7 +352,17 @@ extension TranslationViewController: NSMenuDelegate {
     
     
     func removeLanguage() {
-      
+        
+        var language = Languages()
+        language.available = 0
+        language.name = ""
+        language.removeInBackground(self.languageID) { (deleted, message) in
+            DispatchQueue.main.async {
+                if deleted {
+                    print("message deleted")
+                }
+            }
+        }
     }
     
     func addKey() {
@@ -292,6 +371,37 @@ extension TranslationViewController: NSMenuDelegate {
     
     func addKeyValueToLanguage( ) {
         self.showMessageBoxKeyValue( "Add Translation for " + self.currentLanguage! , 3)
+    }
+    
+    func makeActive() {
+        var language = Languages()
+        language.available = 1
+        language.name = self.currentLanguage ?? ""
+        language.sendInBackground(self.languageID, appKey: self.appKey) { (completed, data) in
+            DispatchQueue.main.async {
+                if completed {
+                    print("active")
+                    self.activeLanguage = 1
+                    self.reloadLanguageTable()
+                }
+            }
+        }
+    }
+    
+    func makeNotActive() {
+        
+        var language = Languages()
+        language.available = 0
+        language.name = self.currentLanguage ?? ""
+        language.sendInBackground(self.languageID, appKey: self.appKey) { (completed, data) in
+            DispatchQueue.main.async {
+                if completed {
+                    print("not active")
+                    self.activeLanguage = 0
+                    self.reloadLanguageTable()
+                }
+            }
+        }
     }
     
     func menuNeedsUpdate(_ menu: NSMenu) {
@@ -304,8 +414,20 @@ extension TranslationViewController: NSMenuDelegate {
                 
                 menu.removeAllItems()
                 
-                menu.addItem(withTitle: "Remove", action: #selector(self.removeLanguage), keyEquivalent: "")
                 menu.addItem(withTitle: "Add", action: #selector(self.addLanguage), keyEquivalent: "")
+                
+                if self.languageID != "" {
+                
+                    menu.addItem(withTitle: "Remove", action: #selector(self.removeLanguage), keyEquivalent: "")
+                    menu.addItem(withTitle: "", action: nil, keyEquivalent: "")
+                    //if self.activeLanguage == 0 {
+                        menu.addItem(withTitle: "Active", action: #selector(self.makeActive), keyEquivalent: "")
+                    //} else {
+                        menu.addItem(withTitle: "Not Active", action: #selector(self.makeNotActive), keyEquivalent: "")
+                    //}
+                    
+                }
+            
             }
             break
             
@@ -326,35 +448,35 @@ extension TranslationViewController: NSMenuDelegate {
 }
 
 
-extension TranslationViewController: NSComboBoxDataSource,NSComboBoxDelegate {
-    
-    
-    func comboBoxSelectionDidChange(_ notification: Notification) {
-        
-        guard let comboBox = notification.object as? NSComboBox else {
-            return
-        }
-        
-        print("comboBox objectValueOfSelectedItem: \(comboBox.objectValueOfSelectedItem)")
-        /* This printed the correct selected String value */
-        
-        print("comboBox indexOfSelectedItem: \(comboBox.indexOfSelectedItem)")
-        
-        let version = "\(comboBox.objectValueOfSelectedItem!)"
-        
-        if currentLanguageNo >= 0 {
-            
-            self.translationList.removeAll()
-            
-            self.currentLanguage = self.allLanguages[self.currentLanguageNo].name ?? "English"
-            self.currentVersion = version
-            
-            let filePath = self.currentLanguage! + "/" + self.currentVersion! + ".json"
-            
-            self.getTranslation(filePath: filePath)
-        }
-    }
-}
+//extension TranslationViewController: NSComboBoxDataSource,NSComboBoxDelegate {
+//    
+//    
+//    func comboBoxSelectionDidChange(_ notification: Notification) {
+//        
+//        guard let comboBox = notification.object as? NSComboBox else {
+//            return
+//        }
+//        
+//        print("comboBox objectValueOfSelectedItem: \(comboBox.objectValueOfSelectedItem)")
+//        /* This printed the correct selected String value */
+//        
+//        print("comboBox indexOfSelectedItem: \(comboBox.indexOfSelectedItem)")
+//        
+//        let version = "\(comboBox.objectValueOfSelectedItem!)"
+//        
+//        if currentLanguageNo >= 0 {
+//            
+//            self.translationList.removeAll()
+//            
+//            self.currentLanguage = self.allLanguages[self.currentLanguageNo].name ?? "English"
+//            self.currentVersion = version
+//            
+//            let filePath = self.currentLanguage! + "/" + self.currentVersion! + ".json"
+//            
+//            
+//        }
+//    }
+//}
 
 extension TranslationViewController: ReturnDelegate {
     
@@ -366,18 +488,19 @@ extension TranslationViewController: ReturnDelegate {
             switch returnObj.id {
             case 1:
                 let newLanguage = Languages(name: returnObj.value, available: 1)
-                newLanguage.sendInBackground("") { (complete, data) in
+                newLanguage.sendInBackground("", appKey: self.appKey ) { (complete, data) in
                     DispatchQueue.main.async {
                         print("sent")
+                        self.currentLanguage = returnObj.value
                         self.allLanguages.append(newLanguage)
                         self.reloadLanguageTable()
                     }
                 }
                 break
             case 2:
-                
+            
                 let newkey = TranslationKeys(name: returnObj.value)
-                newkey.sendInBackground("", postCompleted: { ( complete , data) in
+                newkey.sendInBackground("", appKey: self.appKey ) { ( complete , data) in
                     DispatchQueue.main.async {
                         if complete {
                             print("sent")
@@ -386,7 +509,7 @@ extension TranslationViewController: ReturnDelegate {
                         }
                     }
                     
-                })
+                }
                 
                 break
                 

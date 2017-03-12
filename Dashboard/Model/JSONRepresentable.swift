@@ -240,19 +240,32 @@ extension JSONSerializable {
         }
         
         if name is Int {
-            returnObject = name as AnyObject
+            returnObject = "\(name)" as AnyObject
+        }
+        
+        if name is Bool {
+            
+            guard let keyBool = name as? Bool else {
+                 return "0"  as AnyObject
+            }
+            
+            returnObject = "0" as AnyObject
+            
+            if keyBool {
+                returnObject = "1"  as AnyObject
+            }
         }
         
         if name is Float {
-            returnObject = name as AnyObject
+            returnObject = "\(name)" as AnyObject
         }
         
         if name is Double {
-            returnObject = name as AnyObject
+            returnObject =  "\(name)" as AnyObject
         }
         
         if name is CGFloat {
-            returnObject = name as AnyObject
+            returnObject =  "\(name)" as AnyObject
         }
         
         return returnObject

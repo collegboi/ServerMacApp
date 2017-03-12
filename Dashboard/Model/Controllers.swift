@@ -71,11 +71,11 @@ struct RCColor: JSONSerializable {
     }
     
     init(dict : [String:Any]) {
-        self.blue = dict["blue"] as! CGFloat
-        self.green = dict["green"] as! CGFloat
-        self.red = dict["red"] as! CGFloat
-        self.alpha = dict["alpha"] as! CGFloat
-        self.name = dict["name"] as! String
+        self.blue = dict.tryConvert(forKey: "blue")
+        self.green = dict.tryConvert(forKey: "green")
+        self.red = dict.tryConvert(forKey: "red")
+        self.alpha = dict.tryConvert(forKey: "alpha")
+        self.name = dict.tryConvert(forKey: "name")
     }
 }
 

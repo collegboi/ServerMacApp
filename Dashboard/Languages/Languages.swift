@@ -11,31 +11,34 @@ import Foundation
 struct LanguageVersion: JSONSerializable {
     
     var objectID: MBOjectID?
-    var langaugeID: String!
-    var version: String!
+    var languageID: String!
+    var appVersion: String!
+    var langVersion: String!
     var filePath:String!
-    var name:String!
+    var languageName:String!
     var published:String!
     var date: String!
     
     init() {}
     
-    init(langaugeID: String, version:String, filePath:String, name:String, published:String, date:String, objectID: String = "") {
+    init(languageID: String, appVersion:String, langVersion: String, filePath:String, languageName:String, published:String, date:String, objectID: String = "") {
         self.objectID = MBOjectID(objectID: objectID)
-        self.langaugeID = langaugeID
-        self.version = version
+        self.languageID = languageID
+        self.appVersion = appVersion
+        self.langVersion = langVersion
         self.filePath = filePath
-        self.name = name
+        self.languageName = languageName
         self.published = published
         self.date = date
     }
     
     init(dict:[String:Any]) {
         self.objectID = MBOjectID(objectID: dict.tryConvert(forKey: "_id"))
-        self.langaugeID = dict.tryConvert(forKey: "langaugeID")
-        self.version = dict.tryConvert(forKey: "version")
+        self.languageID = dict.tryConvert(forKey: "langalanguageIDugeID")
+        self.appVersion = dict.tryConvert(forKey: "appVersion")
+        self.langVersion = dict.tryConvert(forKey: "langVersion")
         self.filePath = dict.tryConvert(forKey: "filePath")
-        self.name = dict.tryConvert(forKey: "name")
+        self.languageName = dict.tryConvert(forKey: "languageName")
         self.published = dict.tryConvert(forKey: "published", "0")
         self.date = dict.tryConvert(forKey: "date")
     }

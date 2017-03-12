@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		150A42E71E7169FB00D8C476 /* SendConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150A42E61E7169FB00D8C476 /* SendConfigViewController.swift */; };
 		150A42EA1E716FB000D8C476 /* AppConfigVersionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150A42E91E716FB000D8C476 /* AppConfigVersionDelegate.swift */; };
+		1511B3D71E75DF42001DCF45 /* AppLangVersionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511B3D61E75DF42001DCF45 /* AppLangVersionDelegate.swift */; };
 		15174FC41E5904CE00539953 /* Backup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15174FC21E5904CE00539953 /* Backup.storyboard */; };
 		15174FC91E59098A00539953 /* BackupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FC81E59098A00539953 /* BackupViewController.swift */; };
 		15174FCB1E590AE700539953 /* Backup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FCA1E590AE700539953 /* Backup.swift */; };
@@ -191,6 +192,7 @@
 /* Begin PBXFileReference section */
 		150A42E61E7169FB00D8C476 /* SendConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendConfigViewController.swift; sourceTree = "<group>"; };
 		150A42E91E716FB000D8C476 /* AppConfigVersionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigVersionDelegate.swift; sourceTree = "<group>"; };
+		1511B3D61E75DF42001DCF45 /* AppLangVersionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLangVersionDelegate.swift; sourceTree = "<group>"; };
 		15174FC31E5904CE00539953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Backup.storyboard; sourceTree = "<group>"; };
 		15174FC81E59098A00539953 /* BackupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupViewController.swift; sourceTree = "<group>"; };
 		15174FCA1E590AE700539953 /* Backup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Backup.swift; sourceTree = "<group>"; };
@@ -353,6 +355,14 @@
 				150A42E91E716FB000D8C476 /* AppConfigVersionDelegate.swift */,
 			);
 			name = "App Config Versions";
+			sourceTree = "<group>";
+		};
+		1511B3D31E75DF27001DCF45 /* Lang Config Combobox */ = {
+			isa = PBXGroup;
+			children = (
+				1511B3D61E75DF42001DCF45 /* AppLangVersionDelegate.swift */,
+			);
+			name = "Lang Config Combobox";
 			sourceTree = "<group>";
 		};
 		15174FC71E59097200539953 /* Backup */ = {
@@ -853,6 +863,7 @@
 		B2D3BDD11E46432400273E9C /* Languages */ = {
 			isa = PBXGroup;
 			children = (
+				1511B3D31E75DF27001DCF45 /* Lang Config Combobox */,
 				B2D3BDD81E46499D00273E9C /* Languages TableView */,
 				B2D3BDF01E466FD300273E9C /* PublishLanguage */,
 				B2D3BDDD1E46500E00273E9C /* Translation Keys */,
@@ -1168,6 +1179,7 @@
 				15174FEB1E5A0D4900539953 /* AppVersionDelegate.swift in Sources */,
 				B2088F531E42323C00458F58 /* ViewCrashViewController.swift in Sources */,
 				B27D841E1E326D6B007ADB39 /* SideBarDataSource.swift in Sources */,
+				1511B3D71E75DF42001DCF45 /* AppLangVersionDelegate.swift in Sources */,
 				159509771E5DF0F300D636A8 /* LogViewController.swift in Sources */,
 				15174FD81E59D23200539953 /* TBApplication.swift in Sources */,
 				B27D84801E355813007ADB39 /* UserView.swift in Sources */,
