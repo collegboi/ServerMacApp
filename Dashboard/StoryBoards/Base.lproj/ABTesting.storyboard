@@ -55,28 +55,73 @@
                                     <action selector="newABTestingButton:" target="LvF-nq-cDA" id="IEm-Mg-DXw"/>
                                 </connections>
                             </button>
-                            <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="juY-Ye-hTw">
-                                <rect key="frame" x="790" y="476" width="326" height="27"/>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z4G-3Y-Jxd">
+                                <rect key="frame" x="456" y="476" width="660" height="27"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8G-4q-fpT">
-                                        <rect key="frame" x="-2" y="0.0" width="163" height="27"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="AB Testing Name:" id="gU8-wc-chJ">
-                                            <font key="font" size="16" name="AvenirNext-Regular"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XEc-dl-DhW">
-                                        <rect key="frame" x="167" y="0.0" width="162" height="26"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="159" id="0Fa-fh-Whb"/>
-                                        </constraints>
-                                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="TFh-Wm-6Je">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </comboBoxCell>
-                                    </comboBox>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MUN-rW-MbP">
+                                        <rect key="frame" x="0.0" y="0.0" width="326" height="27"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csX-2R-lmv">
+                                                <rect key="frame" x="-2" y="0.0" width="163" height="27"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="App Name Version:" id="H0d-GX-jel">
+                                                    <font key="font" size="16" name="AvenirNext-Regular"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="k4N-eL-Ipm">
+                                                <rect key="frame" x="167" y="-0.5" width="162" height="26"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="159" id="L3B-5a-MSV"/>
+                                                </constraints>
+                                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="7vw-XP-Ocr">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </comboBoxCell>
+                                            </comboBox>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="juY-Ye-hTw">
+                                        <rect key="frame" x="334" y="0.0" width="326" height="27"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8G-4q-fpT">
+                                                <rect key="frame" x="-2" y="0.0" width="163" height="27"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="AB Testing Name:" id="gU8-wc-chJ">
+                                                    <font key="font" size="16" name="AvenirNext-Regular"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XEc-dl-DhW">
+                                                <rect key="frame" x="167" y="-0.5" width="162" height="26"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="159" id="0Fa-fh-Whb"/>
+                                                </constraints>
+                                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="TFh-Wm-6Je">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </comboBoxCell>
+                                            </comboBox>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
                                 </subviews>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
@@ -93,7 +138,6 @@
                             <constraint firstAttribute="trailing" secondItem="bq9-a9-6cn" secondAttribute="trailing" constant="20" id="3Wt-ae-wln"/>
                             <constraint firstAttribute="bottom" secondItem="bq9-a9-6cn" secondAttribute="bottom" constant="20" id="CxE-BG-Gmg"/>
                             <constraint firstAttribute="trailing" secondItem="mUW-H0-bao" secondAttribute="trailing" constant="20" id="EQA-vp-Z1k"/>
-                            <constraint firstAttribute="trailing" secondItem="juY-Ye-hTw" secondAttribute="trailing" constant="20" id="GpH-2p-fn0"/>
                             <constraint firstItem="Ybs-NV-tnI" firstAttribute="top" secondItem="5j0-os-psW" secondAttribute="top" constant="20" id="Lxt-3C-btc"/>
                             <constraint firstItem="mUW-H0-bao" firstAttribute="top" secondItem="Ybs-NV-tnI" secondAttribute="bottom" constant="20" id="MTT-EB-YSb"/>
                             <constraint firstItem="bq9-a9-6cn" firstAttribute="leading" secondItem="5j0-os-psW" secondAttribute="leading" constant="20" id="NKr-4J-2FT"/>
@@ -101,15 +145,17 @@
                             <constraint firstItem="43W-ZD-im3" firstAttribute="leading" secondItem="Ybs-NV-tnI" secondAttribute="trailing" constant="41" id="UXF-Hy-gcw"/>
                             <constraint firstItem="GC3-ho-1f3" firstAttribute="top" secondItem="5j0-os-psW" secondAttribute="top" constant="20" id="Vrp-Ru-Yxf"/>
                             <constraint firstItem="bq9-a9-6cn" firstAttribute="top" secondItem="mUW-H0-bao" secondAttribute="bottom" constant="20" id="WHd-MO-s0O"/>
+                            <constraint firstItem="mUW-H0-bao" firstAttribute="top" secondItem="Z4G-3Y-Jxd" secondAttribute="bottom" constant="20" id="YKt-RD-uQI"/>
+                            <constraint firstAttribute="trailing" secondItem="Z4G-3Y-Jxd" secondAttribute="trailing" constant="20" id="hJo-Jb-mY3"/>
                             <constraint firstItem="43W-ZD-im3" firstAttribute="top" secondItem="5j0-os-psW" secondAttribute="top" constant="43" id="joa-K7-rkG"/>
                             <constraint firstItem="mUW-H0-bao" firstAttribute="leading" secondItem="5j0-os-psW" secondAttribute="leading" constant="20" id="kCP-2d-hg5"/>
                             <constraint firstItem="Ybs-NV-tnI" firstAttribute="leading" secondItem="5j0-os-psW" secondAttribute="leading" constant="20" id="tv8-Uf-Iej"/>
-                            <constraint firstItem="mUW-H0-bao" firstAttribute="top" secondItem="juY-Ye-hTw" secondAttribute="bottom" constant="20" id="zXv-fz-u4e"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="AAnalyticsView" destination="bq9-a9-6cn" id="Xsv-BA-EhB"/>
                         <outlet property="abTestingComboBox" destination="XEc-dl-DhW" id="6nv-uC-44S"/>
+                        <outlet property="comboBoxApp" destination="k4N-eL-Ipm" id="Ll9-xb-nko"/>
                     </connections>
                 </viewController>
                 <customObject id="CHv-39-Dox" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -234,7 +280,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="A0b-u7-qiM">
-                                        <rect key="frame" x="149" y="6" width="417" height="26"/>
+                                        <rect key="frame" x="150" y="5.5" width="417" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="414" id="gF4-cJ-kp6"/>
                                         </constraints>
@@ -295,7 +341,7 @@
                                 <rect key="frame" x="20" y="295" width="564" height="39"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssN-Ix-R8o">
-                                        <rect key="frame" x="-1" y="0.0" width="145" height="39"/>
+                                        <rect key="frame" x="-2" y="0.0" width="145" height="39"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="39" id="Y3g-27-cOb"/>
                                             <constraint firstAttribute="width" constant="141" id="bPE-0l-icB"/>
@@ -307,7 +353,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CSa-9e-YfL">
-                                        <rect key="frame" x="150" y="6" width="417" height="26"/>
+                                        <rect key="frame" x="149" y="5.5" width="417" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="414" id="BHT-mE-awX"/>
                                         </constraints>
@@ -343,7 +389,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pas-QY-j26">
-                                        <rect key="frame" x="149" y="6" width="417" height="26"/>
+                                        <rect key="frame" x="150" y="5.5" width="417" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="414" id="KJ5-5c-wqd"/>
                                         </constraints>
@@ -416,7 +462,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rEY-Vq-u4d">
-                                        <rect key="frame" x="149" y="6" width="417" height="26"/>
+                                        <rect key="frame" x="149" y="5.5" width="417" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="414" id="IiL-YI-VeU"/>
                                         </constraints>

@@ -11,12 +11,35 @@ import Foundation
 import Cocoa
 import  Charts
 
-struct TBAnalyitcs: JSONSerializable {
+struct TBAnalyticTags: JSONSerializable {
+ 
+    var osVersion: String = ""
+    var deviceMake: String = ""
+    var buildVersion: String = ""
+    var buildName: String = ""
+    var deviceModelName: String = ""
     
+    init(dict: String) {}
+    init() {}
+    init(dict: [String]) {}
+    init(dict: [String : Any]) {
+        self.osVersion = dict.tryConvert(forKey: "OS version")
+        self.deviceMake = dict.tryConvert(forKey: "Device make")
+        self.buildVersion = dict.tryConvert(forKey: "Build version")
+        self.buildName = dict.tryConvert(forKey: "Build name")
+        self.deviceModelName = dict.tryConvert(forKey: "Device model name")
+    }
+}
+
+struct TBAnalytics: JSONSerializable {
+    
+    var date: NSDate?
     var timeStamp: String = ""
     var method: String = ""
     var className: String = ""
     var fileName: String = ""
+    var type: String = ""
+    var tags: TBAnalyticTags?
     
     init(dict: String) {}
     init() {}
@@ -25,13 +48,23 @@ struct TBAnalyitcs: JSONSerializable {
         self.timeStamp = dict.tryConvert(forKey: "timeStamp")
         self.method = dict.tryConvert(forKey: "method")
         self.className = dict.tryConvert(forKey: "className")
-        self.fileName = dict.tryConvert(forKey: "fileNam")
+        self.fileName = dict.tryConvert(forKey: "fileName")
+        self.type = dict.tryConvert(forKey: "type")
+        self.tags = TBAnalyticTags(dict: dict.tryConvertObj(forKey: "tags"))
+        self.date = self.dateFormatter.date(from: dict.tryConvert(forKey: "timeStamp")) as NSDate?
+    }
+    
+    private var dateFormatter : DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone!
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        return dateFormatter
     }
 }
 
 @IBDesignable class AnalyticsView: NSView {
     
-    var allTBAnalyitcs = [TBAnalyitcs]()
+    var allTBAnalyitcs = [TBAnalytics]()
     
     private var dateFormatter : DateFormatter {
         let dateFormatter = DateFormatter()
@@ -92,7 +125,7 @@ struct TBAnalyitcs: JSONSerializable {
     
     func getAllAnayltics() {
         
-        allTBAnalyitcs.getAllInBackground(ofType: TBAnalyitcs.self) { ( completed, allAnalytics ) in
+        allTBAnalyitcs.getAllInBackground(ofType: TBAnalytics.self) { ( completed, allAnalytics ) in
             
             DispatchQueue.main.async {
                 if completed {

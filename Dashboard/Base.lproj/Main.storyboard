@@ -1171,6 +1171,14 @@ Gw
             </objects>
             <point key="canvasLocation" x="687" y="1075"/>
         </scene>
+        <!--Analytics-->
+        <scene sceneID="Z82-75-jUc">
+            <objects>
+                <controllerPlaceholder storyboardIdentifier="Analytics" storyboardName="Analytics" referencedIdentifier="Analytics" id="h7S-2J-CmI" sceneMemberID="viewController"/>
+                <customObject id="tdj-wR-L8H" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1368" y="783.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>

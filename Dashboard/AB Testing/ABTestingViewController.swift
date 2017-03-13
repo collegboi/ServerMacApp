@@ -11,22 +11,60 @@ import Cocoa
 
 class ABTestingViewController: NSViewController {
     
+    
     @IBOutlet weak var abTestingComboBox: NSComboBox!
+    
+    @IBOutlet weak var comboBoxApp: NSComboBox!
+    
+    fileprivate var appNameDelegate: AppNameDelegate!
+    fileprivate var appNameDataSource: AppNameDataSource!
     
     @IBOutlet weak var AAnalyticsView: AnalyticsView!
     
     var allABTesting = [ABTesting]()
     
+    var appKey: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.getAllApps()
+        
+        appNameDataSource = AppNameDataSource(comboxBox: comboBoxApp)
+        appNameDelegate = AppNameDelegate(comboxBox: comboBoxApp, selectionBlock: { ( row, app) in
+            self.appKey = app.appKey
+            self.getAllABTesting()
+            //self.applicationID = (app.objectID?.objectID)!
+        })
+        
         self.AAnalyticsView.setBackgroundColor(NSColor.white)
-       self.abTestingComboBox.delegate = self
-        self.getAllABTesting()
+        self.abTestingComboBox.delegate = self
+        
+    }
+    
+    func getAllApps() {
+        
+        var allApps = [TBApplication]()
+        
+        allApps.getAllInBackground(ofType: TBApplication.self) { (retrieved, apps) in
+            DispatchQueue.main.async {
+                if retrieved {
+                    allApps = apps
+                    
+                    for app in apps {
+                        self.comboBoxApp.addItem(withObjectValue: app.name)
+                    }
+                    
+                    self.appNameDelegate.reload(apps)
+                    self.appNameDataSource.reload(apps.count)
+                }
+            }
+        }
     }
     
     func getAllABTesting() {
         
-        allABTesting.getAllInBackground(ofType: ABTesting.self) { (completed, testing ) in
+        allABTesting.getAllInBackground(ofType: ABTesting.self, appKey: self.appKey ) { (completed, testing ) in
             
             DispatchQueue.main.async {
                 

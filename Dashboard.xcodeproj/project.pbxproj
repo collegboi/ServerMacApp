@@ -10,6 +10,9 @@
 		150A42E71E7169FB00D8C476 /* SendConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150A42E61E7169FB00D8C476 /* SendConfigViewController.swift */; };
 		150A42EA1E716FB000D8C476 /* AppConfigVersionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150A42E91E716FB000D8C476 /* AppConfigVersionDelegate.swift */; };
 		1511B3D71E75DF42001DCF45 /* AppLangVersionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511B3D61E75DF42001DCF45 /* AppLangVersionDelegate.swift */; };
+		1511B4291E771984001DCF45 /* Analytics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1511B4271E771984001DCF45 /* Analytics.storyboard */; };
+		1511B42E1E7719B5001DCF45 /* AnalyticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511B42D1E7719B5001DCF45 /* AnalyticsViewController.swift */; };
+		1511B4301E772673001DCF45 /* AnalyticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511B42F1E772673001DCF45 /* AnalyticView.swift */; };
 		15174FC41E5904CE00539953 /* Backup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15174FC21E5904CE00539953 /* Backup.storyboard */; };
 		15174FC91E59098A00539953 /* BackupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FC81E59098A00539953 /* BackupViewController.swift */; };
 		15174FCB1E590AE700539953 /* Backup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FCA1E590AE700539953 /* Backup.swift */; };
@@ -193,6 +196,9 @@
 		150A42E61E7169FB00D8C476 /* SendConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendConfigViewController.swift; sourceTree = "<group>"; };
 		150A42E91E716FB000D8C476 /* AppConfigVersionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigVersionDelegate.swift; sourceTree = "<group>"; };
 		1511B3D61E75DF42001DCF45 /* AppLangVersionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLangVersionDelegate.swift; sourceTree = "<group>"; };
+		1511B4281E771984001DCF45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Analytics.storyboard; sourceTree = "<group>"; };
+		1511B42D1E7719B5001DCF45 /* AnalyticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsViewController.swift; sourceTree = "<group>"; };
+		1511B42F1E772673001DCF45 /* AnalyticView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticView.swift; sourceTree = "<group>"; };
 		15174FC31E5904CE00539953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Backup.storyboard; sourceTree = "<group>"; };
 		15174FC81E59098A00539953 /* BackupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupViewController.swift; sourceTree = "<group>"; };
 		15174FCA1E590AE700539953 /* Backup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Backup.swift; sourceTree = "<group>"; };
@@ -363,6 +369,15 @@
 				1511B3D61E75DF42001DCF45 /* AppLangVersionDelegate.swift */,
 			);
 			name = "Lang Config Combobox";
+			sourceTree = "<group>";
+		};
+		1511B42C1E77199E001DCF45 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				1511B42D1E7719B5001DCF45 /* AnalyticsViewController.swift */,
+				1511B42F1E772673001DCF45 /* AnalyticView.swift */,
+			);
+			name = Analytics;
 			sourceTree = "<group>";
 		};
 		15174FC71E59097200539953 /* Backup */ = {
@@ -536,6 +551,7 @@
 				B2D3BDCC1E463EB800273E9C /* Languages.storyboard */,
 				1595097A1E5DF35900D636A8 /* Logs.storyboard */,
 				B253B2361E4A7D1700E86B9B /* Notifications.storyboard */,
+				1511B4271E771984001DCF45 /* Analytics.storyboard */,
 				B2088F361E42137F00458F58 /* RemoteConfig.storyboard */,
 				B253B25D1E4B7D4100E86B9B /* Settings.storyboard */,
 				B2088F3B1E4213C900458F58 /* SprintBoard.storyboard */,
@@ -700,6 +716,7 @@
 		B27D840A1E326BE5007ADB39 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				1511B42C1E77199E001DCF45 /* Analytics */,
 				B253B2451E4AA12100E86B9B /* AB Testing */,
 				15174FC71E59097200539953 /* Backup */,
 				B27D84331E32B42B007ADB39 /* Controllers */,
@@ -1051,6 +1068,7 @@
 				1595095C1E5DA2B700D636A8 /* Staff.storyboard in Resources */,
 				B2088F371E42137F00458F58 /* RemoteConfig.storyboard in Resources */,
 				B2088F3F1E4213EE00458F58 /* Issues.storyboard in Resources */,
+				1511B4291E771984001DCF45 /* Analytics.storyboard in Resources */,
 				B253B24C1E4AA42900E86B9B /* ABTesting.storyboard in Resources */,
 				1595097C1E5DF35900D636A8 /* Logs.storyboard in Resources */,
 				B2088F6B1E429D4F00458F58 /* Storage.storyboard in Resources */,
@@ -1112,6 +1130,7 @@
 				B2D4F20F1E3C0DD900106A97 /* SprintBoardViewController.swift in Sources */,
 				B253B23F1E4A89C200E86B9B /* Notifications.swift in Sources */,
 				B253B2491E4AA2C500E86B9B /* AnalyticsView.swift in Sources */,
+				1511B4301E772673001DCF45 /* AnalyticView.swift in Sources */,
 				B253B2641E4B8B4C00E86B9B /* Files.swift in Sources */,
 				1595096C1E5DBE1700D636A8 /* ResetPasswordViewController.swift in Sources */,
 				B27D84631E3545C0007ADB39 /* ServerViewController.swift in Sources */,
@@ -1178,6 +1197,7 @@
 				159509671E5DA51600D636A8 /* Staff.swift in Sources */,
 				15174FEB1E5A0D4900539953 /* AppVersionDelegate.swift in Sources */,
 				B2088F531E42323C00458F58 /* ViewCrashViewController.swift in Sources */,
+				1511B42E1E7719B5001DCF45 /* AnalyticsViewController.swift in Sources */,
 				B27D841E1E326D6B007ADB39 /* SideBarDataSource.swift in Sources */,
 				1511B3D71E75DF42001DCF45 /* AppLangVersionDelegate.swift in Sources */,
 				159509771E5DF0F300D636A8 /* LogViewController.swift in Sources */,
@@ -1204,6 +1224,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1511B4271E771984001DCF45 /* Analytics.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1511B4281E771984001DCF45 /* Base */,
+			);
+			name = Analytics.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		15174FC21E5904CE00539953 /* Backup.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

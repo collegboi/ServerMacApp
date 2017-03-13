@@ -85,7 +85,7 @@ extension EditABTestingView: NSComboBoxDelegate {
         
         self.getAllAppVersions(item.objectID!.objectID)
         
-        self.getAllConfigVersions(item.objectID!.objectID)
+        self.getAllConfigVersions(item.objectID!.objectID, item.appKey)
     }
 }
 
@@ -93,18 +93,18 @@ extension EditABTestingView: NSComboBoxDelegate {
 //Getting Records
 extension EditABTestingView {
     
-    func getAllConfigVersions(_ appID: String ) {
+    func getAllConfigVersions(_ appID: String, _ appKey: String ) {
         
         var allVersions = [RemoteConfig]()
         
-        allVersions.getFilteredInBackground(ofType: RemoteConfig.self, query: ["applicationID": appID as AnyObject ]) { (retrieved, versions) in
+        allVersions.getFilteredInBackground(ofType: RemoteConfig.self, query: ["applicationID": appID as AnyObject ], appKey: appKey) { (retrieved, versions) in
             DispatchQueue.main.async {
                 if retrieved {
                     allVersions = versions
                     
                     for version in versions {
-                        self.comboxBoxVersionA.addItem(withObjectValue: version.version)
-                        self.comboBoxVersionB.addItem(withObjectValue: version.version)
+                        self.comboxBoxVersionA.addItem(withObjectValue: version.configVersion)
+                        self.comboBoxVersionB.addItem(withObjectValue: version.configVersion)
                     }
                 }
             }

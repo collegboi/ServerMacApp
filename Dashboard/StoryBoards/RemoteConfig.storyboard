@@ -564,7 +564,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8P0-JX-PaP">
-                                                <rect key="frame" x="167" y="0.0" width="162" height="26"/>
+                                                <rect key="frame" x="167" y="-0.5" width="162" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="159" id="lyl-NC-Soh"/>
                                                 </constraints>
@@ -596,7 +596,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NxI-ZK-6Gv">
-                                                <rect key="frame" x="167" y="0.0" width="162" height="26"/>
+                                                <rect key="frame" x="167" y="-0.5" width="162" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="159" id="8qJ-hP-EfF"/>
                                                 </constraints>
@@ -628,7 +628,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="L53-bZ-PXO">
-                                                <rect key="frame" x="167" y="0.0" width="162" height="26"/>
+                                                <rect key="frame" x="167" y="-0.5" width="162" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="159" id="X8t-fO-NT6"/>
                                                 </constraints>

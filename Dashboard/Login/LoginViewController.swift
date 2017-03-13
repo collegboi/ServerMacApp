@@ -53,7 +53,7 @@ class LoginViewController: NSViewController {
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
         let mainWindowController = storyboard.instantiateController(withIdentifier: "MainViewController") as! NSWindowController
         
-        if let mainWindow = mainWindowController.window{
+        if let mainWindow = mainWindowController.window {
             
             let application1 = NSApplication.shared()
             application1.runModal(for: mainWindow)
