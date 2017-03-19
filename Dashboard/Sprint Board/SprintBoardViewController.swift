@@ -20,12 +20,19 @@ class SprintBoardViewController: NSViewController {
     var inProgressDataArr = [Issue]()
     var completeDataArr = [Issue]()
     var onHoldDataArr = [Issue]()
-
-//    var todoListDataArray:[String] = []
-//    var inProgressDataArray:[String] = []
-//    var completeDataArray:[String] = []
-//    var onHoldDataArray:[String] = []
     
+    var appKey: String = ""
+    var applicationID: String = ""
+    
+    @IBOutlet weak var comboBoxVersion: NSComboBox!
+    @IBOutlet weak var comboBoxApp: NSComboBox!
+    
+    fileprivate var appNameDelegate: AppNameDelegate!
+    fileprivate var appNameDataSource: AppNameDataSource!
+    
+    fileprivate var appVersionDelegate: AppVersionDelegate!
+    fileprivate var appVersionDataSource: AppNameDataSource!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,33 +55,109 @@ class SprintBoardViewController: NSViewController {
         self.onHoldTableView.delegate = self
         self.onHoldTableView.dataSource = self
         
-        self.getAllIssues()
+        self.getAllApps()
         
+        appNameDataSource = AppNameDataSource(comboxBox: comboBoxApp)
+        appNameDelegate = AppNameDelegate(comboxBox: comboBoxApp, selectionBlock: { ( row, app) in
+            self.appKey = app.appKey
+            self.applicationID = (app.objectID?.objectID)!
+            //self.comboBoxVersion.reloadData()
+            self.getAllAppsVersions((app.objectID?.objectID)!)
+        })
+        
+        appVersionDataSource = AppNameDataSource(comboxBox: comboBoxVersion)
+        appVersionDelegate = AppVersionDelegate(comboxBox: comboBoxVersion, selectionBlock: { ( row, version) in
+            
+            self.getAllIssues()
+        })
     }
     
-    func getAllIssues() {
+    func getAllAppsVersions(_ appID: String) {
         
-        print("sendRawTimetable")
-        let networkURL = "/tracker/Issue"
-        let dic = [String:AnyObject]()
-        HTTPSConnection.httpGetRequest(params: dic, url: networkURL) { (succeeded: Bool, data: NSData) -> () in
-            // Move to the UI thread
+        var allVersions = [TBAppVersion]()
+        
+        allVersions.getFilteredInBackground(ofType: TBAppVersion.self, query: ["applicationID":appID as AnyObject]) { (retrieved, versions ) in
             
             DispatchQueue.main.async {
-                if (succeeded) {
-                    print("Succeeded")
-                    self.allIssues = IssueJSON.parseJSONConfig(data: data as Data)
-            
-                    self.sortIssuesByType()
+                
+                if retrieved {
                     
-                } else {
-                    print("Error")
+                    self.comboBoxVersion.removeAllItems()
+                    
+                    allVersions = versions
+                    
+                    for version in versions {
+                        self.comboBoxVersion.addItem(withObjectValue: version.version)
+                    }
+                    
+                    self.appVersionDelegate.reload(versions)
+                    self.appVersionDataSource.reload(versions.count)
                 }
             }
         }
     }
     
+    
+    func getAllApps() {
+        
+        var allApps = [TBApplication]()
+        
+        allApps.getAllInBackground(ofType: TBApplication.self) { (retrieved, apps) in
+            DispatchQueue.main.async {
+                if retrieved {
+                    allApps = apps
+                    
+                
+                    for app in apps {
+                        self.comboBoxApp.addItem(withObjectValue: app.name)
+                    }
+                    
+                    self.appNameDelegate.reload(apps)
+                    self.appNameDataSource.reload(apps.count)
+                }
+            }
+        }
+    }
+    
+    func getAllIssues() {
+        
+        self.allIssues.removeAll()
+        
+        self.allIssues.getAllInBackground(ofType: Issue.self, appKey: self.appKey) { (got, issues) in
+            DispatchQueue.main.async {
+                if got {
+                    self.allIssues = issues
+                    self.sortIssuesByType()
+                }
+            }
+        }
+        
+//        print("sendRawTimetable")
+//        let networkURL = "/tracker/Issue"
+//        let dic = [String:AnyObject]()
+//        HTTPSConnection.httpGetRequest(params: dic, url: networkURL) { (succeeded: Bool, data: NSData) -> () in
+//            // Move to the UI thread
+//            
+//            DispatchQueue.main.async {
+//                if (succeeded) {
+//                    print("Succeeded")
+//                    self.allIssues = IssueJSON.parseJSONConfig(data: data as Data)
+//            
+//                    self.sortIssuesByType()
+//                    
+//                } else {
+//                    print("Error")
+//                }
+//            }
+//        }
+    }
+    
     func sortIssuesByType() {
+        
+        self.todoListDataArr.removeAll()
+        self.onHoldDataArr.removeAll()
+        self.completeDataArr.removeAll()
+        self.inProgressDataArr.removeAll()
         
         for issue in self.allIssues {
             
@@ -99,33 +182,18 @@ class SprintBoardViewController: NSViewController {
     }
     
     func sendIssue(_ issue: Issue) {
-        // Correct url and username/password
         
-        if let json = issue.toJSON() {
-            let data = HTTPSConnection.convertStringToDictionary(text: json)
+        issue.sendInBackground(issue.issueID.objectID, appKey: self.appKey){ (succeeded: Bool, data: NSData) -> () in
             
-            var newData = [String:AnyObject]()
-            newData = data!
-            
-            if issue.issueID.objectID != "" {
-                newData["_id"] = issue.issueID.objectID as AnyObject?
-            }
-            
-            let networkURL = "/tracker/Issue/"
-            
-            let dic = newData
-            HTTPSConnection.httpRequest(params: dic, url: networkURL, httpMethod: "POST") { (succeeded: Bool, data: NSData) -> () in
-                // Move to the UI thread
-                
-                DispatchQueue.main.async {
-                    if (succeeded) {
-                        print("scucess")
-                    } else {
-                        print("error")
-                    }
+            DispatchQueue.main.async {
+                if (succeeded) {
+                    print("scucess")
+                } else {
+                    print("error")
                 }
             }
         }
+
     }
 
 
@@ -211,7 +279,6 @@ extension SprintBoardViewController: NSTableViewDelegate,NSTableViewDataSource {
             || (tableView == completeTableView) || (tableView == onHoldTableView)) {
             
             if ( (info.draggingSource() as! NSTableView) == tableView ) {
-                print("draggin on same tableview")
                 
                 guard let newStr = self.removeFromTable(tableView: info.draggingSource() as! NSTableView, row: rowIndexes.first!) else {
                     return false

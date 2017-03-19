@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E144f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <scenes>
         <!--Issue View Controlleer-->
         <scene sceneID="kPB-nb-vk8">
             <objects>
-                <viewController storyboardIdentifier="Issues" id="2i9-hg-Mzw" customClass="IssueViewControlleer" customModule="Dashboard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Tickets" id="2i9-hg-Mzw" customClass="IssueViewControlleer" customModule="Dashboard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="N4L-fO-G6p">
                         <rect key="frame" x="0.0" y="0.0" width="1112" height="518"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -20,7 +21,7 @@
                                     <constraint firstAttribute="height" constant="46" id="mIz-p0-zap"/>
                                     <constraint firstAttribute="width" constant="141" id="t7u-tI-Ggj"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Issues" id="s5d-n1-BHx">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Tickets" id="s5d-n1-BHx">
                                     <font key="font" size="20" name="AvenirNext-Regular"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -38,7 +39,7 @@
                                 <rect key="frame" x="20" y="374" width="1072" height="5"/>
                             </box>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="l0Z-FV-UE4">
-                                <rect key="frame" x="962" y="398" width="130" height="34"/>
+                                <rect key="frame" x="962" y="464" width="130" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="2Wg-gg-Cyz"/>
                                     <constraint firstAttribute="height" constant="34" id="NSC-VS-xFQ"/>
@@ -279,24 +280,105 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rxw-A8-zi0">
+                                <rect key="frame" x="435" y="397" width="657" height="27"/>
+                                <subviews>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YPp-XC-Kbl">
+                                        <rect key="frame" x="0.0" y="0.0" width="326" height="27"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arn-kx-1jS">
+                                                <rect key="frame" x="-2" y="0.0" width="163" height="27"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="App Name Version:" id="YEI-H3-lhR">
+                                                    <font key="font" size="16" name="AvenirNext-Regular"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2cH-kQ-kN1">
+                                                <rect key="frame" x="167" y="0.0" width="162" height="26"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="159" id="jmo-Qq-2IF"/>
+                                                </constraints>
+                                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="rNc-gT-ZMD">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </comboBoxCell>
+                                            </comboBox>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L16-cF-bre">
+                                        <rect key="frame" x="331" y="0.0" width="326" height="27"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLa-Es-rBS">
+                                                <rect key="frame" x="-2" y="0.0" width="163" height="27"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="App Version:" id="ns1-wS-a0e">
+                                                    <font key="font" size="16" name="AvenirNext-Regular"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xDU-OI-a53">
+                                                <rect key="frame" x="167" y="0.0" width="162" height="26"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="159" id="1Xg-mx-V8z"/>
+                                                </constraints>
+                                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="vk4-Zd-fdl">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </comboBoxCell>
+                                            </comboBox>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="3aX-Xf-u4V" firstAttribute="leading" secondItem="jtw-AO-5fj" secondAttribute="trailing" constant="29" id="5r2-GN-iuu"/>
+                            <constraint firstItem="l0Z-FV-UE4" firstAttribute="top" secondItem="N4L-fO-G6p" secondAttribute="top" constant="20" id="89D-3l-Mpm"/>
                             <constraint firstAttribute="trailing" secondItem="aKP-IM-gbA" secondAttribute="trailing" constant="20" id="A97-5E-ugk"/>
                             <constraint firstItem="aKP-IM-gbA" firstAttribute="leading" secondItem="N4L-fO-G6p" secondAttribute="leading" constant="20" id="ASJ-6K-XGg"/>
                             <constraint firstAttribute="trailing" secondItem="Yfh-tH-LV6" secondAttribute="trailing" constant="20" id="Lyf-Ph-SM8"/>
                             <constraint firstItem="Yfh-tH-LV6" firstAttribute="leading" secondItem="N4L-fO-G6p" secondAttribute="leading" constant="20" id="MzY-Co-Yvf"/>
                             <constraint firstItem="Yfh-tH-LV6" firstAttribute="top" secondItem="aKP-IM-gbA" secondAttribute="bottom" constant="29" id="RZK-RS-K1q"/>
                             <constraint firstAttribute="trailing" secondItem="l0Z-FV-UE4" secondAttribute="trailing" constant="20" id="Rjk-e5-ekR"/>
+                            <constraint firstItem="aKP-IM-gbA" firstAttribute="top" secondItem="Rxw-A8-zi0" secondAttribute="bottom" constant="20" id="UWf-Zx-inN"/>
                             <constraint firstItem="jtw-AO-5fj" firstAttribute="top" secondItem="N4L-fO-G6p" secondAttribute="top" constant="20" id="eao-fl-4mm"/>
                             <constraint firstAttribute="bottom" secondItem="Yfh-tH-LV6" secondAttribute="bottom" constant="29" id="h62-aD-Agk"/>
-                            <constraint firstItem="l0Z-FV-UE4" firstAttribute="top" secondItem="N4L-fO-G6p" secondAttribute="top" constant="86" id="iop-ql-zMl"/>
                             <constraint firstItem="jtw-AO-5fj" firstAttribute="leading" secondItem="N4L-fO-G6p" secondAttribute="leading" constant="20" id="oWC-Vc-tbb"/>
+                            <constraint firstAttribute="trailing" secondItem="Rxw-A8-zi0" secondAttribute="trailing" constant="20" id="sSv-g3-dCV"/>
                             <constraint firstItem="3aX-Xf-u4V" firstAttribute="top" secondItem="N4L-fO-G6p" secondAttribute="top" constant="43" id="tkc-ZO-paz"/>
                             <constraint firstItem="aKP-IM-gbA" firstAttribute="top" secondItem="N4L-fO-G6p" secondAttribute="top" constant="141" id="ura-HL-oXk"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="comboBoxApp" destination="2cH-kQ-kN1" id="udE-U2-CgG"/>
+                        <outlet property="comboBoxVersion" destination="xDU-OI-a53" id="n99-8R-dlx"/>
                         <outlet property="issuesTableView" destination="UqX-CM-fBf" id="zJR-hU-8Co"/>
                         <outlet property="newIssueButton" destination="l0Z-FV-UE4" id="3F2-bw-5le"/>
                     </connections>

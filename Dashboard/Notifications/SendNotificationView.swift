@@ -28,6 +28,7 @@ class SendNotificationView: NSViewController, NSWindowDelegate {
     
     var notifcation: TBNotification?
     var delegate: ReturnDelegate?
+    var appKey: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +58,7 @@ class SendNotificationView: NSViewController, NSWindowDelegate {
         newNotification.deviceID = self.valueTextField.stringValue
         newNotification.setDevelopment(self.development.state)
         
-        newNotification.sendNotification { (completed, returnStr ) in
+        newNotification.sendNotification(self.appKey) { (completed, returnStr ) in
          
             DispatchQueue.main.async {
                 if (completed) {

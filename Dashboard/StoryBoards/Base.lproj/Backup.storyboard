@@ -173,10 +173,10 @@
                                 </connections>
                             </button>
                             <stackView distribution="equalSpacing" orientation="vertical" alignment="trailing" spacing="15" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yge-Ko-5Nn">
-                                <rect key="frame" x="957" y="488" width="159" height="135"/>
+                                <rect key="frame" x="957" y="536" width="159" height="87"/>
                                 <subviews>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="tbl-yS-Z2j">
-                                        <rect key="frame" x="-2" y="119" width="163" height="18"/>
+                                        <rect key="frame" x="-2" y="71" width="163" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="159" id="67O-Qh-ruJ"/>
                                         </constraints>
@@ -189,7 +189,7 @@
                                         </connections>
                                     </button>
                                     <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fdn-0k-24S">
-                                        <rect key="frame" x="0.0" y="82" width="162" height="26"/>
+                                        <rect key="frame" x="0.0" y="34" width="162" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="159" id="ASh-CA-VuD"/>
                                         </constraints>
@@ -211,7 +211,7 @@
                                         </comboBoxCell>
                                     </comboBox>
                                     <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rwm-AE-vpX">
-                                        <rect key="frame" x="0.0" y="48" width="162" height="27"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="162" height="27"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="159" id="1bz-Vy-PND"/>
                                         </constraints>
@@ -226,28 +226,13 @@
                                             <datePickerElements key="datePickerElements" hour="YES" minute="YES"/>
                                         </datePickerCell>
                                     </datePicker>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CDm-m9-u3L">
-                                        <rect key="frame" x="29" y="0.0" width="130" height="33"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="130" id="7yn-yv-bCq"/>
-                                        </constraints>
-                                        <buttonCell key="cell" type="square" title="Save" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bhw-86-409">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" size="15" name="AvenirNext-Regular"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="saveBackupSettings:" target="bEA-m6-O4S" id="7c4-3K-EZq"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
-                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
@@ -394,6 +379,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CDm-m9-u3L">
+                                <rect key="frame" x="807" y="590" width="130" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="7yn-yv-bCq"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" title="Save" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bhw-86-409">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="15" name="AvenirNext-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="saveBackupSettings:" target="bEA-m6-O4S" id="7c4-3K-EZq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="sru-6q-gnh" firstAttribute="trailing" secondItem="7zM-MD-RSP" secondAttribute="trailing" id="3Q7-RR-TgN"/>
@@ -421,11 +419,13 @@
                             <constraint firstItem="HbW-oV-Qxi" firstAttribute="top" secondItem="Xdv-LJ-3Kc" secondAttribute="top" constant="20" id="fWr-3L-BVn"/>
                             <constraint firstItem="cbh-n2-3Td" firstAttribute="top" secondItem="Xdv-LJ-3Kc" secondAttribute="top" constant="43" id="fdO-uy-PJb"/>
                             <constraint firstAttribute="trailing" secondItem="vap-XN-L9r" secondAttribute="trailing" constant="20" id="gVp-i1-EuM"/>
+                            <constraint firstItem="yge-Ko-5Nn" firstAttribute="leading" secondItem="CDm-m9-u3L" secondAttribute="trailing" constant="20" id="i3D-IO-GTe"/>
                             <constraint firstAttribute="trailing" secondItem="yge-Ko-5Nn" secondAttribute="trailing" constant="20" id="i9h-YU-SIA"/>
                             <constraint firstItem="cbh-n2-3Td" firstAttribute="leading" secondItem="HbW-oV-Qxi" secondAttribute="trailing" constant="41" id="igv-bE-7Mv"/>
                             <constraint firstAttribute="trailing" secondItem="l0R-5S-cML" secondAttribute="trailing" constant="20" id="j0a-pX-xiO"/>
                             <constraint firstItem="Dkn-68-yZ6" firstAttribute="leading" secondItem="Xdv-LJ-3Kc" secondAttribute="leading" constant="20" id="mfO-uu-Zfd"/>
                             <constraint firstItem="l0R-5S-cML" firstAttribute="top" secondItem="vap-XN-L9r" secondAttribute="bottom" constant="27" id="o3G-I9-5nE"/>
+                            <constraint firstItem="CDm-m9-u3L" firstAttribute="top" secondItem="Xdv-LJ-3Kc" secondAttribute="top" constant="20" id="qAO-zP-JnF"/>
                             <constraint firstAttribute="trailing" secondItem="Dkn-68-yZ6" secondAttribute="trailing" constant="20" id="rqR-sR-oLg"/>
                             <constraint firstItem="sru-6q-gnh" firstAttribute="top" secondItem="7zM-MD-RSP" secondAttribute="bottom" constant="20" id="tii-Dd-hE0"/>
                             <constraint firstItem="5fK-nk-Fnt" firstAttribute="leading" secondItem="Xdv-LJ-3Kc" secondAttribute="leading" constant="20" id="vlD-zg-oVK"/>

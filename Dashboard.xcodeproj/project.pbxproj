@@ -50,7 +50,7 @@
 		B2088F371E42137F00458F58 /* RemoteConfig.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F361E42137F00458F58 /* RemoteConfig.storyboard */; };
 		B2088F3A1E4213AC00458F58 /* Status.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F381E4213AC00458F58 /* Status.storyboard */; };
 		B2088F3C1E4213C900458F58 /* SprintBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F3B1E4213C900458F58 /* SprintBoard.storyboard */; };
-		B2088F3F1E4213EE00458F58 /* Issues.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F3D1E4213EE00458F58 /* Issues.storyboard */; };
+		B2088F3F1E4213EE00458F58 /* Tickets.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F3D1E4213EE00458F58 /* Tickets.storyboard */; };
 		B2088F411E421A9600458F58 /* Crashes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F401E421A9600458F58 /* Crashes.storyboard */; };
 		B2088F431E421AFE00458F58 /* CrashesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2088F421E421AFE00458F58 /* CrashesViewController.swift */; };
 		B2088F461E421BBC00458F58 /* CrashStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2088F451E421BBC00458F58 /* CrashStatsView.swift */; };
@@ -236,7 +236,7 @@
 		B2088F361E42137F00458F58 /* RemoteConfig.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RemoteConfig.storyboard; sourceTree = "<group>"; };
 		B2088F391E4213AC00458F58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Status.storyboard; sourceTree = "<group>"; };
 		B2088F3B1E4213C900458F58 /* SprintBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SprintBoard.storyboard; sourceTree = "<group>"; };
-		B2088F3E1E4213EE00458F58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Issues.storyboard; sourceTree = "<group>"; };
+		B2088F3E1E4213EE00458F58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Tickets.storyboard; sourceTree = "<group>"; };
 		B2088F401E421A9600458F58 /* Crashes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Crashes.storyboard; sourceTree = "<group>"; };
 		B2088F421E421AFE00458F58 /* CrashesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashesViewController.swift; sourceTree = "<group>"; };
 		B2088F451E421BBC00458F58 /* CrashStatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashStatsView.swift; sourceTree = "<group>"; };
@@ -352,7 +352,7 @@
 			children = (
 				150A42E61E7169FB00D8C476 /* SendConfigViewController.swift */,
 			);
-			name = SendConfig;
+			path = SendConfig;
 			sourceTree = "<group>";
 		};
 		150A42E81E716F9A00D8C476 /* App Config Versions */ = {
@@ -360,7 +360,7 @@
 			children = (
 				150A42E91E716FB000D8C476 /* AppConfigVersionDelegate.swift */,
 			);
-			name = "App Config Versions";
+			path = "App Config Versions";
 			sourceTree = "<group>";
 		};
 		1511B3D31E75DF27001DCF45 /* Lang Config Combobox */ = {
@@ -368,16 +368,16 @@
 			children = (
 				1511B3D61E75DF42001DCF45 /* AppLangVersionDelegate.swift */,
 			);
-			name = "Lang Config Combobox";
+			path = "Lang Config Combobox";
 			sourceTree = "<group>";
 		};
 		1511B42C1E77199E001DCF45 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				1511B42D1E7719B5001DCF45 /* AnalyticsViewController.swift */,
 				1511B42F1E772673001DCF45 /* AnalyticView.swift */,
+				1511B42D1E7719B5001DCF45 /* AnalyticsViewController.swift */,
 			);
-			name = Analytics;
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 		15174FC71E59097200539953 /* Backup */ = {
@@ -544,14 +544,14 @@
 			children = (
 				B253B24A1E4AA42900E86B9B /* ABTesting.storyboard */,
 				159509801E5E3DD300D636A8 /* AlertTextField.storyboard */,
+				1511B4271E771984001DCF45 /* Analytics.storyboard */,
 				15174FC21E5904CE00539953 /* Backup.storyboard */,
 				B2088F401E421A9600458F58 /* Crashes.storyboard */,
 				B2088F541E423C3500458F58 /* EditTickets.storyboard */,
-				B2088F3D1E4213EE00458F58 /* Issues.storyboard */,
+				B2088F3D1E4213EE00458F58 /* Tickets.storyboard */,
 				B2D3BDCC1E463EB800273E9C /* Languages.storyboard */,
 				1595097A1E5DF35900D636A8 /* Logs.storyboard */,
 				B253B2361E4A7D1700E86B9B /* Notifications.storyboard */,
-				1511B4271E771984001DCF45 /* Analytics.storyboard */,
 				B2088F361E42137F00458F58 /* RemoteConfig.storyboard */,
 				B253B25D1E4B7D4100E86B9B /* Settings.storyboard */,
 				B2088F3B1E4213C900458F58 /* SprintBoard.storyboard */,
@@ -637,10 +637,10 @@
 		B23BF8441E50AD14005E7083 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				15FAA3CF1E61DFF000AAB1C6 /* ConfigSettings.swift */,
 				B23BF8451E50AD24005E7083 /* NotificationSetting.swift */,
 				B23BF84A1E510715005E7083 /* SystemStatus.swift */,
 				15174FD71E59D23200539953 /* TBApplication.swift */,
-				15FAA3CF1E61DFF000AAB1C6 /* ConfigSettings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -716,8 +716,8 @@
 		B27D840A1E326BE5007ADB39 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				1511B42C1E77199E001DCF45 /* Analytics */,
 				B253B2451E4AA12100E86B9B /* AB Testing */,
+				1511B42C1E77199E001DCF45 /* Analytics */,
 				15174FC71E59097200539953 /* Backup */,
 				B27D84331E32B42B007ADB39 /* Controllers */,
 				B2088F441E421B0500458F58 /* Crashes-Bugs */,
@@ -823,7 +823,6 @@
 		B27D844D1E33DED4007ADB39 /* Remote Config */ = {
 			isa = PBXGroup;
 			children = (
-				150A42E31E7169E400D8C476 /* SendConfig */,
 				B27D844F1E33DF8D007ADB39 /* ColorsView */,
 				15174FE31E5A00CB00539953 /* ComboxBox */,
 				B27D84341E32C0BD007ADB39 /* DetailOutlineVIew */,
@@ -831,6 +830,7 @@
 				B27D841F1E32786F007ADB39 /* MainOutLineView */,
 				B27D844E1E33DF81007ADB39 /* MainSettingsView */,
 				15174FEC1E5A0F3F00539953 /* Models */,
+				150A42E31E7169E400D8C476 /* SendConfig */,
 				B27D84311E32B329007ADB39 /* RemoteConfigView.swift */,
 				15350BBE1E58A0A3008CF844 /* config.json */,
 			);
@@ -1067,7 +1067,7 @@
 				B2088F511E422FCD00458F58 /* ViewCrash.storyboard in Resources */,
 				1595095C1E5DA2B700D636A8 /* Staff.storyboard in Resources */,
 				B2088F371E42137F00458F58 /* RemoteConfig.storyboard in Resources */,
-				B2088F3F1E4213EE00458F58 /* Issues.storyboard in Resources */,
+				B2088F3F1E4213EE00458F58 /* Tickets.storyboard in Resources */,
 				1511B4291E771984001DCF45 /* Analytics.storyboard in Resources */,
 				B253B24C1E4AA42900E86B9B /* ABTesting.storyboard in Resources */,
 				1595097C1E5DF35900D636A8 /* Logs.storyboard in Resources */,
@@ -1230,7 +1230,7 @@
 				1511B4281E771984001DCF45 /* Base */,
 			);
 			name = Analytics.storyboard;
-			path = ..;
+			path = .;
 			sourceTree = "<group>";
 		};
 		15174FC21E5904CE00539953 /* Backup.storyboard */ = {
@@ -1278,12 +1278,12 @@
 			path = .;
 			sourceTree = "<group>";
 		};
-		B2088F3D1E4213EE00458F58 /* Issues.storyboard */ = {
+		B2088F3D1E4213EE00458F58 /* Tickets.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B2088F3E1E4213EE00458F58 /* Base */,
 			);
-			name = Issues.storyboard;
+			name = Tickets.storyboard;
 			path = .;
 			sourceTree = "<group>";
 		};

@@ -81,8 +81,8 @@ class SideBarDataSource: NSObject {
 //            Section.Item(item: "Russian")]
         
         let tracker = [
+            Item(item: "Tickets"),
             Item(item: "Sprint Board"),
-            Item(item: "Issues"),
             Item(item: "Charts")]
         
         sections = [

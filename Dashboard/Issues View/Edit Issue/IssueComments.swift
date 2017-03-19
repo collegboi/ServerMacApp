@@ -26,6 +26,7 @@ class IssueComments: NSView {
     var commentButton: NSButton!
     
     var drawn: Bool = false
+    var appKey: String = ""
     
     var activity: IssueActivity?
     
@@ -111,18 +112,10 @@ class IssueComments: NSView {
         
         let issueActivity = IssueActivity(issueID: self.activity!.issueID, issueComments: self.commentsView.string! , user: activity!.user , timeStamp: "28/01/2017 19:42")
         
-        if let json = issueActivity.toJSON() {
-            let data = HTTPSConnection.convertStringToDictionary(text: json)
-            
-            let networkURL = "/tracker/IssueActivity"
-            let dic = data
-            HTTPSConnection.httpRequest(params: dic!, url: networkURL, httpMethod: "POST") { (succeeded: Bool, data: NSData) -> () in
-                // Move to the UI thread
-                
-                DispatchQueue.main.async {
-                    if (succeeded) {
-                        
-                    }
+        issueActivity.sendInBackground(issueActivity.commentID.objectID, appKey: self.appKey) { (sent, data) in
+            DispatchQueue.main.async {
+                if sent {
+                    
                 }
             }
         }

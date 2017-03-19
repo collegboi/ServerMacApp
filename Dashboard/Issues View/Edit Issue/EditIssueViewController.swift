@@ -18,7 +18,7 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
     @IBOutlet weak var typeMenu: NSPopUpButton!
     @IBOutlet weak var priorityMenu: NSPopUpButton!
     @IBOutlet weak var statusMenu: NSPopUpButton!
-    @IBOutlet weak var versionMenu: NSPopUpButton!
+    @IBOutlet weak var versionLabel: NSTextField!
     
     @IBOutlet weak var commentsScrollView: NSScrollView!
     @IBOutlet weak var saveButton: NSButton!
@@ -34,6 +34,8 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
     
     var issue: Issue?
     var exceptionID: MBOjectID?
+    var appKey: String = ""
+    var version: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,10 +61,6 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
         self.statusMenu.addItem(withTitle: "Complete")
         self.statusMenu.addItem(withTitle: "On Hold")
         
-        self.versionMenu.removeAllItems()
-        self.versionMenu.addItem(withTitle: "1.2.2")
-        self.versionMenu.addItem(withTitle: "1.3")
-        
         self.viewExceptionButton.isEnabled = false
         
         //self.testSever()
@@ -78,23 +76,6 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
             DispatchQueue.main.async {
                 if (succeeded) {
                     result = data
-                    print("scucess")
-                } else {
-                    print("error")
-                }
-            }
-        }
-    }
-    
-    func testSever() {
-        
-        let testObject = TestObject(name: "timothy", status: "timothy", type: "timothy", assignee: "timothy", priority: "timothy", version: "timothy")
-        
-        testObject.sendInBackground(""){ (succeeded: Bool, data: NSData) -> () in
-            // Move to the UI thread
-            
-            DispatchQueue.main.async {
-                if (succeeded) {
                     print("scucess")
                 } else {
                     print("error")
@@ -152,15 +133,14 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
         let pIndex = priorityMenu.indexOfSelectedItem
         issue!.prioity = self.priorityMenu.itemTitle(at: pIndex)
         
-        let vIndex = versionMenu.indexOfSelectedItem
-        issue!.version = self.versionMenu.itemTitle(at: vIndex)
+        issue!.version = self.versionLabel.stringValue
         
         self.sendIssue()
     }
     
     func sendIssue() {
         
-        self.issue!.sendInBackground(self.issue!.issueID.objectID){ (succeeded: Bool, data: NSData) -> () in
+        self.issue!.sendInBackground(self.issue!.issueID.objectID, appKey: self.appKey){ (succeeded: Bool, data: NSData) -> () in
             // Move to the UI thread
             
             DispatchQueue.main.async {
@@ -178,7 +158,7 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
         
         self.view.window?.delegate = self
         
-        //self.view.window!.standardWindowButton(NSWindowButton.closeButton)!.isHidden = false
+        self.versionLabel.stringValue = self.version
         
         if issue != nil {
             self.issueName.stringValue = issue!.name
@@ -192,9 +172,6 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
             
             let pIndex = self.priorityMenu.item(withTitle: issue!.prioity)
             self.priorityMenu.select(pIndex)
-            
-            let vIndex = self.versionMenu.item(withTitle: issue!.version)
-            self.versionMenu.select(vIndex)
             
             if self.issue?.exceptionID != ""  {
                 self.viewExceptionButton.isEnabled = true
@@ -223,6 +200,7 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
         for (index, activity) in self.issueActivities.enumerated() {
             
             let comment1 = IssueComments(frame: NSRect(x: 10, y: index * 100, width: Int(self.commentsScrollView.frame.width - 20), height: 200))
+            comment1.appKey = self.appKey
             
             if index == self.issueActivities.count - 1 {
                 
@@ -247,23 +225,32 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
     
     func getAllIssuesActivity() {
         
-        print("sendRawTimetable")
-        let networkURL = "/tracker/IssueActivity/"+self.issue!.issueID.objectID
-        let dic = [String:AnyObject]()
-        HTTPSConnection.httpGetRequest(params: dic, url: networkURL) { (succeeded: Bool, data: NSData) -> () in
-            // Move to the UI thread
-            
+        self.issueActivities.getAllInBackground(ofType: IssueActivity.self, appKey: self.appKey) { (got, allIssueAct) in
             DispatchQueue.main.async {
-                if (succeeded) {
-                    print("Succeeded")
-                    self.issueActivities = IssueActivityJSON.parseJSONConfig(data: data as Data)
+                if got {
+                    self.issueActivities = allIssueAct
                     self.populateView()
-                    
-                } else {
-                    print("Error")
                 }
             }
         }
+        
+//        print("sendRawTimetable")
+//        let networkURL = "/tracker/IssueActivity/"+self.issue!.issueID.objectID
+//        let dic = [String:AnyObject]()
+//        HTTPSConnection.httpGetRequest(params: dic, url: networkURL) { (succeeded: Bool, data: NSData) -> () in
+//            // Move to the UI thread
+//            
+//            DispatchQueue.main.async {
+//                if (succeeded) {
+//                    print("Succeeded")
+//                    self.issueActivities = IssueActivityJSON.parseJSONConfig(data: data as Data)
+//                    self.populateView()
+//                    
+//                } else {
+//                    print("Error")
+//                }
+//            }
+//        }
     }
     
 }

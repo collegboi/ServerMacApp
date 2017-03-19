@@ -163,7 +163,6 @@ struct Staff: JSONSerializable {
      request is finished. If the method fails, the error will be passed in
      the completion.
      */
-    
     static func resetPassword( username: String, password: String, postCompleted : @escaping (_ succeeded: Bool, _ result: HTTPResult, _ messsage: String ) -> ()) {
         
         let urlPath: String = HTTPSConnection.readPlistURL() + "/api/JKHSDGHFKJGH454645GRRLKJF/serverReset/" + "/" + username + "/" + password

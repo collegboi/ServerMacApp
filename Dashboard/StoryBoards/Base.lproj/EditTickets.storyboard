@@ -183,7 +183,7 @@
                                 </customSpacing>
                             </stackView>
                             <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oF7-BJ-QSo">
-                                <rect key="frame" x="367" y="401" width="159" height="27"/>
+                                <rect key="frame" x="367" y="401" width="111" height="27"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wmR-Qu-cNN">
                                         <rect key="frame" x="-2" y="0.0" width="72" height="27"/>
@@ -196,20 +196,14 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="95i-Ai-zzO">
-                                        <rect key="frame" x="86" y="0.0" width="76" height="26"/>
-                                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="grr-BV-AHJ" id="4Rb-de-7Rc">
-                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="menu"/>
-                                            <menu key="menu" id="YbF-8S-arT">
-                                                <items>
-                                                    <menuItem title="Item 1" state="on" id="grr-BV-AHJ"/>
-                                                    <menuItem title="Item 2" id="tTV-tf-s0r"/>
-                                                    <menuItem title="Item 3" id="gH6-UD-HJk"/>
-                                                </items>
-                                            </menu>
-                                        </popUpButtonCell>
-                                    </popUpButton>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ev-Uy-VWb">
+                                        <rect key="frame" x="86" y="0.0" width="27" height="27"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="1.2" placeholderString="" id="3RA-V7-nM6">
+                                            <font key="font" size="16" name="AvenirNext-Regular"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
                                 </subviews>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
@@ -338,7 +332,7 @@
                         <outlet property="saveButton" destination="lQf-Q6-dT9" id="zq8-ei-mNy"/>
                         <outlet property="statusMenu" destination="mPA-QP-bD8" id="Xtt-1n-kRA"/>
                         <outlet property="typeMenu" destination="SF6-rO-YA3" id="vgm-TC-Y27"/>
-                        <outlet property="versionMenu" destination="95i-Ai-zzO" id="6nI-j1-hLE"/>
+                        <outlet property="versionLabel" destination="8ev-Uy-VWb" id="DcJ-Dq-A0K"/>
                         <outlet property="viewExceptionButton" destination="bbe-83-EFd" id="FVC-5o-gan"/>
                     </connections>
                 </viewController>

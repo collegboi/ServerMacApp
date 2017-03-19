@@ -54,20 +54,19 @@ class TBNotification {
     }
     
     
-    
     /**
      - parameters:
      - type: struct name
      - getCompleted: return value of success state
      - data: return array of objects
      */
-    func sendNotification( notificationCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
+    func sendNotification(_ appKey: String, notificationCompleted : @escaping (_ succeeded: Bool, _ data: String) -> ()) {
         
         let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
         
-        let key = UniqueSting.apID()
+        //let key = UniqueSting.apID()
         
-        let apiEndpoint = "/api/"+key+"/notification/"
+        let apiEndpoint = "/api/"+appKey+"/notification/"
         let networkURL = url + apiEndpoint
         
         if (self.deviceID == "" && self.message == "") || (self.userID == "" && self.message == "") {
@@ -115,27 +114,6 @@ class TBNotification {
                 
             } else {
                 
-//                do {
-//                    
-//                    guard let returnData = data else {
-//                        notificationCompleted(false, "not sent")
-//                        return
-//                    }
-//                    
-//                    guard let dataObjects = try JSONSerialization.jsonObject(with: returnData, options: .allowFragments) as? [String:Any] else {
-//                        notificationCompleted(false, "not sent")
-//                        return
-//                    }
-//                    
-//                    
-//                    
-//                    
-//                } catch {
-//                    
-//                }
-//                
-
-                
                 notificationCompleted(true, "sent")
             }
         })
@@ -146,14 +124,14 @@ class TBNotification {
 
 extension Array where Element:TBNotification {
     
-    func getAllNotifications( notificationGot : @escaping (_ succeeded: Bool, _ notications: [TBNotification] ) -> ()) {
+    func getAllNotifications(_ appKey: String, notificationGot : @escaping (_ succeeded: Bool, _ notications: [TBNotification] ) -> ()) {
         
     
         let url = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
         
-        let key = UniqueSting.apID()
+        //let key = UniqueSting.apID()
         
-        let apiEndpoint = "/api/"+key+"/notification/"
+        let apiEndpoint = "/api/"+appKey+"/notification/"
         let networkURL = url + apiEndpoint
         
         guard let endpoint = URL(string: networkURL) else {
