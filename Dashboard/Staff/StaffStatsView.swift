@@ -10,11 +10,11 @@ import Cocoa
 import Charts
 
 struct VisitorCount {
-    var date: Date = Date()
+    var month: Int = Int(0)
     var count: Int = Int(0)
     
-    init( date: Date, count: Int ) {
-        self.date = date
+    init( month: Int, count: Int ) {
+        self.month = month
         self.count = count
     }
 }
@@ -55,27 +55,28 @@ class StaffStatsView: NSView {
         let visitorCounts = getVisitorCountsFromDatabase()
         
         for i in 0..<visitorCounts.count {
-            let timeIntervalForDate: TimeInterval = visitorCounts[i].date.timeIntervalSince1970
-            let dataEntry = BarChartDataEntry(x: Double(timeIntervalForDate), y: Double(visitorCounts[i].count))
+            let dataEntry = BarChartDataEntry(x: Double(visitorCounts[i].month), y: Double(visitorCounts[i].count))
             dataEntries.append(dataEntry)
         }
         let chartDataSet = BarChartDataSet(values: dataEntries, label: "Visitor count")
         let chartData = BarChartData(dataSet: chartDataSet)
         barChatView?.data = chartData
         
-        let xaxis = barChatView?.xAxis
-        xaxis?.valueFormatter = axisFormatDelegate
+        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        
+        barChatView?.xAxis.valueFormatter = IndexAxisValueFormatter(values:months)
+        
     }
     
     func getVisitorCountsFromDatabase() -> [VisitorCount] {
         
         var allVisitors = [VisitorCount]()
         
-        let vistor1 = VisitorCount(date: Date() - 1, count: 5)
-        let vistor2 = VisitorCount(date: Date() - 5, count: 10)
-        let vistor3 = VisitorCount(date: Date() - 7, count: 20)
-        let vistor4 = VisitorCount(date: Date() - 13, count: 4)
-        let vistor5 = VisitorCount(date: Date() - 1, count: 2)
+        let vistor1 = VisitorCount(month: 1, count: 5)
+        let vistor2 = VisitorCount(month: 2, count: 10)
+        let vistor3 = VisitorCount(month: 4, count: 20)
+        let vistor4 = VisitorCount(month: 6, count: 4)
+        let vistor5 = VisitorCount(month: 10, count: 2)
         
         allVisitors.append(vistor1)
         allVisitors.append(vistor2)
@@ -86,16 +87,4 @@ class StaffStatsView: NSView {
         return allVisitors
     }
 
-}
-
-
-// MARK: axisFormatDelegate
-extension StaffStatsView: IAxisValueFormatter {
-    
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm.ss"
-        return dateFormatter.string(from: Date(timeIntervalSince1970: value))
-    }
-    
 }

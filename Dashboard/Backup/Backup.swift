@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct BackupSetting: JSONSerializable {
+struct TBBackupSetting: JSONSerializable {
     
     var id: MBOjectID!
     var hostname: String!
@@ -53,7 +53,7 @@ struct BackupSetting: JSONSerializable {
     
 }
 
-struct Backup: JSONSerializable {
+struct TBBackups: JSONSerializable {
     
     var id: MBOjectID!
     var path_backup: String!

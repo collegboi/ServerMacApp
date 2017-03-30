@@ -11,7 +11,7 @@ import Cocoa
 
 class BackupDataSource: NSObject {
     
-    var backups: [Backup]?
+    var backups: [TBBackups]?
     
     fileprivate var outlineView: NSOutlineView
     
@@ -21,7 +21,7 @@ class BackupDataSource: NSObject {
         self.outlineView.dataSource = self
     }
     
-    func reload(backups: [Backup]) {
+    func reload(backups: [TBBackups]) {
         self.backups = backups
         self.outlineView.reloadData()
     }

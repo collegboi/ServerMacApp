@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
@@ -78,8 +78,8 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
-                            <stackView distribution="fill" orientation="horizontal" alignment="bottom" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l0R-5S-cML">
-                                <rect key="frame" x="636" y="374" width="480" height="27"/>
+                            <stackView distribution="fill" orientation="horizontal" alignment="bottom" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l0R-5S-cML">
+                                <rect key="frame" x="636" y="373" width="480" height="27"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePi-zb-9bn">
                                         <rect key="frame" x="-2" y="0.0" width="159" height="27"/>
@@ -392,13 +392,31 @@
                                     <action selector="saveBackupSettings:" target="bEA-m6-O4S" id="7c4-3K-EZq"/>
                                 </connections>
                             </button>
+                            <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="wkz-qM-mlu">
+                                <rect key="frame" x="789" y="495" width="5" height="128"/>
+                            </box>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="phq-pg-gdO">
+                                <rect key="frame" x="646" y="590" width="130" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="guT-p8-OAJ"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" title="Backup Now" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qKb-8D-ed5">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="15" name="AvenirNext-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="saveBackupSettings:" target="bEA-m6-O4S" id="YTR-LV-lmc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="sru-6q-gnh" firstAttribute="trailing" secondItem="7zM-MD-RSP" secondAttribute="trailing" id="3Q7-RR-TgN"/>
                             <constraint firstItem="Dkn-68-yZ6" firstAttribute="top" secondItem="HbW-oV-Qxi" secondAttribute="bottom" constant="20" id="8lW-hP-SMr"/>
+                            <constraint firstItem="wkz-qM-mlu" firstAttribute="top" secondItem="Xdv-LJ-3Kc" secondAttribute="top" constant="20" id="8ss-Gm-vZn"/>
                             <constraint firstAttribute="trailing" secondItem="eKA-7H-HdS" secondAttribute="trailing" constant="20" id="H8A-Pe-RAD"/>
                             <constraint firstItem="u7U-mo-wcQ" firstAttribute="leading" secondItem="Xdv-LJ-3Kc" secondAttribute="leading" constant="20" id="Ivn-Ri-4Xz"/>
                             <constraint firstItem="vap-XN-L9r" firstAttribute="top" secondItem="Dkn-68-yZ6" secondAttribute="bottom" constant="20" id="KN7-LM-BMZ"/>
+                            <constraint firstItem="CDm-m9-u3L" firstAttribute="leading" secondItem="wkz-qM-mlu" secondAttribute="trailing" constant="15" id="Kio-Dy-6sV"/>
                             <constraint firstItem="Dkn-68-yZ6" firstAttribute="top" secondItem="HbW-oV-Qxi" secondAttribute="bottom" constant="20" id="KlK-tw-R0L"/>
                             <constraint firstAttribute="bottom" secondItem="eKA-7H-HdS" secondAttribute="bottom" constant="20" id="QM1-HX-YBX"/>
                             <constraint firstItem="eKA-7H-HdS" firstAttribute="leading" secondItem="Xdv-LJ-3Kc" secondAttribute="leading" constant="20" id="SH6-6D-Psp"/>
@@ -416,6 +434,7 @@
                             <constraint firstItem="sru-6q-gnh" firstAttribute="top" secondItem="5fK-nk-Fnt" secondAttribute="bottom" constant="20" id="dh6-ff-3hT"/>
                             <constraint firstAttribute="trailing" secondItem="7zM-MD-RSP" secondAttribute="trailing" constant="20" id="eUW-WS-Ffn"/>
                             <constraint firstItem="sru-6q-gnh" firstAttribute="leading" secondItem="OUG-qm-XsS" secondAttribute="leading" id="edp-bF-2df"/>
+                            <constraint firstItem="wkz-qM-mlu" firstAttribute="leading" secondItem="phq-pg-gdO" secondAttribute="trailing" constant="15" id="f10-PU-N5T"/>
                             <constraint firstItem="HbW-oV-Qxi" firstAttribute="top" secondItem="Xdv-LJ-3Kc" secondAttribute="top" constant="20" id="fWr-3L-BVn"/>
                             <constraint firstItem="cbh-n2-3Td" firstAttribute="top" secondItem="Xdv-LJ-3Kc" secondAttribute="top" constant="43" id="fdO-uy-PJb"/>
                             <constraint firstAttribute="trailing" secondItem="vap-XN-L9r" secondAttribute="trailing" constant="20" id="gVp-i1-EuM"/>
@@ -429,6 +448,8 @@
                             <constraint firstAttribute="trailing" secondItem="Dkn-68-yZ6" secondAttribute="trailing" constant="20" id="rqR-sR-oLg"/>
                             <constraint firstItem="sru-6q-gnh" firstAttribute="top" secondItem="7zM-MD-RSP" secondAttribute="bottom" constant="20" id="tii-Dd-hE0"/>
                             <constraint firstItem="5fK-nk-Fnt" firstAttribute="leading" secondItem="Xdv-LJ-3Kc" secondAttribute="leading" constant="20" id="vlD-zg-oVK"/>
+                            <constraint firstItem="Dkn-68-yZ6" firstAttribute="top" secondItem="wkz-qM-mlu" secondAttribute="bottom" constant="20" id="zTR-HJ-Azv"/>
+                            <constraint firstItem="phq-pg-gdO" firstAttribute="top" secondItem="Xdv-LJ-3Kc" secondAttribute="top" constant="20" id="zTb-K1-I6i"/>
                         </constraints>
                     </view>
                     <connections>

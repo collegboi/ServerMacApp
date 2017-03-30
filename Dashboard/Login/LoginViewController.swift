@@ -40,15 +40,17 @@ class LoginViewController: NSViewController {
         
         if UserDefaults.standard.bool(forKey: "login") {
             
-            self.view.window?.close()
             self.loadMainView()
            
         } else {
+           // self.loadResetPasswordView()
             self.tryLogin(username.stringValue, password: password.stringValue)
         }
     }
     
     func loadMainView() {
+        
+        self.view.window?.close()
         
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
         let mainWindowController = storyboard.instantiateController(withIdentifier: "MainViewController") as! NSWindowController
@@ -77,9 +79,6 @@ class LoginViewController: NSViewController {
     
     func tryLogin(_ username: String, password: String ) {
         
-        
-        //let staff = Staff(username: self.username.stringValue, password: self.password.stringValue)
-        
         Staff.login(username: self.username.stringValue, password: self.password.stringValue) { (completed, result, staff) in
             DispatchQueue.main.async {
                 if completed {
@@ -100,8 +99,12 @@ class LoginViewController: NSViewController {
                                 UserDefaults.standard.set(true, forKey: "login")
 
                             }
-                            self.view.window?.close()
-
+                            //self.view.window?.close()
+                            
+                            if Thread.isMainThread {
+                                print("Main Thread")
+                            }
+                            
                             self.loadMainView()
                         }
                     } else {

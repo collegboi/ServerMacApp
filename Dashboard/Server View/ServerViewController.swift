@@ -15,11 +15,15 @@ import Cocoa
     @IBOutlet weak var systemsView3: SystemsView!
     @IBOutlet weak var systemsView4: SystemsView!
     
+    @IBOutlet weak var databaseStatusLabel: NSTextField!
+    @IBOutlet weak var restartDatabase: NSButton!
+    
+    
     @IBOutlet weak var userView: UserView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.setDatabaseLabel(1)
         self.getSystemStatus()
         
         self.userView.setBackgroundColor(NSColor.white)
@@ -27,6 +31,45 @@ import Cocoa
         self.systemsView2.setBackgroundColor(NSColor.white)
         self.systemsView3.setBackgroundColor(NSColor.white)
         self.systemsView4.setBackgroundColor(NSColor.white)
+    }
+    
+    @IBAction func restartDatabase(_ sender: Any) {
+        self.restartDatabase.isEnabled = false
+        self.setDatabaseLabel(1)
+        self.restartDatabaseHTTP()
+    }
+    
+    func setDatabaseLabel(_ status: Int ) {
+        
+        self.databaseStatusLabel.drawsBackground = true
+        self.databaseStatusLabel.alignment = .center
+        
+        switch status {
+        case 0:
+            self.databaseStatusLabel.stringValue = "Not Running"
+            self.databaseStatusLabel.backgroundColor = NSColor.red
+            self.databaseStatusLabel.textColor = NSColor.white
+        case 1:
+            self.databaseStatusLabel.stringValue = "Pending"
+            self.databaseStatusLabel.backgroundColor = NSColor.yellow
+            self.databaseStatusLabel.textColor = NSColor.white
+            break
+        case 2:
+            self.databaseStatusLabel.stringValue = "Restarting"
+            self.databaseStatusLabel.backgroundColor = NSColor.orange
+            self.databaseStatusLabel.textColor = NSColor.white
+            break
+        case 3:
+            self.databaseStatusLabel.stringValue = "Running"
+            self.databaseStatusLabel.backgroundColor = NSColor.green
+            self.databaseStatusLabel.textColor = NSColor.white
+            break
+        default:
+            self.databaseStatusLabel.stringValue = "Not Running"
+            self.databaseStatusLabel.backgroundColor = NSColor.yellow
+            self.databaseStatusLabel.textColor = NSColor.white
+            break
+        }
     }
     
     func setStatsViews(_ systemStatus: SystemStatus  ) {
@@ -52,6 +95,25 @@ import Cocoa
         let strings4 : [String] = ["Used", "Left"]
         let double4 : [Double] = [90, 10]
         self.systemsView4.setPieChart(dataPoints: strings4, values: double4, label: "CPU")
+    }
+    
+    func restartDatabaseHTTP() {
+        
+        HTTPSConnection.httpGetRequest(params: [:], url: "/system/restart") { ( complete, data) in
+            
+            DispatchQueue.main.async {
+                
+                self.restartDatabase.isEnabled = true
+                
+                if complete {
+                    
+                    self.getSystemStatus()
+                } else {
+                    self.setDatabaseLabel(0)
+                }
+            }
+        }
+
     }
     
     func getSystemStatus() {

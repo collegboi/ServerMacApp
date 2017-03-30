@@ -125,15 +125,17 @@ struct Staff: JSONSerializable {
                         return
                     }
                     
-                    currentStaff = Staff(username: staffObject.tryConvert(forKey: "username"),
-                                             password: "",
-                                             firstName: staffObject.tryConvert(forKey: "firstName"),
-                                             lastName: staffObject.tryConvert(forKey: "lastName"),
-                                             email: staffObject.tryConvert(forKey: "email"),
-                                             staffType: StaffType.Manager , //staffObject.tryConvert(forKey: "staffType")
-                                             databasePerms: staffObject.tryConvert(forKey: "databasePerms"),
-                                             servicesPerms: staffObject.tryConvert(forKey: "servicesPerms"),
-                                             resetPassword: staffObject.tryConvert(forKey: "resetPassword") )
+                    currentStaff = Staff(
+                                    username: staffObject.tryConvert(forKey: "username"),
+                                    password: "",
+                                    firstName: staffObject.tryConvert(forKey: "firstName"),
+                                    lastName: staffObject.tryConvert(forKey: "lastName"),
+                                    email: staffObject.tryConvert(forKey: "email"),
+                                    staffType: StaffType.Manager , //staffObject.tryConvert(forKey: "staffType")
+                                    databasePerms: staffObject.tryConvert(forKey: "databasePerms"),
+                                    servicesPerms: staffObject.tryConvert(forKey: "servicesPerms"),
+                                    resetPassword: staffObject.tryConvert(forKey: "resetPassword")
+                    )
                     
                     
                 } else {
@@ -189,14 +191,65 @@ struct Staff: JSONSerializable {
                 return
             }
             
-            let (result, message) = HTTPSConnection.parseResult(data: data as Data)
+            let (_, message) = HTTPSConnection.parseResult(data: data as Data)
             
-            postCompleted(true, result, message)
+            postCompleted(true, .Success , message)
             
             //} catch let err as NSError {
             //  print(err.debugDescription)
             //}
         }.resume()
     }
-
+    
+    /**
+     Register password in an account.
+     use.
+        - callback: The completion block to be invoked after the API
+     request is finished. If the method fails, the error will be passed in
+     the completion.
+     */
+    static func registerPassword( staff: Staff, postCompleted : @escaping (_ succeeded: Bool, _ result: HTTPResult, _ messsage: String ) -> ()) {
+        
+        if let json = staff.toJSON() {
+            
+            let data = HTTPSConnection.convertStringToDictionary(text: json)
+            
+            var newData = [String:AnyObject]()
+            newData = data!
+            
+            let urlPath: String = HTTPSConnection.readPlistURL() + "/api/JKHSDGHFKJGH454645GRRLKJF/register/"
+            
+            let dic = newData
+            
+            let request = NSMutableURLRequest(url: NSURL(string: urlPath)! as URL)
+            let session = URLSession.shared
+            request.httpMethod = "POST"
+            
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: dic, options: [])
+            } catch {
+                //err = error
+                request.httpBody = nil
+            }
+            
+            
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            
+            let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error -> Void in
+                
+                if ((error) != nil) {
+                    print(error!.localizedDescription)
+                    postCompleted(false, .Error , "")
+                } else {
+                    
+                     let (_, message) = HTTPSConnection.parseResult(data: data! as Data)
+                    
+                    postCompleted(true, .Success , message)
+                }
+            })
+            
+            task.resume()
+        }
+    }
 }

@@ -31,6 +31,8 @@ class BackupViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.timeDatePicker.dateValue = Date()
+        
         self.backupDataSource = BackupDataSource(outlineView: backupOutLineView)
         self.backupDelegate = BackupDelegate(outlineView: backupOutLineView)
         
@@ -44,9 +46,9 @@ class BackupViewController: NSViewController {
     
     func getBackupSettings() {
         
-        var backupSettings = [BackupSetting]()
+        var backupSettings = [TBBackupSetting]()
         
-        backupSettings.getAllInBackground(ofType: BackupSetting.self) { (complete, backupsettings) in
+        backupSettings.getAllInBackground(ofType: TBBackupSetting.self) { (complete, backupsettings) in
             
             DispatchQueue.main.async {
                 if complete {
@@ -81,9 +83,16 @@ class BackupViewController: NSViewController {
                 }
             }
         }
-        
-        
     }
+    
+    private var dateFormatter : DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone =  TimeZone.current
+        dateFormatter.locale = Locale.current
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        return dateFormatter
+    }
+
     
     @IBAction func saveBackupSettings(_ sender: Any) {
         
@@ -97,10 +106,21 @@ class BackupViewController: NSViewController {
             type = "1"
         }
         
-        let backupSettings = BackupSetting(hostname: self.hostnameTextField.stringValue,
+        let backupTime = self.timeDatePicker.dateValue
+        var tomorrow = backupTime
+        
+        let now = Date()
+        
+        if backupTime < now {
+            tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: backupTime, wrappingComponents: false)!
+        }
+        
+        let backupTimStr = self.dateFormatter.string(from: tomorrow)
+        
+        let backupSettings = TBBackupSetting(hostname: self.hostnameTextField.stringValue,
                                            username: self.usernameTextField.stringValue,
                                            password: self.passwordTextField.stringValue,
-                                           time: self.timeDatePicker.stringValue,
+                                           time: backupTimStr,
                                            schedule: self.comboxBoxDate.stringValue,
                                            path: self.pathTextField.stringValue,
                                            doBackups: "\(self.doBackups.state)",
@@ -138,9 +158,9 @@ class BackupViewController: NSViewController {
     
     func getAllBackups() {
         
-        var allBackups = [Backup]()
+        var allBackups = [TBBackups]()
         
-        allBackups.getAllInBackground(ofType: Backup.self) { ( retrieved,  backups ) in
+        allBackups.getAllInBackground(ofType: TBBackups.self) { ( retrieved,  backups ) in
             
             DispatchQueue.main.async {
                 if retrieved {

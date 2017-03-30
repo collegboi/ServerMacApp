@@ -25,6 +25,12 @@ class ResetPasswordViewController: NSViewController, NSWindowDelegate {
         application.stopModal()
         return true
     }
+    
+    func closeWindow() {
+        self.view.window?.close()
+        let application = NSApplication.shared()
+        application.stopModal()
+    }
 
     @IBAction func cancelButton(_ sender: Any) {
         self.view.window?.close()
@@ -40,22 +46,19 @@ class ResetPasswordViewController: NSViewController, NSWindowDelegate {
         
         //let staff = Staff(username: self.username!, password: self.password1TextField.stringValue)
         Staff.resetPassword(username: self.username!, password: self.password1TextField.stringValue) { (completed, result, message) in
-            
+        
             DispatchQueue.main.async {
                 
                 if completed {
-                    
                     if result == .Success {
-                        self.view.window?.close()
-                        let application = NSApplication.shared()
-                        application.stopModal()
+                       self.closeWindow()
                     } else {
-                        
                         self.dialogOKCancel(message: "Error", text: "try again")
                     }
                     
                 } else {
                     print("error")
+                    self.dialogOKCancel(message: "Error", text: "try again")
                 }
             }
         }

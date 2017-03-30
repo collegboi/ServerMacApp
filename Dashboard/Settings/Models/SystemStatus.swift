@@ -57,11 +57,13 @@ struct SystemStatus {
     var cpu: CPUStats!
     var memory: MemoryStats!
     var storage: StorageStats!
+    var databaseStatus: Int!
     
     init( dict: [String:Any] ) {
         
         self.cpu = CPUStats(dict: dict["cpu"] as! [String : Any])
         self.memory = MemoryStats(dict: dict["memory"] as! [String : Any])
         self.storage = StorageStats(dict: dict["storage"] as! [String : Any])
+        self.databaseStatus = dict.tryConvert(forKey: "databaseStatus")
     }
 }

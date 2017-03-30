@@ -50,7 +50,7 @@ extension BackupDelegate: NSOutlineViewDelegate {
     
     func getCellValue( item: Any ) -> ( key:String, value: String) {
         
-        guard let backup = item as? Backup else {
+        guard let backup = item as? TBBackups else {
             return ("","")
         }
         

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E154a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
@@ -73,6 +73,55 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
+                            <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5sx-qb-yTY">
+                                <rect key="frame" x="816" y="648" width="276" height="27"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3le-sp-1qZ">
+                                        <rect key="frame" x="-2" y="0.0" width="154" height="27"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="VLw-HB-OCN"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Database Status:" id="l2g-Y9-hZC">
+                                            <font key="font" size="16" name="AvenirNext-Regular"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJd-ay-KZr">
+                                        <rect key="frame" x="156" y="0.0" width="122" height="27"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="118" id="1rq-sj-T70"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No Running" placeholderString="" id="z0f-Lt-zga">
+                                            <font key="font" size="16" name="AvenirNext-Regular"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gx6-OJ-aBX">
+                                <rect key="frame" x="962" y="601" width="130" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="F2F-28-vA4"/>
+                                    <constraint firstAttribute="height" constant="27" id="NN7-ZT-pxM"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" title="Restart Database" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eV8-5n-LbI">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="15" name="AvenirNext-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="restartDatabase:" target="rBj-eD-U2v" id="l4N-qO-jfN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="xwX-SY-6MX" firstAttribute="leading" secondItem="bdm-qD-ATJ" secondAttribute="leading" constant="20" id="4Cq-qG-JtB"/>
@@ -84,21 +133,27 @@
                             <constraint firstItem="et7-Zd-rKd" firstAttribute="leading" secondItem="bdm-qD-ATJ" secondAttribute="leading" constant="20" id="LH7-CP-eKn"/>
                             <constraint firstItem="kc6-L0-9uA" firstAttribute="top" secondItem="bdm-qD-ATJ" secondAttribute="top" constant="22" id="LeF-22-xPc"/>
                             <constraint firstAttribute="trailing" secondItem="q9W-oM-8lt" secondAttribute="trailing" constant="294" id="Ob6-53-aus"/>
+                            <constraint firstItem="5sx-qb-yTY" firstAttribute="top" secondItem="bdm-qD-ATJ" secondAttribute="top" constant="20" id="Odm-ro-Zj8"/>
                             <constraint firstItem="zGw-Pd-UTL" firstAttribute="top" secondItem="kc6-L0-9uA" secondAttribute="bottom" constant="20" id="V9y-Ee-RVM"/>
                             <constraint firstAttribute="trailing" secondItem="aJi-Ks-ZO2" secondAttribute="trailing" constant="826" id="VDp-3a-rBm"/>
+                            <constraint firstItem="Gx6-OJ-aBX" firstAttribute="top" secondItem="5sx-qb-yTY" secondAttribute="bottom" constant="20" id="Wff-ui-s1z"/>
                             <constraint firstAttribute="trailing" secondItem="aRc-hA-GvA" secondAttribute="trailing" constant="552" id="Zvo-c6-ghh"/>
                             <constraint firstAttribute="trailing" secondItem="xwX-SY-6MX" secondAttribute="trailing" constant="20" id="dKD-M9-uzd"/>
                             <constraint firstItem="xwX-SY-6MX" firstAttribute="top" secondItem="bdm-qD-ATJ" secondAttribute="top" constant="438" id="fxT-Ak-Pfd"/>
                             <constraint firstItem="et7-Zd-rKd" firstAttribute="top" secondItem="zGw-Pd-UTL" secondAttribute="bottom" constant="20" id="hmr-Ep-SS3"/>
                             <constraint firstItem="xwX-SY-6MX" firstAttribute="top" secondItem="et7-Zd-rKd" secondAttribute="bottom" constant="18" id="oer-Jv-OVR"/>
                             <constraint firstItem="cPH-jZ-poK" firstAttribute="leading" secondItem="bdm-qD-ATJ" secondAttribute="leading" constant="20" id="rpW-wd-udm"/>
+                            <constraint firstAttribute="trailing" secondItem="Gx6-OJ-aBX" secondAttribute="trailing" constant="20" id="sRy-eO-IJc"/>
                             <constraint firstItem="zGw-Pd-UTL" firstAttribute="leading" secondItem="bdm-qD-ATJ" secondAttribute="leading" constant="20" id="uZP-cY-L4I"/>
                             <constraint firstItem="sEd-E8-HBv" firstAttribute="top" secondItem="bdm-qD-ATJ" secondAttribute="top" constant="45" id="vb4-te-T98"/>
                             <constraint firstAttribute="trailing" secondItem="cPH-jZ-poK" secondAttribute="trailing" constant="20" symbolic="YES" id="yQp-pd-2Aa"/>
+                            <constraint firstAttribute="trailing" secondItem="5sx-qb-yTY" secondAttribute="trailing" constant="20" id="ySt-r0-pee"/>
                             <constraint firstAttribute="bottom" secondItem="xwX-SY-6MX" secondAttribute="bottom" constant="29" id="zEq-Ym-pqA"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="databaseStatusLabel" destination="rJd-ay-KZr" id="rHW-BM-5pA"/>
+                        <outlet property="restartDatabase" destination="Gx6-OJ-aBX" id="hLY-FM-i5n"/>
                         <outlet property="systemsView1" destination="aJi-Ks-ZO2" id="z5L-QK-JRx"/>
                         <outlet property="systemsView2" destination="aRc-hA-GvA" id="Fex-Kc-lf7"/>
                         <outlet property="systemsView3" destination="q9W-oM-8lt" id="HSs-Dg-5Wo"/>

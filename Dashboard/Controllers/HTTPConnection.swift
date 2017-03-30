@@ -20,7 +20,6 @@ enum HTTPResult: String {
         default:
             return .Error
         }
-        return .Success
     }
 }
 
