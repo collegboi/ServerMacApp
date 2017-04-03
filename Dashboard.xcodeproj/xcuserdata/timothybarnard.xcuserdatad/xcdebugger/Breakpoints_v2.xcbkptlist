@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dashboard/Controllers/HTTPConnection.swift"
-            timestampString = "512521164.165385"
+            timestampString = "512839200.415622"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
+            startingLineNumber = "398"
+            endingLineNumber = "398"
             landmarkName = "parseJSONConfig(data:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -416,22 +416,6 @@
             startingLineNumber = "101"
             endingLineNumber = "101"
             landmarkName = "getConfigSettings(configCompleted:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dashboard/Storage/StorageViewController.swift"
-            timestampString = "510782591.865703"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "336"
-            endingLineNumber = "336"
-            landmarkName = "menuNeedsUpdate(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -688,22 +672,6 @@
             startingLineNumber = "377"
             endingLineNumber = "377"
             landmarkName = "makeActive()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dashboard/Controllers/HTTPConnection.swift"
-            timestampString = "512590790.358113"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
-            landmarkName = "parseResult(data:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

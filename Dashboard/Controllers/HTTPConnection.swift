@@ -272,6 +272,69 @@ public class HTTPSConnection {
     }
 
     
+    class func httpGetRequestURL( token: String, url : String, mainKey: String,  getCompleted : @escaping (_ succeeded: Bool, _ results: [[String : AnyObject]]) -> ()) {
+        
+        guard let endpoint = URL(string: url) else {
+            print("Error creating endpoint")
+            return
+        }
+        var request = URLRequest(url: endpoint)
+        request.httpMethod = "GET"
+        
+        
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        if token != "" {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+         }
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if ((error) != nil) {
+                print(error!.localizedDescription)
+                getCompleted(false, [])
+            }
+            
+            guard let data = data else {
+                return
+            }
+            
+            do {
+                
+                if mainKey != "" {
+                    
+                
+                    guard let data = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String : AnyObject] else {
+                        getCompleted(false, [])
+                        return
+                    }
+                    
+                    
+                    if let results = data[mainKey] as? [[String : AnyObject]] {
+                        getCompleted(true, results)
+                    } else {
+                        getCompleted(false, [])
+                    }
+                    
+                } else {
+                    
+                    guard let data = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [[String : AnyObject]] else {
+                        getCompleted(false, [])
+                        return
+                    }
+                    
+                    getCompleted(true, data)
+                    
+                }
+            
+            } catch _ {
+                getCompleted(false, [])
+            }
+            
+            }.resume()
+    }
+
+    
     
     class func httpGetRequest(params : Dictionary<String, AnyObject>, url : String, postCompleted : @escaping (_ succeeded: Bool, _ data: NSData) -> ()) {
         

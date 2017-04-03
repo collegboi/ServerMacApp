@@ -15,6 +15,7 @@ class LoginViewController: NSViewController {
     @IBOutlet weak var password: NSSecureTextField!
     @IBOutlet weak var rememberMe: NSButton!
 
+    var loginSuccessful: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,22 +35,36 @@ class LoginViewController: NSViewController {
     
     @IBAction func loginButton(_ sender: Any) {
         
-        UserDefaults.standard.set(self.ipAddress.stringValue, forKey: "URL")
-        
         //self.loadResetPasswordView()
         
-        if UserDefaults.standard.bool(forKey: "login") {
+        if self.ipAddress.stringValue == UserDefaults.standard.string(forKey: "URL") ?? "" {
             
-            self.loadMainView()
-           
+            if UserDefaults.standard.bool(forKey: "login") {
+                
+                self.loadMainView()
+                
+            } else {
+                // self.loadResetPasswordView()
+                self.tryLogin(username.stringValue, password: password.stringValue)
+            }
+
         } else {
-           // self.loadResetPasswordView()
             self.tryLogin(username.stringValue, password: password.stringValue)
+        }
+        
+    }
+    
+    func checkLoggedIn() {
+        
+        if self.loginSuccessful {
+            self.loadMainView()
         }
     }
     
     func loadMainView() {
         
+        //DispatchQueue.main.async {
+        UserDefaults.standard.set(self.ipAddress.stringValue, forKey: "URL")
         self.view.window?.close()
         
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
@@ -60,6 +75,7 @@ class LoginViewController: NSViewController {
             let application1 = NSApplication.shared()
             application1.runModal(for: mainWindow)
         }
+        //}
     }
     
     func loadResetPasswordView() {
@@ -82,30 +98,32 @@ class LoginViewController: NSViewController {
         Staff.login(username: self.username.stringValue, password: self.password.stringValue) { (completed, result, staff) in
             DispatchQueue.main.async {
                 if completed {
-
+                    
                     if result == .Success && staff != nil {
-
+                        
                         if staff!.resetPassword == 1 {
                             self.loadResetPasswordView()
                         } else {
-
+                            
                             UserDefaults.standard.set(self.username.stringValue, forKey: "username")
-
+                            
                             UserDefaults.standard.set(staff!.databasePerms, forKey: "database")
                             UserDefaults.standard.set(staff!.servicesPerms, forKey: "services")
-
+                            
                             if self.rememberMe.state == 1 {
 
                                 UserDefaults.standard.set(true, forKey: "login")
 
                             }
+                            self.loginSuccessful = true
                             //self.view.window?.close()
                             
                             if Thread.isMainThread {
                                 print("Main Thread")
                             }
                             
-                            self.loadMainView()
+                            //self.loadMainView()
+                            //self.checkLoggedIn()
                         }
                     } else {
                         

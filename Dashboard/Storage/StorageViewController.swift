@@ -14,6 +14,7 @@ class StorageViewController: NSViewController {
     @IBOutlet weak var totalTables: NSTextField!
     @IBOutlet weak var tableName: NSTextField!
     @IBOutlet weak var totalRecords: NSTextField!
+    @IBOutlet weak var databaseNameLabel: NSTextField!
     
     @IBOutlet weak var databaseTableView: NSTableView!
     
@@ -36,13 +37,16 @@ class StorageViewController: NSViewController {
     var allRecords: GenericTable?
     var selectedDocRow: Int = -1
     var allTables = [Tables]()
+    var databaseName: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         databaseViewDataSource = StorageMainDataSource(tableView: databaseTableView)
-        databaseViewDelegate = DatabaseViewDelegate(tableView: databaseTableView) { appKey in
+        databaseViewDelegate = DatabaseViewDelegate(tableView: databaseTableView) { appKey, database in
             self.appKey = appKey
+            self.databaseName = database
+            self.databaseNameLabel.stringValue = database
             self.reloadMainTables(appKey: appKey)
         }
         
@@ -105,7 +109,16 @@ class StorageViewController: NSViewController {
             DispatchQueue.main.async {
                 if (succeeded) {
                     allDatabases = data
-                    print("success")
+                    
+                    for database in allDatabases {
+                        if database.testDB == 1 {
+                            var newTestApp = database
+                            newTestApp.testDB = 0
+                            newTestApp.databaseName = database.databaseName + "_Test"
+                            allDatabases.append(newTestApp)
+                        }
+                    }
+                    
                     self.databaseViewDataSource.reload(count: allDatabases.count)
                     self.databaseViewDelegate.reload(tableList: allDatabases)
                     
@@ -321,6 +334,38 @@ extension StorageViewController: NSMenuDelegate {
         //self.showMessageBox("Add Key", 2)
     }
     
+    func replicateDatabase() {
+        
+        HTTPSConnection.httpPostRequest(params: [], endPoint: "replicate", appKey: self.appKey) { (complete, message) in
+            DispatchQueue.main.async {
+                let a = self.createAlert("Replicate Database", self.databaseName + " has completed replication" )
+                a.beginSheetModal(for: self.view.window!, completionHandler: nil)
+                self.reloadDatabaseTables()
+            }
+        }
+    }
+    
+    func dropDatabase() {
+        
+        let a = createAlert("Remove Database", "Are you sure you want to remove database name: " + self.databaseName, style: .warning)
+        
+        a.beginSheetModal(for: self.view.window!, completionHandler: { (modalResponse) -> Void in
+            if modalResponse == NSAlertFirstButtonReturn {
+                print("Database deleted")
+                
+                HTTPSConnection.httpPostRequest(params: [], endPoint: "replicate", appKey: self.appKey) { (complete, message) in
+                    DispatchQueue.main.async {
+                        let a = self.createAlert("Replicate Database", self.databaseName + " has completed replication" )
+                        a.beginSheetModal(for: self.view.window!, completionHandler: nil)
+                        self.reloadDatabaseTables()
+                    }
+                }
+            
+            }
+        })
+    }
+
+    
     func addKeyValueToLanguage( ) {
         //self.showMessageBoxKeyValue( "Add Translation for " + self.currentLanguage! , 3)
     }
@@ -338,6 +383,30 @@ extension StorageViewController: NSMenuDelegate {
                 menu.addItem(withTitle: "Remove", action: #selector(self.removeDocument), keyEquivalent: "")
                 menu.addItem(withTitle: "Add", action: #selector(self.addLanguage), keyEquivalent: "")
             }
+            break
+       
+        case "Database":
+            
+            if menu.items.count == 1 {
+                
+                menu.removeAllItems()
+                
+                if self.appKey != "" {
+                    menu.addItem(withTitle: "Replicate " + self.databaseName , action: #selector(self.replicateDatabase), keyEquivalent: "")
+                    menu.addItem(withTitle: "Drop " + self.databaseName , action: #selector(self.dropDatabase), keyEquivalent: "")
+                } else {
+                    
+                    let menuItem = NSMenuItem(title: "Replicate database", action: #selector(self.replicateDatabase), keyEquivalent: "")
+                    menuItem.isEnabled = false
+                    let menuItem1 = NSMenuItem(title: "Drop database", action: #selector(self.dropDatabase), keyEquivalent: "")
+                    menuItem1.isEnabled = false
+                    menu.addItem(menuItem)
+                    menu.addItem(menuItem1)
+                }
+                
+                
+            }
+            
             break
             
         case "Collections":

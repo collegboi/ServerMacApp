@@ -13,10 +13,13 @@ import Cocoa
     @IBOutlet weak var systemsView1: SystemsView!
     @IBOutlet weak var systemsView2: SystemsView!
     @IBOutlet weak var systemsView3: SystemsView!
-    @IBOutlet weak var systemsView4: SystemsView!
     
     @IBOutlet weak var databaseStatusLabel: NSTextField!
     @IBOutlet weak var restartDatabase: NSButton!
+    
+    @IBOutlet weak var serverStatusLabel: NSTextField!
+    @IBOutlet weak var serverIP4Label: NSTextField!
+    @IBOutlet weak var serverIP6Label: NSTextField!
     
     
     @IBOutlet weak var userView: UserView!
@@ -25,12 +28,12 @@ import Cocoa
         super.viewDidLoad()
         self.setDatabaseLabel(1)
         self.getSystemStatus()
+        self.getDigitalOceenStatus()
         
         self.userView.setBackgroundColor(NSColor.white)
         self.systemsView1.setBackgroundColor(NSColor.white)
         self.systemsView2.setBackgroundColor(NSColor.white)
         self.systemsView3.setBackgroundColor(NSColor.white)
-        self.systemsView4.setBackgroundColor(NSColor.white)
     }
     
     @IBAction func restartDatabase(_ sender: Any) {
@@ -72,6 +75,30 @@ import Cocoa
         }
     }
     
+    func setServerLabel(_ status: Int ) {
+        
+        self.serverStatusLabel.drawsBackground = true
+        self.serverStatusLabel.alignment = .center
+        
+        switch status {
+        case 0:
+            self.serverStatusLabel.stringValue = "Not Active"
+            self.serverStatusLabel.backgroundColor = NSColor.red
+            self.serverStatusLabel.textColor = NSColor.white
+            break
+        case 1:
+            self.serverStatusLabel.stringValue = "Active"
+            self.serverStatusLabel.backgroundColor = NSColor.green
+            self.serverStatusLabel.textColor = NSColor.white
+            break
+        default:
+            self.serverStatusLabel.stringValue = "Not Active"
+            self.serverStatusLabel.backgroundColor = NSColor.yellow
+            self.serverStatusLabel.textColor = NSColor.white
+            break
+        }
+    }
+    
     func setStatsViews(_ systemStatus: SystemStatus  ) {
         
         let strings1 : [String] = ["Idle", "System", "User"]
@@ -91,10 +118,6 @@ import Cocoa
         let strings3 : [String] = ["Avail", "Used"]
         let double3 : [Double] = [availS, usedS]
         self.systemsView3.setPieChart(dataPoints: strings3, values: double3, label: "Storage")
-        
-        let strings4 : [String] = ["Used", "Left"]
-        let double4 : [Double] = [90, 10]
-        self.systemsView4.setPieChart(dataPoints: strings4, values: double4, label: "CPU")
     }
     
     func restartDatabaseHTTP() {
@@ -114,6 +137,44 @@ import Cocoa
             }
         }
 
+    }
+    
+    func getDigitalOceenStatus() {
+        
+        let digialOceanURL = "https://api.digitalocean.com/v2/droplets"
+        let token = UserDefaults.standard.string(forKey: "DO_token") ?? ""
+        let serverName = UserDefaults.standard.string(forKey: "DO_serverName") ?? ""
+        let mainKeyVal = "droplets"
+        
+        HTTPSConnection.httpGetRequestURL(token: token, url: digialOceanURL, mainKey: mainKeyVal) { ( complete, results) in
+            
+            DispatchQueue.main.async {
+                if complete {
+                    
+                    for result in results {
+                     
+                        let serverDroplet = Droplets(dictionary: result)
+                        
+                        if serverDroplet.name == serverName {
+                            
+                            if serverDroplet.status == "active" {
+                                self.setServerLabel(1)
+                            } else {
+                                self.setServerLabel(0)
+                            }
+                            
+                            //self.serverStatusLabel.stringValue = serverDroplet.status
+                            self.serverIP4Label.stringValue = serverDroplet.IPV4
+                            self.serverIP6Label.stringValue = serverDroplet.IPV6
+                            
+                            break
+                        }
+                    }
+                }
+            }
+            
+        }
+        
     }
     
     func getSystemStatus() {

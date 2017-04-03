@@ -16,6 +16,11 @@ class SettingsViewController: NSViewController {
     @IBOutlet weak var dbPasswordTextField: NSTextField!
     @IBOutlet weak var secretKeyTextField: NSTextField!
     
+    @IBOutlet weak var serverTokenLabel: NSTextField!
+    @IBOutlet weak var serverName: NSTextField!
+    @IBOutlet weak var githubTokenLabel: NSTextField!
+    @IBOutlet weak var githubUsernameLabel: NSTextField!
+    
     ///Notifications Settings
     @IBOutlet weak var keyFilePathLabel: NSTextField!
     @IBOutlet weak var teamIDTextField: NSTextField!
@@ -38,10 +43,21 @@ class SettingsViewController: NSViewController {
         self.getConfigSettings()
         self.getFileNames()
         self.getAllApplications()
+        
     }
     
     
     func getConfigSettings () {
+        
+        let token = UserDefaults.standard.string(forKey: "DO_token") ?? ""
+        let gitToken = UserDefaults.standard.string(forKey: "GIT_token") ?? ""
+        let serverName = UserDefaults.standard.string(forKey: "DO_serverName") ?? ""
+        let githubUserName = UserDefaults.standard.string(forKey: "git_username") ?? ""
+        
+        self.serverTokenLabel.stringValue = token
+        self.serverName.stringValue = serverName
+        self.githubTokenLabel.stringValue = gitToken
+        self.githubUsernameLabel.stringValue = githubUserName
         
         let configSettings = ConfigSettings(secretServerkey: "", dbUsername: "", dbPassword: "")
         
@@ -110,6 +126,11 @@ class SettingsViewController: NSViewController {
     }
     
     @IBAction func sendConfigSettings(_ sender: Any) {
+        
+        UserDefaults.standard.set(self.serverTokenLabel.stringValue, forKey: "DO_token")
+        UserDefaults.standard.set(self.githubTokenLabel.stringValue, forKey: "GIT_token")
+        UserDefaults.standard.set(self.serverName.stringValue, forKey: "DO_serverName")
+        UserDefaults.standard.set(self.githubUsernameLabel.stringValue, forKey: "git_username")
         
         let configSettings = ConfigSettings(secretServerkey: self.secretKeyTextField.stringValue, dbUsername: self.dbUsernameTextField.stringValue, dbPassword: self.dbPasswordTextField.stringValue)
         

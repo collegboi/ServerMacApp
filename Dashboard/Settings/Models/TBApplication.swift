@@ -32,6 +32,7 @@ struct TBApplication: JSONSerializable {
     var notificationPath: String = ""
     var keyID: String = ""
     var teamID: String = ""
+    var testDB: Int = 0
     
     mutating func setApptype(_ appType: String) {
         switch appType {
@@ -66,6 +67,7 @@ struct TBApplication: JSONSerializable {
         self.appRating = appRating
         self.appDescription = appDescription
         self.appPrimaryGenre = appPrimaryGenre
+        self.testDB = 0
         
         switch appType {
         case "iOS":
@@ -89,6 +91,7 @@ struct TBApplication: JSONSerializable {
         self.appRating = dict.tryConvert(forKey: "appRating")
         self.appDescription = dict.tryConvert(forKey: "appDescription")
         self.appPrimaryGenre = dict.tryConvert(forKey: "appPrimaryGenre")
+        self.testDB = dict.tryConvert(forKey: "testDB")
         
         switch appType {
         case "iOS":

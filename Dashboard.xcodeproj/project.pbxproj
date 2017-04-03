@@ -31,6 +31,12 @@
 		15174FEE1E5A0F4700539953 /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FED1E5A0F4700539953 /* RemoteConfig.swift */; };
 		15174FF01E5A149400539953 /* NowDAte.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FEF1E5A149400539953 /* NowDAte.swift */; };
 		15350BBF1E58A0A3008CF844 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 15350BBE1E58A0A3008CF844 /* config.json */; };
+		15944CDF1E913BCC00513E9C /* Droplets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15944CDE1E913BCC00513E9C /* Droplets.swift */; };
+		15944CE31E91484900513E9C /* Repos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15944CE11E91484900513E9C /* Repos.storyboard */; };
+		15944CE61E91497D00513E9C /* GithubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15944CE41E91497D00513E9C /* GithubViewController.swift */; };
+		15944CE91E9149CB00513E9C /* Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15944CE81E9149CB00513E9C /* Github.swift */; };
+		15944CEC1E91502000513E9C /* GithubTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15944CEB1E91502000513E9C /* GithubTableViewDelegate.swift */; };
+		15944CEE1E91508E00513E9C /* GithubTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15944CED1E91508E00513E9C /* GithubTableDataSource.swift */; };
 		159509571E5CEC8900D636A8 /* iTunesResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159509561E5CEC8900D636A8 /* iTunesResults.swift */; };
 		159509591E5CECA200D636A8 /* iTunesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159509581E5CECA200D636A8 /* iTunesManager.swift */; };
 		1595095C1E5DA2B700D636A8 /* Staff.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1595095A1E5DA2B700D636A8 /* Staff.storyboard */; };
@@ -217,6 +223,12 @@
 		15174FED1E5A0F4700539953 /* RemoteConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteConfig.swift; sourceTree = "<group>"; };
 		15174FEF1E5A149400539953 /* NowDAte.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowDAte.swift; sourceTree = "<group>"; };
 		15350BBE1E58A0A3008CF844 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		15944CDE1E913BCC00513E9C /* Droplets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Droplets.swift; sourceTree = "<group>"; };
+		15944CE21E91484900513E9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Repos.storyboard; sourceTree = "<group>"; };
+		15944CE41E91497D00513E9C /* GithubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubViewController.swift; sourceTree = "<group>"; };
+		15944CE81E9149CB00513E9C /* Github.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Github.swift; sourceTree = "<group>"; };
+		15944CEB1E91502000513E9C /* GithubTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubTableViewDelegate.swift; sourceTree = "<group>"; };
+		15944CED1E91508E00513E9C /* GithubTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubTableDataSource.swift; sourceTree = "<group>"; };
 		159509561E5CEC8900D636A8 /* iTunesResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesResults.swift; sourceTree = "<group>"; };
 		159509581E5CECA200D636A8 /* iTunesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesManager.swift; sourceTree = "<group>"; };
 		1595095B1E5DA2B700D636A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Staff.storyboard; sourceTree = "<group>"; };
@@ -470,6 +482,33 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		15944CDB1E91354900513E9C /* DigitalOcean */ = {
+			isa = PBXGroup;
+			children = (
+				15944CDE1E913BCC00513E9C /* Droplets.swift */,
+			);
+			name = DigitalOcean;
+			sourceTree = "<group>";
+		};
+		15944CE01E9147F700513E9C /* Github */ = {
+			isa = PBXGroup;
+			children = (
+				15944CEA1E91500A00513E9C /* Table */,
+				15944CE41E91497D00513E9C /* GithubViewController.swift */,
+				15944CE81E9149CB00513E9C /* Github.swift */,
+			);
+			name = Github;
+			sourceTree = "<group>";
+		};
+		15944CEA1E91500A00513E9C /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				15944CEB1E91502000513E9C /* GithubTableViewDelegate.swift */,
+				15944CED1E91508E00513E9C /* GithubTableDataSource.swift */,
+			);
+			name = Table;
+			sourceTree = "<group>";
+		};
 		159509531E5CEC3B00D636A8 /* iTunes Connect */ = {
 			isa = PBXGroup;
 			children = (
@@ -557,6 +596,7 @@
 				B2088F3B1E4213C900458F58 /* SprintBoard.storyboard */,
 				1595095A1E5DA2B700D636A8 /* Staff.storyboard */,
 				B2088F381E4213AC00458F58 /* Status.storyboard */,
+				15944CE11E91484900513E9C /* Repos.storyboard */,
 				B2088F691E429D4F00458F58 /* Storage.storyboard */,
 				B2088F501E422FCD00458F58 /* ViewCrash.storyboard */,
 			);
@@ -716,6 +756,7 @@
 		B27D840A1E326BE5007ADB39 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				15944CE01E9147F700513E9C /* Github */,
 				B253B2451E4AA12100E86B9B /* AB Testing */,
 				1511B42C1E77199E001DCF45 /* Analytics */,
 				15174FC71E59097200539953 /* Backup */,
@@ -859,6 +900,7 @@
 		B27D84601E3545A7007ADB39 /* Server View */ = {
 			isa = PBXGroup;
 			children = (
+				15944CDB1E91354900513E9C /* DigitalOcean */,
 				B27D84671E3547D0007ADB39 /* GraphView.swift */,
 				B27D84611E3545C0007ADB39 /* ServerViewController.swift */,
 				B23BF8201E4F5870005E7083 /* SystemsView.swift */,
@@ -1072,6 +1114,7 @@
 				B253B24C1E4AA42900E86B9B /* ABTesting.storyboard in Resources */,
 				1595097C1E5DF35900D636A8 /* Logs.storyboard in Resources */,
 				B2088F6B1E429D4F00458F58 /* Storage.storyboard in Resources */,
+				15944CE31E91484900513E9C /* Repos.storyboard in Resources */,
 				B2088F411E421A9600458F58 /* Crashes.storyboard in Resources */,
 				B27D84101E326BE5007ADB39 /* Assets.xcassets in Resources */,
 				B2D3BDCE1E463EB800273E9C /* Languages.storyboard in Resources */,
@@ -1107,6 +1150,7 @@
 				B29380131E46932200F00003 /* TranslationViewController+Ext.swift in Sources */,
 				15174FE61E5A00EA00539953 /* AppNameDelegate.swift in Sources */,
 				B2D3BDF41E46758400273E9C /* PublishLangCell.swift in Sources */,
+				15944CEE1E91508E00513E9C /* GithubTableDataSource.swift in Sources */,
 				B253B2621E4B7F5500E86B9B /* SettingsViewController.swift in Sources */,
 				B253B24F1E4B398B00E86B9B /* ImportFileViewController.swift in Sources */,
 				B2088F431E421AFE00458F58 /* CrashesViewController.swift in Sources */,
@@ -1125,6 +1169,7 @@
 				B27D846A1E354800007ADB39 /* NSColor+Ext.swift in Sources */,
 				B27D84321E32B329007ADB39 /* RemoteConfigView.swift in Sources */,
 				15174FD01E590FB000539953 /* BackupDelegate.swift in Sources */,
+				15944CE91E9149CB00513E9C /* Github.swift in Sources */,
 				B27D840E1E326BE5007ADB39 /* ViewController.swift in Sources */,
 				15174FDD1E59D64700539953 /* EditAppViewController.swift in Sources */,
 				B2D4F20F1E3C0DD900106A97 /* SprintBoardViewController.swift in Sources */,
@@ -1147,6 +1192,7 @@
 				B27D84531E33DFBE007ADB39 /* SettingsViewDataSource.swift in Sources */,
 				15174FF01E5A149400539953 /* NowDAte.swift in Sources */,
 				B27D84231E3278B8007ADB39 /* MainViewDelegate.swift in Sources */,
+				15944CEC1E91502000513E9C /* GithubTableViewDelegate.swift in Sources */,
 				B27D84211E327894007ADB39 /* MainViewDataSource.swift in Sources */,
 				15174FD31E59CA7600539953 /* DatabaseViewDelegate.swift in Sources */,
 				B21021171E43B59400AC4C5D /* LoginViewController.swift in Sources */,
@@ -1157,6 +1203,7 @@
 				B23BF8431E5096CE005E7083 /* ABTesting.swift in Sources */,
 				15174FC91E59098A00539953 /* BackupViewController.swift in Sources */,
 				150A42E71E7169FB00D8C476 /* SendConfigViewController.swift in Sources */,
+				15944CDF1E913BCC00513E9C /* Droplets.swift in Sources */,
 				1595097E1E5E289D00D636A8 /* StaffStatsView.swift in Sources */,
 				159509841E5E3E0900D636A8 /* TextViewController.swift in Sources */,
 				B2D4F2161E3C24E000106A97 /* IssueViewDelegate.swift in Sources */,
@@ -1190,6 +1237,7 @@
 				15174FEE1E5A0F4700539953 /* RemoteConfig.swift in Sources */,
 				B2088F4F1E42270900458F58 /* String+Ext.swift in Sources */,
 				159509791E5DF23C00D636A8 /* GenericTableViewDelegate.swift in Sources */,
+				15944CE61E91497D00513E9C /* GithubViewController.swift in Sources */,
 				B27D842A1E327C1F007ADB39 /* HTTPConnection.swift in Sources */,
 				B2088F681E429C0F00458F58 /* StorageDetailDataSource.swift in Sources */,
 				B27D84361E32C0D7007ADB39 /* DetailViewDataSource.swift in Sources */,
@@ -1240,6 +1288,15 @@
 			);
 			name = Backup.storyboard;
 			path = .;
+			sourceTree = "<group>";
+		};
+		15944CE11E91484900513E9C /* Repos.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15944CE21E91484900513E9C /* Base */,
+			);
+			name = Repos.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		1595095A1E5DA2B700D636A8 /* Staff.storyboard */ = {

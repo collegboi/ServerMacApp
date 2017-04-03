@@ -13,7 +13,7 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
     var allCommentsView = [NSView]()
     
     @IBOutlet weak var issueName: NSTextField!
-    @IBOutlet weak var assigneee: NSTextField!
+    @IBOutlet weak var menuAssignee: NSPopUpButton!
     
     @IBOutlet weak var typeMenu: NSPopUpButton!
     @IBOutlet weak var priorityMenu: NSPopUpButton!
@@ -63,9 +63,6 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
         
         self.viewExceptionButton.isEnabled = false
         
-        //self.testSever()
-        //self.testGetServer()
-        
     }
     
     func testGetServer() {
@@ -99,7 +96,6 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
             let application = NSApplication.shared()
             application.runModal(for: viewExceptionWindow)
         }
-        
     }
     
     
@@ -119,10 +115,18 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
         application.stopModal()
     }
     
+    func closeApp() {
+        self.view.window?.close()
+        let application = NSApplication.shared()
+        application.stopModal()
+    }
+    
     func getValuesForIssue() {
         
         issue!.name = self.issueName.stringValue
-        issue!.assingee = self.assigneee.stringValue
+        
+        let aIndex = menuAssignee.indexOfSelectedItem
+        issue!.assingee = self.menuAssignee.itemTitle(at: aIndex)
         
         let sIndex = statusMenu.indexOfSelectedItem
         issue!.status = self.statusMenu.itemTitle(at: sIndex)
@@ -138,6 +142,26 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
         self.sendIssue()
     }
     
+    func populateUserNameCombo() {
+        
+        self.menuAssignee.removeAllItems()
+        
+        let staffs = [Staff]()
+        
+        staffs.getAllInBackground(ofType: Staff.self) { (complete, allStaffs) in
+            
+            DispatchQueue.main.async {
+                if complete {
+                
+                    for staffMember in allStaffs {
+                        self.menuAssignee.addItem(withTitle: staffMember.firstName + " " + staffMember.lastName )
+                    }
+                    self.loadViewDetails()
+                }
+            }
+        }
+    }
+    
     func sendIssue() {
         
         self.issue!.sendInBackground(self.issue!.issueID.objectID, appKey: self.appKey){ (succeeded: Bool, data: NSData) -> () in
@@ -145,7 +169,7 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
             
             DispatchQueue.main.async {
                 if (succeeded) {
-                    print("scucess")
+                    self.closeApp()
                 } else {
                     print("error")
                 }
@@ -153,16 +177,16 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
         }
     }
 
-    
-    override func viewDidAppear() {
-        
-        self.view.window?.delegate = self
+    func loadViewDetails() {
         
         self.versionLabel.stringValue = self.version
         
         if issue != nil {
             self.issueName.stringValue = issue!.name
-            self.assigneee.stringValue = issue!.assingee
+            //self.menuAssignee.stringValue = issue!.assingee
+            
+            let aIndex = self.menuAssignee.item(withTitle: issue!.assingee)
+            self.menuAssignee.select(aIndex)
             
             let tIndex = self.typeMenu.item(withTitle: issue!.type)
             self.typeMenu.select(tIndex)
@@ -182,10 +206,14 @@ class EditIssueViewController: NSViewController, NSWindowDelegate {
             issue?.exceptionID = exceptionID?.objectID
         }
         
-        if self.issue?.issueID.objectID != "" {
-            self.getAllIssuesActivity()
-        }
+        self.getAllIssuesActivity()
 
+    }
+    
+    override func viewDidAppear() {
+        
+        self.view.window?.delegate = self
+        self.populateUserNameCombo()
     }
     
     func populateView() {

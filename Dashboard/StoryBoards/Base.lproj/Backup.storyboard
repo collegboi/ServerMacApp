@@ -405,7 +405,7 @@
                                     <font key="font" size="15" name="AvenirNext-Regular"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="saveBackupSettings:" target="bEA-m6-O4S" id="YTR-LV-lmc"/>
+                                    <action selector="doBackups:" target="bEA-m6-O4S" id="RUE-0y-6eb"/>
                                 </connections>
                             </button>
                         </subviews>

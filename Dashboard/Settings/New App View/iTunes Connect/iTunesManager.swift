@@ -11,6 +11,7 @@ import Foundation
 import Cocoa
 
 struct iTunesRequestManager {
+    
     static func getSearchResults(_ appID: String, completionHandler: @escaping ([[String : AnyObject]], NSError?) -> Void) {
         var urlComponents = URLComponents(string: "https://itunes.apple.com/lookup")
         let termQueryItem = URLQueryItem(name: "id", value: appID)

@@ -62,8 +62,6 @@ class SideBarDataSource: NSObject {
         }
 
         
-        //let emptyArr = [Any]()
-        
         let server = [
             Item(item: "Status"),
             Item(item: "Settings"),
@@ -71,25 +69,24 @@ class SideBarDataSource: NSObject {
         ]
         
         let accounts = [
-            Item(item: "Staff"),
-            Item(item: "Users")
+            Item(item: "Staff")
         ]
-        
-//        let langs = [
-//            Section.Item(item: "English"),
-//            Section.Item(item: "French"),
-//            Section.Item(item: "Russian")]
         
         let tracker = [
             Item(item: "Tickets"),
-            Item(item: "Sprint Board"),
-            Item(item: "Charts")]
+            Item(item: "Sprint Board")]
+        
+        let github = [
+            Item(item: "Repos")]
+        
+        //Item(item: "Charts")
         
         sections = [
             Section(name: "Server", volumes: server),
             Section(name: "Accounts", volumes: accounts),
             Section(name: "Services", volumes: services ),
-            Section(name: "Tracker", volumes: tracker)
+            Section(name: "Tracker", volumes: tracker),
+            Section(name: "Github", volumes: github)
         ]
         
         outlineView.reloadData()

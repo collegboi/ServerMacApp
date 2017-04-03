@@ -166,4 +166,12 @@ extension Dictionary {
         }
         return test
     }
+    
+    func tryConvertArry(forKey key:Key ) -> [AnyObject] {
+        
+        guard let test = self[key] as? [AnyObject] else {
+            return []
+        }
+        return test
+    }
 }

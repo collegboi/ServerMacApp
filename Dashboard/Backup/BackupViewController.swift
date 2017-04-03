@@ -136,19 +136,34 @@ class BackupViewController: NSViewController {
         
     }
     
+    func enableDisableViews() {
+        self.comboxBoxDate.isEnabled = self.doBackups.isEnabled
+        self.timeDatePicker.isEnabled = self.doBackups.isEnabled
+        self.localButton.isEnabled = self.doBackups.isEnabled
+        self.remoteButton.isEnabled = self.doBackups.isEnabled
+        self.pathTextField.isEnabled = self.doBackups.isEnabled
+        self.hostnameTextField.isEnabled = self.doBackups.isEnabled
+        self.usernameTextField.isEnabled = self.doBackups.isEnabled
+        self.passwordTextField.isEnabled = self.doBackups.isEnabled
+        self.backupOutLineView.isEnabled = self.doBackups.isEnabled
+    }
+    
     
     @IBAction func doBackups(_ sender: Any) {
-        self.comboxBoxDate.isEnabled = self.doBackups.state == 1
-        self.timeDatePicker.isEnabled = self.doBackups.state == 1
-        self.localButton.isEnabled = self.doBackups.state == 1
-        self.remoteButton.isEnabled = self.doBackups.state == 1
-        self.pathTextField.isEnabled = self.doBackups.state == 1
-        self.hostnameTextField.isEnabled = self.doBackups.state == 1
-        self.usernameTextField.isEnabled = self.doBackups.state == 1
-        self.passwordTextField.isEnabled = self.doBackups.state == 1
-        self.backupOutLineView.isEnabled = self.doBackups.state == 1
-        
+        self.doBackups.isEnabled = false
+        self.enableDisableViews()
+       
+        HTTPSConnection.httpPostRequest(params: [], endPoint: "backup/now") { (complete, message) in
+            DispatchQueue.main.async {
+                
+                self.doBackups.isEnabled = true
+                self.enableDisableViews()
+            }
+        }
+    
     }
+    
+
     @IBAction func localButton(_ sender: Any) {
         self.remoteButton.state = 0
     }
