@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import OAuth2
 
 class ViewController: NSViewController {
     
@@ -26,14 +27,42 @@ class ViewController: NSViewController {
 
     var currentController: NSViewController?
     
+    @IBOutlet weak var loggedInUser: NSTextField!
+    
+    var oAuthLoader: DataLoader?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let userName = UserDefaults.standard.string(forKey: "username") ?? ""
+        
+        self.loggedInUser.stringValue =  "  " + userName
         
         dataSource = SideBarDataSource(outlineView: outlineView)
         delegate = SideBarDelegate(outlineView: outlineView) { volume in
             self.showVolumeInfo(volume)
         }
+    }
+    
+    @IBAction func logoutButtonMain(_ sender: Any) {
+        print("logging out")
+        
+        self.oAuthLoader?.oauth2.forgetTokens()
+        UserDefaults.standard.set(false, forKey: "login")
+        
+        
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        let mainWindowController = storyboard.instantiateController(withIdentifier: "LoginWindow") as! NSWindowController
+        
+        if let mainWindow = mainWindowController.window{
+            
+            self.view.window?.close()
+            
+            let application1 = NSApplication.shared()
+            application1.runModal(for: mainWindow)
+            
+        }
+
     }
     
     
@@ -43,6 +72,7 @@ class ViewController: NSViewController {
             
         UserDefaults.standard.set(false, forKey: "login")
         
+        self.oAuthLoader?.oauth2.forgetTokens()
             
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
         let mainWindowController = storyboard.instantiateController(withIdentifier: "LoginWindow") as! NSWindowController

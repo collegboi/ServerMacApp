@@ -26,16 +26,17 @@ enum HTTPResult: String {
 public class HTTPSConnection {
     
     class func readPlistURL() -> String {
-        var defaultURL = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
-        if let path = Bundle.main.path(forResource: "Info", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
-            
-            guard let url = dict["URL"] as? String else {
-                return defaultURL
-            }
-            
-            defaultURL = url
-        }
-        return defaultURL
+        return UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
+        //var defaultURL = UserDefaults.standard.string(forKey: "URL") ?? "http://0.0.0.0:8181"
+//        if let path = Bundle.main.path(forResource: "Info", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+//            
+//            guard let url = dict["URL"] as? String else {
+//                return defaultURL
+//            }
+//            
+//            defaultURL = url
+//        }
+//        return defaultURL
     }
     
     class func httpRequest(params : Dictionary<String, AnyObject>, url : String, httpMethod: String, postCompleted : @escaping (_ succeeded: Bool, _ data: NSData) -> ()) {

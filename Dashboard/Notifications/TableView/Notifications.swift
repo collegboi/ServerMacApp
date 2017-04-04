@@ -82,6 +82,7 @@ class TBNotification {
         let request = NSMutableURLRequest(url: endpoint as URL)
         let session = URLSession.shared
         request.httpMethod = "POST"
+        request.setValue("123456", forHTTPHeaderField: "authen_key")
         
         let dict : [String:AnyObject] = [
             "deviceId":self.deviceID as AnyObject,
@@ -140,6 +141,7 @@ extension Array where Element:TBNotification {
         }
         var request = URLRequest(url: endpoint)
         request.httpMethod = "GET"
+        request.setValue("123456", forHTTPHeaderField: "authen_key")
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }
@@ -162,9 +164,12 @@ extension Array where Element:TBNotification {
                     return
                 }
                 
-                let allObjects = dataObjects["data"] as? NSArray
+                guard let allObjects = dataObjects["data"] as? NSArray else {
+                    notificationGot(false, allNotification)
+                    return
+                }
                 
-                for object in allObjects! {
+                for object in allObjects {
                     
                     let newNotificationObj = TBNotification()
                     

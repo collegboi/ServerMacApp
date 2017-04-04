@@ -305,7 +305,7 @@ extension JSONSerializable {
         }
         var request = URLRequest(url: endpoint)
         request.httpMethod = "GET"
-        
+        request.setValue("123456", forHTTPHeaderField: "authen_key")
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }
@@ -325,8 +325,12 @@ extension JSONSerializable {
                 
                 let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:Any]
                 
-                let allObjects = dataObjects["data"] as? NSArray
-                guard let object = allObjects?.firstObject else {
+                guard let allObjects = dataObjects["data"] as? NSArray else {
+                    getCompleted(false, T())
+                    return
+                }
+
+                guard let object = allObjects.firstObject else {
                     getCompleted(false, T())
                     return
                 }
@@ -369,6 +373,7 @@ extension JSONSerializable {
         }
         var request = URLRequest(url: endpoint)
         request.httpMethod = "GET"
+        request.setValue("123456", forHTTPHeaderField: "authen_key")
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }
@@ -391,9 +396,13 @@ extension JSONSerializable {
         
                 var records = [Document]()
                 
-                let allObjects = dataObjects["data"] as? NSArray
+                guard let allObjects = dataObjects["data"] as? NSArray else {
+                    getCompleted(false, genericTable)
+                    return
+                }
+
                 
-                for object in allObjects! {
+                for object in allObjects {
                 
                     var parentChildren = [Document]()
                     
@@ -487,6 +496,7 @@ extension JSONSerializable {
         }
         var request = URLRequest(url: endpoint)
         request.httpMethod = "DELETE"
+        request.setValue("123456", forHTTPHeaderField: "authen_key")
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }
@@ -539,6 +549,7 @@ extension JSONSerializable {
         }
         var request = URLRequest(url: endpoint)
         request.httpMethod = "DELETE"
+        request.setValue("123456", forHTTPHeaderField: "authen_key")
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }
@@ -594,6 +605,7 @@ extension JSONSerializable {
         }
         var request = URLRequest(url: endpoint)
         request.httpMethod = "DELETE"
+        request.setValue("123456", forHTTPHeaderField: "authen_key")
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }
@@ -657,6 +669,7 @@ extension JSONSerializable {
             let request = NSMutableURLRequest(url: NSURL(string: networkURL)! as URL)
             let session = URLSession.shared
             request.httpMethod = "POST"
+            request.setValue("123456", forHTTPHeaderField: "authen_key")
             
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: dic, options: [])
@@ -718,6 +731,7 @@ extension Array where Element: JSONSerializable {
         }
         var request = URLRequest(url: endpoint)
         request.httpMethod = "POST"
+        request.setValue("123456", forHTTPHeaderField: "authen_key")
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }
@@ -750,9 +764,12 @@ extension Array where Element: JSONSerializable {
                 
                 let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:Any]
                 
-                let allObjects = dataObjects["data"] as? NSArray
+                guard let allObjects = dataObjects["data"] as? NSArray else {
+                    getCompleted(false, allT)
+                    return
+                }
                 
-                for object in allObjects! {
+                for object in allObjects {
                     
                     if let newObject = object as? [String:Any] {
                         allT.append(T(dict: newObject ))
@@ -805,6 +822,7 @@ extension Array where Element: JSONSerializable {
         }
         var request = URLRequest(url: endpoint)
         request.httpMethod = "GET"
+        request.setValue("123456", forHTTPHeaderField: "authen_key")
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }
@@ -825,9 +843,12 @@ extension Array where Element: JSONSerializable {
                 
                 let dataObjects = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) as! [String:Any]
                 
-                let allObjects = dataObjects["data"] as? NSArray
+                guard let allObjects = dataObjects["data"] as? NSArray else {
+                    getCompleted(false, allT)
+                    return
+                }
                 
-                for object in allObjects! {
+                for object in allObjects {
                     
                     if let newObject = object as? [String:Any] {
                          allT.append(T(dict: newObject ))

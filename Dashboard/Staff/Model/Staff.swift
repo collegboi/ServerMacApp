@@ -26,13 +26,14 @@ struct Staff: JSONSerializable {
     var databasePerms: String!
     var servicesPerms: String!
     var resetPassword: Int!
+    var userID: String!
     
     init(username:String, password:String) {
         self.username = username
         self.password = password
     }
     
-    init(username:String, password:String, firstName:String, lastName:String, email: String, staffType: StaffType, databasePerms:String, servicesPerms:String, resetPassword: Int = 0 ) {
+    init(username:String, password:String, firstName:String, lastName:String, email: String, staffType: StaffType, databasePerms:String, servicesPerms:String, userID: String = "", resetPassword: Int = 0 ) {
         self.staffID = MBOjectID(objectID: "")
         self.username = username
         self.password = password
@@ -43,6 +44,7 @@ struct Staff: JSONSerializable {
         self.databasePerms = databasePerms
         self.servicesPerms = servicesPerms
         self.resetPassword = resetPassword
+        self.userID = userID
     }
     
     init() {}
@@ -59,6 +61,7 @@ struct Staff: JSONSerializable {
         self.databasePerms = dict.tryConvert(forKey: "databasePerms")
         self.servicesPerms = dict.tryConvert(forKey: "servicesPerms")
         self.resetPassword = dict.tryConvert(forKey: "resetPassword")
+        self.userID = dict.tryConvert(forKey: "userID")
         let staffType: String = dict.tryConvert(forKey: "staffType")
         
         switch staffType {
@@ -83,7 +86,7 @@ struct Staff: JSONSerializable {
     
     static func login(username: String, password: String, postCompleted : @escaping (_ succeeded: Bool, _ result: HTTPResult, _ staffMember: Staff? ) -> ()) {
         
-        let urlPath: String = HTTPSConnection.readPlistURL() + "/api/JKHSDGHFKJGH454645GRRLKJF/serverLogin/" + "/" + username + "/" + password
+        let urlPath: String = HTTPSConnection.readPlistURL() + "/api/JKHSDGHFKJGH454645GRRLKJF/serverLogin/" + username + "/" + password
         
         guard let endpoint = URL(string: urlPath) else {
             print("Error creating endpoint")
@@ -91,7 +94,7 @@ struct Staff: JSONSerializable {
         }
         var request = URLRequest(url: endpoint)
         request.httpMethod = "GET"
-        
+        request.setValue("123456", forHTTPHeaderField: "authen_key")
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }
@@ -175,7 +178,7 @@ struct Staff: JSONSerializable {
         }
         var request = URLRequest(url: endpoint)
         request.httpMethod = "GET"
-        
+        request.setValue("123456", forHTTPHeaderField: "authen_key")
         //if let token = _currentUser?.currentToken {
         //    request.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         // }
@@ -224,6 +227,7 @@ struct Staff: JSONSerializable {
             let request = NSMutableURLRequest(url: NSURL(string: urlPath)! as URL)
             let session = URLSession.shared
             request.httpMethod = "POST"
+            request.setValue("123456", forHTTPHeaderField: "authen_key")
             
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: dic, options: [])

@@ -116,6 +116,7 @@ class NotificationViewController: NSViewController {
                     
                     self.allNotifications = notifications
                     self.reloadTable()
+                    self.showSendNotifcationWindow()
                     print("completed")
                 } else {
                     print("error")

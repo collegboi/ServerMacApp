@@ -129,14 +129,12 @@ import Cocoa
                 self.restartDatabase.isEnabled = true
                 
                 if complete {
-                    
                     self.getSystemStatus()
                 } else {
                     self.setDatabaseLabel(0)
                 }
             }
         }
-
     }
     
     func getDigitalOceenStatus() {

@@ -52,6 +52,13 @@
 		159509821E5E3DD300D636A8 /* AlertTextField.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 159509801E5E3DD300D636A8 /* AlertTextField.storyboard */; };
 		159509841E5E3E0900D636A8 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159509831E5E3E0900D636A8 /* TextViewController.swift */; };
 		159509871E5E468900D636A8 /* TextKeyValueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159509861E5E468900D636A8 /* TextKeyValueController.swift */; };
+		15D2FEE41E93EBEA0087641A /* GoogleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FEE31E93EBEA0087641A /* GoogleLoader.swift */; };
+		15D2FF051E93ECD60087641A /* OAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15D2FEFC1E93ECB60087641A /* OAuth2.framework */; };
+		15D2FF061E93ECE70087641A /* OAuth2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15D2FEFC1E93ECB60087641A /* OAuth2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		15D2FF081E93ED1C0087641A /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF071E93ED1C0087641A /* DataLoader.swift */; };
+		15D2FF0C1E93F4C40087641A /* GitHubLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF0B1E93F4C40087641A /* GitHubLoader.swift */; };
+		15D2FF0E1E93F4DB0087641A /* BitBucketLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF0D1E93F4DB0087641A /* BitBucketLoader.swift */; };
+		15D2FF121E93F4FA0087641A /* RedditLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF111E93F4FA0087641A /* RedditLoader.swift */; };
 		15FAA3D01E61DFF000AAB1C6 /* ConfigSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FAA3CF1E61DFF000AAB1C6 /* ConfigSettings.swift */; };
 		B2088F371E42137F00458F58 /* RemoteConfig.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F361E42137F00458F58 /* RemoteConfig.storyboard */; };
 		B2088F3A1E4213AC00458F58 /* Status.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F381E4213AC00458F58 /* Status.storyboard */; };
@@ -154,6 +161,41 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		15D2FEFB1E93ECB60087641A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15D2FEF41E93ECB50087641A /* OAuth2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EEE209471942772800736F1A;
+			remoteInfo = OAuth2macOS;
+		};
+		15D2FEFD1E93ECB60087641A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15D2FEF41E93ECB50087641A /* OAuth2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EEDB8624193FAAE500C4EEA1;
+			remoteInfo = OAuth2iOS;
+		};
+		15D2FEFF1E93ECB60087641A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15D2FEF41E93ECB50087641A /* OAuth2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 659854461C5B3BEA00237D39;
+			remoteInfo = OAuth2tvOS;
+		};
+		15D2FF011E93ECB60087641A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15D2FEF41E93ECB50087641A /* OAuth2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EEE209A219427DFE00736F1A;
+			remoteInfo = OAuth2Tests;
+		};
+		15D2FF031E93ECC90087641A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15D2FEF41E93ECB50087641A /* OAuth2.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EEE209461942772800736F1A;
+			remoteInfo = OAuth2macOS;
+		};
 		B27D84741E35575A007ADB39 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B27D846E1E35575A007ADB39 /* Charts.xcodeproj */;
@@ -191,6 +233,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				15D2FF061E93ECE70087641A /* OAuth2.framework in Embed Frameworks */,
 				B27D847B1E355791007ADB39 /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -244,6 +287,12 @@
 		159509811E5E3DD300D636A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AlertTextField.storyboard; sourceTree = "<group>"; };
 		159509831E5E3E0900D636A8 /* TextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		159509861E5E468900D636A8 /* TextKeyValueController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextKeyValueController.swift; sourceTree = "<group>"; };
+		15D2FEE31E93EBEA0087641A /* GoogleLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleLoader.swift; sourceTree = "<group>"; };
+		15D2FEF41E93ECB50087641A /* OAuth2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2.xcodeproj; path = OAuth2/OAuth2.xcodeproj; sourceTree = SOURCE_ROOT; };
+		15D2FF071E93ED1C0087641A /* DataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
+		15D2FF0B1E93F4C40087641A /* GitHubLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubLoader.swift; sourceTree = "<group>"; };
+		15D2FF0D1E93F4DB0087641A /* BitBucketLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitBucketLoader.swift; sourceTree = "<group>"; };
+		15D2FF111E93F4FA0087641A /* RedditLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedditLoader.swift; sourceTree = "<group>"; };
 		15FAA3CF1E61DFF000AAB1C6 /* ConfigSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigSettings.swift; sourceTree = "<group>"; };
 		B2088F361E42137F00458F58 /* RemoteConfig.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RemoteConfig.storyboard; sourceTree = "<group>"; };
 		B2088F391E4213AC00458F58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Status.storyboard; sourceTree = "<group>"; };
@@ -352,6 +401,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15D2FF051E93ECD60087641A /* OAuth2.framework in Frameworks */,
 				B27D847A1E355791007ADB39 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -578,6 +628,29 @@
 			path = TextView;
 			sourceTree = "<group>";
 		};
+		15D2FEE01E93EBCE0087641A /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				15D2FEE31E93EBEA0087641A /* GoogleLoader.swift */,
+				15D2FF071E93ED1C0087641A /* DataLoader.swift */,
+				15D2FF0B1E93F4C40087641A /* GitHubLoader.swift */,
+				15D2FF0D1E93F4DB0087641A /* BitBucketLoader.swift */,
+				15D2FF111E93F4FA0087641A /* RedditLoader.swift */,
+			);
+			name = OAuth;
+			sourceTree = "<group>";
+		};
+		15D2FEF51E93ECB50087641A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				15D2FEFC1E93ECB60087641A /* OAuth2.framework */,
+				15D2FEFE1E93ECB60087641A /* OAuth2.framework */,
+				15D2FF001E93ECB60087641A /* OAuth2.framework */,
+				15D2FF021E93ECB60087641A /* OAuth2Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B2088F311E42122C00458F58 /* StoryBoards */ = {
 			isa = PBXGroup;
 			children = (
@@ -756,6 +829,8 @@
 		B27D840A1E326BE5007ADB39 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				15D2FEF41E93ECB50087641A /* OAuth2.xcodeproj */,
+				15D2FEE01E93EBCE0087641A /* OAuth */,
 				15944CE01E9147F700513E9C /* Github */,
 				B253B2451E4AA12100E86B9B /* AB Testing */,
 				1511B42C1E77199E001DCF45 /* Analytics */,
@@ -1024,6 +1099,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				15D2FF041E93ECC90087641A /* PBXTargetDependency */,
 				B27D847D1E355791007ADB39 /* PBXTargetDependency */,
 			);
 			name = Dashboard;
@@ -1069,6 +1145,10 @@
 					ProductGroup = B27D846F1E35575A007ADB39 /* Products */;
 					ProjectRef = B27D846E1E35575A007ADB39 /* Charts.xcodeproj */;
 				},
+				{
+					ProductGroup = 15D2FEF51E93ECB50087641A /* Products */;
+					ProjectRef = 15D2FEF41E93ECB50087641A /* OAuth2.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1078,6 +1158,34 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		15D2FEFC1E93ECB60087641A /* OAuth2.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuth2.framework;
+			remoteRef = 15D2FEFB1E93ECB60087641A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		15D2FEFE1E93ECB60087641A /* OAuth2.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuth2.framework;
+			remoteRef = 15D2FEFD1E93ECB60087641A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		15D2FF001E93ECB60087641A /* OAuth2.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuth2.framework;
+			remoteRef = 15D2FEFF1E93ECB60087641A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		15D2FF021E93ECB60087641A /* OAuth2Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OAuth2Tests.xctest;
+			remoteRef = 15D2FF011E93ECB60087641A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		B27D84751E35575A007ADB39 /* Charts.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1167,11 +1275,13 @@
 				B2088F661E429BFC00458F58 /* StorageDetailDelegate.swift in Sources */,
 				B27D84281E327BC3007ADB39 /* JSONRepresentable.swift in Sources */,
 				B27D846A1E354800007ADB39 /* NSColor+Ext.swift in Sources */,
+				15D2FEE41E93EBEA0087641A /* GoogleLoader.swift in Sources */,
 				B27D84321E32B329007ADB39 /* RemoteConfigView.swift in Sources */,
 				15174FD01E590FB000539953 /* BackupDelegate.swift in Sources */,
 				15944CE91E9149CB00513E9C /* Github.swift in Sources */,
 				B27D840E1E326BE5007ADB39 /* ViewController.swift in Sources */,
 				15174FDD1E59D64700539953 /* EditAppViewController.swift in Sources */,
+				15D2FF0C1E93F4C40087641A /* GitHubLoader.swift in Sources */,
 				B2D4F20F1E3C0DD900106A97 /* SprintBoardViewController.swift in Sources */,
 				B253B23F1E4A89C200E86B9B /* Notifications.swift in Sources */,
 				B253B2491E4AA2C500E86B9B /* AnalyticsView.swift in Sources */,
@@ -1222,6 +1332,7 @@
 				B2088F4D1E421ED100458F58 /* Exception.swift in Sources */,
 				B2D4F2281E3CF35C00106A97 /* EditIssueViewController.swift in Sources */,
 				15174FD61E59D0BE00539953 /* AppViewDelegate.swift in Sources */,
+				15D2FF121E93F4FA0087641A /* RedditLoader.swift in Sources */,
 				B2D4F22F1E3D229C00106A97 /* IssueComments.swift in Sources */,
 				159509591E5CECA200D636A8 /* iTunesManager.swift in Sources */,
 				B27D845B1E3515C6007ADB39 /* ColorPickerViewController.swift in Sources */,
@@ -1249,6 +1360,7 @@
 				B27D841E1E326D6B007ADB39 /* SideBarDataSource.swift in Sources */,
 				1511B3D71E75DF42001DCF45 /* AppLangVersionDelegate.swift in Sources */,
 				159509771E5DF0F300D636A8 /* LogViewController.swift in Sources */,
+				15D2FF0E1E93F4DB0087641A /* BitBucketLoader.swift in Sources */,
 				15174FD81E59D23200539953 /* TBApplication.swift in Sources */,
 				B27D84801E355813007ADB39 /* UserView.swift in Sources */,
 				B27D84681E3547D0007ADB39 /* GraphView.swift in Sources */,
@@ -1257,6 +1369,7 @@
 				B253B2351E4A7CB500E86B9B /* NotificationViewController.swift in Sources */,
 				B2D4F2581E3E276B00106A97 /* TestObject.swift in Sources */,
 				B2D3BDD71E46459800273E9C /* Languages.swift in Sources */,
+				15D2FF081E93ED1C0087641A /* DataLoader.swift in Sources */,
 				B2D3BDE21E4650F400273E9C /* TranslationViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1264,6 +1377,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		15D2FF041E93ECC90087641A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OAuth2macOS;
+			targetProxy = 15D2FF031E93ECC90087641A /* PBXContainerItemProxy */;
+		};
 		B27D847D1E355791007ADB39 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Charts;
