@@ -31,12 +31,6 @@
 		15174FEE1E5A0F4700539953 /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FED1E5A0F4700539953 /* RemoteConfig.swift */; };
 		15174FF01E5A149400539953 /* NowDAte.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15174FEF1E5A149400539953 /* NowDAte.swift */; };
 		15350BBF1E58A0A3008CF844 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 15350BBE1E58A0A3008CF844 /* config.json */; };
-		15944CDF1E913BCC00513E9C /* Droplets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15944CDE1E913BCC00513E9C /* Droplets.swift */; };
-		15944CE31E91484900513E9C /* Repos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15944CE11E91484900513E9C /* Repos.storyboard */; };
-		15944CE61E91497D00513E9C /* GithubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15944CE41E91497D00513E9C /* GithubViewController.swift */; };
-		15944CE91E9149CB00513E9C /* Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15944CE81E9149CB00513E9C /* Github.swift */; };
-		15944CEC1E91502000513E9C /* GithubTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15944CEB1E91502000513E9C /* GithubTableViewDelegate.swift */; };
-		15944CEE1E91508E00513E9C /* GithubTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15944CED1E91508E00513E9C /* GithubTableDataSource.swift */; };
 		159509571E5CEC8900D636A8 /* iTunesResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159509561E5CEC8900D636A8 /* iTunesResults.swift */; };
 		159509591E5CECA200D636A8 /* iTunesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159509581E5CECA200D636A8 /* iTunesManager.swift */; };
 		1595095C1E5DA2B700D636A8 /* Staff.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1595095A1E5DA2B700D636A8 /* Staff.storyboard */; };
@@ -52,13 +46,19 @@
 		159509821E5E3DD300D636A8 /* AlertTextField.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 159509801E5E3DD300D636A8 /* AlertTextField.storyboard */; };
 		159509841E5E3E0900D636A8 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159509831E5E3E0900D636A8 /* TextViewController.swift */; };
 		159509871E5E468900D636A8 /* TextKeyValueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159509861E5E468900D636A8 /* TextKeyValueController.swift */; };
-		15D2FEE41E93EBEA0087641A /* GoogleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FEE31E93EBEA0087641A /* GoogleLoader.swift */; };
-		15D2FF051E93ECD60087641A /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 15D2FEFC1E93ECB60087641A /* OAuth2.framework */; };
-		15D2FF061E93ECE70087641A /* ReferenceProxy in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15D2FEFC1E93ECB60087641A /* OAuth2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		15D2FF081E93ED1C0087641A /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF071E93ED1C0087641A /* DataLoader.swift */; };
-		15D2FF0C1E93F4C40087641A /* GitHubLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF0B1E93F4C40087641A /* GitHubLoader.swift */; };
-		15D2FF0E1E93F4DB0087641A /* BitBucketLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF0D1E93F4DB0087641A /* BitBucketLoader.swift */; };
-		15D2FF121E93F4FA0087641A /* RedditLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF111E93F4FA0087641A /* RedditLoader.swift */; };
+		15D2FF051E93ECD60087641A /* OAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15D2FEFC1E93ECB60087641A /* OAuth2.framework */; };
+		15D2FF061E93ECE70087641A /* OAuth2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15D2FEFC1E93ECB60087641A /* OAuth2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		15D2FF1E1E9418E10087641A /* GoogleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF1D1E9418E10087641A /* GoogleLoader.swift */; };
+		15D2FF201E9418F70087641A /* BitBucketLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF1F1E9418F70087641A /* BitBucketLoader.swift */; };
+		15D2FF221E9419060087641A /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF211E9419060087641A /* DataLoader.swift */; };
+		15D2FF241E94191C0087641A /* GithubLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF231E94191C0087641A /* GithubLoader.swift */; };
+		15D2FF261E94192C0087641A /* RedditLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF251E94192C0087641A /* RedditLoader.swift */; };
+		15D2FF291E9419FD0087641A /* Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF281E9419FD0087641A /* Github.swift */; };
+		15D2FF2B1E941A1C0087641A /* GithubTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF2A1E941A1C0087641A /* GithubTableViewDelegate.swift */; };
+		15D2FF2D1E941A3A0087641A /* GithubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF2C1E941A3A0087641A /* GithubViewController.swift */; };
+		15D2FF2F1E941A5E0087641A /* GithubTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF2E1E941A5E0087641A /* GithubTableViewDataSource.swift */; };
+		15D2FF311E941A870087641A /* Repos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15D2FF301E941A870087641A /* Repos.storyboard */; };
+		15D2FF331E941AA90087641A /* Droplets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF321E941AA90087641A /* Droplets.swift */; };
 		15FAA3D01E61DFF000AAB1C6 /* ConfigSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FAA3CF1E61DFF000AAB1C6 /* ConfigSettings.swift */; };
 		B2088F371E42137F00458F58 /* RemoteConfig.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F361E42137F00458F58 /* RemoteConfig.storyboard */; };
 		B2088F3A1E4213AC00458F58 /* Status.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2088F381E4213AC00458F58 /* Status.storyboard */; };
@@ -133,8 +133,8 @@
 		B27D84681E3547D0007ADB39 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D84671E3547D0007ADB39 /* GraphView.swift */; };
 		B27D846A1E354800007ADB39 /* NSColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D84691E354800007ADB39 /* NSColor+Ext.swift */; };
 		B27D846C1E354827007ADB39 /* NSFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D846B1E354827007ADB39 /* NSFont+Ext.swift */; };
-		B27D847A1E355791007ADB39 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = B27D84751E35575A007ADB39 /* Charts.framework */; };
-		B27D847B1E355791007ADB39 /* ReferenceProxy in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B27D84751E35575A007ADB39 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B27D847A1E355791007ADB39 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B27D84751E35575A007ADB39 /* Charts.framework */; };
+		B27D847B1E355791007ADB39 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B27D84751E35575A007ADB39 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B27D84801E355813007ADB39 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D847F1E355813007ADB39 /* UserView.swift */; };
 		B29380131E46932200F00003 /* TranslationViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29380121E46932200F00003 /* TranslationViewController+Ext.swift */; };
 		B2D3BDCE1E463EB800273E9C /* Languages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D3BDCC1E463EB800273E9C /* Languages.storyboard */; };
@@ -233,8 +233,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				15D2FF061E93ECE70087641A /* ReferenceProxy in Embed Frameworks */,
-				B27D847B1E355791007ADB39 /* ReferenceProxy in Embed Frameworks */,
+				15D2FF061E93ECE70087641A /* OAuth2.framework in Embed Frameworks */,
+				B27D847B1E355791007ADB39 /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,12 +266,6 @@
 		15174FED1E5A0F4700539953 /* RemoteConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteConfig.swift; sourceTree = "<group>"; };
 		15174FEF1E5A149400539953 /* NowDAte.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowDAte.swift; sourceTree = "<group>"; };
 		15350BBE1E58A0A3008CF844 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
-		15944CDE1E913BCC00513E9C /* Droplets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Droplets.swift; sourceTree = "<group>"; };
-		15944CE21E91484900513E9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Repos.storyboard; sourceTree = "<group>"; };
-		15944CE41E91497D00513E9C /* GithubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubViewController.swift; sourceTree = "<group>"; };
-		15944CE81E9149CB00513E9C /* Github.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Github.swift; sourceTree = "<group>"; };
-		15944CEB1E91502000513E9C /* GithubTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubTableViewDelegate.swift; sourceTree = "<group>"; };
-		15944CED1E91508E00513E9C /* GithubTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubTableDataSource.swift; sourceTree = "<group>"; };
 		159509561E5CEC8900D636A8 /* iTunesResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesResults.swift; sourceTree = "<group>"; };
 		159509581E5CECA200D636A8 /* iTunesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesManager.swift; sourceTree = "<group>"; };
 		1595095B1E5DA2B700D636A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Staff.storyboard; sourceTree = "<group>"; };
@@ -287,12 +281,18 @@
 		159509811E5E3DD300D636A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AlertTextField.storyboard; sourceTree = "<group>"; };
 		159509831E5E3E0900D636A8 /* TextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		159509861E5E468900D636A8 /* TextKeyValueController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextKeyValueController.swift; sourceTree = "<group>"; };
-		15D2FEE31E93EBEA0087641A /* GoogleLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleLoader.swift; sourceTree = "<group>"; };
-		15D2FEF41E93ECB50087641A /* OAuth2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2.xcodeproj; path = ../OAuth2/OAuth2.xcodeproj; sourceTree = SOURCE_ROOT; };
-		15D2FF071E93ED1C0087641A /* DataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
-		15D2FF0B1E93F4C40087641A /* GitHubLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubLoader.swift; sourceTree = "<group>"; };
-		15D2FF0D1E93F4DB0087641A /* BitBucketLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitBucketLoader.swift; sourceTree = "<group>"; };
-		15D2FF111E93F4FA0087641A /* RedditLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedditLoader.swift; sourceTree = "<group>"; };
+		15D2FEF41E93ECB50087641A /* OAuth2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2.xcodeproj; path = OAuth2/OAuth2.xcodeproj; sourceTree = SOURCE_ROOT; };
+		15D2FF1D1E9418E10087641A /* GoogleLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleLoader.swift; sourceTree = "<group>"; };
+		15D2FF1F1E9418F70087641A /* BitBucketLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitBucketLoader.swift; sourceTree = "<group>"; };
+		15D2FF211E9419060087641A /* DataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
+		15D2FF231E94191C0087641A /* GithubLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubLoader.swift; sourceTree = "<group>"; };
+		15D2FF251E94192C0087641A /* RedditLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedditLoader.swift; sourceTree = "<group>"; };
+		15D2FF281E9419FD0087641A /* Github.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Github.swift; sourceTree = "<group>"; };
+		15D2FF2A1E941A1C0087641A /* GithubTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubTableViewDelegate.swift; sourceTree = "<group>"; };
+		15D2FF2C1E941A3A0087641A /* GithubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubViewController.swift; sourceTree = "<group>"; };
+		15D2FF2E1E941A5E0087641A /* GithubTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubTableViewDataSource.swift; sourceTree = "<group>"; };
+		15D2FF301E941A870087641A /* Repos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Repos.storyboard; sourceTree = "<group>"; };
+		15D2FF321E941AA90087641A /* Droplets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Droplets.swift; sourceTree = "<group>"; };
 		15FAA3CF1E61DFF000AAB1C6 /* ConfigSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigSettings.swift; sourceTree = "<group>"; };
 		B2088F361E42137F00458F58 /* RemoteConfig.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RemoteConfig.storyboard; sourceTree = "<group>"; };
 		B2088F391E4213AC00458F58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Status.storyboard; sourceTree = "<group>"; };
@@ -401,8 +401,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15D2FF051E93ECD60087641A /* ReferenceProxy in Frameworks */,
-				B27D847A1E355791007ADB39 /* ReferenceProxy in Frameworks */,
+				15D2FF051E93ECD60087641A /* OAuth2.framework in Frameworks */,
+				B27D847A1E355791007ADB39 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,31 +535,19 @@
 		15944CDB1E91354900513E9C /* DigitalOcean */ = {
 			isa = PBXGroup;
 			children = (
-				15944CDE1E913BCC00513E9C /* Droplets.swift */,
+				15D2FF321E941AA90087641A /* Droplets.swift */,
 			);
 			name = DigitalOcean;
-			path = DigitalOcean;
 			sourceTree = "<group>";
 		};
 		15944CE01E9147F700513E9C /* Github */ = {
 			isa = PBXGroup;
 			children = (
-				15944CEA1E91500A00513E9C /* Table */,
-				15944CE81E9149CB00513E9C /* Github.swift */,
-				15944CE41E91497D00513E9C /* GithubViewController.swift */,
+				15D2FF271E9419E30087641A /* Table */,
+				15D2FF281E9419FD0087641A /* Github.swift */,
+				15D2FF2C1E941A3A0087641A /* GithubViewController.swift */,
 			);
 			name = Github;
-			path = Github;
-			sourceTree = "<group>";
-		};
-		15944CEA1E91500A00513E9C /* Table */ = {
-			isa = PBXGroup;
-			children = (
-				15944CED1E91508E00513E9C /* GithubTableDataSource.swift */,
-				15944CEB1E91502000513E9C /* GithubTableViewDelegate.swift */,
-			);
-			name = Table;
-			path = Table;
 			sourceTree = "<group>";
 		};
 		159509531E5CEC3B00D636A8 /* iTunes Connect */ = {
@@ -634,14 +622,13 @@
 		15D2FEE01E93EBCE0087641A /* OAuth */ = {
 			isa = PBXGroup;
 			children = (
-				15D2FF0D1E93F4DB0087641A /* BitBucketLoader.swift */,
-				15D2FF071E93ED1C0087641A /* DataLoader.swift */,
-				15D2FF0B1E93F4C40087641A /* GitHubLoader.swift */,
-				15D2FEE31E93EBEA0087641A /* GoogleLoader.swift */,
-				15D2FF111E93F4FA0087641A /* RedditLoader.swift */,
+				15D2FF1D1E9418E10087641A /* GoogleLoader.swift */,
+				15D2FF1F1E9418F70087641A /* BitBucketLoader.swift */,
+				15D2FF211E9419060087641A /* DataLoader.swift */,
+				15D2FF231E94191C0087641A /* GithubLoader.swift */,
+				15D2FF251E94192C0087641A /* RedditLoader.swift */,
 			);
 			name = OAuth;
-			path = OAuth;
 			sourceTree = "<group>";
 		};
 		15D2FEF51E93ECB50087641A /* Products */ = {
@@ -655,26 +642,35 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		15D2FF271E9419E30087641A /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				15D2FF2A1E941A1C0087641A /* GithubTableViewDelegate.swift */,
+				15D2FF2E1E941A5E0087641A /* GithubTableViewDataSource.swift */,
+			);
+			name = Table;
+			sourceTree = "<group>";
+		};
 		B2088F311E42122C00458F58 /* StoryBoards */ = {
 			isa = PBXGroup;
 			children = (
+				15D2FF301E941A870087641A /* Repos.storyboard */,
 				B253B24A1E4AA42900E86B9B /* ABTesting.storyboard */,
 				159509801E5E3DD300D636A8 /* AlertTextField.storyboard */,
 				1511B4271E771984001DCF45 /* Analytics.storyboard */,
 				15174FC21E5904CE00539953 /* Backup.storyboard */,
 				B2088F401E421A9600458F58 /* Crashes.storyboard */,
 				B2088F541E423C3500458F58 /* EditTickets.storyboard */,
+				B2088F3D1E4213EE00458F58 /* Tickets.storyboard */,
 				B2D3BDCC1E463EB800273E9C /* Languages.storyboard */,
 				1595097A1E5DF35900D636A8 /* Logs.storyboard */,
 				B253B2361E4A7D1700E86B9B /* Notifications.storyboard */,
 				B2088F361E42137F00458F58 /* RemoteConfig.storyboard */,
-				15944CE11E91484900513E9C /* Repos.storyboard */,
 				B253B25D1E4B7D4100E86B9B /* Settings.storyboard */,
 				B2088F3B1E4213C900458F58 /* SprintBoard.storyboard */,
 				1595095A1E5DA2B700D636A8 /* Staff.storyboard */,
 				B2088F381E4213AC00458F58 /* Status.storyboard */,
 				B2088F691E429D4F00458F58 /* Storage.storyboard */,
-				B2088F3D1E4213EE00458F58 /* Tickets.storyboard */,
 				B2088F501E422FCD00458F58 /* ViewCrash.storyboard */,
 			);
 			path = StoryBoards;
@@ -833,13 +829,15 @@
 		B27D840A1E326BE5007ADB39 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				15D2FEF41E93ECB50087641A /* OAuth2.xcodeproj */,
+				15D2FEE01E93EBCE0087641A /* OAuth */,
+				15944CE01E9147F700513E9C /* Github */,
 				B253B2451E4AA12100E86B9B /* AB Testing */,
 				1511B42C1E77199E001DCF45 /* Analytics */,
 				15174FC71E59097200539953 /* Backup */,
 				B27D84331E32B42B007ADB39 /* Controllers */,
 				B2088F441E421B0500458F58 /* Crashes-Bugs */,
 				B27D842B1E3282D7007ADB39 /* Extensions */,
-				15944CE01E9147F700513E9C /* Github */,
 				B2D4F2101E3C218300106A97 /* Issues View */,
 				B2D3BDD11E46432400273E9C /* Languages */,
 				B21021131E43B57900AC4C5D /* Login */,
@@ -847,7 +845,6 @@
 				B27D84301E32B305007ADB39 /* MainView */,
 				B27D84241E327A65007ADB39 /* Model */,
 				B253B2311E4A746200E86B9B /* Notifications */,
-				15D2FEE01E93EBCE0087641A /* OAuth */,
 				B27D844D1E33DED4007ADB39 /* Remote Config */,
 				B27D84601E3545A7007ADB39 /* Server View */,
 				B253B2601E4B7F2700E86B9B /* Settings */,
@@ -862,7 +859,6 @@
 				B2D4F2321E3D417400106A97 /* Dashboard.entitlements */,
 				B27D84141E326BE5007ADB39 /* Info.plist */,
 				B27D84111E326BE5007ADB39 /* Main.storyboard */,
-				15D2FEF41E93ECB50087641A /* OAuth2.xcodeproj */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1226,7 +1222,7 @@
 				B253B24C1E4AA42900E86B9B /* ABTesting.storyboard in Resources */,
 				1595097C1E5DF35900D636A8 /* Logs.storyboard in Resources */,
 				B2088F6B1E429D4F00458F58 /* Storage.storyboard in Resources */,
-				15944CE31E91484900513E9C /* Repos.storyboard in Resources */,
+				15D2FF311E941A870087641A /* Repos.storyboard in Resources */,
 				B2088F411E421A9600458F58 /* Crashes.storyboard in Resources */,
 				B27D84101E326BE5007ADB39 /* Assets.xcassets in Resources */,
 				B2D3BDCE1E463EB800273E9C /* Languages.storyboard in Resources */,
@@ -1250,19 +1246,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15D2FF201E9418F70087641A /* BitBucketLoader.swift in Sources */,
 				B2D3BDEF1E466C7200273E9C /* PublishLanguage.swift in Sources */,
 				B253B23A1E4A871B00E86B9B /* SendNotificationView.swift in Sources */,
 				B2088F6F1E42ADE900458F58 /* DefaultTable.swift in Sources */,
 				B253B2531E4B428A00E86B9B /* ImportTableDataSource.swift in Sources */,
 				B2088F6D1E429E5900458F58 /* Tables.swift in Sources */,
 				B2088F461E421BBC00458F58 /* CrashStatsView.swift in Sources */,
+				15D2FF2D1E941A3A0087641A /* GithubViewController.swift in Sources */,
 				B2D3BDF21E466FEF00273E9C /* PublishLangDelegate.swift in Sources */,
 				15174FE81E5A019900539953 /* AppNameDataSource.swift in Sources */,
 				B2088F491E421DA300458F58 /* CrashViewDelegate.swift in Sources */,
 				B29380131E46932200F00003 /* TranslationViewController+Ext.swift in Sources */,
 				15174FE61E5A00EA00539953 /* AppNameDelegate.swift in Sources */,
 				B2D3BDF41E46758400273E9C /* PublishLangCell.swift in Sources */,
-				15944CEE1E91508E00513E9C /* GithubTableDataSource.swift in Sources */,
 				B253B2621E4B7F5500E86B9B /* SettingsViewController.swift in Sources */,
 				B253B24F1E4B398B00E86B9B /* ImportFileViewController.swift in Sources */,
 				B2088F431E421AFE00458F58 /* CrashesViewController.swift in Sources */,
@@ -1270,22 +1267,23 @@
 				15174FCE1E590EBD00539953 /* BackupDataSource.swift in Sources */,
 				150A42EA1E716FB000D8C476 /* AppConfigVersionDelegate.swift in Sources */,
 				B2D3BDD41E46433D00273E9C /* TranslationViewController.swift in Sources */,
+				15D2FF291E9419FD0087641A /* Github.swift in Sources */,
 				B2D4F2051E3C092A00106A97 /* CustomCellView.swift in Sources */,
 				B2D3BDDF1E46502D00273E9C /* TranslationKeysDelegate.swift in Sources */,
 				B27D84571E34DC56007ADB39 /* ColorViewDelegate.swift in Sources */,
+				15D2FF2B1E941A1C0087641A /* GithubTableViewDelegate.swift in Sources */,
 				B27D845F1E3522A9007ADB39 /* NSView+Ext.swift in Sources */,
 				B2D4F2311E3D284B00106A97 /* IssueActivity.swift in Sources */,
 				B2088F5D1E429B7C00458F58 /* StorageViewController.swift in Sources */,
 				B2088F661E429BFC00458F58 /* StorageDetailDelegate.swift in Sources */,
 				B27D84281E327BC3007ADB39 /* JSONRepresentable.swift in Sources */,
 				B27D846A1E354800007ADB39 /* NSColor+Ext.swift in Sources */,
-				15D2FEE41E93EBEA0087641A /* GoogleLoader.swift in Sources */,
+				15D2FF1E1E9418E10087641A /* GoogleLoader.swift in Sources */,
 				B27D84321E32B329007ADB39 /* RemoteConfigView.swift in Sources */,
 				15174FD01E590FB000539953 /* BackupDelegate.swift in Sources */,
-				15944CE91E9149CB00513E9C /* Github.swift in Sources */,
 				B27D840E1E326BE5007ADB39 /* ViewController.swift in Sources */,
+				15D2FF261E94192C0087641A /* RedditLoader.swift in Sources */,
 				15174FDD1E59D64700539953 /* EditAppViewController.swift in Sources */,
-				15D2FF0C1E93F4C40087641A /* GitHubLoader.swift in Sources */,
 				B2D4F20F1E3C0DD900106A97 /* SprintBoardViewController.swift in Sources */,
 				B253B23F1E4A89C200E86B9B /* Notifications.swift in Sources */,
 				B253B2491E4AA2C500E86B9B /* AnalyticsView.swift in Sources */,
@@ -1305,8 +1303,8 @@
 				B27D842D1E3282E7007ADB39 /* Dictionary+Ext.swift in Sources */,
 				B27D84531E33DFBE007ADB39 /* SettingsViewDataSource.swift in Sources */,
 				15174FF01E5A149400539953 /* NowDAte.swift in Sources */,
+				15D2FF241E94191C0087641A /* GithubLoader.swift in Sources */,
 				B27D84231E3278B8007ADB39 /* MainViewDelegate.swift in Sources */,
-				15944CEC1E91502000513E9C /* GithubTableViewDelegate.swift in Sources */,
 				B27D84211E327894007ADB39 /* MainViewDataSource.swift in Sources */,
 				15174FD31E59CA7600539953 /* DatabaseViewDelegate.swift in Sources */,
 				B21021171E43B59400AC4C5D /* LoginViewController.swift in Sources */,
@@ -1317,7 +1315,7 @@
 				B23BF8431E5096CE005E7083 /* ABTesting.swift in Sources */,
 				15174FC91E59098A00539953 /* BackupViewController.swift in Sources */,
 				150A42E71E7169FB00D8C476 /* SendConfigViewController.swift in Sources */,
-				15944CDF1E913BCC00513E9C /* Droplets.swift in Sources */,
+				15D2FF221E9419060087641A /* DataLoader.swift in Sources */,
 				1595097E1E5E289D00D636A8 /* StaffStatsView.swift in Sources */,
 				159509841E5E3E0900D636A8 /* TextViewController.swift in Sources */,
 				B2D4F2161E3C24E000106A97 /* IssueViewDelegate.swift in Sources */,
@@ -1336,7 +1334,6 @@
 				B2088F4D1E421ED100458F58 /* Exception.swift in Sources */,
 				B2D4F2281E3CF35C00106A97 /* EditIssueViewController.swift in Sources */,
 				15174FD61E59D0BE00539953 /* AppViewDelegate.swift in Sources */,
-				15D2FF121E93F4FA0087641A /* RedditLoader.swift in Sources */,
 				B2D4F22F1E3D229C00106A97 /* IssueComments.swift in Sources */,
 				159509591E5CECA200D636A8 /* iTunesManager.swift in Sources */,
 				B27D845B1E3515C6007ADB39 /* ColorPickerViewController.swift in Sources */,
@@ -1352,7 +1349,6 @@
 				15174FEE1E5A0F4700539953 /* RemoteConfig.swift in Sources */,
 				B2088F4F1E42270900458F58 /* String+Ext.swift in Sources */,
 				159509791E5DF23C00D636A8 /* GenericTableViewDelegate.swift in Sources */,
-				15944CE61E91497D00513E9C /* GithubViewController.swift in Sources */,
 				B27D842A1E327C1F007ADB39 /* HTTPConnection.swift in Sources */,
 				B2088F681E429C0F00458F58 /* StorageDetailDataSource.swift in Sources */,
 				B27D84361E32C0D7007ADB39 /* DetailViewDataSource.swift in Sources */,
@@ -1364,16 +1360,16 @@
 				B27D841E1E326D6B007ADB39 /* SideBarDataSource.swift in Sources */,
 				1511B3D71E75DF42001DCF45 /* AppLangVersionDelegate.swift in Sources */,
 				159509771E5DF0F300D636A8 /* LogViewController.swift in Sources */,
-				15D2FF0E1E93F4DB0087641A /* BitBucketLoader.swift in Sources */,
 				15174FD81E59D23200539953 /* TBApplication.swift in Sources */,
+				15D2FF331E941AA90087641A /* Droplets.swift in Sources */,
 				B27D84801E355813007ADB39 /* UserView.swift in Sources */,
 				B27D84681E3547D0007ADB39 /* GraphView.swift in Sources */,
+				15D2FF2F1E941A5E0087641A /* GithubTableViewDataSource.swift in Sources */,
 				15FAA3D01E61DFF000AAB1C6 /* ConfigSettings.swift in Sources */,
 				B253B2511E4B427C00E86B9B /* ImportTableViewDelegate.swift in Sources */,
 				B253B2351E4A7CB500E86B9B /* NotificationViewController.swift in Sources */,
 				B2D4F2581E3E276B00106A97 /* TestObject.swift in Sources */,
 				B2D3BDD71E46459800273E9C /* Languages.swift in Sources */,
-				15D2FF081E93ED1C0087641A /* DataLoader.swift in Sources */,
 				B2D3BDE21E4650F400273E9C /* TranslationViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1409,15 +1405,6 @@
 				15174FC31E5904CE00539953 /* Base */,
 			);
 			name = Backup.storyboard;
-			path = .;
-			sourceTree = "<group>";
-		};
-		15944CE11E91484900513E9C /* Repos.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				15944CE21E91484900513E9C /* Base */,
-			);
-			name = Repos.storyboard;
 			path = .;
 			sourceTree = "<group>";
 		};
