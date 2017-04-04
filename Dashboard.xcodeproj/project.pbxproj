@@ -53,8 +53,8 @@
 		159509841E5E3E0900D636A8 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159509831E5E3E0900D636A8 /* TextViewController.swift */; };
 		159509871E5E468900D636A8 /* TextKeyValueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159509861E5E468900D636A8 /* TextKeyValueController.swift */; };
 		15D2FEE41E93EBEA0087641A /* GoogleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FEE31E93EBEA0087641A /* GoogleLoader.swift */; };
-		15D2FF051E93ECD60087641A /* OAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15D2FEFC1E93ECB60087641A /* OAuth2.framework */; };
-		15D2FF061E93ECE70087641A /* OAuth2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15D2FEFC1E93ECB60087641A /* OAuth2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		15D2FF051E93ECD60087641A /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 15D2FEFC1E93ECB60087641A /* OAuth2.framework */; };
+		15D2FF061E93ECE70087641A /* ReferenceProxy in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15D2FEFC1E93ECB60087641A /* OAuth2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15D2FF081E93ED1C0087641A /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF071E93ED1C0087641A /* DataLoader.swift */; };
 		15D2FF0C1E93F4C40087641A /* GitHubLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF0B1E93F4C40087641A /* GitHubLoader.swift */; };
 		15D2FF0E1E93F4DB0087641A /* BitBucketLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2FF0D1E93F4DB0087641A /* BitBucketLoader.swift */; };
@@ -133,8 +133,8 @@
 		B27D84681E3547D0007ADB39 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D84671E3547D0007ADB39 /* GraphView.swift */; };
 		B27D846A1E354800007ADB39 /* NSColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D84691E354800007ADB39 /* NSColor+Ext.swift */; };
 		B27D846C1E354827007ADB39 /* NSFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D846B1E354827007ADB39 /* NSFont+Ext.swift */; };
-		B27D847A1E355791007ADB39 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B27D84751E35575A007ADB39 /* Charts.framework */; };
-		B27D847B1E355791007ADB39 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B27D84751E35575A007ADB39 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B27D847A1E355791007ADB39 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = B27D84751E35575A007ADB39 /* Charts.framework */; };
+		B27D847B1E355791007ADB39 /* ReferenceProxy in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B27D84751E35575A007ADB39 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B27D84801E355813007ADB39 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27D847F1E355813007ADB39 /* UserView.swift */; };
 		B29380131E46932200F00003 /* TranslationViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29380121E46932200F00003 /* TranslationViewController+Ext.swift */; };
 		B2D3BDCE1E463EB800273E9C /* Languages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D3BDCC1E463EB800273E9C /* Languages.storyboard */; };
@@ -233,8 +233,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				15D2FF061E93ECE70087641A /* OAuth2.framework in Embed Frameworks */,
-				B27D847B1E355791007ADB39 /* Charts.framework in Embed Frameworks */,
+				15D2FF061E93ECE70087641A /* ReferenceProxy in Embed Frameworks */,
+				B27D847B1E355791007ADB39 /* ReferenceProxy in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,7 +288,7 @@
 		159509831E5E3E0900D636A8 /* TextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		159509861E5E468900D636A8 /* TextKeyValueController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextKeyValueController.swift; sourceTree = "<group>"; };
 		15D2FEE31E93EBEA0087641A /* GoogleLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleLoader.swift; sourceTree = "<group>"; };
-		15D2FEF41E93ECB50087641A /* OAuth2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2.xcodeproj; path = OAuth2/OAuth2.xcodeproj; sourceTree = SOURCE_ROOT; };
+		15D2FEF41E93ECB50087641A /* OAuth2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2.xcodeproj; path = ../OAuth2/OAuth2.xcodeproj; sourceTree = SOURCE_ROOT; };
 		15D2FF071E93ED1C0087641A /* DataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		15D2FF0B1E93F4C40087641A /* GitHubLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubLoader.swift; sourceTree = "<group>"; };
 		15D2FF0D1E93F4DB0087641A /* BitBucketLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitBucketLoader.swift; sourceTree = "<group>"; };
@@ -401,8 +401,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15D2FF051E93ECD60087641A /* OAuth2.framework in Frameworks */,
-				B27D847A1E355791007ADB39 /* Charts.framework in Frameworks */,
+				15D2FF051E93ECD60087641A /* ReferenceProxy in Frameworks */,
+				B27D847A1E355791007ADB39 /* ReferenceProxy in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,25 +538,28 @@
 				15944CDE1E913BCC00513E9C /* Droplets.swift */,
 			);
 			name = DigitalOcean;
+			path = DigitalOcean;
 			sourceTree = "<group>";
 		};
 		15944CE01E9147F700513E9C /* Github */ = {
 			isa = PBXGroup;
 			children = (
 				15944CEA1E91500A00513E9C /* Table */,
-				15944CE41E91497D00513E9C /* GithubViewController.swift */,
 				15944CE81E9149CB00513E9C /* Github.swift */,
+				15944CE41E91497D00513E9C /* GithubViewController.swift */,
 			);
 			name = Github;
+			path = Github;
 			sourceTree = "<group>";
 		};
 		15944CEA1E91500A00513E9C /* Table */ = {
 			isa = PBXGroup;
 			children = (
-				15944CEB1E91502000513E9C /* GithubTableViewDelegate.swift */,
 				15944CED1E91508E00513E9C /* GithubTableDataSource.swift */,
+				15944CEB1E91502000513E9C /* GithubTableViewDelegate.swift */,
 			);
 			name = Table;
+			path = Table;
 			sourceTree = "<group>";
 		};
 		159509531E5CEC3B00D636A8 /* iTunes Connect */ = {
@@ -631,13 +634,14 @@
 		15D2FEE01E93EBCE0087641A /* OAuth */ = {
 			isa = PBXGroup;
 			children = (
-				15D2FEE31E93EBEA0087641A /* GoogleLoader.swift */,
+				15D2FF0D1E93F4DB0087641A /* BitBucketLoader.swift */,
 				15D2FF071E93ED1C0087641A /* DataLoader.swift */,
 				15D2FF0B1E93F4C40087641A /* GitHubLoader.swift */,
-				15D2FF0D1E93F4DB0087641A /* BitBucketLoader.swift */,
+				15D2FEE31E93EBEA0087641A /* GoogleLoader.swift */,
 				15D2FF111E93F4FA0087641A /* RedditLoader.swift */,
 			);
 			name = OAuth;
+			path = OAuth;
 			sourceTree = "<group>";
 		};
 		15D2FEF51E93ECB50087641A /* Products */ = {
@@ -660,17 +664,17 @@
 				15174FC21E5904CE00539953 /* Backup.storyboard */,
 				B2088F401E421A9600458F58 /* Crashes.storyboard */,
 				B2088F541E423C3500458F58 /* EditTickets.storyboard */,
-				B2088F3D1E4213EE00458F58 /* Tickets.storyboard */,
 				B2D3BDCC1E463EB800273E9C /* Languages.storyboard */,
 				1595097A1E5DF35900D636A8 /* Logs.storyboard */,
 				B253B2361E4A7D1700E86B9B /* Notifications.storyboard */,
 				B2088F361E42137F00458F58 /* RemoteConfig.storyboard */,
+				15944CE11E91484900513E9C /* Repos.storyboard */,
 				B253B25D1E4B7D4100E86B9B /* Settings.storyboard */,
 				B2088F3B1E4213C900458F58 /* SprintBoard.storyboard */,
 				1595095A1E5DA2B700D636A8 /* Staff.storyboard */,
 				B2088F381E4213AC00458F58 /* Status.storyboard */,
-				15944CE11E91484900513E9C /* Repos.storyboard */,
 				B2088F691E429D4F00458F58 /* Storage.storyboard */,
+				B2088F3D1E4213EE00458F58 /* Tickets.storyboard */,
 				B2088F501E422FCD00458F58 /* ViewCrash.storyboard */,
 			);
 			path = StoryBoards;
@@ -829,15 +833,13 @@
 		B27D840A1E326BE5007ADB39 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				15D2FEF41E93ECB50087641A /* OAuth2.xcodeproj */,
-				15D2FEE01E93EBCE0087641A /* OAuth */,
-				15944CE01E9147F700513E9C /* Github */,
 				B253B2451E4AA12100E86B9B /* AB Testing */,
 				1511B42C1E77199E001DCF45 /* Analytics */,
 				15174FC71E59097200539953 /* Backup */,
 				B27D84331E32B42B007ADB39 /* Controllers */,
 				B2088F441E421B0500458F58 /* Crashes-Bugs */,
 				B27D842B1E3282D7007ADB39 /* Extensions */,
+				15944CE01E9147F700513E9C /* Github */,
 				B2D4F2101E3C218300106A97 /* Issues View */,
 				B2D3BDD11E46432400273E9C /* Languages */,
 				B21021131E43B57900AC4C5D /* Login */,
@@ -845,6 +847,7 @@
 				B27D84301E32B305007ADB39 /* MainView */,
 				B27D84241E327A65007ADB39 /* Model */,
 				B253B2311E4A746200E86B9B /* Notifications */,
+				15D2FEE01E93EBCE0087641A /* OAuth */,
 				B27D844D1E33DED4007ADB39 /* Remote Config */,
 				B27D84601E3545A7007ADB39 /* Server View */,
 				B253B2601E4B7F2700E86B9B /* Settings */,
@@ -859,6 +862,7 @@
 				B2D4F2321E3D417400106A97 /* Dashboard.entitlements */,
 				B27D84141E326BE5007ADB39 /* Info.plist */,
 				B27D84111E326BE5007ADB39 /* Main.storyboard */,
+				15D2FEF41E93ECB50087641A /* OAuth2.xcodeproj */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1414,7 +1418,7 @@
 				15944CE21E91484900513E9C /* Base */,
 			);
 			name = Repos.storyboard;
-			path = ..;
+			path = .;
 			sourceTree = "<group>";
 		};
 		1595095A1E5DA2B700D636A8 /* Staff.storyboard */ = {
